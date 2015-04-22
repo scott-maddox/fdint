@@ -1,0 +1,41 @@
+# ignore directory
+ignore/
+
+# tmp files
+*.swp
+*.bak
+
+# compiled source
+*.pyc
+
+# build directories
+dist/
+build/
+doc/_build/
+doc/_build_examples/
+doc/examples/**/_*
+
+# setup.py generated files
+*.egg-info
+
+# packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Aptana generated files
+.settings/
+.project
+.pydevproject
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+ehthumbs.db
+Thumbs.db
