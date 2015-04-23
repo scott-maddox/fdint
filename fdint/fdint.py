@@ -25,71 +25,76 @@ Precise and fast Fermi-Dirac integrals of integer and half integer order.
     approximation," Applied Mathematics and Computation, vol. 259,
     pp. 708-729, May 2015.
 '''
+from . import pyfd
 try:
-    from . import ffd as fd
+    from . import ffd
+    _fd = ffd
 except Exception as error:
     import sys
-    if __name__ != '__main__':
-        sys.stderr.write('WARNING: Unable to import fortran module. '
-                         'Falling back to the slower python module.\n')
-    from . import pyfd as fd
+    sys.stderr.write('WARNING: Unable to import fortran module. '
+                     'Falling back to the slower python module.\n')
+    _fd = pyfd
 
 import numpy
 
-__all__ = ['fdk', 'dfdk']
+__all__ = ['_fd', 'fdk', 'dfdk']
 
-def fdk(phi, k):
+def fdk(k, phi):
     '''
     Double precision Fermi-Dirac integral of order k.
     
     Parameters
     ----------
-    phi : float or ndarray
-        Normalized Fermi energy above the band edge, i.e. (Ef-Ec)/kT
     k : int
-        Order of the Fermi-Dirac integral
+        Order of the Fermi-Dirac integral.
+    phi : float or ndarray
+        Normalized Fermi energy above the band edge, i.e. (Ef-Ec)/kT.
     
     Returns
     -------
-    fd : float or ndarray
-        NaN if the requested order is not implemented, otherwise the result.
+    value : float or ndarray
+        Value of the Fermi-Dirac integral.
+    
+    Raises
+    ------
+    NotImplementedError
+        If the particular order is not implemented.
     '''
     if isinstance(phi, numpy.ndarray):
-        return fd.vfdk2(phi, int(k*2))
+        value, err = _fd.vfdk2(int(k*2), phi)
     else:
-        return fd.fdk2(phi, int(k*2))
+        value, err = _fd.fdk2(int(k*2), phi)
+    if err:
+        raise NotImplementedError()
+    return value
 
-def dfdk(phi, k, d=1):
+def dfdk(k, phi, d=1):
     '''
     Double precision derivative of the Fermi-Dirac integral of order k.
     
     Parameters
     ----------
-    phi : float or ndarray
-        Normalized Fermi energy above the band edge, i.e. (Ef-Ec)/kT
     k : int
-        Order of the Fermi-Dirac integral
+        Order of the Fermi-Dirac integral.
+    phi : float or ndarray
+        Normalized Fermi energy above the band edge, i.e. (Ef-Ec)/kT.
     d : int (default=1)
-        Order of dirivative
+        Order of dirivative.
     
     Returns
     -------
-    fd : float or ndarray
-        NaN if the requested order is not implemented, otherwise the result.
+    value : float or ndarray
+        Value of the Fermi-Dirac integral.
+    
+    Raises
+    ------
+    NotImplementedError
+        If the particular order is not implemented.
     '''
     if isinstance(phi, numpy.ndarray):
-        return fd.vdfdk2(phi, int(k*2), d)
+        value, err = _fd.vdfdk2(int(k*2), phi, d)
     else:
-        return fd.dfdk2(phi, int(k*2), d)
-
-if __name__ == "__main__":
-    # Plot the available FD integrals and first and second derivatives
-    import matplotlib.pyplot as plt
-    _, ax = plt.subplots()
-    phi = numpy.linspace(-30, 50, 10000)
-    for k2 in range(-7, 0, 2)+range(0, 22):
-        k = k2/2.
-        ax.semilogy(phi, fdk(phi, k), 'r')
-        ax.semilogy(phi, dfdk(phi, k), 'b')
-        ax.semilogy(phi, dfdk(phi, k, 2), 'g')
-    plt.show()
+        value, err = _fd.dfdk2(int(k*2), phi, d)
+    if err:
+        raise NotImplementedError()
+    return value
