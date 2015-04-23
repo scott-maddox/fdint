@@ -31,7 +31,7 @@ try:
     _fd = ffd
 except Exception as error:
     import sys
-    sys.stderr.write('WARNING: Unable to import fortran module. '
+    sys.stderr.write('WARNING: Unable to import the fdint fortran module. '
                      'Falling back to the slower python module.\n')
     _fd = pyfd
 
