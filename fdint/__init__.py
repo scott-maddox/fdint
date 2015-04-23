@@ -25,6 +25,7 @@ Precise and fast Fermi-Dirac integrals of integer and half integer order.
     approximation," Applied Mathematics and Computation, vol. 259,
     pp. 708-729, May 2015.
 '''
+from version import __version__
 from .fdint import *
 
 __all__ = ['_fd', 'fdk', 'dfdk']
