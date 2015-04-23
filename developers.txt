@@ -19,12 +19,8 @@ version number):
     echo "__version__ = '0.8'" > fdint/version.py
     git commit -am "Bumbed version number to 0.8"
 
-Now is a good time to run the unit tests, to make sure you haven't missed any
-bugs:
-
-    python -m fdint.tests
-
-Also build, install, and test in a virtualenv:
+Now is a good time to build, install, and test in a virtualenv, to make sure
+you haven't missed any bugs:
 
     virtualenv venv
     source venv/bin/activate
