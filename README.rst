@@ -1,19 +1,15 @@
 Fermi-Dirac Integrals (FDINT)
 =============================
 
-Precise and fast Fermi-Dirac integrals of integer and half integer order.
+FDINT is a free, open-source python package that provides fast, double
+precision (64-bit floating point) approximations to the Fermi-Dirac
+integrals of integer and half integer order, based on the work by
+Prof. Fukushima [1].
     
-[1] T. Fukushima, "Precise and fast computation of Fermi-Dirac integral
-    of integer and half integer order by piecewise minimax rational
-    approximation," Applied Mathematics and Computation, vol. 259,
-    pp. 708-729, May 2015.
-
-The `source code`_ and `documentation`_ (coming soon) are graciously hosted
-by GitHub.
-
-.. _`source code`: http://github.com/scott-maddox/fdint
-.. _`documentation`: http://scott-maddox.github.io/fdint
-
+.. [1] T. Fukushima, "Precise and fast computation of Fermi-Dirac integral
+   of integer and half integer order by piecewise minimax rational
+   approximation," Applied Mathematics and Computation, vol. 259,
+   pp. 708-729, May 2015.
 
 Installation
 ============
@@ -54,12 +50,7 @@ source package from the `github page`_, extract its contents, and run
 
 .. _`github page`: http://github.com/scott-maddox/obpds/releases/latest
 
+Testing
+=======
 
-Documentation
-=============
-
-Once you have OBPDS installed, check out the `tutorial`_
-(coming soon) and `documentation`_ (coming soon) to get acquainted.
-
-.. _`tutorial`: http://scott-maddox.github.io/fdint/tutorial
-.. _`documentation`: http://scott-maddox.github.io/fdint
+You can test the installation by running `python -m fdint.tests`.
