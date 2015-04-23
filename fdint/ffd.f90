@@ -3011,16 +3011,16 @@ else
 endif
 return
 end subroutine
-subroutine fdk2(x,k2,fd)
+subroutine fdk2(k2,x,fd,e)
 ! Double precision rational minimax approximation of the Fermi-Dirac integral
 ! of order k.
 ! 
 ! Parameters
 ! ----------
-! x : real(8)
-!     Normalized Fermi energy above the band edge, i.e. (Ef-Ec)/kT
 ! k2 : integer
 !     Twice the order, i.e. k*2
+! x : real(8)
+!     Normalized Fermi energy above the band edge, i.e. (Ef-Ec)/kT
 !
 ! Returns
 ! -------
@@ -3030,6 +3030,8 @@ implicit none
 real(8), intent(in) :: x
 integer, intent(in) :: k2
 real(8), intent(out) :: fd
+integer, intent(out) :: e
+e=0
 select case (k2)
 case (-9)
     call fdm9h(x,fd)
@@ -3088,30 +3090,32 @@ case (21)
 case default
     fd=0.
     fd=fd/fd  ! NaN
+    e=1
 end select
 end subroutine
-subroutine vfdk2(x,k2,fd,n)
+subroutine vfdk2(k2,x,fd,n,e)
 ! Vectorized form of fdk2
 implicit none
 real(8), intent(in),dimension(n) :: x
 integer, intent(in) :: k2
 real(8), intent(out),dimension(n) :: fd
 integer, intent(in) :: n
+integer, intent(out) :: e
 integer :: i
 do i=1,n
-    call fdk2(x(i),k2,fd(i))
+    call fdk2(k2,x(i),fd(i),e)
 end do
 end subroutine
-recursive subroutine dfdk2(x,k2,d,fd)
+recursive subroutine dfdk2(k2,x,d,fd,e)
 ! Double precision rational minimax approximation of the derivative of the
 ! Fermi-Dirac integral of order k.
 ! 
 ! Parameters
 ! ----------
-! x : real(8)
-!     Normalized Fermi energy above the band edge, i.e. (Ef-Ec)/kT
 ! k2 : integer
 !     Twice the order, i.e. k*2
+! x : real(8)
+!     Normalized Fermi energy above the band edge, i.e. (Ef-Ec)/kT
 ! d : integer
 !     Order of dirivative
 !
@@ -3123,24 +3127,26 @@ implicit none
 real(8), intent(in) :: x
 integer, intent(in) :: k2,d
 real(8), intent(out) :: fd
+integer, intent(out) :: e
 real(8) :: k
 k=k2/2.0
 if(d.eq.1) then
-    call fdk2(x,k2-2,fd)
+    call fdk2(k2-2,x,fd,e)
 else
-    call dfdk2(x,k2-2,d-1,fd)
+    call dfdk2(k2-2,x,d-1,fd,e)
 endif
 fd=k*fd
 end subroutine
-subroutine vdfdk2(x,k2,d,fd,n)
+subroutine vdfdk2(k2,x,d,fd,n,e)
 ! Vectorized form of fdk2
 implicit none
 real(8), intent(in),dimension(n) :: x
 integer, intent(in) :: k2,d
 real(8), intent(out),dimension(n) :: fd
 integer, intent(in) :: n
+integer, intent(out) :: e
 integer :: i
 do i=1,n
-    call dfdk2(x(i),k2,d,fd(i))
+    call dfdk2(k2,x(i),d,fd(i),e)
 end do
 end subroutine

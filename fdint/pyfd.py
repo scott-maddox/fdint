@@ -2837,6 +2837,7 @@ def fd21h(x):
         +t*(0.0000313848422097767888e0 \
         +t*1.47431097320479878e-8))))))
     return fd
+
 _fds = {
         -9 : fdm9h,
         -7 : fdm7h,
@@ -2866,24 +2867,112 @@ _fds = {
         20 : fd20h,
         21 : fd21h,
         }
-def fdk2(x, k2):
+def fdk2(k2, x):
+    '''
+    Double precision rational minimax approximation of the Fermi-Dirac integral
+    of order k.
+
+    Parameters
+    ----------
+    k2 : int
+        Twice the order of the Fermi-Dirac integral, i.e. k*2.
+    x : float
+        Normalized Fermi energy above the band edge, i.e. (Ef-Ec)/kT
+
+    Returns
+    -------
+    fd : float
+        Value of the Fermi-Dirac integral.
+    err : int
+        Error code: 0 for no error, 1 for not implemented.
+    '''
     if k2 in _fds:
-        return _fds[k2](x)
+        return _fds[k2](x), 0
     else:
-        return numpy.nan
-def vfdk2(x, k2):
+        return numpy.nan, 1
+
+def vfdk2(k2, x):
+    '''
+    Double precision rational minimax approximation of the Fermi-Dirac integral
+    of order k.
+
+    Parameters
+    ----------
+    k2 : int
+        Twice the order of the Fermi-Dirac integral, i.e. k*2.
+    x : ndarray
+        Normalized Fermi energies above the band edge, i.e. (Ef-Ec)/kT.
+
+    Returns
+    -------
+    fd : ndarray
+        Values of the Fermi-Dirac integral.
+    err : int
+        Error code: 0 for no error, 1 for not implemented.
+    '''
     result = numpy.empty_like(x)
+    fd, err = fdk2(k2, 0.)
+    if err:
+        result.fill(numpy.nan)
+        return result, err
     for i in xrange(x.size):
-        result[i] = fdk2(x[i], k2)
-    return result
-def dfdk2(x, k2, d):
-    k=k2/2.0
+        result[i], _ = fdk2(k2, x[i])
+    return result, 0
+
+def dfdk2(k2, x, d):
+    '''
+    Double precision rational minimax approximation of the derivative of the
+    Fermi-Dirac integral of order k.
+
+    Parameters
+    ----------
+    k2 : int
+        Twice the order of the Fermi-Dirac integral, i.e. k*2.
+    x : float
+        Normalized Fermi energy above the band edge, i.e. (Ef-Ec)/kT.
+
+    Returns
+    -------
+    fd : float
+        Value of the Fermi-Dirac integral.
+    err : int
+        Error code: 0 for no error, 1 for not implemented.
+    '''
+    k = k2 / 2.
     if d == 1:
-        return k*fdk2(x,k2-2)
+        fd, err = fdk2(k2 - 2, x)
+        if err:
+            return numpy.nan, err
     else:
-        return k*dfdk2(x,k2-2,d-1)
-def vdfdk2(x, k2, d):
+        fd, err = dfdk2(k2 - 2, x, d - 1)
+        if err:
+            return numpy.nan, err
+    return k * fd, 0
+
+def vdfdk2(k2, x, d):
+    '''
+    Double precision rational minimax approximation of the derivative of the
+    Fermi-Dirac integral of order k.
+
+    Parameters
+    ----------
+    k2 : int
+        Twice the order of the Fermi-Dirac integral, i.e. k*2.
+    x : ndarray
+        Normalized Fermi energies above the band edge, i.e. (Ef-Ec)/kT.
+
+    Returns
+    -------
+    fd : ndarray
+        Values of the Fermi-Dirac integral.
+    err : int
+        Error code: 0 for no error, 1 for not implemented.
+    '''
     result = numpy.empty_like(x)
+    fd, err = dfdk2(k2, 0., d)
+    if err:
+        result.fill(numpy.nan)
+        return result, err
     for i in xrange(x.size):
-        result[i] = dfdk2(x[i], k2, d)
-    return result
+        result[i], _ = dfdk2(k2, x[i], d)
+    return result, 0
