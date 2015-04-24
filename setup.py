@@ -20,10 +20,6 @@ def configuration(parent_package='', top_path=None):
 
 
 def setup_package():
-    src_path = os.path.dirname(os.path.abspath(sys.argv[0]))
-    old_path = os.getcwd()
-    os.chdir(src_path)
-    sys.path.insert(0, src_path)
 
     metadata = dict(
         name = 'fdint',
@@ -35,6 +31,8 @@ def setup_package():
         url='http://scott-maddox.github.io/fdint',
         license='AGPLv3',
         test_suite='nose.collector',
+        setup_requires=['numpy'],
+        install_requires=['numpy'],
     )
 
     # Run build
@@ -42,7 +40,7 @@ def setup_package():
             sys.argv[1] in ('--help-commands', 'egg_info', '--version',
                             'clean')):
         # Use setuptools for these commands (they don't work well or at all
-        # with distutils).  For normal builds use distutils.
+        # with distutils). For normal builds use distutils.
         try:
             from setuptools import setup
         except ImportError:
@@ -51,15 +49,15 @@ def setup_package():
         if len(sys.argv) >= 2 and sys.argv[1] == 'bdist_wheel':
             # bdist_wheel needs setuptools
             import setuptools
+        try:
+            from numpy.distutils.core import setup
+        except:
+            # hack to force installing numpy
+            os.system('pip install numpy')
         from numpy.distutils.core import setup
         metadata['configuration'] = configuration
 
-    try:
-        setup(**metadata)
-    finally:
-        del sys.path[0]
-        os.chdir(old_path)
-    return
+    setup(**metadata)
 
 
 if __name__ == '__main__':

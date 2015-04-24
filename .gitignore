@@ -1,3 +1,6 @@
+# virtualenv
+venv/
+
 # ignore directory
 ignore/
 
