@@ -35,6 +35,7 @@ def setup_package():
         url='http://scott-maddox.github.io/fdint',
         license='AGPLv3',
         test_suite='nose.collector',
+        install_requires=['numpy'],
     )
 
     # Run build
