@@ -22,7 +22,7 @@ import os
 import sys
 sys.path.insert(0,
     os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from fdint import pyfd, fdk, dfdk
+from fdint import fd, fdk, dfdk
 import numpy
 import unittest
 
@@ -35,79 +35,39 @@ class TestFD(unittest.TestCase):
             self.fail('Outside of relative tolerance of {:g}: {:g}'
                       ''.format(RTOL, rerr))
 
-    def test_ffd_fdk2(self):
-        from fdint import ffd
-        v, e = ffd.fdk2(1, 15.0)
+    def test_fd_fdk2(self):
+        v, e = fd.fdk2(1, 15.0)
         self.assertEqual(e, 0)
         self.assertRTOL(v,  3.894304660093270E+01, RTOL)
 
-    def test_ffd_vfdk2(self):
-        from fdint import ffd
-        v, e = ffd.vfdk2(1, numpy.array([15.0]))
+    def test_fd_vfdk2(self):
+        v, e = fd.vfdk2(1, numpy.array([15.0]))
         self.assertEqual(e, 0)
         self.assertRTOL(v,  numpy.array([3.894304660093270E+01]), RTOL)
 
-    def test_ffd_dfdk2(self):
-        from fdint import ffd
-        v1, e1 = ffd.dfdk2(1, 15.0, 1)
+    def test_fd_dfdk2(self):
+        v1, e1 = fd.dfdk2(1, 15.0, 1)
         self.assertEqual(e1, 0)
-        v2, e2 = ffd.fdk2(-1, 15.0)
+        v2, e2 = fd.fdk2(-1, 15.0)
         self.assertEqual(e2, 0)
         self.assertRTOL(v1, 0.5*v2, RTOL)
         
-        v1, e1 = ffd.dfdk2(1, 15.0, 2)
+        v1, e1 = fd.dfdk2(1, 15.0, 2)
         self.assertEqual(e1, 0)
-        v2, e2 = ffd.fdk2(-3, 15.0)
+        v2, e2 = fd.fdk2(-3, 15.0)
         self.assertEqual(e2, 0)
         self.assertRTOL(v1, 0.5*-0.5*v2, RTOL)
 
-    def test_ffd_vdfdk2(self):
-        from fdint import ffd
-        v1, e1 = ffd.vdfdk2(1, numpy.array([15.0]), 1)
+    def test_fd_vdfdk2(self):
+        v1, e1 = fd.vdfdk2(1, numpy.array([15.0]), 1)
         self.assertEqual(e1, 0)
-        v2, e2 = ffd.vfdk2(-1, numpy.array([15.0]))
+        v2, e2 = fd.vfdk2(-1, numpy.array([15.0]))
         self.assertEqual(e2, 0)
         self.assertRTOL(v1, 0.5*v2, RTOL)
         
-        v1, e1 = ffd.vdfdk2(1, numpy.array([15.0]), 2)
+        v1, e1 = fd.vdfdk2(1, numpy.array([15.0]), 2)
         self.assertEqual(e1, 0)
-        v2, e2 = ffd.vfdk2(-3, numpy.array([15.0]))
-        self.assertEqual(e2, 0)
-        self.assertRTOL(v1, 0.5*-0.5*v2, RTOL)
-
-    def test_pyfd_fdk2(self):
-        v, e = pyfd.fdk2(1, 15.0)
-        self.assertEqual(e, 0)
-        self.assertRTOL(v,  3.894304660093270E+01, RTOL)
-
-    def test_pyfd_vfdk2(self):
-        v, e = pyfd.vfdk2(1, numpy.array([15.0]))
-        self.assertEqual(e, 0)
-        self.assertRTOL(v,  numpy.array([3.894304660093270E+01]), RTOL)
-
-    def test_pyfd_dfdk2(self):
-        v1, e1 = pyfd.dfdk2(1, 15.0, 1)
-        self.assertEqual(e1, 0)
-        v2, e2 = pyfd.fdk2(-1, 15.0)
-        self.assertEqual(e2, 0)
-        self.assertRTOL(v1, 0.5*v2, RTOL)
-        
-        v1, e1 = pyfd.dfdk2(1, 15.0, 2)
-        self.assertEqual(e1, 0)
-        v2, e2 = pyfd.fdk2(-3, 15.0)
-        self.assertEqual(e2, 0)
-        self.assertRTOL(v1, 0.5*-0.5*v2, RTOL)
-
-    def test_pyfd_vdfdk2(self):
-        v1, e1 = pyfd.vdfdk2(1, numpy.array([15.0]), 1)
-        self.assertEqual(e1, 0)
-        v2, e2 = pyfd.vfdk2(-1, numpy.array([15.0]))
-        self.assertEqual(e2, 0)
-        self.assertRTOL(v1, 0.5*v2, RTOL)
-        
-        v1, e1 = pyfd.vdfdk2(1, numpy.array([15.0]), 2)
-        self.assertEqual(e1, 0)
-        v2, e2 = pyfd.vfdk2(-3, numpy.array([15.0]))
+        v2, e2 = fd.vfdk2(-3, numpy.array([15.0]))
         self.assertEqual(e2, 0)
         self.assertRTOL(v1, 0.5*-0.5*v2, RTOL)
 

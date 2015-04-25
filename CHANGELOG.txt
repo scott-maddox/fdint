@@ -1,0 +1,11 @@
+Changes in 1.1:
+
+- removed the python fall-back module (simplify maintenance)
+- renamed `_fd` to `fd`
+- fixed `from fdint.fd import fd1h`, etc. causing an error
+- added vectorized forms of all functions, e.g. `vfd1h`
+
+Changes in 1.0.1:
+
+- fixed `pip fdint install` and `python setup.py install` failing if `numpy` is
+  not already installed

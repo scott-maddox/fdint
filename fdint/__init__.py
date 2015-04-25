@@ -28,4 +28,4 @@ Precise and fast Fermi-Dirac integrals of integer and half integer order.
 from version import __version__
 from .fdint import *
 
-__all__ = ['_fd', 'fdk', 'dfdk']
+__all__ = ['fd', 'fdk', 'dfdk']

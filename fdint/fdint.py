@@ -25,19 +25,10 @@ Precise and fast Fermi-Dirac integrals of integer and half integer order.
     approximation," Applied Mathematics and Computation, vol. 259,
     pp. 708-729, May 2015.
 '''
-from . import pyfd
-try:
-    from . import ffd
-    _fd = ffd
-except Exception as error:
-    import sys
-    sys.stderr.write('WARNING: Unable to import the fdint fortran module. '
-                     'Falling back to the slower python module.\n')
-    _fd = pyfd
-
+import fd
 import numpy
 
-__all__ = ['_fd', 'fdk', 'dfdk']
+__all__ = ['fd', 'fdk', 'dfdk']
 
 def fdk(k, phi):
     '''
@@ -45,14 +36,14 @@ def fdk(k, phi):
     
     Parameters
     ----------
-    k : int
+    k : float
         Order of the Fermi-Dirac integral.
-    phi : float or ndarray
+    phi : float or iterable
         Normalized Fermi energy above the band edge, i.e. (Ef-Ec)/kT.
     
     Returns
     -------
-    value : float or ndarray
+    value : float or iterable
         Value of the Fermi-Dirac integral.
     
     Raises
@@ -60,10 +51,10 @@ def fdk(k, phi):
     NotImplementedError
         If the particular order is not implemented.
     '''
-    if isinstance(phi, numpy.ndarray):
-        value, err = _fd.vfdk2(int(k*2), phi)
+    if hasattr(phi, '__iter__'):
+        value, err = fd.vfdk2(int(k*2), phi)
     else:
-        value, err = _fd.fdk2(int(k*2), phi)
+        value, err = fd.fdk2(int(k*2), phi)
     if err:
         raise NotImplementedError()
     return value
@@ -74,16 +65,16 @@ def dfdk(k, phi, d=1):
     
     Parameters
     ----------
-    k : int
+    k : float
         Order of the Fermi-Dirac integral.
-    phi : float or ndarray
+    phi : float or iterable
         Normalized Fermi energy above the band edge, i.e. (Ef-Ec)/kT.
     d : int (default=1)
         Order of dirivative.
     
     Returns
     -------
-    value : float or ndarray
+    value : float or iterable
         Value of the Fermi-Dirac integral.
     
     Raises
@@ -91,10 +82,10 @@ def dfdk(k, phi, d=1):
     NotImplementedError
         If the particular order is not implemented.
     '''
-    if isinstance(phi, numpy.ndarray):
-        value, err = _fd.vdfdk2(int(k*2), phi, d)
+    if hasattr(phi, '__iter__'):
+        value, err = fd.vdfdk2(int(k*2), phi, d)
     else:
-        value, err = _fd.dfdk2(int(k*2), phi, d)
+        value, err = fd.dfdk2(int(k*2), phi, d)
     if err:
         raise NotImplementedError()
     return value
