@@ -2,7 +2,7 @@ def configuration(parent_package='', top_path=None):
     from numpy.distutils.misc_util import Configuration
     config = Configuration('fdint', parent_package, top_path)
     config.add_subpackage('tests')
-    config.add_extension('ffd', sources=['ffd.f90'])
+    config.add_extension('fd', sources=['fd.f90'])
     return config
 
 

@@ -3093,19 +3093,6 @@ case default
     e=1
 end select
 end subroutine
-subroutine vfdk2(k2,x,fd,n,e)
-! Vectorized form of fdk2
-implicit none
-real(8), intent(in),dimension(n) :: x
-integer, intent(in) :: k2
-real(8), intent(out),dimension(n) :: fd
-integer, intent(in) :: n
-integer, intent(out) :: e
-integer :: i
-do i=1,n
-    call fdk2(k2,x(i),fd(i),e)
-end do
-end subroutine
 recursive subroutine dfdk2(k2,x,d,fd,e)
 ! Double precision rational minimax approximation of the derivative of the
 ! Fermi-Dirac integral of order k.
@@ -3136,6 +3123,316 @@ else
     call dfdk2(k2-2,x,d-1,fd,e)
 endif
 fd=k*fd
+end subroutine
+subroutine vfdm9h(x,fd,n)
+! Vectorized form of fdm9h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fdm9h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfdm7h(x,fd,n)
+! Vectorized form of fdm7h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fdm7h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfdm5h(x,fd,n)
+! Vectorized form of fdm5h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fdm5h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfdm3h(x,fd,n)
+! Vectorized form of fdm3h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fdm3h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfdm1h(x,fd,n)
+! Vectorized form of fdm1h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fdm1h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd0h(x,fd,n)
+! Vectorized form of fd0h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd0h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd1h(x,fd,n)
+! Vectorized form of fd1h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd1h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd2h(x,fd,n)
+! Vectorized form of fd2h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd2h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd3h(x,fd,n)
+! Vectorized form of fd3h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd3h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd4h(x,fd,n)
+! Vectorized form of fd4h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd4h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd5h(x,fd,n)
+! Vectorized form of fd5h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd5h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd6h(x,fd,n)
+! Vectorized form of fd6h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd6h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd7h(x,fd,n)
+! Vectorized form of fd7h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd7h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd8h(x,fd,n)
+! Vectorized form of fd8h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd8h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd9h(x,fd,n)
+! Vectorized form of fd9h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd9h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd10h(x,fd,n)
+! Vectorized form of fd10h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd10h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd11h(x,fd,n)
+! Vectorized form of fd11h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd11h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd12h(x,fd,n)
+! Vectorized form of fd12h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd12h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd13h(x,fd,n)
+! Vectorized form of fd13h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd13h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd14h(x,fd,n)
+! Vectorized form of fd14h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd14h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd15h(x,fd,n)
+! Vectorized form of fd15h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd15h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd16h(x,fd,n)
+! Vectorized form of fd16h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd16h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd17h(x,fd,n)
+! Vectorized form of fd17h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd17h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd18h(x,fd,n)
+! Vectorized form of fd18h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd18h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd19h(x,fd,n)
+! Vectorized form of fd19h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd19h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd20h(x,fd,n)
+! Vectorized form of fd20h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd20h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfd21h(x,fd,n)
+! Vectorized form of fd21h
+implicit none
+real(8), intent(in),dimension(n) :: x
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer :: i
+do i=1,n
+    call fd21h(x(i),fd(i))
+end do
+end subroutine
+subroutine vfdk2(k2,x,fd,n,e)
+! Vectorized form of fdk2
+implicit none
+real(8), intent(in),dimension(n) :: x
+integer, intent(in) :: k2
+real(8), intent(out),dimension(n) :: fd
+integer, intent(in) :: n
+integer, intent(out) :: e
+integer :: i
+do i=1,n
+    call fdk2(k2,x(i),fd(i),e)
+end do
 end subroutine
 subroutine vdfdk2(k2,x,d,fd,n,e)
 ! Vectorized form of fdk2
