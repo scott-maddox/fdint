@@ -81,14 +81,8 @@ Next, import everything from the ``fdint`` package::
 
     >>> from fdint import *
 
-If you see the following warning, then the Fortran library failed to compile
-and/or install::
-
-    WARNING: Unable to import fortran module. Falling back to the slower python
-    module.
-
-You can access the Fermi-Dirac integral and derivative convenience functions,
-``fdk`` and ``dfdk``::
+Now you can access the Fermi-Dirac integral and derivative convenience
+functions, ``fdk`` and ``dfdk``::
 
     >>> fdk(k=0.5,phi=-10)
     4.0233994366893939e-05
@@ -98,14 +92,19 @@ You can access the Fermi-Dirac integral and derivative convenience functions,
     7.837976057293096
     >>> fdk(k=0.5,phi=50)
     235.81861512588432
-    >>> dfdk(k=0.5,phi=-10,d=1)
+    >>> dfdk(k=0.5,phi=-10,d=1) # first derivative
     4.0233348580568672e-05
     >>> dfdk(k=0.5,phi=5,d=1)
     2.1916282173557855
     >>> dfdk(k=0.5,phi=50,d=1)
     7.0699026455055112
-    >>> dfdk(k=0.5,phi=50,d=2)
+    >>> dfdk(k=0.5,phi=50,d=2) # second derivative
     0.07074571454521902
+
+You can also pass in lists or arrays as phi::
+
+    >>> fdk(k=0.5,phi=[-10,0,10])
+    array([  4.02339944e-05,   6.78093895e-01,   2.13444715e+01])
 
 If you request an order or derivative that is not implemented, a
 NotImplementedError is raised::
@@ -126,61 +125,34 @@ NotImplementedError is raised::
 If you prefer to call the low-level functions directly to avoid overhead,
 you can access them from the ``fd`` module::
 
-    >>> fd.fdk2(1, -10) # k=1/2
-    (4.023399436689394e-05, 0)
-    >>> fd.dfdk2(1, -10, 1) # k=1/2, d=1 (first-derivative)
-    (4.023334858056867e-05, 0)
-    >>> fd.fdk2(1, 10) # k=1/2
-    (21.344471492355186, 0)
-    >>> fd.dfdk2(1, 10, 1) # k=1/2, d=1 (first-derivative)
-    (3.1485686222669242, 0)
-
-The returned tuple contains the value and an error code which will be 1
-if the order is not implemented::
-
-    >>> fd.fdk2(22, -10) # k=22/2.
-    (nan, 1)
-
-For bare minumum overhead, you can call the function for a specific order::
-
-    >>> fd.fd1h(-10)
+    >>> fd.fd1h(-10) # k=1/2
     4.023399436689394e-05
-    >>> fd.vfd1h([-10, 0, 10])
+    >>> fd.vfd1h([-10,0,10]) # k=1/2
     array([  4.02339944e-05,   6.78093895e-01,   2.13444715e+01])
-    >>> fd.fdm1h(-10)
-    8.046669716113734e-05
 
 Benchmarks
 ==========
 
-For single values, calling the function for a specific order is almost 10x
-faster than calling ``fdk``::
+For single values, calling the function for a specific order is ~7x faster than
+calling ``fdk``::
 
     $ python -m timeit -s "from fdint import fdk" "fdk(0.5, 10)"
     1000000 loops, best of 3: 1.1 usec per loop
-    $ python -m timeit -s "from fdint import fd" "fd.fd1h(10)"
-    10000000 loops, best of 3: 0.186 usec per loop
+    $ python -m timeit -s "from fdint.fd import fd1h" "fd1h(10)"
+    10000000 loops, best of 3: 0.153 usec per loop
 
 However, even for a fairly small array of 1000, most of the advantage is lost::
 
     $ python -m timeit -s "from fdint import fdk; import numpy; x=numpy.linspace(-100,100,1000)" "fdk(0.5, x)"
-    100000 loops, best of 3: 15.1 usec per loop
-    $ python -m timeit -s "from fdint import fd; import numpy; x=numpy.linspace(-100,100,1000)" "fd.vfd1h(x)"
+    100000 loops, best of 3: 13.8 usec per loop
+    $ python -m timeit -s "from fdint.fd import vfd1h; import numpy; x=numpy.linspace(-100,100,1000)" "vfd1h(x)"
     100000 loops, best of 3: 12.9 usec per loop
 
-For even larger arrays, the advantage becomes even smaller::
-
-    $ python -m timeit -s "from fdint import fdk; import numpy; x=numpy.linspace(-100,100,10000)" "fdk(0.5, x)"
-    10000 loops, best of 3: 143 usec per loop
-    smaddox-macbook:/Users/smaddox/code/python/fdint
-    $ python -m timeit -s "from fdint import fd; import numpy; x=numpy.linspace(-100,100,10000)" "fd.vfd1h(x)"
-    10000 loops, best of 3: 127 usec per loop
-
 Overall, the performance is excellent. Note that the call time is within a
-factor of ~2 of ``numpy.exp``.
+factor of 2 of ``numpy.exp``.
 
-    $ python -m timeit -s "import numpy; from numpy import exp; x=numpy.linspace(-100,100,10000)" "exp(x)"
-    10000 loops, best of 3: 70.1 usec per loop
+    $ python -m timeit -s "import numpy; from numpy import exp; x=numpy.linspace(-100,100,1000)" "exp(x)"
+    100000 loops, best of 3: 7.49 usec per loop
 
 Documentation
 =============
