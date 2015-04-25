@@ -1,3 +1,7 @@
+Changes in 1.1.1:
+
+- fixed `python setup.py install` (was broken by build in-place)
+
 Changes in 1.1:
 
 - removed the python fall-back module (simplify maintenance)
