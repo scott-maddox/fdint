@@ -38,12 +38,12 @@ def fdk(k, phi):
     ----------
     k : float
         Order of the Fermi-Dirac integral.
-    phi : float or ndarray
+    phi : float or iterable
         Normalized Fermi energy above the band edge, i.e. (Ef-Ec)/kT.
     
     Returns
     -------
-    value : float or ndarray
+    value : float or iterable
         Value of the Fermi-Dirac integral.
     
     Raises
@@ -51,7 +51,7 @@ def fdk(k, phi):
     NotImplementedError
         If the particular order is not implemented.
     '''
-    if isinstance(phi, numpy.ndarray):
+    if hasattr(phi, '__iter__'):
         value, err = fd.vfdk2(int(k*2), phi)
     else:
         value, err = fd.fdk2(int(k*2), phi)
@@ -67,14 +67,14 @@ def dfdk(k, phi, d=1):
     ----------
     k : float
         Order of the Fermi-Dirac integral.
-    phi : float or ndarray
+    phi : float or iterable
         Normalized Fermi energy above the band edge, i.e. (Ef-Ec)/kT.
     d : int (default=1)
         Order of dirivative.
     
     Returns
     -------
-    value : float or ndarray
+    value : float or iterable
         Value of the Fermi-Dirac integral.
     
     Raises
@@ -82,7 +82,7 @@ def dfdk(k, phi, d=1):
     NotImplementedError
         If the particular order is not implemented.
     '''
-    if isinstance(phi, numpy.ndarray):
+    if hasattr(phi, '__iter__'):
         value, err = fd.vdfdk2(int(k*2), phi, d)
     else:
         value, err = fd.dfdk2(int(k*2), phi, d)
