@@ -40,13 +40,13 @@ command::
 From Github
 -----------
 
-First, you will need to install the following prerequisite packages:
+First, you will need to install the following prerequisite package::
 
 - Numpy_
 
 .. _`Numpy`: http://docs.scipy.org/doc/numpy/user/install.html
 
-Additional functionality is provided by the following optional packages:
+Additional functionality is provided by the following optional packages::
 
 - Matplotlib_
 
@@ -87,10 +87,8 @@ and/or install::
     WARNING: Unable to import fortran module. Falling back to the slower python
     module.
 
-The same functionality is provided by the fall-back python module, but
-the python module is considerably slower. Either way, now you can access the
-Fermi-Dirac integral, ``fdk``, and  the derivative, ``dfdk``, convenience
-functions::
+You can access the Fermi-Dirac integral and derivative convenience functions,
+``fdk`` and ``dfdk``::
 
     >>> fdk(k=0.5,phi=-10)
     4.0233994366893939e-05
@@ -125,15 +123,66 @@ NotImplementedError is raised::
         raise NotImplementedError()
     NotImplementedError
 
-If you prefer to call the low-level functions directly, you can access them
-from the ``_fd`` module::
+If you prefer to call the low-level functions directly to avoid overhead,
+you can access them from the ``fd`` module::
 
-    >>> _fd.fd1h(-10)
-    4.0233994366893939e-05
+    >>> fd.fdk2(1, -10) # k=1/2
+    (4.023399436689394e-05, 0)
+    >>> fd.dfdk2(1, -10, 1) # k=1/2, d=1 (first-derivative)
+    (4.023334858056867e-05, 0)
+    >>> fd.fdk2(1, 10) # k=1/2
+    (21.344471492355186, 0)
+    >>> fd.dfdk2(1, 10, 1) # k=1/2, d=1 (first-derivative)
+    (3.1485686222669242, 0)
+
+The returned tuple contains the value and an error code which will be 1
+if the order is not implemented::
+
+    >>> fd.fdk2(22, -10) # k=22/2.
+    (nan, 1)
+
+For bare minumum overhead, you can call the function for a specific order::
+
+    >>> fd.fd1h(-10)
+    4.023399436689394e-05
+    >>> fd.vfd1h([-10, 0, 10])
+    array([  4.02339944e-05,   6.78093895e-01,   2.13444715e+01])
+    >>> fd.fdm1h(-10)
+    8.046669716113734e-05
+
+Benchmarks
+==========
+
+For single values, calling the function for a specific order is almost 10x
+faster than calling ``fdk``::
+
+    $ python -m timeit -s "from fdint import fdk" "fdk(0.5, 10)"
+    1000000 loops, best of 3: 1.1 usec per loop
+    $ python -m timeit -s "from fdint import fd" "fd.fd1h(10)"
+    10000000 loops, best of 3: 0.186 usec per loop
+
+However, even for a fairly small array of 1000, most of the advantage is lost::
+
+    $ python -m timeit -s "from fdint import fdk; import numpy; x=numpy.linspace(-100,100,1000)" "fdk(0.5, x)"
+    100000 loops, best of 3: 15.1 usec per loop
+    $ python -m timeit -s "from fdint import fd; import numpy; x=numpy.linspace(-100,100,1000)" "fd.vfd1h(x)"
+    100000 loops, best of 3: 12.9 usec per loop
+
+For even larger arrays, the advantage becomes even smaller::
+
+    $ python -m timeit -s "from fdint import fdk; import numpy; x=numpy.linspace(-100,100,10000)" "fdk(0.5, x)"
+    10000 loops, best of 3: 143 usec per loop
+    smaddox-macbook:/Users/smaddox/code/python/fdint
+    $ python -m timeit -s "from fdint import fd; import numpy; x=numpy.linspace(-100,100,10000)" "fd.vfd1h(x)"
+    10000 loops, best of 3: 127 usec per loop
+
+Overall, the performance is excellent. Note that the call time is within a
+factor of ~2 of ``numpy.exp``.
+
+    $ python -m timeit -s "import numpy; from numpy import exp; x=numpy.linspace(-100,100,10000)" "exp(x)"
+    10000 loops, best of 3: 70.1 usec per loop
 
 Documentation
 =============
 
 The `documentation`_ (coming soon) is graciously hosted by GitHub.
-
-.. _`documentation`: http://scott-maddox.github.io/fdint
