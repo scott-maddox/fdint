@@ -40,13 +40,13 @@ command::
 From Github
 -----------
 
-First, you will need to install the following prerequisite package::
+First, you will need to install the following prerequisite package:
 
 - Numpy_
 
 .. _`Numpy`: http://docs.scipy.org/doc/numpy/user/install.html
 
-Additional functionality is provided by the following optional packages::
+Additional functionality is provided by the following optional packages:
 
 - Matplotlib_
 
@@ -149,7 +149,7 @@ However, even for a fairly small array of 1000, most of the advantage is lost::
     100000 loops, best of 3: 12.9 usec per loop
 
 Overall, the performance is excellent. Note that the call time is within a
-factor of 2 of ``numpy.exp``.
+factor of 2 of ``numpy.exp``::
 
     $ python -m timeit -s "import numpy; from numpy import exp; x=numpy.linspace(-100,100,1000)" "exp(x)"
     100000 loops, best of 3: 7.49 usec per loop
