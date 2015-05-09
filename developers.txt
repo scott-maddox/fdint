@@ -3,6 +3,11 @@ Git Branching Model
 I'm using the Git branching model described
 [here](http://nvie.com/posts/a-successful-git-branching-model/).
 
+Testing
+=======
+
+    python setup.py build_ext --inplace
+
 How To Release a New Version
 ============================
 
