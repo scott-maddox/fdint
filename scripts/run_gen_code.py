@@ -16,10 +16,16 @@ scripts = [
     'gen__vdfd_pxd.py',
     'gen__vdfd_pyx.py',
 
+    'gen__ifd_pxd.py',
+    'gen__ifd_pyx.py',
+    'gen__vifd_pxd.py',
+    'gen__vifd_pyx.py',
+
     'gen__fdint.py',
 
     'gen_fd_pyx.py',
     'gen_dfd_pyx.py',
+    'gen_ifd_pyx.py',
     ]
 for script in scripts:
     print 'running', script

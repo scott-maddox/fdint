@@ -24,6 +24,11 @@ Precise and fast Fermi-Dirac integrals of integer and half integer order.
     integer and half integer order by piecewise minimax rational approximation,"
     Applied Mathematics and Computation, vol. 259, pp. 708-729, May 2015.
     DOI: 10.1016/j.amc.2015.03.009
+
+[2] T. Fukushima, "Precise and fast computation of inverse Fermi-Dirac
+    integral of order 1/2 by minimax rational function approximation,"
+    Applied Mathematics and Computation, vol. 259, pp. 698-707, May 2015.
+    DOI: 10.1016/j.amc.2015.03.015
 '''
 
 from .version import __version__
@@ -32,6 +37,7 @@ from . import _fdint
 
 from .fd import *
 from .dfd import *
+from .ifd import *
 
 def fdk(k, phi):
     k2 = str(int(k*2.01)).replace('-', 'm')
@@ -48,5 +54,13 @@ def dfdk(k, phi):
         raise NotImplementedError()
     func = globals()[funcname]
     return func(phi)
+
+def ifdk(k, nu):
+    k2 = str(int(k*2.01)).replace('-', 'm')
+    funcname = 'ifd'+k2+'h'
+    if funcname not in globals():
+        raise NotImplementedError()
+    func = globals()[funcname]
+    return func(nu)
 
 del version
