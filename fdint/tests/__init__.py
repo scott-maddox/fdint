@@ -20,3 +20,4 @@
 
 from .test_fd import *
 from .test_ifd import *
+from .test_gfd import *

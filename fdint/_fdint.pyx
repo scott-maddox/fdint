@@ -44,6 +44,7 @@ cimport cython
 from libc.math cimport exp, log, sqrt
 cimport numpy as np
 import numpy
+import warnings
 
 
 @cython.cdivision(True)
@@ -5191,3 +5192,8459 @@ cpdef void vifd1h(np.ndarray[double] phi, np.ndarray[double] out):
     cdef int i
     for i in range(imax):
         out[i] = ifd1h(phi[i])
+
+DEF G0 = 1.00000006e0
+DEF G11= 2.49877947e-1
+DEF G21= 2.49982920e-1
+DEF G22=-3.05244239e-2
+DEF G31= 2.49992138e-1
+DEF G32=-3.10880917e-2
+DEF G33= 6.72890304e-3
+DEF G41= 2.49994579e-1
+DEF G42=-3.11712873e-2
+DEF G43= 7.40642947e-3
+DEF G44=-1.54064286e-3
+DEF G51= 2.49995577e-1
+DEF G52=-3.11968779e-2
+DEF G53= 7.57597134e-3
+DEF G54=-1.94454734e-3
+DEF G55= 3.14619418e-4
+DEF G61= 2.49996068e-1
+DEF G62=-3.12078333e-2
+DEF G63= 7.64091443e-3
+DEF G64=-2.09635076e-3
+DEF G65= 4.66194891e-4
+DEF G66=-5.41090677e-5
+DEF G71= 2.49996349e-1
+DEF G72=-3.12135713e-2
+DEF G73= 7.67260917e-3
+DEF G74=-2.16873332e-3
+DEF G75= 5.44498136e-4
+DEF G76=-9.39944278e-5
+DEF G77= 7.70105166e-6
+DEF G81= 2.49996532e-1
+DEF G82=-3.12170240e-2
+DEF G83= 7.69068112e-3
+DEF G84=-2.20910836e-3
+DEF G85= 5.89641447e-4
+DEF G86=-1.20495081e-4
+DEF G87= 1.55008892e-5
+DEF G88=-9.06976386e-7
+DEF G91= 2.49996651e-1
+DEF G92=-3.12192069e-2
+DEF G93= 7.70183258e-3
+DEF G94=-2.23376723e-3
+DEF G95= 6.17772167e-4
+DEF G96=-1.38314191e-4
+DEF G97= 2.18212574e-5
+DEF G98=-2.08041752e-6
+DEF G99= 8.87207481e-8
+DEF GA1= 2.49996734e-1
+DEF GA2=-3.12206994e-2
+DEF GA3= 7.70928085e-3
+DEF GA4=-2.25005982e-3
+DEF GA5= 6.36546202e-4
+DEF GA6=-1.50745930e-4
+DEF GA7= 2.67097577e-5
+DEF GA8=-3.20655414e-6
+DEF GA9= 2.28929917e-7
+DEF GAA=-7.27863797e-9
+
+DEF BSm1h_lt_m2__1 = 3.27245030e-03
+DEF BSm1h_lt_m2__2 = 3.13122112e-02
+DEF BSm1h_lt_m2__3 = 8.70667295e-02
+DEF BSm1h_lt_m2__4 = 1.57594092e-01
+DEF BSm1h_lt_m2__5 = 2.32935788e-01
+DEF BSm1h_lt_m2__6 = 3.10023252e-01
+DEF BSm1h_lt_m2__7 = 3.86266897e-01
+DEF BSm1h_lt_m2__8 = 4.62071073e-01
+DEF BSm1h_lt_m2__9 = 5.36578380e-01
+DEF BSm1h_lt_m2__10 = 6.10860889e-01
+DEF BSm1h_m2_to_0__1 = 2.90749854e-03
+DEF BSm1h_m2_to_0__2 = 2.85765411e-02
+DEF BSm1h_m2_to_0__3 = 8.13472460e-02
+DEF BSm1h_m2_to_0__4 = 1.49005588e-01
+DEF BSm1h_m2_to_0__5 = 2.22310205e-01
+DEF BSm1h_m2_to_0__6 = 2.97873673e-01
+DEF BSm1h_m2_to_0__7 = 3.73010127e-01
+DEF BSm1h_m2_to_0__8 = 4.48027021e-01
+DEF BSm1h_m2_to_0__9 = 5.21952741e-01
+DEF BSm1h_m2_to_0__10 = 5.95796340e-01
+DEF BSm1h_0_to_2__1 = 2.17595915e-03
+DEF BSm1h_0_to_2__2 = 2.28319779e-02
+DEF BSm1h_0_to_2__3 = 6.81924469e-02
+DEF BSm1h_0_to_2__4 = 1.29021625e-01
+DEF BSm1h_0_to_2__5 = 1.96779567e-01
+DEF BSm1h_0_to_2__6 = 2.68191307e-01
+DEF BSm1h_0_to_2__7 = 3.40293684e-01
+DEF BSm1h_0_to_2__8 = 4.12905726e-01
+DEF BSm1h_0_to_2__9 = 4.85134110e-01
+DEF BSm1h_0_to_2__10 = 5.57595723e-01
+DEF BSm1h_2_to_5__1 = 1.32757642e-03
+DEF BSm1h_2_to_5__2 = 1.52156259e-02
+DEF BSm1h_2_to_5__3 = 4.85547225e-02
+DEF BSm1h_2_to_5__4 = 9.67383171e-02
+DEF BSm1h_2_to_5__5 = 1.53683774e-01
+DEF BSm1h_2_to_5__6 = 2.16030814e-01
+DEF BSm1h_2_to_5__7 = 2.80958972e-01
+DEF BSm1h_2_to_5__8 = 3.47917638e-01
+DEF BSm1h_2_to_5__9 = 4.15583522e-01
+DEF BSm1h_2_to_5__10 = 4.84263872e-01
+DEF BSm1h_5_to_10__1 = 7.41497702e-04
+DEF BSm1h_5_to_10__2 = 8.97873946e-03
+DEF BSm1h_5_to_10__3 = 3.01698120e-02
+DEF BSm1h_5_to_10__4 = 6.30059833e-02
+DEF BSm1h_5_to_10__5 = 1.04479605e-01
+DEF BSm1h_5_to_10__6 = 1.52585959e-01
+DEF BSm1h_5_to_10__7 = 2.05171416e-01
+DEF BSm1h_5_to_10__8 = 2.61228755e-01
+DEF BSm1h_5_to_10__9 = 3.19608802e-01
+DEF BSm1h_5_to_10__10 = 3.80273757e-01
+DEF BSm1h_10_to_20__1 = 3.82790979e-04
+DEF BSm1h_10_to_20__2 = 4.74102896e-03
+DEF BSm1h_10_to_20__3 = 1.63303003e-02
+DEF BSm1h_10_to_20__4 = 3.50206043e-02
+DEF BSm1h_10_to_20__5 = 5.97527490e-02
+DEF BSm1h_10_to_20__6 = 8.98865075e-02
+DEF BSm1h_10_to_20__7 = 1.24574764e-01
+DEF BSm1h_10_to_20__8 = 1.63357530e-01
+DEF BSm1h_10_to_20__9 = 2.05587305e-01
+DEF BSm1h_10_to_20__10 = 2.51015374e-01
+DEF BSm1h_20_to_40__1 = 1.92990210e-04
+DEF BSm1h_20_to_40__2 = 2.40604694e-03
+DEF BSm1h_20_to_40__3 = 8.35180169e-03
+DEF BSm1h_20_to_40__4 = 1.80677840e-02
+DEF BSm1h_20_to_40__5 = 3.11369502e-02
+DEF BSm1h_20_to_40__6 = 4.73709997e-02
+DEF BSm1h_20_to_40__7 = 6.65078036e-02
+DEF BSm1h_20_to_40__8 = 8.84749453e-02
+DEF BSm1h_20_to_40__9 = 1.13131852e-01
+DEF BSm1h_20_to_40__10 = 1.40476402e-01
+DEF BS1h_lt_m2__1 = 1.81580249e-03
+DEF BS1h_lt_m2__2 = 1.84974526e-02
+DEF BS1h_lt_m2__3 = 5.79996067e-02
+DEF BS1h_lt_m2__4 = 1.09451837e-01
+DEF BS1h_lt_m2__5 = 1.69352632e-01
+DEF BS1h_lt_m2__6 = 2.32511285e-01
+DEF BS1h_lt_m2__7 = 2.97337963e-01
+DEF BS1h_lt_m2__8 = 3.63426126e-01
+DEF BS1h_lt_m2__9 = 4.29704160e-01
+DEF BS1h_lt_m2__10 = 4.96821253e-01
+DEF BS1h_m2_to_0__1 = 1.70692759e-03
+DEF BS1h_m2_to_0__2 = 1.77782966e-02
+DEF BS1h_m2_to_0__3 = 5.59285170e-02
+DEF BS1h_m2_to_0__4 = 1.06809434e-01
+DEF BS1h_m2_to_0__5 = 1.65321137e-01
+DEF BS1h_m2_to_0__6 = 2.28175617e-01
+DEF BS1h_m2_to_0__7 = 2.92249701e-01
+DEF BS1h_m2_to_0__8 = 3.57987652e-01
+DEF BS1h_m2_to_0__9 = 4.23945839e-01
+DEF BS1h_m2_to_0__10 = 4.90757882e-01
+DEF BS1h_0_to_2__1 = 1.42520493e-03
+DEF BS1h_0_to_2__2 = 1.58200472e-02
+DEF BS1h_0_to_2__3 = 5.02274074e-02
+DEF BS1h_0_to_2__4 = 9.87289365e-02
+DEF BS1h_0_to_2__5 = 1.54150814e-01
+DEF BS1h_0_to_2__6 = 2.14779696e-01
+DEF BS1h_0_to_2__7 = 2.77485408e-01
+DEF BS1h_0_to_2__8 = 3.41500780e-01
+DEF BS1h_0_to_2__9 = 4.06565225e-01
+DEF BS1h_0_to_2__10 = 4.72468231e-01
+DEF BS1h_2_to_5__1 = 9.72566760e-04
+DEF BS1h_2_to_5__2 = 1.19258240e-02
+DEF BS1h_2_to_5__3 = 3.93735242e-02
+DEF BS1h_2_to_5__4 = 8.03300577e-02
+DEF BS1h_2_to_5__5 = 1.29787898e-01
+DEF BS1h_2_to_5__6 = 1.84391451e-01
+DEF BS1h_2_to_5__7 = 2.42184477e-01
+DEF BS1h_2_to_5__8 = 3.02816295e-01
+DEF BS1h_2_to_5__9 = 3.64382489e-01
+DEF BS1h_2_to_5__10 = 4.27534947e-01
+DEF BS1h_5_to_10__1 = 5.75366939e-04
+DEF BS1h_5_to_10__2 = 7.53475159e-03
+DEF BS1h_5_to_10__3 = 2.62925896e-02
+DEF BS1h_5_to_10__4 = 5.59552196e-02
+DEF BS1h_5_to_10__5 = 9.38224777e-02
+DEF BS1h_5_to_10__6 = 1.38093989e-01
+DEF BS1h_5_to_10__7 = 1.86695104e-01
+DEF BS1h_5_to_10__8 = 2.38543793e-01
+DEF BS1h_5_to_10__9 = 2.92908044e-01
+DEF BS1h_5_to_10__10 = 3.49913692e-01
+DEF BS1h_10_to_20__1 = 3.03513843e-04
+DEF BS1h_10_to_20__2 = 4.08571842e-03
+DEF BS1h_10_to_20__3 = 1.46896241e-02
+DEF BS1h_10_to_20__4 = 3.22534261e-02
+DEF BS1h_10_to_20__5 = 5.58137566e-02
+DEF BS1h_10_to_20__6 = 8.46751345e-02
+DEF BS1h_10_to_20__7 = 1.17958563e-01
+DEF BS1h_10_to_20__8 = 1.55191148e-01
+DEF BS1h_10_to_20__9 = 1.95764518e-01
+DEF BS1h_10_to_20__10 = 2.39444426e-01
+DEF BS1h_20_to_40__1 = 1.53958460e-04
+DEF BS1h_20_to_40__2 = 2.08942614e-03
+DEF BS1h_20_to_40__3 = 7.58271181e-03
+DEF BS1h_20_to_40__4 = 1.68248452e-02
+DEF BS1h_20_to_40__5 = 2.94655703e-02
+DEF BS1h_20_to_40__6 = 4.53049119e-02
+DEF BS1h_20_to_40__7 = 6.40722448e-02
+DEF BS1h_20_to_40__8 = 8.56616040e-02
+DEF BS1h_20_to_40__9 = 1.09917426e-01
+DEF BS1h_20_to_40__10 = 1.36835958e-01
+DEF BS3h_lt_m2__1 = 1.27759208e-03
+DEF BS3h_lt_m2__2 = 1.40046959e-02
+DEF BS3h_lt_m2__3 = 4.45915062e-02
+DEF BS3h_lt_m2__4 = 8.81501248e-02
+DEF BS3h_lt_m2__5 = 1.37524573e-01
+DEF BS3h_lt_m2__6 = 1.93265795e-01
+DEF BS3h_lt_m2__7 = 2.50022884e-01
+DEF BS3h_lt_m2__8 = 3.09475686e-01
+DEF BS3h_lt_m2__9 = 3.69661199e-01
+DEF BS3h_m2_to_0__1 = 1.23599742e-03
+DEF BS3h_m2_to_0__2 = 1.37552567e-02
+DEF BS3h_m2_to_0__3 = 4.37343474e-02
+DEF BS3h_m2_to_0__4 = 8.70637837e-02
+DEF BS3h_m2_to_0__5 = 1.35940783e-01
+DEF BS3h_m2_to_0__6 = 1.91306890e-01
+DEF BS3h_m2_to_0__7 = 2.48002996e-01
+DEF BS3h_m2_to_0__8 = 3.07009982e-01
+DEF BS3h_m2_to_0__9 = 3.67228171e-01
+DEF BS3h_0_to_2__1 = 1.10314220e-03
+DEF BS3h_0_to_2__2 = 1.28945436e-02
+DEF BS3h_0_to_2__3 = 4.09811659e-02
+DEF BS3h_0_to_2__4 = 8.29942365e-02
+DEF BS3h_0_to_2__5 = 1.30812249e-01
+DEF BS3h_0_to_2__6 = 1.84266534e-01
+DEF BS3h_0_to_2__7 = 2.40811680e-01
+DEF BS3h_0_to_2__8 = 2.98545350e-01
+DEF BS3h_0_to_2__9 = 3.58238048e-01
+DEF BS3h_2_to_5__1 = 8.18928042e-04
+DEF BS3h_2_to_5__2 = 1.04873997e-02
+DEF BS3h_2_to_5__3 = 3.44820353e-02
+DEF BS3h_2_to_5__4 = 7.10982663e-02
+DEF BS3h_2_to_5__5 = 1.15924626e-01
+DEF BS3h_2_to_5__6 = 1.65203526e-01
+DEF BS3h_2_to_5__7 = 2.18014303e-01
+DEF BS3h_2_to_5__8 = 2.74186419e-01
+DEF BS3h_2_to_5__9 = 3.31058783e-01
+DEF BS3h_5_to_10__1 = 5.09211429e-04
+DEF BS3h_5_to_10__2 = 6.97253099e-03
+DEF BS3h_5_to_10__3 = 2.44794308e-02
+DEF BS3h_5_to_10__4 = 5.22170301e-02
+DEF BS3h_5_to_10__5 = 8.77605523e-02
+DEF BS3h_5_to_10__6 = 1.29552755e-01
+DEF BS3h_5_to_10__7 = 1.75371175e-01
+DEF BS3h_5_to_10__8 = 2.24083979e-01
+DEF BS3h_5_to_10__9 = 2.75572474e-01
+DEF BS3h_10_to_20__1 = 2.74070926e-04
+DEF BS3h_10_to_20__2 = 3.86174965e-03
+DEF BS3h_10_to_20__3 = 1.40492860e-02
+DEF BS3h_10_to_20__4 = 3.10646135e-02
+DEF BS3h_10_to_20__5 = 5.39636839e-02
+DEF BS3h_10_to_20__6 = 8.20207685e-02
+DEF BS3h_10_to_20__7 = 1.14361488e-01
+DEF BS3h_10_to_20__8 = 1.50552831e-01
+DEF BS3h_10_to_20__9 = 1.89990288e-01
+DEF BS3h_20_to_40__1 = 1.39841570e-04
+DEF BS3h_20_to_40__2 = 1.98711731e-03
+DEF BS3h_20_to_40__3 = 7.30696801e-03
+DEF BS3h_20_to_40__4 = 1.63507885e-02
+DEF BS3h_20_to_40__5 = 2.87938205e-02
+DEF BS3h_20_to_40__6 = 4.44318460e-02
+DEF BS3h_20_to_40__7 = 6.29899767e-02
+DEF BS3h_20_to_40__8 = 8.43462149e-02
+DEF BS3h_20_to_40__9 = 1.08334671e-01
+DEF BS5h_lt_m2__1 = 9.87313550e-04
+DEF BS5h_lt_m2__2 = 1.14493189e-02
+DEF BS5h_lt_m2__3 = 3.66121278e-02
+DEF BS5h_lt_m2__4 = 7.44147399e-02
+DEF BS5h_lt_m2__5 = 1.17596237e-01
+DEF BS5h_lt_m2__6 = 1.66754338e-01
+DEF BS5h_lt_m2__7 = 2.18507873e-01
+DEF BS5h_lt_m2__8 = 2.72134207e-01
+DEF BS5h_m2_to_0__1 = 9.70102077e-04
+DEF BS5h_m2_to_0__2 = 1.13524131e-02
+DEF BS5h_m2_to_0__3 = 3.62450189e-02
+DEF BS5h_m2_to_0__4 = 7.39240126e-02
+DEF BS5h_m2_to_0__5 = 1.16968051e-01
+DEF BS5h_m2_to_0__6 = 1.65838261e-01
+DEF BS5h_m2_to_0__7 = 2.17645738e-01
+DEF BS5h_m2_to_0__8 = 2.71031811e-01
+DEF BS5h_0_to_2__1 = 9.04365979e-04
+DEF BS5h_0_to_2__2 = 1.09479558e-02
+DEF BS5h_0_to_2__3 = 3.48880245e-02
+DEF BS5h_0_to_2__4 = 7.17901254e-02
+DEF BS5h_0_to_2__5 = 1.14562736e-01
+DEF BS5h_0_to_2__6 = 1.62130076e-01
+DEF BS5h_0_to_2__7 = 2.13945522e-01
+DEF BS5h_0_to_2__8 = 2.66775719e-01
+DEF BS5h_2_to_5__1 = 7.19749493e-04
+DEF BS5h_2_to_5__2 = 9.42723735e-03
+DEF BS5h_2_to_5__3 = 3.09473349e-02
+DEF BS5h_2_to_5__4 = 6.40059572e-02
+DEF BS5h_2_to_5__5 = 1.05256325e-01
+DEF BS5h_2_to_5__6 = 1.50250131e-01
+DEF BS5h_2_to_5__7 = 1.98943263e-01
+DEF BS5h_2_to_5__8 = 2.51440933e-01
+DEF BS5h_5_to_10__1 = 4.69258785e-04
+DEF BS5h_5_to_10__2 = 6.57451510e-03
+DEF BS5h_5_to_10__3 = 2.31982817e-02
+DEF BS5h_5_to_10__4 = 4.93072497e-02
+DEF BS5h_5_to_10__5 = 8.29101137e-02
+DEF BS5h_5_to_10__6 = 1.22686152e-01
+DEF BS5h_5_to_10__7 = 1.66094772e-01
+DEF BS5h_5_to_10__8 = 2.12047616e-01
+DEF BS5h_10_to_20__1 = 2.57636197e-04
+DEF BS5h_10_to_20__2 = 3.71800616e-03
+DEF BS5h_10_to_20__3 = 1.36548942e-02
+DEF BS5h_10_to_20__4 = 3.02694606e-02
+DEF BS5h_10_to_20__5 = 5.26373207e-02
+DEF BS5h_10_to_20__6 = 8.00097811e-02
+DEF BS5h_10_to_20__7 = 1.11544178e-01
+DEF BS5h_10_to_20__8 = 1.46866258e-01
+DEF BS5h_20_to_40__1 = 1.32225312e-04
+DEF BS5h_20_to_40__2 = 1.92468330e-03
+DEF BS5h_20_to_40__3 = 7.15073901e-03
+DEF BS5h_20_to_40__4 = 1.60670704e-02
+DEF BS5h_20_to_40__5 = 2.83748591e-02
+DEF BS5h_20_to_40__6 = 4.38665903e-02
+DEF BS5h_20_to_40__7 = 6.22629377e-02
+DEF BS5h_20_to_40__8 = 8.34298505e-02
+
+
+@cython.cdivision(True)
+cdef inline double gfdm1h(double phi, double beta):
+    if phi < -2.0:
+        return gfdm1h_lt_m2(phi, beta)
+    if phi < 0.0:
+        return gfdm1h_m2_to_0(phi, beta)
+    if phi < 2.0:
+        return gfdm1h_0_to_2(phi, beta)
+    if phi < 5.0:
+        return gfdm1h_2_to_5(phi, beta)
+    if phi < 10.0:
+        return gfdm1h_5_to_10(phi, beta)
+    if phi < 20.0:
+        return gfdm1h_10_to_20(phi, beta)
+    if phi < 40.0:
+        return gfdm1h_20_to_40(phi, beta)
+    return gfdm1h_gt_40(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd1h(double phi, double beta):
+    if phi < -2.0:
+        return gfd1h_lt_m2(phi, beta)
+    if phi < 0.0:
+        return gfd1h_m2_to_0(phi, beta)
+    if phi < 2.0:
+        return gfd1h_0_to_2(phi, beta)
+    if phi < 5.0:
+        return gfd1h_2_to_5(phi, beta)
+    if phi < 10.0:
+        return gfd1h_5_to_10(phi, beta)
+    if phi < 20.0:
+        return gfd1h_10_to_20(phi, beta)
+    if phi < 40.0:
+        return gfd1h_20_to_40(phi, beta)
+    return gfd1h_gt_40(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd3h(double phi, double beta):
+    if phi < -2.0:
+        return gfd3h_lt_m2(phi, beta)
+    if phi < 0.0:
+        return gfd3h_m2_to_0(phi, beta)
+    if phi < 2.0:
+        return gfd3h_0_to_2(phi, beta)
+    if phi < 5.0:
+        return gfd3h_2_to_5(phi, beta)
+    if phi < 10.0:
+        return gfd3h_5_to_10(phi, beta)
+    if phi < 20.0:
+        return gfd3h_10_to_20(phi, beta)
+    if phi < 40.0:
+        return gfd3h_20_to_40(phi, beta)
+    return gfd3h_gt_40(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd5h(double phi, double beta):
+    if phi < -2.0:
+        return gfd5h_lt_m2(phi, beta)
+    if phi < 0.0:
+        return gfd5h_m2_to_0(phi, beta)
+    if phi < 2.0:
+        return gfd5h_0_to_2(phi, beta)
+    if phi < 5.0:
+        return gfd5h_2_to_5(phi, beta)
+    if phi < 10.0:
+        return gfd5h_5_to_10(phi, beta)
+    if phi < 20.0:
+        return gfd5h_10_to_20(phi, beta)
+    if phi < 40.0:
+        return gfd5h_20_to_40(phi, beta)
+    return gfd5h_gt_40(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_lt_m2(double phi, double beta):
+    if(beta <= BSm1h_lt_m2__1):
+        return gfdm1h_lt_m2__1(phi, beta)
+    if(beta <= BSm1h_lt_m2__2):
+        return gfdm1h_lt_m2__2(phi, beta)
+    if(beta <= BSm1h_lt_m2__3):
+        return gfdm1h_lt_m2__3(phi, beta)
+    if(beta <= BSm1h_lt_m2__4):
+        return gfdm1h_lt_m2__4(phi, beta)
+    if(beta <= BSm1h_lt_m2__5):
+        return gfdm1h_lt_m2__5(phi, beta)
+    if(beta <= BSm1h_lt_m2__6):
+        return gfdm1h_lt_m2__6(phi, beta)
+    if(beta <= BSm1h_lt_m2__7):
+        return gfdm1h_lt_m2__7(phi, beta)
+    if(beta <= BSm1h_lt_m2__8):
+        return gfdm1h_lt_m2__8(phi, beta)
+    if(beta <= BSm1h_lt_m2__9):
+        return gfdm1h_lt_m2__9(phi, beta)
+    if(beta <= BSm1h_lt_m2__10):
+        return gfdm1h_lt_m2__10(phi, beta)
+    warnings.warn('gfdm1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfdm1h_lt_m2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_m2_to_0(double phi, double beta):
+    if(beta <= BSm1h_m2_to_0__1):
+        return gfdm1h_m2_to_0__1(phi, beta)
+    if(beta <= BSm1h_m2_to_0__2):
+        return gfdm1h_m2_to_0__2(phi, beta)
+    if(beta <= BSm1h_m2_to_0__3):
+        return gfdm1h_m2_to_0__3(phi, beta)
+    if(beta <= BSm1h_m2_to_0__4):
+        return gfdm1h_m2_to_0__4(phi, beta)
+    if(beta <= BSm1h_m2_to_0__5):
+        return gfdm1h_m2_to_0__5(phi, beta)
+    if(beta <= BSm1h_m2_to_0__6):
+        return gfdm1h_m2_to_0__6(phi, beta)
+    if(beta <= BSm1h_m2_to_0__7):
+        return gfdm1h_m2_to_0__7(phi, beta)
+    if(beta <= BSm1h_m2_to_0__8):
+        return gfdm1h_m2_to_0__8(phi, beta)
+    if(beta <= BSm1h_m2_to_0__9):
+        return gfdm1h_m2_to_0__9(phi, beta)
+    if(beta <= BSm1h_m2_to_0__10):
+        return gfdm1h_m2_to_0__10(phi, beta)
+    warnings.warn('gfdm1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfdm1h_m2_to_0__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_0_to_2(double phi, double beta):
+    if(beta <= BSm1h_0_to_2__1):
+        return gfdm1h_0_to_2__1(phi, beta)
+    if(beta <= BSm1h_0_to_2__2):
+        return gfdm1h_0_to_2__2(phi, beta)
+    if(beta <= BSm1h_0_to_2__3):
+        return gfdm1h_0_to_2__3(phi, beta)
+    if(beta <= BSm1h_0_to_2__4):
+        return gfdm1h_0_to_2__4(phi, beta)
+    if(beta <= BSm1h_0_to_2__5):
+        return gfdm1h_0_to_2__5(phi, beta)
+    if(beta <= BSm1h_0_to_2__6):
+        return gfdm1h_0_to_2__6(phi, beta)
+    if(beta <= BSm1h_0_to_2__7):
+        return gfdm1h_0_to_2__7(phi, beta)
+    if(beta <= BSm1h_0_to_2__8):
+        return gfdm1h_0_to_2__8(phi, beta)
+    if(beta <= BSm1h_0_to_2__9):
+        return gfdm1h_0_to_2__9(phi, beta)
+    if(beta <= BSm1h_0_to_2__10):
+        return gfdm1h_0_to_2__10(phi, beta)
+    warnings.warn('gfdm1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfdm1h_0_to_2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_2_to_5(double phi, double beta):
+    if(beta <= BSm1h_2_to_5__1):
+        return gfdm1h_2_to_5__1(phi, beta)
+    if(beta <= BSm1h_2_to_5__2):
+        return gfdm1h_2_to_5__2(phi, beta)
+    if(beta <= BSm1h_2_to_5__3):
+        return gfdm1h_2_to_5__3(phi, beta)
+    if(beta <= BSm1h_2_to_5__4):
+        return gfdm1h_2_to_5__4(phi, beta)
+    if(beta <= BSm1h_2_to_5__5):
+        return gfdm1h_2_to_5__5(phi, beta)
+    if(beta <= BSm1h_2_to_5__6):
+        return gfdm1h_2_to_5__6(phi, beta)
+    if(beta <= BSm1h_2_to_5__7):
+        return gfdm1h_2_to_5__7(phi, beta)
+    if(beta <= BSm1h_2_to_5__8):
+        return gfdm1h_2_to_5__8(phi, beta)
+    if(beta <= BSm1h_2_to_5__9):
+        return gfdm1h_2_to_5__9(phi, beta)
+    if(beta <= BSm1h_2_to_5__10):
+        return gfdm1h_2_to_5__10(phi, beta)
+    warnings.warn('gfdm1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfdm1h_2_to_5__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_5_to_10(double phi, double beta):
+    if(beta <= BSm1h_5_to_10__1):
+        return gfdm1h_5_to_10__1(phi, beta)
+    if(beta <= BSm1h_5_to_10__2):
+        return gfdm1h_5_to_10__2(phi, beta)
+    if(beta <= BSm1h_5_to_10__3):
+        return gfdm1h_5_to_10__3(phi, beta)
+    if(beta <= BSm1h_5_to_10__4):
+        return gfdm1h_5_to_10__4(phi, beta)
+    if(beta <= BSm1h_5_to_10__5):
+        return gfdm1h_5_to_10__5(phi, beta)
+    if(beta <= BSm1h_5_to_10__6):
+        return gfdm1h_5_to_10__6(phi, beta)
+    if(beta <= BSm1h_5_to_10__7):
+        return gfdm1h_5_to_10__7(phi, beta)
+    if(beta <= BSm1h_5_to_10__8):
+        return gfdm1h_5_to_10__8(phi, beta)
+    if(beta <= BSm1h_5_to_10__9):
+        return gfdm1h_5_to_10__9(phi, beta)
+    if(beta <= BSm1h_5_to_10__10):
+        return gfdm1h_5_to_10__10(phi, beta)
+    warnings.warn('gfdm1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfdm1h_5_to_10__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_10_to_20(double phi, double beta):
+    if(beta <= BSm1h_10_to_20__1):
+        return gfdm1h_10_to_20__1(phi, beta)
+    if(beta <= BSm1h_10_to_20__2):
+        return gfdm1h_10_to_20__2(phi, beta)
+    if(beta <= BSm1h_10_to_20__3):
+        return gfdm1h_10_to_20__3(phi, beta)
+    if(beta <= BSm1h_10_to_20__4):
+        return gfdm1h_10_to_20__4(phi, beta)
+    if(beta <= BSm1h_10_to_20__5):
+        return gfdm1h_10_to_20__5(phi, beta)
+    if(beta <= BSm1h_10_to_20__6):
+        return gfdm1h_10_to_20__6(phi, beta)
+    if(beta <= BSm1h_10_to_20__7):
+        return gfdm1h_10_to_20__7(phi, beta)
+    if(beta <= BSm1h_10_to_20__8):
+        return gfdm1h_10_to_20__8(phi, beta)
+    if(beta <= BSm1h_10_to_20__9):
+        return gfdm1h_10_to_20__9(phi, beta)
+    if(beta <= BSm1h_10_to_20__10):
+        return gfdm1h_10_to_20__10(phi, beta)
+    warnings.warn('gfdm1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfdm1h_10_to_20__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_20_to_40(double phi, double beta):
+    if(beta <= BSm1h_20_to_40__1):
+        return gfdm1h_20_to_40__1(phi, beta)
+    if(beta <= BSm1h_20_to_40__2):
+        return gfdm1h_20_to_40__2(phi, beta)
+    if(beta <= BSm1h_20_to_40__3):
+        return gfdm1h_20_to_40__3(phi, beta)
+    if(beta <= BSm1h_20_to_40__4):
+        return gfdm1h_20_to_40__4(phi, beta)
+    if(beta <= BSm1h_20_to_40__5):
+        return gfdm1h_20_to_40__5(phi, beta)
+    if(beta <= BSm1h_20_to_40__6):
+        return gfdm1h_20_to_40__6(phi, beta)
+    if(beta <= BSm1h_20_to_40__7):
+        return gfdm1h_20_to_40__7(phi, beta)
+    if(beta <= BSm1h_20_to_40__8):
+        return gfdm1h_20_to_40__8(phi, beta)
+    if(beta <= BSm1h_20_to_40__9):
+        return gfdm1h_20_to_40__9(phi, beta)
+    if(beta <= BSm1h_20_to_40__10):
+        return gfdm1h_20_to_40__10(phi, beta)
+    warnings.warn('gfdm1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfdm1h_20_to_40__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_gt_40(double phi, double beta):
+    warnings.warn('gfdm1h: 24 bits of accuracy not guaranteed',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfdm1h_gt_40__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd1h_lt_m2(double phi, double beta):
+    if(beta <= BS1h_lt_m2__1):
+        return gfd1h_lt_m2__1(phi, beta)
+    if(beta <= BS1h_lt_m2__2):
+        return gfd1h_lt_m2__2(phi, beta)
+    if(beta <= BS1h_lt_m2__3):
+        return gfd1h_lt_m2__3(phi, beta)
+    if(beta <= BS1h_lt_m2__4):
+        return gfd1h_lt_m2__4(phi, beta)
+    if(beta <= BS1h_lt_m2__5):
+        return gfd1h_lt_m2__5(phi, beta)
+    if(beta <= BS1h_lt_m2__6):
+        return gfd1h_lt_m2__6(phi, beta)
+    if(beta <= BS1h_lt_m2__7):
+        return gfd1h_lt_m2__7(phi, beta)
+    if(beta <= BS1h_lt_m2__8):
+        return gfd1h_lt_m2__8(phi, beta)
+    if(beta <= BS1h_lt_m2__9):
+        return gfd1h_lt_m2__9(phi, beta)
+    if(beta <= BS1h_lt_m2__10):
+        return gfd1h_lt_m2__10(phi, beta)
+    warnings.warn('gfd1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd1h_lt_m2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd1h_m2_to_0(double phi, double beta):
+    if(beta <= BS1h_m2_to_0__1):
+        return gfd1h_m2_to_0__1(phi, beta)
+    if(beta <= BS1h_m2_to_0__2):
+        return gfd1h_m2_to_0__2(phi, beta)
+    if(beta <= BS1h_m2_to_0__3):
+        return gfd1h_m2_to_0__3(phi, beta)
+    if(beta <= BS1h_m2_to_0__4):
+        return gfd1h_m2_to_0__4(phi, beta)
+    if(beta <= BS1h_m2_to_0__5):
+        return gfd1h_m2_to_0__5(phi, beta)
+    if(beta <= BS1h_m2_to_0__6):
+        return gfd1h_m2_to_0__6(phi, beta)
+    if(beta <= BS1h_m2_to_0__7):
+        return gfd1h_m2_to_0__7(phi, beta)
+    if(beta <= BS1h_m2_to_0__8):
+        return gfd1h_m2_to_0__8(phi, beta)
+    if(beta <= BS1h_m2_to_0__9):
+        return gfd1h_m2_to_0__9(phi, beta)
+    if(beta <= BS1h_m2_to_0__10):
+        return gfd1h_m2_to_0__10(phi, beta)
+    warnings.warn('gfd1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd1h_m2_to_0__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd1h_0_to_2(double phi, double beta):
+    if(beta <= BS1h_0_to_2__1):
+        return gfd1h_0_to_2__1(phi, beta)
+    if(beta <= BS1h_0_to_2__2):
+        return gfd1h_0_to_2__2(phi, beta)
+    if(beta <= BS1h_0_to_2__3):
+        return gfd1h_0_to_2__3(phi, beta)
+    if(beta <= BS1h_0_to_2__4):
+        return gfd1h_0_to_2__4(phi, beta)
+    if(beta <= BS1h_0_to_2__5):
+        return gfd1h_0_to_2__5(phi, beta)
+    if(beta <= BS1h_0_to_2__6):
+        return gfd1h_0_to_2__6(phi, beta)
+    if(beta <= BS1h_0_to_2__7):
+        return gfd1h_0_to_2__7(phi, beta)
+    if(beta <= BS1h_0_to_2__8):
+        return gfd1h_0_to_2__8(phi, beta)
+    if(beta <= BS1h_0_to_2__9):
+        return gfd1h_0_to_2__9(phi, beta)
+    if(beta <= BS1h_0_to_2__10):
+        return gfd1h_0_to_2__10(phi, beta)
+    warnings.warn('gfd1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd1h_0_to_2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd1h_2_to_5(double phi, double beta):
+    if(beta <= BS1h_2_to_5__1):
+        return gfd1h_2_to_5__1(phi, beta)
+    if(beta <= BS1h_2_to_5__2):
+        return gfd1h_2_to_5__2(phi, beta)
+    if(beta <= BS1h_2_to_5__3):
+        return gfd1h_2_to_5__3(phi, beta)
+    if(beta <= BS1h_2_to_5__4):
+        return gfd1h_2_to_5__4(phi, beta)
+    if(beta <= BS1h_2_to_5__5):
+        return gfd1h_2_to_5__5(phi, beta)
+    if(beta <= BS1h_2_to_5__6):
+        return gfd1h_2_to_5__6(phi, beta)
+    if(beta <= BS1h_2_to_5__7):
+        return gfd1h_2_to_5__7(phi, beta)
+    if(beta <= BS1h_2_to_5__8):
+        return gfd1h_2_to_5__8(phi, beta)
+    if(beta <= BS1h_2_to_5__9):
+        return gfd1h_2_to_5__9(phi, beta)
+    if(beta <= BS1h_2_to_5__10):
+        return gfd1h_2_to_5__10(phi, beta)
+    warnings.warn('gfd1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd1h_2_to_5__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd1h_5_to_10(double phi, double beta):
+    if(beta <= BS1h_5_to_10__1):
+        return gfd1h_5_to_10__1(phi, beta)
+    if(beta <= BS1h_5_to_10__2):
+        return gfd1h_5_to_10__2(phi, beta)
+    if(beta <= BS1h_5_to_10__3):
+        return gfd1h_5_to_10__3(phi, beta)
+    if(beta <= BS1h_5_to_10__4):
+        return gfd1h_5_to_10__4(phi, beta)
+    if(beta <= BS1h_5_to_10__5):
+        return gfd1h_5_to_10__5(phi, beta)
+    if(beta <= BS1h_5_to_10__6):
+        return gfd1h_5_to_10__6(phi, beta)
+    if(beta <= BS1h_5_to_10__7):
+        return gfd1h_5_to_10__7(phi, beta)
+    if(beta <= BS1h_5_to_10__8):
+        return gfd1h_5_to_10__8(phi, beta)
+    if(beta <= BS1h_5_to_10__9):
+        return gfd1h_5_to_10__9(phi, beta)
+    if(beta <= BS1h_5_to_10__10):
+        return gfd1h_5_to_10__10(phi, beta)
+    warnings.warn('gfd1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd1h_5_to_10__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd1h_10_to_20(double phi, double beta):
+    if(beta <= BS1h_10_to_20__1):
+        return gfd1h_10_to_20__1(phi, beta)
+    if(beta <= BS1h_10_to_20__2):
+        return gfd1h_10_to_20__2(phi, beta)
+    if(beta <= BS1h_10_to_20__3):
+        return gfd1h_10_to_20__3(phi, beta)
+    if(beta <= BS1h_10_to_20__4):
+        return gfd1h_10_to_20__4(phi, beta)
+    if(beta <= BS1h_10_to_20__5):
+        return gfd1h_10_to_20__5(phi, beta)
+    if(beta <= BS1h_10_to_20__6):
+        return gfd1h_10_to_20__6(phi, beta)
+    if(beta <= BS1h_10_to_20__7):
+        return gfd1h_10_to_20__7(phi, beta)
+    if(beta <= BS1h_10_to_20__8):
+        return gfd1h_10_to_20__8(phi, beta)
+    if(beta <= BS1h_10_to_20__9):
+        return gfd1h_10_to_20__9(phi, beta)
+    if(beta <= BS1h_10_to_20__10):
+        return gfd1h_10_to_20__10(phi, beta)
+    warnings.warn('gfd1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd1h_10_to_20__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd1h_20_to_40(double phi, double beta):
+    if(beta <= BS1h_20_to_40__1):
+        return gfd1h_20_to_40__1(phi, beta)
+    if(beta <= BS1h_20_to_40__2):
+        return gfd1h_20_to_40__2(phi, beta)
+    if(beta <= BS1h_20_to_40__3):
+        return gfd1h_20_to_40__3(phi, beta)
+    if(beta <= BS1h_20_to_40__4):
+        return gfd1h_20_to_40__4(phi, beta)
+    if(beta <= BS1h_20_to_40__5):
+        return gfd1h_20_to_40__5(phi, beta)
+    if(beta <= BS1h_20_to_40__6):
+        return gfd1h_20_to_40__6(phi, beta)
+    if(beta <= BS1h_20_to_40__7):
+        return gfd1h_20_to_40__7(phi, beta)
+    if(beta <= BS1h_20_to_40__8):
+        return gfd1h_20_to_40__8(phi, beta)
+    if(beta <= BS1h_20_to_40__9):
+        return gfd1h_20_to_40__9(phi, beta)
+    if(beta <= BS1h_20_to_40__10):
+        return gfd1h_20_to_40__10(phi, beta)
+    warnings.warn('gfd1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd1h_20_to_40__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd1h_gt_40(double phi, double beta):
+    warnings.warn('gfd1h: 24 bits of accuracy not guaranteed',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd1h_gt_40__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd3h_lt_m2(double phi, double beta):
+    if(beta <= BS3h_lt_m2__1):
+        return gfd3h_lt_m2__1(phi, beta)
+    if(beta <= BS3h_lt_m2__2):
+        return gfd3h_lt_m2__2(phi, beta)
+    if(beta <= BS3h_lt_m2__3):
+        return gfd3h_lt_m2__3(phi, beta)
+    if(beta <= BS3h_lt_m2__4):
+        return gfd3h_lt_m2__4(phi, beta)
+    if(beta <= BS3h_lt_m2__5):
+        return gfd3h_lt_m2__5(phi, beta)
+    if(beta <= BS3h_lt_m2__6):
+        return gfd3h_lt_m2__6(phi, beta)
+    if(beta <= BS3h_lt_m2__7):
+        return gfd3h_lt_m2__7(phi, beta)
+    if(beta <= BS3h_lt_m2__8):
+        return gfd3h_lt_m2__8(phi, beta)
+    if(beta <= BS3h_lt_m2__9):
+        return gfd3h_lt_m2__9(phi, beta)
+    warnings.warn('gfd3h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd3h_lt_m2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd3h_m2_to_0(double phi, double beta):
+    if(beta <= BS3h_m2_to_0__1):
+        return gfd3h_m2_to_0__1(phi, beta)
+    if(beta <= BS3h_m2_to_0__2):
+        return gfd3h_m2_to_0__2(phi, beta)
+    if(beta <= BS3h_m2_to_0__3):
+        return gfd3h_m2_to_0__3(phi, beta)
+    if(beta <= BS3h_m2_to_0__4):
+        return gfd3h_m2_to_0__4(phi, beta)
+    if(beta <= BS3h_m2_to_0__5):
+        return gfd3h_m2_to_0__5(phi, beta)
+    if(beta <= BS3h_m2_to_0__6):
+        return gfd3h_m2_to_0__6(phi, beta)
+    if(beta <= BS3h_m2_to_0__7):
+        return gfd3h_m2_to_0__7(phi, beta)
+    if(beta <= BS3h_m2_to_0__8):
+        return gfd3h_m2_to_0__8(phi, beta)
+    if(beta <= BS3h_m2_to_0__9):
+        return gfd3h_m2_to_0__9(phi, beta)
+    warnings.warn('gfd3h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd3h_m2_to_0__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd3h_0_to_2(double phi, double beta):
+    if(beta <= BS3h_0_to_2__1):
+        return gfd3h_0_to_2__1(phi, beta)
+    if(beta <= BS3h_0_to_2__2):
+        return gfd3h_0_to_2__2(phi, beta)
+    if(beta <= BS3h_0_to_2__3):
+        return gfd3h_0_to_2__3(phi, beta)
+    if(beta <= BS3h_0_to_2__4):
+        return gfd3h_0_to_2__4(phi, beta)
+    if(beta <= BS3h_0_to_2__5):
+        return gfd3h_0_to_2__5(phi, beta)
+    if(beta <= BS3h_0_to_2__6):
+        return gfd3h_0_to_2__6(phi, beta)
+    if(beta <= BS3h_0_to_2__7):
+        return gfd3h_0_to_2__7(phi, beta)
+    if(beta <= BS3h_0_to_2__8):
+        return gfd3h_0_to_2__8(phi, beta)
+    if(beta <= BS3h_0_to_2__9):
+        return gfd3h_0_to_2__9(phi, beta)
+    warnings.warn('gfd3h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd3h_0_to_2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd3h_2_to_5(double phi, double beta):
+    if(beta <= BS3h_2_to_5__1):
+        return gfd3h_2_to_5__1(phi, beta)
+    if(beta <= BS3h_2_to_5__2):
+        return gfd3h_2_to_5__2(phi, beta)
+    if(beta <= BS3h_2_to_5__3):
+        return gfd3h_2_to_5__3(phi, beta)
+    if(beta <= BS3h_2_to_5__4):
+        return gfd3h_2_to_5__4(phi, beta)
+    if(beta <= BS3h_2_to_5__5):
+        return gfd3h_2_to_5__5(phi, beta)
+    if(beta <= BS3h_2_to_5__6):
+        return gfd3h_2_to_5__6(phi, beta)
+    if(beta <= BS3h_2_to_5__7):
+        return gfd3h_2_to_5__7(phi, beta)
+    if(beta <= BS3h_2_to_5__8):
+        return gfd3h_2_to_5__8(phi, beta)
+    if(beta <= BS3h_2_to_5__9):
+        return gfd3h_2_to_5__9(phi, beta)
+    warnings.warn('gfd3h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd3h_2_to_5__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd3h_5_to_10(double phi, double beta):
+    if(beta <= BS3h_5_to_10__1):
+        return gfd3h_5_to_10__1(phi, beta)
+    if(beta <= BS3h_5_to_10__2):
+        return gfd3h_5_to_10__2(phi, beta)
+    if(beta <= BS3h_5_to_10__3):
+        return gfd3h_5_to_10__3(phi, beta)
+    if(beta <= BS3h_5_to_10__4):
+        return gfd3h_5_to_10__4(phi, beta)
+    if(beta <= BS3h_5_to_10__5):
+        return gfd3h_5_to_10__5(phi, beta)
+    if(beta <= BS3h_5_to_10__6):
+        return gfd3h_5_to_10__6(phi, beta)
+    if(beta <= BS3h_5_to_10__7):
+        return gfd3h_5_to_10__7(phi, beta)
+    if(beta <= BS3h_5_to_10__8):
+        return gfd3h_5_to_10__8(phi, beta)
+    if(beta <= BS3h_5_to_10__9):
+        return gfd3h_5_to_10__9(phi, beta)
+    warnings.warn('gfd3h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd3h_5_to_10__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd3h_10_to_20(double phi, double beta):
+    if(beta <= BS3h_10_to_20__1):
+        return gfd3h_10_to_20__1(phi, beta)
+    if(beta <= BS3h_10_to_20__2):
+        return gfd3h_10_to_20__2(phi, beta)
+    if(beta <= BS3h_10_to_20__3):
+        return gfd3h_10_to_20__3(phi, beta)
+    if(beta <= BS3h_10_to_20__4):
+        return gfd3h_10_to_20__4(phi, beta)
+    if(beta <= BS3h_10_to_20__5):
+        return gfd3h_10_to_20__5(phi, beta)
+    if(beta <= BS3h_10_to_20__6):
+        return gfd3h_10_to_20__6(phi, beta)
+    if(beta <= BS3h_10_to_20__7):
+        return gfd3h_10_to_20__7(phi, beta)
+    if(beta <= BS3h_10_to_20__8):
+        return gfd3h_10_to_20__8(phi, beta)
+    if(beta <= BS3h_10_to_20__9):
+        return gfd3h_10_to_20__9(phi, beta)
+    warnings.warn('gfd3h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd3h_10_to_20__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd3h_20_to_40(double phi, double beta):
+    if(beta <= BS3h_20_to_40__1):
+        return gfd3h_20_to_40__1(phi, beta)
+    if(beta <= BS3h_20_to_40__2):
+        return gfd3h_20_to_40__2(phi, beta)
+    if(beta <= BS3h_20_to_40__3):
+        return gfd3h_20_to_40__3(phi, beta)
+    if(beta <= BS3h_20_to_40__4):
+        return gfd3h_20_to_40__4(phi, beta)
+    if(beta <= BS3h_20_to_40__5):
+        return gfd3h_20_to_40__5(phi, beta)
+    if(beta <= BS3h_20_to_40__6):
+        return gfd3h_20_to_40__6(phi, beta)
+    if(beta <= BS3h_20_to_40__7):
+        return gfd3h_20_to_40__7(phi, beta)
+    if(beta <= BS3h_20_to_40__8):
+        return gfd3h_20_to_40__8(phi, beta)
+    if(beta <= BS3h_20_to_40__9):
+        return gfd3h_20_to_40__9(phi, beta)
+    warnings.warn('gfd3h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd3h_20_to_40__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd3h_gt_40(double phi, double beta):
+    warnings.warn('gfd3h: 24 bits of accuracy not guaranteed',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd3h_gt_40__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd5h_lt_m2(double phi, double beta):
+    if(beta <= BS5h_lt_m2__1):
+        return gfd5h_lt_m2__1(phi, beta)
+    if(beta <= BS5h_lt_m2__2):
+        return gfd5h_lt_m2__2(phi, beta)
+    if(beta <= BS5h_lt_m2__3):
+        return gfd5h_lt_m2__3(phi, beta)
+    if(beta <= BS5h_lt_m2__4):
+        return gfd5h_lt_m2__4(phi, beta)
+    if(beta <= BS5h_lt_m2__5):
+        return gfd5h_lt_m2__5(phi, beta)
+    if(beta <= BS5h_lt_m2__6):
+        return gfd5h_lt_m2__6(phi, beta)
+    if(beta <= BS5h_lt_m2__7):
+        return gfd5h_lt_m2__7(phi, beta)
+    if(beta <= BS5h_lt_m2__8):
+        return gfd5h_lt_m2__8(phi, beta)
+    warnings.warn('gfd5h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd5h_lt_m2__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd5h_m2_to_0(double phi, double beta):
+    if(beta <= BS5h_m2_to_0__1):
+        return gfd5h_m2_to_0__1(phi, beta)
+    if(beta <= BS5h_m2_to_0__2):
+        return gfd5h_m2_to_0__2(phi, beta)
+    if(beta <= BS5h_m2_to_0__3):
+        return gfd5h_m2_to_0__3(phi, beta)
+    if(beta <= BS5h_m2_to_0__4):
+        return gfd5h_m2_to_0__4(phi, beta)
+    if(beta <= BS5h_m2_to_0__5):
+        return gfd5h_m2_to_0__5(phi, beta)
+    if(beta <= BS5h_m2_to_0__6):
+        return gfd5h_m2_to_0__6(phi, beta)
+    if(beta <= BS5h_m2_to_0__7):
+        return gfd5h_m2_to_0__7(phi, beta)
+    if(beta <= BS5h_m2_to_0__8):
+        return gfd5h_m2_to_0__8(phi, beta)
+    warnings.warn('gfd5h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd5h_m2_to_0__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd5h_0_to_2(double phi, double beta):
+    if(beta <= BS5h_0_to_2__1):
+        return gfd5h_0_to_2__1(phi, beta)
+    if(beta <= BS5h_0_to_2__2):
+        return gfd5h_0_to_2__2(phi, beta)
+    if(beta <= BS5h_0_to_2__3):
+        return gfd5h_0_to_2__3(phi, beta)
+    if(beta <= BS5h_0_to_2__4):
+        return gfd5h_0_to_2__4(phi, beta)
+    if(beta <= BS5h_0_to_2__5):
+        return gfd5h_0_to_2__5(phi, beta)
+    if(beta <= BS5h_0_to_2__6):
+        return gfd5h_0_to_2__6(phi, beta)
+    if(beta <= BS5h_0_to_2__7):
+        return gfd5h_0_to_2__7(phi, beta)
+    if(beta <= BS5h_0_to_2__8):
+        return gfd5h_0_to_2__8(phi, beta)
+    warnings.warn('gfd5h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd5h_0_to_2__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd5h_2_to_5(double phi, double beta):
+    if(beta <= BS5h_2_to_5__1):
+        return gfd5h_2_to_5__1(phi, beta)
+    if(beta <= BS5h_2_to_5__2):
+        return gfd5h_2_to_5__2(phi, beta)
+    if(beta <= BS5h_2_to_5__3):
+        return gfd5h_2_to_5__3(phi, beta)
+    if(beta <= BS5h_2_to_5__4):
+        return gfd5h_2_to_5__4(phi, beta)
+    if(beta <= BS5h_2_to_5__5):
+        return gfd5h_2_to_5__5(phi, beta)
+    if(beta <= BS5h_2_to_5__6):
+        return gfd5h_2_to_5__6(phi, beta)
+    if(beta <= BS5h_2_to_5__7):
+        return gfd5h_2_to_5__7(phi, beta)
+    if(beta <= BS5h_2_to_5__8):
+        return gfd5h_2_to_5__8(phi, beta)
+    warnings.warn('gfd5h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd5h_2_to_5__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd5h_5_to_10(double phi, double beta):
+    if(beta <= BS5h_5_to_10__1):
+        return gfd5h_5_to_10__1(phi, beta)
+    if(beta <= BS5h_5_to_10__2):
+        return gfd5h_5_to_10__2(phi, beta)
+    if(beta <= BS5h_5_to_10__3):
+        return gfd5h_5_to_10__3(phi, beta)
+    if(beta <= BS5h_5_to_10__4):
+        return gfd5h_5_to_10__4(phi, beta)
+    if(beta <= BS5h_5_to_10__5):
+        return gfd5h_5_to_10__5(phi, beta)
+    if(beta <= BS5h_5_to_10__6):
+        return gfd5h_5_to_10__6(phi, beta)
+    if(beta <= BS5h_5_to_10__7):
+        return gfd5h_5_to_10__7(phi, beta)
+    if(beta <= BS5h_5_to_10__8):
+        return gfd5h_5_to_10__8(phi, beta)
+    warnings.warn('gfd5h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd5h_5_to_10__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd5h_10_to_20(double phi, double beta):
+    if(beta <= BS5h_10_to_20__1):
+        return gfd5h_10_to_20__1(phi, beta)
+    if(beta <= BS5h_10_to_20__2):
+        return gfd5h_10_to_20__2(phi, beta)
+    if(beta <= BS5h_10_to_20__3):
+        return gfd5h_10_to_20__3(phi, beta)
+    if(beta <= BS5h_10_to_20__4):
+        return gfd5h_10_to_20__4(phi, beta)
+    if(beta <= BS5h_10_to_20__5):
+        return gfd5h_10_to_20__5(phi, beta)
+    if(beta <= BS5h_10_to_20__6):
+        return gfd5h_10_to_20__6(phi, beta)
+    if(beta <= BS5h_10_to_20__7):
+        return gfd5h_10_to_20__7(phi, beta)
+    if(beta <= BS5h_10_to_20__8):
+        return gfd5h_10_to_20__8(phi, beta)
+    warnings.warn('gfd5h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd5h_10_to_20__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd5h_20_to_40(double phi, double beta):
+    if(beta <= BS5h_20_to_40__1):
+        return gfd5h_20_to_40__1(phi, beta)
+    if(beta <= BS5h_20_to_40__2):
+        return gfd5h_20_to_40__2(phi, beta)
+    if(beta <= BS5h_20_to_40__3):
+        return gfd5h_20_to_40__3(phi, beta)
+    if(beta <= BS5h_20_to_40__4):
+        return gfd5h_20_to_40__4(phi, beta)
+    if(beta <= BS5h_20_to_40__5):
+        return gfd5h_20_to_40__5(phi, beta)
+    if(beta <= BS5h_20_to_40__6):
+        return gfd5h_20_to_40__6(phi, beta)
+    if(beta <= BS5h_20_to_40__7):
+        return gfd5h_20_to_40__7(phi, beta)
+    if(beta <= BS5h_20_to_40__8):
+        return gfd5h_20_to_40__8(phi, beta)
+    warnings.warn('gfd5h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd5h_20_to_40__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfd5h_gt_40(double phi, double beta):
+    warnings.warn('gfd5h: 24 bits of accuracy not guaranteed',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return gfd5h_gt_40__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_lt_m2__1(double phi, double beta):
+        return (       G0 *fdm1h_lt_m2(phi)
+                +beta*(G11*fd1h_lt_m2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_lt_m2__2(double phi, double beta):
+        return (       G0 *fdm1h_lt_m2(phi)
+                +beta*(G21*fd1h_lt_m2(phi)
+                +beta*(G22*fd3h_lt_m2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_lt_m2__3(double phi, double beta):
+        return (       G0 *fdm1h_lt_m2(phi)
+                +beta*(G31*fd1h_lt_m2(phi)
+                +beta*(G32*fd3h_lt_m2(phi)
+                +beta*(G33*fd5h_lt_m2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_lt_m2__4(double phi, double beta):
+        return (       G0 *fdm1h_lt_m2(phi)
+                +beta*(G41*fd1h_lt_m2(phi)
+                +beta*(G42*fd3h_lt_m2(phi)
+                +beta*(G43*fd5h_lt_m2(phi)
+                +beta*(G44*fd7h_lt_m2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_lt_m2__5(double phi, double beta):
+        return (       G0 *fdm1h_lt_m2(phi)
+                +beta*(G51*fd1h_lt_m2(phi)
+                +beta*(G52*fd3h_lt_m2(phi)
+                +beta*(G53*fd5h_lt_m2(phi)
+                +beta*(G54*fd7h_lt_m2(phi)
+                +beta*(G55*fd9h_lt_m2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_lt_m2__6(double phi, double beta):
+        return (       G0 *fdm1h_lt_m2(phi)
+                +beta*(G61*fd1h_lt_m2(phi)
+                +beta*(G62*fd3h_lt_m2(phi)
+                +beta*(G63*fd5h_lt_m2(phi)
+                +beta*(G64*fd7h_lt_m2(phi)
+                +beta*(G65*fd9h_lt_m2(phi)
+                +beta*(G66*fd11h_lt_m2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_lt_m2__7(double phi, double beta):
+        return (       G0 *fdm1h_lt_m2(phi)
+                +beta*(G71*fd1h_lt_m2(phi)
+                +beta*(G72*fd3h_lt_m2(phi)
+                +beta*(G73*fd5h_lt_m2(phi)
+                +beta*(G74*fd7h_lt_m2(phi)
+                +beta*(G75*fd9h_lt_m2(phi)
+                +beta*(G76*fd11h_lt_m2(phi)
+                +beta*(G77*fd13h_lt_m2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_lt_m2__8(double phi, double beta):
+        return (       G0 *fdm1h_lt_m2(phi)
+                +beta*(G81*fd1h_lt_m2(phi)
+                +beta*(G82*fd3h_lt_m2(phi)
+                +beta*(G83*fd5h_lt_m2(phi)
+                +beta*(G84*fd7h_lt_m2(phi)
+                +beta*(G85*fd9h_lt_m2(phi)
+                +beta*(G86*fd11h_lt_m2(phi)
+                +beta*(G87*fd13h_lt_m2(phi)
+                +beta*(G88*fd15h_lt_m2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_lt_m2__9(double phi, double beta):
+        return (       G0 *fdm1h_lt_m2(phi)
+                +beta*(G91*fd1h_lt_m2(phi)
+                +beta*(G92*fd3h_lt_m2(phi)
+                +beta*(G93*fd5h_lt_m2(phi)
+                +beta*(G94*fd7h_lt_m2(phi)
+                +beta*(G95*fd9h_lt_m2(phi)
+                +beta*(G96*fd11h_lt_m2(phi)
+                +beta*(G97*fd13h_lt_m2(phi)
+                +beta*(G98*fd15h_lt_m2(phi)
+                +beta*(G99*fd17h_lt_m2(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_lt_m2__10(double phi, double beta):
+        return (       G0 *fdm1h_lt_m2(phi)
+                +beta*(GA1*fd1h_lt_m2(phi)
+                +beta*(GA2*fd3h_lt_m2(phi)
+                +beta*(GA3*fd5h_lt_m2(phi)
+                +beta*(GA4*fd7h_lt_m2(phi)
+                +beta*(GA5*fd9h_lt_m2(phi)
+                +beta*(GA6*fd11h_lt_m2(phi)
+                +beta*(GA7*fd13h_lt_m2(phi)
+                +beta*(GA8*fd15h_lt_m2(phi)
+                +beta*(GA9*fd17h_lt_m2(phi)
+                +beta*(GAA*fd19h_lt_m2(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_m2_to_0__1(double phi, double beta):
+        return (       G0 *fdm1h_m2_to_0(phi)
+                +beta*(G11*fd1h_m2_to_0(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_m2_to_0__2(double phi, double beta):
+        return (       G0 *fdm1h_m2_to_0(phi)
+                +beta*(G21*fd1h_m2_to_0(phi)
+                +beta*(G22*fd3h_m2_to_0(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_m2_to_0__3(double phi, double beta):
+        return (       G0 *fdm1h_m2_to_0(phi)
+                +beta*(G31*fd1h_m2_to_0(phi)
+                +beta*(G32*fd3h_m2_to_0(phi)
+                +beta*(G33*fd5h_m2_to_0(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_m2_to_0__4(double phi, double beta):
+        return (       G0 *fdm1h_m2_to_0(phi)
+                +beta*(G41*fd1h_m2_to_0(phi)
+                +beta*(G42*fd3h_m2_to_0(phi)
+                +beta*(G43*fd5h_m2_to_0(phi)
+                +beta*(G44*fd7h_m2_to_0(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_m2_to_0__5(double phi, double beta):
+        return (       G0 *fdm1h_m2_to_0(phi)
+                +beta*(G51*fd1h_m2_to_0(phi)
+                +beta*(G52*fd3h_m2_to_0(phi)
+                +beta*(G53*fd5h_m2_to_0(phi)
+                +beta*(G54*fd7h_m2_to_0(phi)
+                +beta*(G55*fd9h_m2_to_0(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_m2_to_0__6(double phi, double beta):
+        return (       G0 *fdm1h_m2_to_0(phi)
+                +beta*(G61*fd1h_m2_to_0(phi)
+                +beta*(G62*fd3h_m2_to_0(phi)
+                +beta*(G63*fd5h_m2_to_0(phi)
+                +beta*(G64*fd7h_m2_to_0(phi)
+                +beta*(G65*fd9h_m2_to_0(phi)
+                +beta*(G66*fd11h_m2_to_0(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_m2_to_0__7(double phi, double beta):
+        return (       G0 *fdm1h_m2_to_0(phi)
+                +beta*(G71*fd1h_m2_to_0(phi)
+                +beta*(G72*fd3h_m2_to_0(phi)
+                +beta*(G73*fd5h_m2_to_0(phi)
+                +beta*(G74*fd7h_m2_to_0(phi)
+                +beta*(G75*fd9h_m2_to_0(phi)
+                +beta*(G76*fd11h_m2_to_0(phi)
+                +beta*(G77*fd13h_m2_to_0(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_m2_to_0__8(double phi, double beta):
+        return (       G0 *fdm1h_m2_to_0(phi)
+                +beta*(G81*fd1h_m2_to_0(phi)
+                +beta*(G82*fd3h_m2_to_0(phi)
+                +beta*(G83*fd5h_m2_to_0(phi)
+                +beta*(G84*fd7h_m2_to_0(phi)
+                +beta*(G85*fd9h_m2_to_0(phi)
+                +beta*(G86*fd11h_m2_to_0(phi)
+                +beta*(G87*fd13h_m2_to_0(phi)
+                +beta*(G88*fd15h_m2_to_0(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_m2_to_0__9(double phi, double beta):
+        return (       G0 *fdm1h_m2_to_0(phi)
+                +beta*(G91*fd1h_m2_to_0(phi)
+                +beta*(G92*fd3h_m2_to_0(phi)
+                +beta*(G93*fd5h_m2_to_0(phi)
+                +beta*(G94*fd7h_m2_to_0(phi)
+                +beta*(G95*fd9h_m2_to_0(phi)
+                +beta*(G96*fd11h_m2_to_0(phi)
+                +beta*(G97*fd13h_m2_to_0(phi)
+                +beta*(G98*fd15h_m2_to_0(phi)
+                +beta*(G99*fd17h_m2_to_0(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_m2_to_0__10(double phi, double beta):
+        return (       G0 *fdm1h_m2_to_0(phi)
+                +beta*(GA1*fd1h_m2_to_0(phi)
+                +beta*(GA2*fd3h_m2_to_0(phi)
+                +beta*(GA3*fd5h_m2_to_0(phi)
+                +beta*(GA4*fd7h_m2_to_0(phi)
+                +beta*(GA5*fd9h_m2_to_0(phi)
+                +beta*(GA6*fd11h_m2_to_0(phi)
+                +beta*(GA7*fd13h_m2_to_0(phi)
+                +beta*(GA8*fd15h_m2_to_0(phi)
+                +beta*(GA9*fd17h_m2_to_0(phi)
+                +beta*(GAA*fd19h_m2_to_0(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_0_to_2__1(double phi, double beta):
+        return (       G0 *fdm1h_0_to_2(phi)
+                +beta*(G11*fd1h_0_to_2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_0_to_2__2(double phi, double beta):
+        return (       G0 *fdm1h_0_to_2(phi)
+                +beta*(G21*fd1h_0_to_2(phi)
+                +beta*(G22*fd3h_0_to_2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_0_to_2__3(double phi, double beta):
+        return (       G0 *fdm1h_0_to_2(phi)
+                +beta*(G31*fd1h_0_to_2(phi)
+                +beta*(G32*fd3h_0_to_2(phi)
+                +beta*(G33*fd5h_0_to_2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_0_to_2__4(double phi, double beta):
+        return (       G0 *fdm1h_0_to_2(phi)
+                +beta*(G41*fd1h_0_to_2(phi)
+                +beta*(G42*fd3h_0_to_2(phi)
+                +beta*(G43*fd5h_0_to_2(phi)
+                +beta*(G44*fd7h_0_to_2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_0_to_2__5(double phi, double beta):
+        return (       G0 *fdm1h_0_to_2(phi)
+                +beta*(G51*fd1h_0_to_2(phi)
+                +beta*(G52*fd3h_0_to_2(phi)
+                +beta*(G53*fd5h_0_to_2(phi)
+                +beta*(G54*fd7h_0_to_2(phi)
+                +beta*(G55*fd9h_0_to_2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_0_to_2__6(double phi, double beta):
+        return (       G0 *fdm1h_0_to_2(phi)
+                +beta*(G61*fd1h_0_to_2(phi)
+                +beta*(G62*fd3h_0_to_2(phi)
+                +beta*(G63*fd5h_0_to_2(phi)
+                +beta*(G64*fd7h_0_to_2(phi)
+                +beta*(G65*fd9h_0_to_2(phi)
+                +beta*(G66*fd11h_0_to_2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_0_to_2__7(double phi, double beta):
+        return (       G0 *fdm1h_0_to_2(phi)
+                +beta*(G71*fd1h_0_to_2(phi)
+                +beta*(G72*fd3h_0_to_2(phi)
+                +beta*(G73*fd5h_0_to_2(phi)
+                +beta*(G74*fd7h_0_to_2(phi)
+                +beta*(G75*fd9h_0_to_2(phi)
+                +beta*(G76*fd11h_0_to_2(phi)
+                +beta*(G77*fd13h_0_to_2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_0_to_2__8(double phi, double beta):
+        return (       G0 *fdm1h_0_to_2(phi)
+                +beta*(G81*fd1h_0_to_2(phi)
+                +beta*(G82*fd3h_0_to_2(phi)
+                +beta*(G83*fd5h_0_to_2(phi)
+                +beta*(G84*fd7h_0_to_2(phi)
+                +beta*(G85*fd9h_0_to_2(phi)
+                +beta*(G86*fd11h_0_to_2(phi)
+                +beta*(G87*fd13h_0_to_2(phi)
+                +beta*(G88*fd15h_0_to_2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_0_to_2__9(double phi, double beta):
+        return (       G0 *fdm1h_0_to_2(phi)
+                +beta*(G91*fd1h_0_to_2(phi)
+                +beta*(G92*fd3h_0_to_2(phi)
+                +beta*(G93*fd5h_0_to_2(phi)
+                +beta*(G94*fd7h_0_to_2(phi)
+                +beta*(G95*fd9h_0_to_2(phi)
+                +beta*(G96*fd11h_0_to_2(phi)
+                +beta*(G97*fd13h_0_to_2(phi)
+                +beta*(G98*fd15h_0_to_2(phi)
+                +beta*(G99*fd17h_0_to_2(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_0_to_2__10(double phi, double beta):
+        return (       G0 *fdm1h_0_to_2(phi)
+                +beta*(GA1*fd1h_0_to_2(phi)
+                +beta*(GA2*fd3h_0_to_2(phi)
+                +beta*(GA3*fd5h_0_to_2(phi)
+                +beta*(GA4*fd7h_0_to_2(phi)
+                +beta*(GA5*fd9h_0_to_2(phi)
+                +beta*(GA6*fd11h_0_to_2(phi)
+                +beta*(GA7*fd13h_0_to_2(phi)
+                +beta*(GA8*fd15h_0_to_2(phi)
+                +beta*(GA9*fd17h_0_to_2(phi)
+                +beta*(GAA*fd19h_0_to_2(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_2_to_5__1(double phi, double beta):
+        return (       G0 *fdm1h_2_to_5(phi)
+                +beta*(G11*fd1h_2_to_5(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_2_to_5__2(double phi, double beta):
+        return (       G0 *fdm1h_2_to_5(phi)
+                +beta*(G21*fd1h_2_to_5(phi)
+                +beta*(G22*fd3h_2_to_5(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_2_to_5__3(double phi, double beta):
+        return (       G0 *fdm1h_2_to_5(phi)
+                +beta*(G31*fd1h_2_to_5(phi)
+                +beta*(G32*fd3h_2_to_5(phi)
+                +beta*(G33*fd5h_2_to_5(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_2_to_5__4(double phi, double beta):
+        return (       G0 *fdm1h_2_to_5(phi)
+                +beta*(G41*fd1h_2_to_5(phi)
+                +beta*(G42*fd3h_2_to_5(phi)
+                +beta*(G43*fd5h_2_to_5(phi)
+                +beta*(G44*fd7h_2_to_5(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_2_to_5__5(double phi, double beta):
+        return (       G0 *fdm1h_2_to_5(phi)
+                +beta*(G51*fd1h_2_to_5(phi)
+                +beta*(G52*fd3h_2_to_5(phi)
+                +beta*(G53*fd5h_2_to_5(phi)
+                +beta*(G54*fd7h_2_to_5(phi)
+                +beta*(G55*fd9h_2_to_5(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_2_to_5__6(double phi, double beta):
+        return (       G0 *fdm1h_2_to_5(phi)
+                +beta*(G61*fd1h_2_to_5(phi)
+                +beta*(G62*fd3h_2_to_5(phi)
+                +beta*(G63*fd5h_2_to_5(phi)
+                +beta*(G64*fd7h_2_to_5(phi)
+                +beta*(G65*fd9h_2_to_5(phi)
+                +beta*(G66*fd11h_2_to_5(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_2_to_5__7(double phi, double beta):
+        return (       G0 *fdm1h_2_to_5(phi)
+                +beta*(G71*fd1h_2_to_5(phi)
+                +beta*(G72*fd3h_2_to_5(phi)
+                +beta*(G73*fd5h_2_to_5(phi)
+                +beta*(G74*fd7h_2_to_5(phi)
+                +beta*(G75*fd9h_2_to_5(phi)
+                +beta*(G76*fd11h_2_to_5(phi)
+                +beta*(G77*fd13h_2_to_5(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_2_to_5__8(double phi, double beta):
+        return (       G0 *fdm1h_2_to_5(phi)
+                +beta*(G81*fd1h_2_to_5(phi)
+                +beta*(G82*fd3h_2_to_5(phi)
+                +beta*(G83*fd5h_2_to_5(phi)
+                +beta*(G84*fd7h_2_to_5(phi)
+                +beta*(G85*fd9h_2_to_5(phi)
+                +beta*(G86*fd11h_2_to_5(phi)
+                +beta*(G87*fd13h_2_to_5(phi)
+                +beta*(G88*fd15h_2_to_5(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_2_to_5__9(double phi, double beta):
+        return (       G0 *fdm1h_2_to_5(phi)
+                +beta*(G91*fd1h_2_to_5(phi)
+                +beta*(G92*fd3h_2_to_5(phi)
+                +beta*(G93*fd5h_2_to_5(phi)
+                +beta*(G94*fd7h_2_to_5(phi)
+                +beta*(G95*fd9h_2_to_5(phi)
+                +beta*(G96*fd11h_2_to_5(phi)
+                +beta*(G97*fd13h_2_to_5(phi)
+                +beta*(G98*fd15h_2_to_5(phi)
+                +beta*(G99*fd17h_2_to_5(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_2_to_5__10(double phi, double beta):
+        return (       G0 *fdm1h_2_to_5(phi)
+                +beta*(GA1*fd1h_2_to_5(phi)
+                +beta*(GA2*fd3h_2_to_5(phi)
+                +beta*(GA3*fd5h_2_to_5(phi)
+                +beta*(GA4*fd7h_2_to_5(phi)
+                +beta*(GA5*fd9h_2_to_5(phi)
+                +beta*(GA6*fd11h_2_to_5(phi)
+                +beta*(GA7*fd13h_2_to_5(phi)
+                +beta*(GA8*fd15h_2_to_5(phi)
+                +beta*(GA9*fd17h_2_to_5(phi)
+                +beta*(GAA*fd19h_2_to_5(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_5_to_10__1(double phi, double beta):
+        return (       G0 *fdm1h_5_to_10(phi)
+                +beta*(G11*fd1h_5_to_10(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_5_to_10__2(double phi, double beta):
+        return (       G0 *fdm1h_5_to_10(phi)
+                +beta*(G21*fd1h_5_to_10(phi)
+                +beta*(G22*fd3h_5_to_10(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_5_to_10__3(double phi, double beta):
+        return (       G0 *fdm1h_5_to_10(phi)
+                +beta*(G31*fd1h_5_to_10(phi)
+                +beta*(G32*fd3h_5_to_10(phi)
+                +beta*(G33*fd5h_5_to_10(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_5_to_10__4(double phi, double beta):
+        return (       G0 *fdm1h_5_to_10(phi)
+                +beta*(G41*fd1h_5_to_10(phi)
+                +beta*(G42*fd3h_5_to_10(phi)
+                +beta*(G43*fd5h_5_to_10(phi)
+                +beta*(G44*fd7h_5_to_10(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_5_to_10__5(double phi, double beta):
+        return (       G0 *fdm1h_5_to_10(phi)
+                +beta*(G51*fd1h_5_to_10(phi)
+                +beta*(G52*fd3h_5_to_10(phi)
+                +beta*(G53*fd5h_5_to_10(phi)
+                +beta*(G54*fd7h_5_to_10(phi)
+                +beta*(G55*fd9h_5_to_10(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_5_to_10__6(double phi, double beta):
+        return (       G0 *fdm1h_5_to_10(phi)
+                +beta*(G61*fd1h_5_to_10(phi)
+                +beta*(G62*fd3h_5_to_10(phi)
+                +beta*(G63*fd5h_5_to_10(phi)
+                +beta*(G64*fd7h_5_to_10(phi)
+                +beta*(G65*fd9h_5_to_10(phi)
+                +beta*(G66*fd11h_5_to_10(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_5_to_10__7(double phi, double beta):
+        return (       G0 *fdm1h_5_to_10(phi)
+                +beta*(G71*fd1h_5_to_10(phi)
+                +beta*(G72*fd3h_5_to_10(phi)
+                +beta*(G73*fd5h_5_to_10(phi)
+                +beta*(G74*fd7h_5_to_10(phi)
+                +beta*(G75*fd9h_5_to_10(phi)
+                +beta*(G76*fd11h_5_to_10(phi)
+                +beta*(G77*fd13h_5_to_10(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_5_to_10__8(double phi, double beta):
+        return (       G0 *fdm1h_5_to_10(phi)
+                +beta*(G81*fd1h_5_to_10(phi)
+                +beta*(G82*fd3h_5_to_10(phi)
+                +beta*(G83*fd5h_5_to_10(phi)
+                +beta*(G84*fd7h_5_to_10(phi)
+                +beta*(G85*fd9h_5_to_10(phi)
+                +beta*(G86*fd11h_5_to_10(phi)
+                +beta*(G87*fd13h_5_to_10(phi)
+                +beta*(G88*fd15h_5_to_10(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_5_to_10__9(double phi, double beta):
+        return (       G0 *fdm1h_5_to_10(phi)
+                +beta*(G91*fd1h_5_to_10(phi)
+                +beta*(G92*fd3h_5_to_10(phi)
+                +beta*(G93*fd5h_5_to_10(phi)
+                +beta*(G94*fd7h_5_to_10(phi)
+                +beta*(G95*fd9h_5_to_10(phi)
+                +beta*(G96*fd11h_5_to_10(phi)
+                +beta*(G97*fd13h_5_to_10(phi)
+                +beta*(G98*fd15h_5_to_10(phi)
+                +beta*(G99*fd17h_5_to_10(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_5_to_10__10(double phi, double beta):
+        return (       G0 *fdm1h_5_to_10(phi)
+                +beta*(GA1*fd1h_5_to_10(phi)
+                +beta*(GA2*fd3h_5_to_10(phi)
+                +beta*(GA3*fd5h_5_to_10(phi)
+                +beta*(GA4*fd7h_5_to_10(phi)
+                +beta*(GA5*fd9h_5_to_10(phi)
+                +beta*(GA6*fd11h_5_to_10(phi)
+                +beta*(GA7*fd13h_5_to_10(phi)
+                +beta*(GA8*fd15h_5_to_10(phi)
+                +beta*(GA9*fd17h_5_to_10(phi)
+                +beta*(GAA*fd19h_5_to_10(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_10_to_20__1(double phi, double beta):
+        return (       G0 *fdm1h_10_to_20(phi)
+                +beta*(G11*fd1h_10_to_20(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_10_to_20__2(double phi, double beta):
+        return (       G0 *fdm1h_10_to_20(phi)
+                +beta*(G21*fd1h_10_to_20(phi)
+                +beta*(G22*fd3h_10_to_20(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_10_to_20__3(double phi, double beta):
+        return (       G0 *fdm1h_10_to_20(phi)
+                +beta*(G31*fd1h_10_to_20(phi)
+                +beta*(G32*fd3h_10_to_20(phi)
+                +beta*(G33*fd5h_10_to_20(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_10_to_20__4(double phi, double beta):
+        return (       G0 *fdm1h_10_to_20(phi)
+                +beta*(G41*fd1h_10_to_20(phi)
+                +beta*(G42*fd3h_10_to_20(phi)
+                +beta*(G43*fd5h_10_to_20(phi)
+                +beta*(G44*fd7h_10_to_20(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_10_to_20__5(double phi, double beta):
+        return (       G0 *fdm1h_10_to_20(phi)
+                +beta*(G51*fd1h_10_to_20(phi)
+                +beta*(G52*fd3h_10_to_20(phi)
+                +beta*(G53*fd5h_10_to_20(phi)
+                +beta*(G54*fd7h_10_to_20(phi)
+                +beta*(G55*fd9h_10_to_20(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_10_to_20__6(double phi, double beta):
+        return (       G0 *fdm1h_10_to_20(phi)
+                +beta*(G61*fd1h_10_to_20(phi)
+                +beta*(G62*fd3h_10_to_20(phi)
+                +beta*(G63*fd5h_10_to_20(phi)
+                +beta*(G64*fd7h_10_to_20(phi)
+                +beta*(G65*fd9h_10_to_20(phi)
+                +beta*(G66*fd11h_10_to_20(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_10_to_20__7(double phi, double beta):
+        return (       G0 *fdm1h_10_to_20(phi)
+                +beta*(G71*fd1h_10_to_20(phi)
+                +beta*(G72*fd3h_10_to_20(phi)
+                +beta*(G73*fd5h_10_to_20(phi)
+                +beta*(G74*fd7h_10_to_20(phi)
+                +beta*(G75*fd9h_10_to_20(phi)
+                +beta*(G76*fd11h_10_to_20(phi)
+                +beta*(G77*fd13h_10_to_20(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_10_to_20__8(double phi, double beta):
+        return (       G0 *fdm1h_10_to_20(phi)
+                +beta*(G81*fd1h_10_to_20(phi)
+                +beta*(G82*fd3h_10_to_20(phi)
+                +beta*(G83*fd5h_10_to_20(phi)
+                +beta*(G84*fd7h_10_to_20(phi)
+                +beta*(G85*fd9h_10_to_20(phi)
+                +beta*(G86*fd11h_10_to_20(phi)
+                +beta*(G87*fd13h_10_to_20(phi)
+                +beta*(G88*fd15h_10_to_20(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_10_to_20__9(double phi, double beta):
+        return (       G0 *fdm1h_10_to_20(phi)
+                +beta*(G91*fd1h_10_to_20(phi)
+                +beta*(G92*fd3h_10_to_20(phi)
+                +beta*(G93*fd5h_10_to_20(phi)
+                +beta*(G94*fd7h_10_to_20(phi)
+                +beta*(G95*fd9h_10_to_20(phi)
+                +beta*(G96*fd11h_10_to_20(phi)
+                +beta*(G97*fd13h_10_to_20(phi)
+                +beta*(G98*fd15h_10_to_20(phi)
+                +beta*(G99*fd17h_10_to_20(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_10_to_20__10(double phi, double beta):
+        return (       G0 *fdm1h_10_to_20(phi)
+                +beta*(GA1*fd1h_10_to_20(phi)
+                +beta*(GA2*fd3h_10_to_20(phi)
+                +beta*(GA3*fd5h_10_to_20(phi)
+                +beta*(GA4*fd7h_10_to_20(phi)
+                +beta*(GA5*fd9h_10_to_20(phi)
+                +beta*(GA6*fd11h_10_to_20(phi)
+                +beta*(GA7*fd13h_10_to_20(phi)
+                +beta*(GA8*fd15h_10_to_20(phi)
+                +beta*(GA9*fd17h_10_to_20(phi)
+                +beta*(GAA*fd19h_10_to_20(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_20_to_40__1(double phi, double beta):
+        return (       G0 *fdm1h_20_to_40(phi)
+                +beta*(G11*fd1h_20_to_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_20_to_40__2(double phi, double beta):
+        return (       G0 *fdm1h_20_to_40(phi)
+                +beta*(G21*fd1h_20_to_40(phi)
+                +beta*(G22*fd3h_20_to_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_20_to_40__3(double phi, double beta):
+        return (       G0 *fdm1h_20_to_40(phi)
+                +beta*(G31*fd1h_20_to_40(phi)
+                +beta*(G32*fd3h_20_to_40(phi)
+                +beta*(G33*fd5h_20_to_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_20_to_40__4(double phi, double beta):
+        return (       G0 *fdm1h_20_to_40(phi)
+                +beta*(G41*fd1h_20_to_40(phi)
+                +beta*(G42*fd3h_20_to_40(phi)
+                +beta*(G43*fd5h_20_to_40(phi)
+                +beta*(G44*fd7h_20_to_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_20_to_40__5(double phi, double beta):
+        return (       G0 *fdm1h_20_to_40(phi)
+                +beta*(G51*fd1h_20_to_40(phi)
+                +beta*(G52*fd3h_20_to_40(phi)
+                +beta*(G53*fd5h_20_to_40(phi)
+                +beta*(G54*fd7h_20_to_40(phi)
+                +beta*(G55*fd9h_20_to_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_20_to_40__6(double phi, double beta):
+        return (       G0 *fdm1h_20_to_40(phi)
+                +beta*(G61*fd1h_20_to_40(phi)
+                +beta*(G62*fd3h_20_to_40(phi)
+                +beta*(G63*fd5h_20_to_40(phi)
+                +beta*(G64*fd7h_20_to_40(phi)
+                +beta*(G65*fd9h_20_to_40(phi)
+                +beta*(G66*fd11h_20_to_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_20_to_40__7(double phi, double beta):
+        return (       G0 *fdm1h_20_to_40(phi)
+                +beta*(G71*fd1h_20_to_40(phi)
+                +beta*(G72*fd3h_20_to_40(phi)
+                +beta*(G73*fd5h_20_to_40(phi)
+                +beta*(G74*fd7h_20_to_40(phi)
+                +beta*(G75*fd9h_20_to_40(phi)
+                +beta*(G76*fd11h_20_to_40(phi)
+                +beta*(G77*fd13h_20_to_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_20_to_40__8(double phi, double beta):
+        return (       G0 *fdm1h_20_to_40(phi)
+                +beta*(G81*fd1h_20_to_40(phi)
+                +beta*(G82*fd3h_20_to_40(phi)
+                +beta*(G83*fd5h_20_to_40(phi)
+                +beta*(G84*fd7h_20_to_40(phi)
+                +beta*(G85*fd9h_20_to_40(phi)
+                +beta*(G86*fd11h_20_to_40(phi)
+                +beta*(G87*fd13h_20_to_40(phi)
+                +beta*(G88*fd15h_20_to_40(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_20_to_40__9(double phi, double beta):
+        return (       G0 *fdm1h_20_to_40(phi)
+                +beta*(G91*fd1h_20_to_40(phi)
+                +beta*(G92*fd3h_20_to_40(phi)
+                +beta*(G93*fd5h_20_to_40(phi)
+                +beta*(G94*fd7h_20_to_40(phi)
+                +beta*(G95*fd9h_20_to_40(phi)
+                +beta*(G96*fd11h_20_to_40(phi)
+                +beta*(G97*fd13h_20_to_40(phi)
+                +beta*(G98*fd15h_20_to_40(phi)
+                +beta*(G99*fd17h_20_to_40(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_20_to_40__10(double phi, double beta):
+        return (       G0 *fdm1h_20_to_40(phi)
+                +beta*(GA1*fd1h_20_to_40(phi)
+                +beta*(GA2*fd3h_20_to_40(phi)
+                +beta*(GA3*fd5h_20_to_40(phi)
+                +beta*(GA4*fd7h_20_to_40(phi)
+                +beta*(GA5*fd9h_20_to_40(phi)
+                +beta*(GA6*fd11h_20_to_40(phi)
+                +beta*(GA7*fd13h_20_to_40(phi)
+                +beta*(GA8*fd15h_20_to_40(phi)
+                +beta*(GA9*fd17h_20_to_40(phi)
+                +beta*(GAA*fd19h_20_to_40(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_gt_40__1(double phi, double beta):
+        return (       G0 *fdm1h_gt_40(phi)
+                +beta*(G11*fd1h_gt_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_gt_40__2(double phi, double beta):
+        return (       G0 *fdm1h_gt_40(phi)
+                +beta*(G21*fd1h_gt_40(phi)
+                +beta*(G22*fd3h_gt_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_gt_40__3(double phi, double beta):
+        return (       G0 *fdm1h_gt_40(phi)
+                +beta*(G31*fd1h_gt_40(phi)
+                +beta*(G32*fd3h_gt_40(phi)
+                +beta*(G33*fd5h_gt_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_gt_40__4(double phi, double beta):
+        return (       G0 *fdm1h_gt_40(phi)
+                +beta*(G41*fd1h_gt_40(phi)
+                +beta*(G42*fd3h_gt_40(phi)
+                +beta*(G43*fd5h_gt_40(phi)
+                +beta*(G44*fd7h_gt_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_gt_40__5(double phi, double beta):
+        return (       G0 *fdm1h_gt_40(phi)
+                +beta*(G51*fd1h_gt_40(phi)
+                +beta*(G52*fd3h_gt_40(phi)
+                +beta*(G53*fd5h_gt_40(phi)
+                +beta*(G54*fd7h_gt_40(phi)
+                +beta*(G55*fd9h_gt_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_gt_40__6(double phi, double beta):
+        return (       G0 *fdm1h_gt_40(phi)
+                +beta*(G61*fd1h_gt_40(phi)
+                +beta*(G62*fd3h_gt_40(phi)
+                +beta*(G63*fd5h_gt_40(phi)
+                +beta*(G64*fd7h_gt_40(phi)
+                +beta*(G65*fd9h_gt_40(phi)
+                +beta*(G66*fd11h_gt_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_gt_40__7(double phi, double beta):
+        return (       G0 *fdm1h_gt_40(phi)
+                +beta*(G71*fd1h_gt_40(phi)
+                +beta*(G72*fd3h_gt_40(phi)
+                +beta*(G73*fd5h_gt_40(phi)
+                +beta*(G74*fd7h_gt_40(phi)
+                +beta*(G75*fd9h_gt_40(phi)
+                +beta*(G76*fd11h_gt_40(phi)
+                +beta*(G77*fd13h_gt_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_gt_40__8(double phi, double beta):
+        return (       G0 *fdm1h_gt_40(phi)
+                +beta*(G81*fd1h_gt_40(phi)
+                +beta*(G82*fd3h_gt_40(phi)
+                +beta*(G83*fd5h_gt_40(phi)
+                +beta*(G84*fd7h_gt_40(phi)
+                +beta*(G85*fd9h_gt_40(phi)
+                +beta*(G86*fd11h_gt_40(phi)
+                +beta*(G87*fd13h_gt_40(phi)
+                +beta*(G88*fd15h_gt_40(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_gt_40__9(double phi, double beta):
+        return (       G0 *fdm1h_gt_40(phi)
+                +beta*(G91*fd1h_gt_40(phi)
+                +beta*(G92*fd3h_gt_40(phi)
+                +beta*(G93*fd5h_gt_40(phi)
+                +beta*(G94*fd7h_gt_40(phi)
+                +beta*(G95*fd9h_gt_40(phi)
+                +beta*(G96*fd11h_gt_40(phi)
+                +beta*(G97*fd13h_gt_40(phi)
+                +beta*(G98*fd15h_gt_40(phi)
+                +beta*(G99*fd17h_gt_40(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfdm1h_gt_40__10(double phi, double beta):
+        return (       G0 *fdm1h_gt_40(phi)
+                +beta*(GA1*fd1h_gt_40(phi)
+                +beta*(GA2*fd3h_gt_40(phi)
+                +beta*(GA3*fd5h_gt_40(phi)
+                +beta*(GA4*fd7h_gt_40(phi)
+                +beta*(GA5*fd9h_gt_40(phi)
+                +beta*(GA6*fd11h_gt_40(phi)
+                +beta*(GA7*fd13h_gt_40(phi)
+                +beta*(GA8*fd15h_gt_40(phi)
+                +beta*(GA9*fd17h_gt_40(phi)
+                +beta*(GAA*fd19h_gt_40(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_lt_m2__1(double phi, double beta):
+        return (       G0 *fd1h_lt_m2(phi)
+                +beta*(G11*fd3h_lt_m2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_lt_m2__2(double phi, double beta):
+        return (       G0 *fd1h_lt_m2(phi)
+                +beta*(G21*fd3h_lt_m2(phi)
+                +beta*(G22*fd5h_lt_m2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_lt_m2__3(double phi, double beta):
+        return (       G0 *fd1h_lt_m2(phi)
+                +beta*(G31*fd3h_lt_m2(phi)
+                +beta*(G32*fd5h_lt_m2(phi)
+                +beta*(G33*fd7h_lt_m2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_lt_m2__4(double phi, double beta):
+        return (       G0 *fd1h_lt_m2(phi)
+                +beta*(G41*fd3h_lt_m2(phi)
+                +beta*(G42*fd5h_lt_m2(phi)
+                +beta*(G43*fd7h_lt_m2(phi)
+                +beta*(G44*fd9h_lt_m2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_lt_m2__5(double phi, double beta):
+        return (       G0 *fd1h_lt_m2(phi)
+                +beta*(G51*fd3h_lt_m2(phi)
+                +beta*(G52*fd5h_lt_m2(phi)
+                +beta*(G53*fd7h_lt_m2(phi)
+                +beta*(G54*fd9h_lt_m2(phi)
+                +beta*(G55*fd11h_lt_m2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_lt_m2__6(double phi, double beta):
+        return (       G0 *fd1h_lt_m2(phi)
+                +beta*(G61*fd3h_lt_m2(phi)
+                +beta*(G62*fd5h_lt_m2(phi)
+                +beta*(G63*fd7h_lt_m2(phi)
+                +beta*(G64*fd9h_lt_m2(phi)
+                +beta*(G65*fd11h_lt_m2(phi)
+                +beta*(G66*fd13h_lt_m2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_lt_m2__7(double phi, double beta):
+        return (       G0 *fd1h_lt_m2(phi)
+                +beta*(G71*fd3h_lt_m2(phi)
+                +beta*(G72*fd5h_lt_m2(phi)
+                +beta*(G73*fd7h_lt_m2(phi)
+                +beta*(G74*fd9h_lt_m2(phi)
+                +beta*(G75*fd11h_lt_m2(phi)
+                +beta*(G76*fd13h_lt_m2(phi)
+                +beta*(G77*fd15h_lt_m2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_lt_m2__8(double phi, double beta):
+        return (       G0 *fd1h_lt_m2(phi)
+                +beta*(G81*fd3h_lt_m2(phi)
+                +beta*(G82*fd5h_lt_m2(phi)
+                +beta*(G83*fd7h_lt_m2(phi)
+                +beta*(G84*fd9h_lt_m2(phi)
+                +beta*(G85*fd11h_lt_m2(phi)
+                +beta*(G86*fd13h_lt_m2(phi)
+                +beta*(G87*fd15h_lt_m2(phi)
+                +beta*(G88*fd17h_lt_m2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_lt_m2__9(double phi, double beta):
+        return (       G0 *fd1h_lt_m2(phi)
+                +beta*(G91*fd3h_lt_m2(phi)
+                +beta*(G92*fd5h_lt_m2(phi)
+                +beta*(G93*fd7h_lt_m2(phi)
+                +beta*(G94*fd9h_lt_m2(phi)
+                +beta*(G95*fd11h_lt_m2(phi)
+                +beta*(G96*fd13h_lt_m2(phi)
+                +beta*(G97*fd15h_lt_m2(phi)
+                +beta*(G98*fd17h_lt_m2(phi)
+                +beta*(G99*fd19h_lt_m2(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_lt_m2__10(double phi, double beta):
+        return (       G0 *fd1h_lt_m2(phi)
+                +beta*(GA1*fd3h_lt_m2(phi)
+                +beta*(GA2*fd5h_lt_m2(phi)
+                +beta*(GA3*fd7h_lt_m2(phi)
+                +beta*(GA4*fd9h_lt_m2(phi)
+                +beta*(GA5*fd11h_lt_m2(phi)
+                +beta*(GA6*fd13h_lt_m2(phi)
+                +beta*(GA7*fd15h_lt_m2(phi)
+                +beta*(GA8*fd17h_lt_m2(phi)
+                +beta*(GA9*fd19h_lt_m2(phi)
+                +beta*(GAA*fd21h_lt_m2(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_m2_to_0__1(double phi, double beta):
+        return (       G0 *fd1h_m2_to_0(phi)
+                +beta*(G11*fd3h_m2_to_0(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_m2_to_0__2(double phi, double beta):
+        return (       G0 *fd1h_m2_to_0(phi)
+                +beta*(G21*fd3h_m2_to_0(phi)
+                +beta*(G22*fd5h_m2_to_0(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_m2_to_0__3(double phi, double beta):
+        return (       G0 *fd1h_m2_to_0(phi)
+                +beta*(G31*fd3h_m2_to_0(phi)
+                +beta*(G32*fd5h_m2_to_0(phi)
+                +beta*(G33*fd7h_m2_to_0(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_m2_to_0__4(double phi, double beta):
+        return (       G0 *fd1h_m2_to_0(phi)
+                +beta*(G41*fd3h_m2_to_0(phi)
+                +beta*(G42*fd5h_m2_to_0(phi)
+                +beta*(G43*fd7h_m2_to_0(phi)
+                +beta*(G44*fd9h_m2_to_0(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_m2_to_0__5(double phi, double beta):
+        return (       G0 *fd1h_m2_to_0(phi)
+                +beta*(G51*fd3h_m2_to_0(phi)
+                +beta*(G52*fd5h_m2_to_0(phi)
+                +beta*(G53*fd7h_m2_to_0(phi)
+                +beta*(G54*fd9h_m2_to_0(phi)
+                +beta*(G55*fd11h_m2_to_0(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_m2_to_0__6(double phi, double beta):
+        return (       G0 *fd1h_m2_to_0(phi)
+                +beta*(G61*fd3h_m2_to_0(phi)
+                +beta*(G62*fd5h_m2_to_0(phi)
+                +beta*(G63*fd7h_m2_to_0(phi)
+                +beta*(G64*fd9h_m2_to_0(phi)
+                +beta*(G65*fd11h_m2_to_0(phi)
+                +beta*(G66*fd13h_m2_to_0(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_m2_to_0__7(double phi, double beta):
+        return (       G0 *fd1h_m2_to_0(phi)
+                +beta*(G71*fd3h_m2_to_0(phi)
+                +beta*(G72*fd5h_m2_to_0(phi)
+                +beta*(G73*fd7h_m2_to_0(phi)
+                +beta*(G74*fd9h_m2_to_0(phi)
+                +beta*(G75*fd11h_m2_to_0(phi)
+                +beta*(G76*fd13h_m2_to_0(phi)
+                +beta*(G77*fd15h_m2_to_0(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_m2_to_0__8(double phi, double beta):
+        return (       G0 *fd1h_m2_to_0(phi)
+                +beta*(G81*fd3h_m2_to_0(phi)
+                +beta*(G82*fd5h_m2_to_0(phi)
+                +beta*(G83*fd7h_m2_to_0(phi)
+                +beta*(G84*fd9h_m2_to_0(phi)
+                +beta*(G85*fd11h_m2_to_0(phi)
+                +beta*(G86*fd13h_m2_to_0(phi)
+                +beta*(G87*fd15h_m2_to_0(phi)
+                +beta*(G88*fd17h_m2_to_0(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_m2_to_0__9(double phi, double beta):
+        return (       G0 *fd1h_m2_to_0(phi)
+                +beta*(G91*fd3h_m2_to_0(phi)
+                +beta*(G92*fd5h_m2_to_0(phi)
+                +beta*(G93*fd7h_m2_to_0(phi)
+                +beta*(G94*fd9h_m2_to_0(phi)
+                +beta*(G95*fd11h_m2_to_0(phi)
+                +beta*(G96*fd13h_m2_to_0(phi)
+                +beta*(G97*fd15h_m2_to_0(phi)
+                +beta*(G98*fd17h_m2_to_0(phi)
+                +beta*(G99*fd19h_m2_to_0(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_m2_to_0__10(double phi, double beta):
+        return (       G0 *fd1h_m2_to_0(phi)
+                +beta*(GA1*fd3h_m2_to_0(phi)
+                +beta*(GA2*fd5h_m2_to_0(phi)
+                +beta*(GA3*fd7h_m2_to_0(phi)
+                +beta*(GA4*fd9h_m2_to_0(phi)
+                +beta*(GA5*fd11h_m2_to_0(phi)
+                +beta*(GA6*fd13h_m2_to_0(phi)
+                +beta*(GA7*fd15h_m2_to_0(phi)
+                +beta*(GA8*fd17h_m2_to_0(phi)
+                +beta*(GA9*fd19h_m2_to_0(phi)
+                +beta*(GAA*fd21h_m2_to_0(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_0_to_2__1(double phi, double beta):
+        return (       G0 *fd1h_0_to_2(phi)
+                +beta*(G11*fd3h_0_to_2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_0_to_2__2(double phi, double beta):
+        return (       G0 *fd1h_0_to_2(phi)
+                +beta*(G21*fd3h_0_to_2(phi)
+                +beta*(G22*fd5h_0_to_2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_0_to_2__3(double phi, double beta):
+        return (       G0 *fd1h_0_to_2(phi)
+                +beta*(G31*fd3h_0_to_2(phi)
+                +beta*(G32*fd5h_0_to_2(phi)
+                +beta*(G33*fd7h_0_to_2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_0_to_2__4(double phi, double beta):
+        return (       G0 *fd1h_0_to_2(phi)
+                +beta*(G41*fd3h_0_to_2(phi)
+                +beta*(G42*fd5h_0_to_2(phi)
+                +beta*(G43*fd7h_0_to_2(phi)
+                +beta*(G44*fd9h_0_to_2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_0_to_2__5(double phi, double beta):
+        return (       G0 *fd1h_0_to_2(phi)
+                +beta*(G51*fd3h_0_to_2(phi)
+                +beta*(G52*fd5h_0_to_2(phi)
+                +beta*(G53*fd7h_0_to_2(phi)
+                +beta*(G54*fd9h_0_to_2(phi)
+                +beta*(G55*fd11h_0_to_2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_0_to_2__6(double phi, double beta):
+        return (       G0 *fd1h_0_to_2(phi)
+                +beta*(G61*fd3h_0_to_2(phi)
+                +beta*(G62*fd5h_0_to_2(phi)
+                +beta*(G63*fd7h_0_to_2(phi)
+                +beta*(G64*fd9h_0_to_2(phi)
+                +beta*(G65*fd11h_0_to_2(phi)
+                +beta*(G66*fd13h_0_to_2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_0_to_2__7(double phi, double beta):
+        return (       G0 *fd1h_0_to_2(phi)
+                +beta*(G71*fd3h_0_to_2(phi)
+                +beta*(G72*fd5h_0_to_2(phi)
+                +beta*(G73*fd7h_0_to_2(phi)
+                +beta*(G74*fd9h_0_to_2(phi)
+                +beta*(G75*fd11h_0_to_2(phi)
+                +beta*(G76*fd13h_0_to_2(phi)
+                +beta*(G77*fd15h_0_to_2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_0_to_2__8(double phi, double beta):
+        return (       G0 *fd1h_0_to_2(phi)
+                +beta*(G81*fd3h_0_to_2(phi)
+                +beta*(G82*fd5h_0_to_2(phi)
+                +beta*(G83*fd7h_0_to_2(phi)
+                +beta*(G84*fd9h_0_to_2(phi)
+                +beta*(G85*fd11h_0_to_2(phi)
+                +beta*(G86*fd13h_0_to_2(phi)
+                +beta*(G87*fd15h_0_to_2(phi)
+                +beta*(G88*fd17h_0_to_2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_0_to_2__9(double phi, double beta):
+        return (       G0 *fd1h_0_to_2(phi)
+                +beta*(G91*fd3h_0_to_2(phi)
+                +beta*(G92*fd5h_0_to_2(phi)
+                +beta*(G93*fd7h_0_to_2(phi)
+                +beta*(G94*fd9h_0_to_2(phi)
+                +beta*(G95*fd11h_0_to_2(phi)
+                +beta*(G96*fd13h_0_to_2(phi)
+                +beta*(G97*fd15h_0_to_2(phi)
+                +beta*(G98*fd17h_0_to_2(phi)
+                +beta*(G99*fd19h_0_to_2(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_0_to_2__10(double phi, double beta):
+        return (       G0 *fd1h_0_to_2(phi)
+                +beta*(GA1*fd3h_0_to_2(phi)
+                +beta*(GA2*fd5h_0_to_2(phi)
+                +beta*(GA3*fd7h_0_to_2(phi)
+                +beta*(GA4*fd9h_0_to_2(phi)
+                +beta*(GA5*fd11h_0_to_2(phi)
+                +beta*(GA6*fd13h_0_to_2(phi)
+                +beta*(GA7*fd15h_0_to_2(phi)
+                +beta*(GA8*fd17h_0_to_2(phi)
+                +beta*(GA9*fd19h_0_to_2(phi)
+                +beta*(GAA*fd21h_0_to_2(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_2_to_5__1(double phi, double beta):
+        return (       G0 *fd1h_2_to_5(phi)
+                +beta*(G11*fd3h_2_to_5(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_2_to_5__2(double phi, double beta):
+        return (       G0 *fd1h_2_to_5(phi)
+                +beta*(G21*fd3h_2_to_5(phi)
+                +beta*(G22*fd5h_2_to_5(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_2_to_5__3(double phi, double beta):
+        return (       G0 *fd1h_2_to_5(phi)
+                +beta*(G31*fd3h_2_to_5(phi)
+                +beta*(G32*fd5h_2_to_5(phi)
+                +beta*(G33*fd7h_2_to_5(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_2_to_5__4(double phi, double beta):
+        return (       G0 *fd1h_2_to_5(phi)
+                +beta*(G41*fd3h_2_to_5(phi)
+                +beta*(G42*fd5h_2_to_5(phi)
+                +beta*(G43*fd7h_2_to_5(phi)
+                +beta*(G44*fd9h_2_to_5(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_2_to_5__5(double phi, double beta):
+        return (       G0 *fd1h_2_to_5(phi)
+                +beta*(G51*fd3h_2_to_5(phi)
+                +beta*(G52*fd5h_2_to_5(phi)
+                +beta*(G53*fd7h_2_to_5(phi)
+                +beta*(G54*fd9h_2_to_5(phi)
+                +beta*(G55*fd11h_2_to_5(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_2_to_5__6(double phi, double beta):
+        return (       G0 *fd1h_2_to_5(phi)
+                +beta*(G61*fd3h_2_to_5(phi)
+                +beta*(G62*fd5h_2_to_5(phi)
+                +beta*(G63*fd7h_2_to_5(phi)
+                +beta*(G64*fd9h_2_to_5(phi)
+                +beta*(G65*fd11h_2_to_5(phi)
+                +beta*(G66*fd13h_2_to_5(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_2_to_5__7(double phi, double beta):
+        return (       G0 *fd1h_2_to_5(phi)
+                +beta*(G71*fd3h_2_to_5(phi)
+                +beta*(G72*fd5h_2_to_5(phi)
+                +beta*(G73*fd7h_2_to_5(phi)
+                +beta*(G74*fd9h_2_to_5(phi)
+                +beta*(G75*fd11h_2_to_5(phi)
+                +beta*(G76*fd13h_2_to_5(phi)
+                +beta*(G77*fd15h_2_to_5(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_2_to_5__8(double phi, double beta):
+        return (       G0 *fd1h_2_to_5(phi)
+                +beta*(G81*fd3h_2_to_5(phi)
+                +beta*(G82*fd5h_2_to_5(phi)
+                +beta*(G83*fd7h_2_to_5(phi)
+                +beta*(G84*fd9h_2_to_5(phi)
+                +beta*(G85*fd11h_2_to_5(phi)
+                +beta*(G86*fd13h_2_to_5(phi)
+                +beta*(G87*fd15h_2_to_5(phi)
+                +beta*(G88*fd17h_2_to_5(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_2_to_5__9(double phi, double beta):
+        return (       G0 *fd1h_2_to_5(phi)
+                +beta*(G91*fd3h_2_to_5(phi)
+                +beta*(G92*fd5h_2_to_5(phi)
+                +beta*(G93*fd7h_2_to_5(phi)
+                +beta*(G94*fd9h_2_to_5(phi)
+                +beta*(G95*fd11h_2_to_5(phi)
+                +beta*(G96*fd13h_2_to_5(phi)
+                +beta*(G97*fd15h_2_to_5(phi)
+                +beta*(G98*fd17h_2_to_5(phi)
+                +beta*(G99*fd19h_2_to_5(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_2_to_5__10(double phi, double beta):
+        return (       G0 *fd1h_2_to_5(phi)
+                +beta*(GA1*fd3h_2_to_5(phi)
+                +beta*(GA2*fd5h_2_to_5(phi)
+                +beta*(GA3*fd7h_2_to_5(phi)
+                +beta*(GA4*fd9h_2_to_5(phi)
+                +beta*(GA5*fd11h_2_to_5(phi)
+                +beta*(GA6*fd13h_2_to_5(phi)
+                +beta*(GA7*fd15h_2_to_5(phi)
+                +beta*(GA8*fd17h_2_to_5(phi)
+                +beta*(GA9*fd19h_2_to_5(phi)
+                +beta*(GAA*fd21h_2_to_5(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_5_to_10__1(double phi, double beta):
+        return (       G0 *fd1h_5_to_10(phi)
+                +beta*(G11*fd3h_5_to_10(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_5_to_10__2(double phi, double beta):
+        return (       G0 *fd1h_5_to_10(phi)
+                +beta*(G21*fd3h_5_to_10(phi)
+                +beta*(G22*fd5h_5_to_10(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_5_to_10__3(double phi, double beta):
+        return (       G0 *fd1h_5_to_10(phi)
+                +beta*(G31*fd3h_5_to_10(phi)
+                +beta*(G32*fd5h_5_to_10(phi)
+                +beta*(G33*fd7h_5_to_10(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_5_to_10__4(double phi, double beta):
+        return (       G0 *fd1h_5_to_10(phi)
+                +beta*(G41*fd3h_5_to_10(phi)
+                +beta*(G42*fd5h_5_to_10(phi)
+                +beta*(G43*fd7h_5_to_10(phi)
+                +beta*(G44*fd9h_5_to_10(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_5_to_10__5(double phi, double beta):
+        return (       G0 *fd1h_5_to_10(phi)
+                +beta*(G51*fd3h_5_to_10(phi)
+                +beta*(G52*fd5h_5_to_10(phi)
+                +beta*(G53*fd7h_5_to_10(phi)
+                +beta*(G54*fd9h_5_to_10(phi)
+                +beta*(G55*fd11h_5_to_10(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_5_to_10__6(double phi, double beta):
+        return (       G0 *fd1h_5_to_10(phi)
+                +beta*(G61*fd3h_5_to_10(phi)
+                +beta*(G62*fd5h_5_to_10(phi)
+                +beta*(G63*fd7h_5_to_10(phi)
+                +beta*(G64*fd9h_5_to_10(phi)
+                +beta*(G65*fd11h_5_to_10(phi)
+                +beta*(G66*fd13h_5_to_10(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_5_to_10__7(double phi, double beta):
+        return (       G0 *fd1h_5_to_10(phi)
+                +beta*(G71*fd3h_5_to_10(phi)
+                +beta*(G72*fd5h_5_to_10(phi)
+                +beta*(G73*fd7h_5_to_10(phi)
+                +beta*(G74*fd9h_5_to_10(phi)
+                +beta*(G75*fd11h_5_to_10(phi)
+                +beta*(G76*fd13h_5_to_10(phi)
+                +beta*(G77*fd15h_5_to_10(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_5_to_10__8(double phi, double beta):
+        return (       G0 *fd1h_5_to_10(phi)
+                +beta*(G81*fd3h_5_to_10(phi)
+                +beta*(G82*fd5h_5_to_10(phi)
+                +beta*(G83*fd7h_5_to_10(phi)
+                +beta*(G84*fd9h_5_to_10(phi)
+                +beta*(G85*fd11h_5_to_10(phi)
+                +beta*(G86*fd13h_5_to_10(phi)
+                +beta*(G87*fd15h_5_to_10(phi)
+                +beta*(G88*fd17h_5_to_10(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_5_to_10__9(double phi, double beta):
+        return (       G0 *fd1h_5_to_10(phi)
+                +beta*(G91*fd3h_5_to_10(phi)
+                +beta*(G92*fd5h_5_to_10(phi)
+                +beta*(G93*fd7h_5_to_10(phi)
+                +beta*(G94*fd9h_5_to_10(phi)
+                +beta*(G95*fd11h_5_to_10(phi)
+                +beta*(G96*fd13h_5_to_10(phi)
+                +beta*(G97*fd15h_5_to_10(phi)
+                +beta*(G98*fd17h_5_to_10(phi)
+                +beta*(G99*fd19h_5_to_10(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_5_to_10__10(double phi, double beta):
+        return (       G0 *fd1h_5_to_10(phi)
+                +beta*(GA1*fd3h_5_to_10(phi)
+                +beta*(GA2*fd5h_5_to_10(phi)
+                +beta*(GA3*fd7h_5_to_10(phi)
+                +beta*(GA4*fd9h_5_to_10(phi)
+                +beta*(GA5*fd11h_5_to_10(phi)
+                +beta*(GA6*fd13h_5_to_10(phi)
+                +beta*(GA7*fd15h_5_to_10(phi)
+                +beta*(GA8*fd17h_5_to_10(phi)
+                +beta*(GA9*fd19h_5_to_10(phi)
+                +beta*(GAA*fd21h_5_to_10(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_10_to_20__1(double phi, double beta):
+        return (       G0 *fd1h_10_to_20(phi)
+                +beta*(G11*fd3h_10_to_20(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_10_to_20__2(double phi, double beta):
+        return (       G0 *fd1h_10_to_20(phi)
+                +beta*(G21*fd3h_10_to_20(phi)
+                +beta*(G22*fd5h_10_to_20(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_10_to_20__3(double phi, double beta):
+        return (       G0 *fd1h_10_to_20(phi)
+                +beta*(G31*fd3h_10_to_20(phi)
+                +beta*(G32*fd5h_10_to_20(phi)
+                +beta*(G33*fd7h_10_to_20(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_10_to_20__4(double phi, double beta):
+        return (       G0 *fd1h_10_to_20(phi)
+                +beta*(G41*fd3h_10_to_20(phi)
+                +beta*(G42*fd5h_10_to_20(phi)
+                +beta*(G43*fd7h_10_to_20(phi)
+                +beta*(G44*fd9h_10_to_20(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_10_to_20__5(double phi, double beta):
+        return (       G0 *fd1h_10_to_20(phi)
+                +beta*(G51*fd3h_10_to_20(phi)
+                +beta*(G52*fd5h_10_to_20(phi)
+                +beta*(G53*fd7h_10_to_20(phi)
+                +beta*(G54*fd9h_10_to_20(phi)
+                +beta*(G55*fd11h_10_to_20(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_10_to_20__6(double phi, double beta):
+        return (       G0 *fd1h_10_to_20(phi)
+                +beta*(G61*fd3h_10_to_20(phi)
+                +beta*(G62*fd5h_10_to_20(phi)
+                +beta*(G63*fd7h_10_to_20(phi)
+                +beta*(G64*fd9h_10_to_20(phi)
+                +beta*(G65*fd11h_10_to_20(phi)
+                +beta*(G66*fd13h_10_to_20(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_10_to_20__7(double phi, double beta):
+        return (       G0 *fd1h_10_to_20(phi)
+                +beta*(G71*fd3h_10_to_20(phi)
+                +beta*(G72*fd5h_10_to_20(phi)
+                +beta*(G73*fd7h_10_to_20(phi)
+                +beta*(G74*fd9h_10_to_20(phi)
+                +beta*(G75*fd11h_10_to_20(phi)
+                +beta*(G76*fd13h_10_to_20(phi)
+                +beta*(G77*fd15h_10_to_20(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_10_to_20__8(double phi, double beta):
+        return (       G0 *fd1h_10_to_20(phi)
+                +beta*(G81*fd3h_10_to_20(phi)
+                +beta*(G82*fd5h_10_to_20(phi)
+                +beta*(G83*fd7h_10_to_20(phi)
+                +beta*(G84*fd9h_10_to_20(phi)
+                +beta*(G85*fd11h_10_to_20(phi)
+                +beta*(G86*fd13h_10_to_20(phi)
+                +beta*(G87*fd15h_10_to_20(phi)
+                +beta*(G88*fd17h_10_to_20(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_10_to_20__9(double phi, double beta):
+        return (       G0 *fd1h_10_to_20(phi)
+                +beta*(G91*fd3h_10_to_20(phi)
+                +beta*(G92*fd5h_10_to_20(phi)
+                +beta*(G93*fd7h_10_to_20(phi)
+                +beta*(G94*fd9h_10_to_20(phi)
+                +beta*(G95*fd11h_10_to_20(phi)
+                +beta*(G96*fd13h_10_to_20(phi)
+                +beta*(G97*fd15h_10_to_20(phi)
+                +beta*(G98*fd17h_10_to_20(phi)
+                +beta*(G99*fd19h_10_to_20(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_10_to_20__10(double phi, double beta):
+        return (       G0 *fd1h_10_to_20(phi)
+                +beta*(GA1*fd3h_10_to_20(phi)
+                +beta*(GA2*fd5h_10_to_20(phi)
+                +beta*(GA3*fd7h_10_to_20(phi)
+                +beta*(GA4*fd9h_10_to_20(phi)
+                +beta*(GA5*fd11h_10_to_20(phi)
+                +beta*(GA6*fd13h_10_to_20(phi)
+                +beta*(GA7*fd15h_10_to_20(phi)
+                +beta*(GA8*fd17h_10_to_20(phi)
+                +beta*(GA9*fd19h_10_to_20(phi)
+                +beta*(GAA*fd21h_10_to_20(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_20_to_40__1(double phi, double beta):
+        return (       G0 *fd1h_20_to_40(phi)
+                +beta*(G11*fd3h_20_to_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_20_to_40__2(double phi, double beta):
+        return (       G0 *fd1h_20_to_40(phi)
+                +beta*(G21*fd3h_20_to_40(phi)
+                +beta*(G22*fd5h_20_to_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_20_to_40__3(double phi, double beta):
+        return (       G0 *fd1h_20_to_40(phi)
+                +beta*(G31*fd3h_20_to_40(phi)
+                +beta*(G32*fd5h_20_to_40(phi)
+                +beta*(G33*fd7h_20_to_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_20_to_40__4(double phi, double beta):
+        return (       G0 *fd1h_20_to_40(phi)
+                +beta*(G41*fd3h_20_to_40(phi)
+                +beta*(G42*fd5h_20_to_40(phi)
+                +beta*(G43*fd7h_20_to_40(phi)
+                +beta*(G44*fd9h_20_to_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_20_to_40__5(double phi, double beta):
+        return (       G0 *fd1h_20_to_40(phi)
+                +beta*(G51*fd3h_20_to_40(phi)
+                +beta*(G52*fd5h_20_to_40(phi)
+                +beta*(G53*fd7h_20_to_40(phi)
+                +beta*(G54*fd9h_20_to_40(phi)
+                +beta*(G55*fd11h_20_to_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_20_to_40__6(double phi, double beta):
+        return (       G0 *fd1h_20_to_40(phi)
+                +beta*(G61*fd3h_20_to_40(phi)
+                +beta*(G62*fd5h_20_to_40(phi)
+                +beta*(G63*fd7h_20_to_40(phi)
+                +beta*(G64*fd9h_20_to_40(phi)
+                +beta*(G65*fd11h_20_to_40(phi)
+                +beta*(G66*fd13h_20_to_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_20_to_40__7(double phi, double beta):
+        return (       G0 *fd1h_20_to_40(phi)
+                +beta*(G71*fd3h_20_to_40(phi)
+                +beta*(G72*fd5h_20_to_40(phi)
+                +beta*(G73*fd7h_20_to_40(phi)
+                +beta*(G74*fd9h_20_to_40(phi)
+                +beta*(G75*fd11h_20_to_40(phi)
+                +beta*(G76*fd13h_20_to_40(phi)
+                +beta*(G77*fd15h_20_to_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_20_to_40__8(double phi, double beta):
+        return (       G0 *fd1h_20_to_40(phi)
+                +beta*(G81*fd3h_20_to_40(phi)
+                +beta*(G82*fd5h_20_to_40(phi)
+                +beta*(G83*fd7h_20_to_40(phi)
+                +beta*(G84*fd9h_20_to_40(phi)
+                +beta*(G85*fd11h_20_to_40(phi)
+                +beta*(G86*fd13h_20_to_40(phi)
+                +beta*(G87*fd15h_20_to_40(phi)
+                +beta*(G88*fd17h_20_to_40(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_20_to_40__9(double phi, double beta):
+        return (       G0 *fd1h_20_to_40(phi)
+                +beta*(G91*fd3h_20_to_40(phi)
+                +beta*(G92*fd5h_20_to_40(phi)
+                +beta*(G93*fd7h_20_to_40(phi)
+                +beta*(G94*fd9h_20_to_40(phi)
+                +beta*(G95*fd11h_20_to_40(phi)
+                +beta*(G96*fd13h_20_to_40(phi)
+                +beta*(G97*fd15h_20_to_40(phi)
+                +beta*(G98*fd17h_20_to_40(phi)
+                +beta*(G99*fd19h_20_to_40(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_20_to_40__10(double phi, double beta):
+        return (       G0 *fd1h_20_to_40(phi)
+                +beta*(GA1*fd3h_20_to_40(phi)
+                +beta*(GA2*fd5h_20_to_40(phi)
+                +beta*(GA3*fd7h_20_to_40(phi)
+                +beta*(GA4*fd9h_20_to_40(phi)
+                +beta*(GA5*fd11h_20_to_40(phi)
+                +beta*(GA6*fd13h_20_to_40(phi)
+                +beta*(GA7*fd15h_20_to_40(phi)
+                +beta*(GA8*fd17h_20_to_40(phi)
+                +beta*(GA9*fd19h_20_to_40(phi)
+                +beta*(GAA*fd21h_20_to_40(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_gt_40__1(double phi, double beta):
+        return (       G0 *fd1h_gt_40(phi)
+                +beta*(G11*fd3h_gt_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_gt_40__2(double phi, double beta):
+        return (       G0 *fd1h_gt_40(phi)
+                +beta*(G21*fd3h_gt_40(phi)
+                +beta*(G22*fd5h_gt_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_gt_40__3(double phi, double beta):
+        return (       G0 *fd1h_gt_40(phi)
+                +beta*(G31*fd3h_gt_40(phi)
+                +beta*(G32*fd5h_gt_40(phi)
+                +beta*(G33*fd7h_gt_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_gt_40__4(double phi, double beta):
+        return (       G0 *fd1h_gt_40(phi)
+                +beta*(G41*fd3h_gt_40(phi)
+                +beta*(G42*fd5h_gt_40(phi)
+                +beta*(G43*fd7h_gt_40(phi)
+                +beta*(G44*fd9h_gt_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_gt_40__5(double phi, double beta):
+        return (       G0 *fd1h_gt_40(phi)
+                +beta*(G51*fd3h_gt_40(phi)
+                +beta*(G52*fd5h_gt_40(phi)
+                +beta*(G53*fd7h_gt_40(phi)
+                +beta*(G54*fd9h_gt_40(phi)
+                +beta*(G55*fd11h_gt_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_gt_40__6(double phi, double beta):
+        return (       G0 *fd1h_gt_40(phi)
+                +beta*(G61*fd3h_gt_40(phi)
+                +beta*(G62*fd5h_gt_40(phi)
+                +beta*(G63*fd7h_gt_40(phi)
+                +beta*(G64*fd9h_gt_40(phi)
+                +beta*(G65*fd11h_gt_40(phi)
+                +beta*(G66*fd13h_gt_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_gt_40__7(double phi, double beta):
+        return (       G0 *fd1h_gt_40(phi)
+                +beta*(G71*fd3h_gt_40(phi)
+                +beta*(G72*fd5h_gt_40(phi)
+                +beta*(G73*fd7h_gt_40(phi)
+                +beta*(G74*fd9h_gt_40(phi)
+                +beta*(G75*fd11h_gt_40(phi)
+                +beta*(G76*fd13h_gt_40(phi)
+                +beta*(G77*fd15h_gt_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_gt_40__8(double phi, double beta):
+        return (       G0 *fd1h_gt_40(phi)
+                +beta*(G81*fd3h_gt_40(phi)
+                +beta*(G82*fd5h_gt_40(phi)
+                +beta*(G83*fd7h_gt_40(phi)
+                +beta*(G84*fd9h_gt_40(phi)
+                +beta*(G85*fd11h_gt_40(phi)
+                +beta*(G86*fd13h_gt_40(phi)
+                +beta*(G87*fd15h_gt_40(phi)
+                +beta*(G88*fd17h_gt_40(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_gt_40__9(double phi, double beta):
+        return (       G0 *fd1h_gt_40(phi)
+                +beta*(G91*fd3h_gt_40(phi)
+                +beta*(G92*fd5h_gt_40(phi)
+                +beta*(G93*fd7h_gt_40(phi)
+                +beta*(G94*fd9h_gt_40(phi)
+                +beta*(G95*fd11h_gt_40(phi)
+                +beta*(G96*fd13h_gt_40(phi)
+                +beta*(G97*fd15h_gt_40(phi)
+                +beta*(G98*fd17h_gt_40(phi)
+                +beta*(G99*fd19h_gt_40(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd1h_gt_40__10(double phi, double beta):
+        return (       G0 *fd1h_gt_40(phi)
+                +beta*(GA1*fd3h_gt_40(phi)
+                +beta*(GA2*fd5h_gt_40(phi)
+                +beta*(GA3*fd7h_gt_40(phi)
+                +beta*(GA4*fd9h_gt_40(phi)
+                +beta*(GA5*fd11h_gt_40(phi)
+                +beta*(GA6*fd13h_gt_40(phi)
+                +beta*(GA7*fd15h_gt_40(phi)
+                +beta*(GA8*fd17h_gt_40(phi)
+                +beta*(GA9*fd19h_gt_40(phi)
+                +beta*(GAA*fd21h_gt_40(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_lt_m2__1(double phi, double beta):
+        return (       G0 *fd3h_lt_m2(phi)
+                +beta*(G11*fd5h_lt_m2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_lt_m2__2(double phi, double beta):
+        return (       G0 *fd3h_lt_m2(phi)
+                +beta*(G21*fd5h_lt_m2(phi)
+                +beta*(G22*fd7h_lt_m2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_lt_m2__3(double phi, double beta):
+        return (       G0 *fd3h_lt_m2(phi)
+                +beta*(G31*fd5h_lt_m2(phi)
+                +beta*(G32*fd7h_lt_m2(phi)
+                +beta*(G33*fd9h_lt_m2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_lt_m2__4(double phi, double beta):
+        return (       G0 *fd3h_lt_m2(phi)
+                +beta*(G41*fd5h_lt_m2(phi)
+                +beta*(G42*fd7h_lt_m2(phi)
+                +beta*(G43*fd9h_lt_m2(phi)
+                +beta*(G44*fd11h_lt_m2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_lt_m2__5(double phi, double beta):
+        return (       G0 *fd3h_lt_m2(phi)
+                +beta*(G51*fd5h_lt_m2(phi)
+                +beta*(G52*fd7h_lt_m2(phi)
+                +beta*(G53*fd9h_lt_m2(phi)
+                +beta*(G54*fd11h_lt_m2(phi)
+                +beta*(G55*fd13h_lt_m2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_lt_m2__6(double phi, double beta):
+        return (       G0 *fd3h_lt_m2(phi)
+                +beta*(G61*fd5h_lt_m2(phi)
+                +beta*(G62*fd7h_lt_m2(phi)
+                +beta*(G63*fd9h_lt_m2(phi)
+                +beta*(G64*fd11h_lt_m2(phi)
+                +beta*(G65*fd13h_lt_m2(phi)
+                +beta*(G66*fd15h_lt_m2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_lt_m2__7(double phi, double beta):
+        return (       G0 *fd3h_lt_m2(phi)
+                +beta*(G71*fd5h_lt_m2(phi)
+                +beta*(G72*fd7h_lt_m2(phi)
+                +beta*(G73*fd9h_lt_m2(phi)
+                +beta*(G74*fd11h_lt_m2(phi)
+                +beta*(G75*fd13h_lt_m2(phi)
+                +beta*(G76*fd15h_lt_m2(phi)
+                +beta*(G77*fd17h_lt_m2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_lt_m2__8(double phi, double beta):
+        return (       G0 *fd3h_lt_m2(phi)
+                +beta*(G81*fd5h_lt_m2(phi)
+                +beta*(G82*fd7h_lt_m2(phi)
+                +beta*(G83*fd9h_lt_m2(phi)
+                +beta*(G84*fd11h_lt_m2(phi)
+                +beta*(G85*fd13h_lt_m2(phi)
+                +beta*(G86*fd15h_lt_m2(phi)
+                +beta*(G87*fd17h_lt_m2(phi)
+                +beta*(G88*fd19h_lt_m2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_lt_m2__9(double phi, double beta):
+        return (       G0 *fd3h_lt_m2(phi)
+                +beta*(G91*fd5h_lt_m2(phi)
+                +beta*(G92*fd7h_lt_m2(phi)
+                +beta*(G93*fd9h_lt_m2(phi)
+                +beta*(G94*fd11h_lt_m2(phi)
+                +beta*(G95*fd13h_lt_m2(phi)
+                +beta*(G96*fd15h_lt_m2(phi)
+                +beta*(G97*fd17h_lt_m2(phi)
+                +beta*(G98*fd19h_lt_m2(phi)
+                +beta*(G99*fd21h_lt_m2(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_m2_to_0__1(double phi, double beta):
+        return (       G0 *fd3h_m2_to_0(phi)
+                +beta*(G11*fd5h_m2_to_0(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_m2_to_0__2(double phi, double beta):
+        return (       G0 *fd3h_m2_to_0(phi)
+                +beta*(G21*fd5h_m2_to_0(phi)
+                +beta*(G22*fd7h_m2_to_0(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_m2_to_0__3(double phi, double beta):
+        return (       G0 *fd3h_m2_to_0(phi)
+                +beta*(G31*fd5h_m2_to_0(phi)
+                +beta*(G32*fd7h_m2_to_0(phi)
+                +beta*(G33*fd9h_m2_to_0(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_m2_to_0__4(double phi, double beta):
+        return (       G0 *fd3h_m2_to_0(phi)
+                +beta*(G41*fd5h_m2_to_0(phi)
+                +beta*(G42*fd7h_m2_to_0(phi)
+                +beta*(G43*fd9h_m2_to_0(phi)
+                +beta*(G44*fd11h_m2_to_0(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_m2_to_0__5(double phi, double beta):
+        return (       G0 *fd3h_m2_to_0(phi)
+                +beta*(G51*fd5h_m2_to_0(phi)
+                +beta*(G52*fd7h_m2_to_0(phi)
+                +beta*(G53*fd9h_m2_to_0(phi)
+                +beta*(G54*fd11h_m2_to_0(phi)
+                +beta*(G55*fd13h_m2_to_0(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_m2_to_0__6(double phi, double beta):
+        return (       G0 *fd3h_m2_to_0(phi)
+                +beta*(G61*fd5h_m2_to_0(phi)
+                +beta*(G62*fd7h_m2_to_0(phi)
+                +beta*(G63*fd9h_m2_to_0(phi)
+                +beta*(G64*fd11h_m2_to_0(phi)
+                +beta*(G65*fd13h_m2_to_0(phi)
+                +beta*(G66*fd15h_m2_to_0(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_m2_to_0__7(double phi, double beta):
+        return (       G0 *fd3h_m2_to_0(phi)
+                +beta*(G71*fd5h_m2_to_0(phi)
+                +beta*(G72*fd7h_m2_to_0(phi)
+                +beta*(G73*fd9h_m2_to_0(phi)
+                +beta*(G74*fd11h_m2_to_0(phi)
+                +beta*(G75*fd13h_m2_to_0(phi)
+                +beta*(G76*fd15h_m2_to_0(phi)
+                +beta*(G77*fd17h_m2_to_0(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_m2_to_0__8(double phi, double beta):
+        return (       G0 *fd3h_m2_to_0(phi)
+                +beta*(G81*fd5h_m2_to_0(phi)
+                +beta*(G82*fd7h_m2_to_0(phi)
+                +beta*(G83*fd9h_m2_to_0(phi)
+                +beta*(G84*fd11h_m2_to_0(phi)
+                +beta*(G85*fd13h_m2_to_0(phi)
+                +beta*(G86*fd15h_m2_to_0(phi)
+                +beta*(G87*fd17h_m2_to_0(phi)
+                +beta*(G88*fd19h_m2_to_0(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_m2_to_0__9(double phi, double beta):
+        return (       G0 *fd3h_m2_to_0(phi)
+                +beta*(G91*fd5h_m2_to_0(phi)
+                +beta*(G92*fd7h_m2_to_0(phi)
+                +beta*(G93*fd9h_m2_to_0(phi)
+                +beta*(G94*fd11h_m2_to_0(phi)
+                +beta*(G95*fd13h_m2_to_0(phi)
+                +beta*(G96*fd15h_m2_to_0(phi)
+                +beta*(G97*fd17h_m2_to_0(phi)
+                +beta*(G98*fd19h_m2_to_0(phi)
+                +beta*(G99*fd21h_m2_to_0(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_0_to_2__1(double phi, double beta):
+        return (       G0 *fd3h_0_to_2(phi)
+                +beta*(G11*fd5h_0_to_2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_0_to_2__2(double phi, double beta):
+        return (       G0 *fd3h_0_to_2(phi)
+                +beta*(G21*fd5h_0_to_2(phi)
+                +beta*(G22*fd7h_0_to_2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_0_to_2__3(double phi, double beta):
+        return (       G0 *fd3h_0_to_2(phi)
+                +beta*(G31*fd5h_0_to_2(phi)
+                +beta*(G32*fd7h_0_to_2(phi)
+                +beta*(G33*fd9h_0_to_2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_0_to_2__4(double phi, double beta):
+        return (       G0 *fd3h_0_to_2(phi)
+                +beta*(G41*fd5h_0_to_2(phi)
+                +beta*(G42*fd7h_0_to_2(phi)
+                +beta*(G43*fd9h_0_to_2(phi)
+                +beta*(G44*fd11h_0_to_2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_0_to_2__5(double phi, double beta):
+        return (       G0 *fd3h_0_to_2(phi)
+                +beta*(G51*fd5h_0_to_2(phi)
+                +beta*(G52*fd7h_0_to_2(phi)
+                +beta*(G53*fd9h_0_to_2(phi)
+                +beta*(G54*fd11h_0_to_2(phi)
+                +beta*(G55*fd13h_0_to_2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_0_to_2__6(double phi, double beta):
+        return (       G0 *fd3h_0_to_2(phi)
+                +beta*(G61*fd5h_0_to_2(phi)
+                +beta*(G62*fd7h_0_to_2(phi)
+                +beta*(G63*fd9h_0_to_2(phi)
+                +beta*(G64*fd11h_0_to_2(phi)
+                +beta*(G65*fd13h_0_to_2(phi)
+                +beta*(G66*fd15h_0_to_2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_0_to_2__7(double phi, double beta):
+        return (       G0 *fd3h_0_to_2(phi)
+                +beta*(G71*fd5h_0_to_2(phi)
+                +beta*(G72*fd7h_0_to_2(phi)
+                +beta*(G73*fd9h_0_to_2(phi)
+                +beta*(G74*fd11h_0_to_2(phi)
+                +beta*(G75*fd13h_0_to_2(phi)
+                +beta*(G76*fd15h_0_to_2(phi)
+                +beta*(G77*fd17h_0_to_2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_0_to_2__8(double phi, double beta):
+        return (       G0 *fd3h_0_to_2(phi)
+                +beta*(G81*fd5h_0_to_2(phi)
+                +beta*(G82*fd7h_0_to_2(phi)
+                +beta*(G83*fd9h_0_to_2(phi)
+                +beta*(G84*fd11h_0_to_2(phi)
+                +beta*(G85*fd13h_0_to_2(phi)
+                +beta*(G86*fd15h_0_to_2(phi)
+                +beta*(G87*fd17h_0_to_2(phi)
+                +beta*(G88*fd19h_0_to_2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_0_to_2__9(double phi, double beta):
+        return (       G0 *fd3h_0_to_2(phi)
+                +beta*(G91*fd5h_0_to_2(phi)
+                +beta*(G92*fd7h_0_to_2(phi)
+                +beta*(G93*fd9h_0_to_2(phi)
+                +beta*(G94*fd11h_0_to_2(phi)
+                +beta*(G95*fd13h_0_to_2(phi)
+                +beta*(G96*fd15h_0_to_2(phi)
+                +beta*(G97*fd17h_0_to_2(phi)
+                +beta*(G98*fd19h_0_to_2(phi)
+                +beta*(G99*fd21h_0_to_2(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_2_to_5__1(double phi, double beta):
+        return (       G0 *fd3h_2_to_5(phi)
+                +beta*(G11*fd5h_2_to_5(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_2_to_5__2(double phi, double beta):
+        return (       G0 *fd3h_2_to_5(phi)
+                +beta*(G21*fd5h_2_to_5(phi)
+                +beta*(G22*fd7h_2_to_5(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_2_to_5__3(double phi, double beta):
+        return (       G0 *fd3h_2_to_5(phi)
+                +beta*(G31*fd5h_2_to_5(phi)
+                +beta*(G32*fd7h_2_to_5(phi)
+                +beta*(G33*fd9h_2_to_5(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_2_to_5__4(double phi, double beta):
+        return (       G0 *fd3h_2_to_5(phi)
+                +beta*(G41*fd5h_2_to_5(phi)
+                +beta*(G42*fd7h_2_to_5(phi)
+                +beta*(G43*fd9h_2_to_5(phi)
+                +beta*(G44*fd11h_2_to_5(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_2_to_5__5(double phi, double beta):
+        return (       G0 *fd3h_2_to_5(phi)
+                +beta*(G51*fd5h_2_to_5(phi)
+                +beta*(G52*fd7h_2_to_5(phi)
+                +beta*(G53*fd9h_2_to_5(phi)
+                +beta*(G54*fd11h_2_to_5(phi)
+                +beta*(G55*fd13h_2_to_5(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_2_to_5__6(double phi, double beta):
+        return (       G0 *fd3h_2_to_5(phi)
+                +beta*(G61*fd5h_2_to_5(phi)
+                +beta*(G62*fd7h_2_to_5(phi)
+                +beta*(G63*fd9h_2_to_5(phi)
+                +beta*(G64*fd11h_2_to_5(phi)
+                +beta*(G65*fd13h_2_to_5(phi)
+                +beta*(G66*fd15h_2_to_5(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_2_to_5__7(double phi, double beta):
+        return (       G0 *fd3h_2_to_5(phi)
+                +beta*(G71*fd5h_2_to_5(phi)
+                +beta*(G72*fd7h_2_to_5(phi)
+                +beta*(G73*fd9h_2_to_5(phi)
+                +beta*(G74*fd11h_2_to_5(phi)
+                +beta*(G75*fd13h_2_to_5(phi)
+                +beta*(G76*fd15h_2_to_5(phi)
+                +beta*(G77*fd17h_2_to_5(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_2_to_5__8(double phi, double beta):
+        return (       G0 *fd3h_2_to_5(phi)
+                +beta*(G81*fd5h_2_to_5(phi)
+                +beta*(G82*fd7h_2_to_5(phi)
+                +beta*(G83*fd9h_2_to_5(phi)
+                +beta*(G84*fd11h_2_to_5(phi)
+                +beta*(G85*fd13h_2_to_5(phi)
+                +beta*(G86*fd15h_2_to_5(phi)
+                +beta*(G87*fd17h_2_to_5(phi)
+                +beta*(G88*fd19h_2_to_5(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_2_to_5__9(double phi, double beta):
+        return (       G0 *fd3h_2_to_5(phi)
+                +beta*(G91*fd5h_2_to_5(phi)
+                +beta*(G92*fd7h_2_to_5(phi)
+                +beta*(G93*fd9h_2_to_5(phi)
+                +beta*(G94*fd11h_2_to_5(phi)
+                +beta*(G95*fd13h_2_to_5(phi)
+                +beta*(G96*fd15h_2_to_5(phi)
+                +beta*(G97*fd17h_2_to_5(phi)
+                +beta*(G98*fd19h_2_to_5(phi)
+                +beta*(G99*fd21h_2_to_5(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_5_to_10__1(double phi, double beta):
+        return (       G0 *fd3h_5_to_10(phi)
+                +beta*(G11*fd5h_5_to_10(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_5_to_10__2(double phi, double beta):
+        return (       G0 *fd3h_5_to_10(phi)
+                +beta*(G21*fd5h_5_to_10(phi)
+                +beta*(G22*fd7h_5_to_10(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_5_to_10__3(double phi, double beta):
+        return (       G0 *fd3h_5_to_10(phi)
+                +beta*(G31*fd5h_5_to_10(phi)
+                +beta*(G32*fd7h_5_to_10(phi)
+                +beta*(G33*fd9h_5_to_10(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_5_to_10__4(double phi, double beta):
+        return (       G0 *fd3h_5_to_10(phi)
+                +beta*(G41*fd5h_5_to_10(phi)
+                +beta*(G42*fd7h_5_to_10(phi)
+                +beta*(G43*fd9h_5_to_10(phi)
+                +beta*(G44*fd11h_5_to_10(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_5_to_10__5(double phi, double beta):
+        return (       G0 *fd3h_5_to_10(phi)
+                +beta*(G51*fd5h_5_to_10(phi)
+                +beta*(G52*fd7h_5_to_10(phi)
+                +beta*(G53*fd9h_5_to_10(phi)
+                +beta*(G54*fd11h_5_to_10(phi)
+                +beta*(G55*fd13h_5_to_10(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_5_to_10__6(double phi, double beta):
+        return (       G0 *fd3h_5_to_10(phi)
+                +beta*(G61*fd5h_5_to_10(phi)
+                +beta*(G62*fd7h_5_to_10(phi)
+                +beta*(G63*fd9h_5_to_10(phi)
+                +beta*(G64*fd11h_5_to_10(phi)
+                +beta*(G65*fd13h_5_to_10(phi)
+                +beta*(G66*fd15h_5_to_10(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_5_to_10__7(double phi, double beta):
+        return (       G0 *fd3h_5_to_10(phi)
+                +beta*(G71*fd5h_5_to_10(phi)
+                +beta*(G72*fd7h_5_to_10(phi)
+                +beta*(G73*fd9h_5_to_10(phi)
+                +beta*(G74*fd11h_5_to_10(phi)
+                +beta*(G75*fd13h_5_to_10(phi)
+                +beta*(G76*fd15h_5_to_10(phi)
+                +beta*(G77*fd17h_5_to_10(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_5_to_10__8(double phi, double beta):
+        return (       G0 *fd3h_5_to_10(phi)
+                +beta*(G81*fd5h_5_to_10(phi)
+                +beta*(G82*fd7h_5_to_10(phi)
+                +beta*(G83*fd9h_5_to_10(phi)
+                +beta*(G84*fd11h_5_to_10(phi)
+                +beta*(G85*fd13h_5_to_10(phi)
+                +beta*(G86*fd15h_5_to_10(phi)
+                +beta*(G87*fd17h_5_to_10(phi)
+                +beta*(G88*fd19h_5_to_10(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_5_to_10__9(double phi, double beta):
+        return (       G0 *fd3h_5_to_10(phi)
+                +beta*(G91*fd5h_5_to_10(phi)
+                +beta*(G92*fd7h_5_to_10(phi)
+                +beta*(G93*fd9h_5_to_10(phi)
+                +beta*(G94*fd11h_5_to_10(phi)
+                +beta*(G95*fd13h_5_to_10(phi)
+                +beta*(G96*fd15h_5_to_10(phi)
+                +beta*(G97*fd17h_5_to_10(phi)
+                +beta*(G98*fd19h_5_to_10(phi)
+                +beta*(G99*fd21h_5_to_10(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_10_to_20__1(double phi, double beta):
+        return (       G0 *fd3h_10_to_20(phi)
+                +beta*(G11*fd5h_10_to_20(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_10_to_20__2(double phi, double beta):
+        return (       G0 *fd3h_10_to_20(phi)
+                +beta*(G21*fd5h_10_to_20(phi)
+                +beta*(G22*fd7h_10_to_20(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_10_to_20__3(double phi, double beta):
+        return (       G0 *fd3h_10_to_20(phi)
+                +beta*(G31*fd5h_10_to_20(phi)
+                +beta*(G32*fd7h_10_to_20(phi)
+                +beta*(G33*fd9h_10_to_20(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_10_to_20__4(double phi, double beta):
+        return (       G0 *fd3h_10_to_20(phi)
+                +beta*(G41*fd5h_10_to_20(phi)
+                +beta*(G42*fd7h_10_to_20(phi)
+                +beta*(G43*fd9h_10_to_20(phi)
+                +beta*(G44*fd11h_10_to_20(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_10_to_20__5(double phi, double beta):
+        return (       G0 *fd3h_10_to_20(phi)
+                +beta*(G51*fd5h_10_to_20(phi)
+                +beta*(G52*fd7h_10_to_20(phi)
+                +beta*(G53*fd9h_10_to_20(phi)
+                +beta*(G54*fd11h_10_to_20(phi)
+                +beta*(G55*fd13h_10_to_20(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_10_to_20__6(double phi, double beta):
+        return (       G0 *fd3h_10_to_20(phi)
+                +beta*(G61*fd5h_10_to_20(phi)
+                +beta*(G62*fd7h_10_to_20(phi)
+                +beta*(G63*fd9h_10_to_20(phi)
+                +beta*(G64*fd11h_10_to_20(phi)
+                +beta*(G65*fd13h_10_to_20(phi)
+                +beta*(G66*fd15h_10_to_20(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_10_to_20__7(double phi, double beta):
+        return (       G0 *fd3h_10_to_20(phi)
+                +beta*(G71*fd5h_10_to_20(phi)
+                +beta*(G72*fd7h_10_to_20(phi)
+                +beta*(G73*fd9h_10_to_20(phi)
+                +beta*(G74*fd11h_10_to_20(phi)
+                +beta*(G75*fd13h_10_to_20(phi)
+                +beta*(G76*fd15h_10_to_20(phi)
+                +beta*(G77*fd17h_10_to_20(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_10_to_20__8(double phi, double beta):
+        return (       G0 *fd3h_10_to_20(phi)
+                +beta*(G81*fd5h_10_to_20(phi)
+                +beta*(G82*fd7h_10_to_20(phi)
+                +beta*(G83*fd9h_10_to_20(phi)
+                +beta*(G84*fd11h_10_to_20(phi)
+                +beta*(G85*fd13h_10_to_20(phi)
+                +beta*(G86*fd15h_10_to_20(phi)
+                +beta*(G87*fd17h_10_to_20(phi)
+                +beta*(G88*fd19h_10_to_20(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_10_to_20__9(double phi, double beta):
+        return (       G0 *fd3h_10_to_20(phi)
+                +beta*(G91*fd5h_10_to_20(phi)
+                +beta*(G92*fd7h_10_to_20(phi)
+                +beta*(G93*fd9h_10_to_20(phi)
+                +beta*(G94*fd11h_10_to_20(phi)
+                +beta*(G95*fd13h_10_to_20(phi)
+                +beta*(G96*fd15h_10_to_20(phi)
+                +beta*(G97*fd17h_10_to_20(phi)
+                +beta*(G98*fd19h_10_to_20(phi)
+                +beta*(G99*fd21h_10_to_20(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_20_to_40__1(double phi, double beta):
+        return (       G0 *fd3h_20_to_40(phi)
+                +beta*(G11*fd5h_20_to_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_20_to_40__2(double phi, double beta):
+        return (       G0 *fd3h_20_to_40(phi)
+                +beta*(G21*fd5h_20_to_40(phi)
+                +beta*(G22*fd7h_20_to_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_20_to_40__3(double phi, double beta):
+        return (       G0 *fd3h_20_to_40(phi)
+                +beta*(G31*fd5h_20_to_40(phi)
+                +beta*(G32*fd7h_20_to_40(phi)
+                +beta*(G33*fd9h_20_to_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_20_to_40__4(double phi, double beta):
+        return (       G0 *fd3h_20_to_40(phi)
+                +beta*(G41*fd5h_20_to_40(phi)
+                +beta*(G42*fd7h_20_to_40(phi)
+                +beta*(G43*fd9h_20_to_40(phi)
+                +beta*(G44*fd11h_20_to_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_20_to_40__5(double phi, double beta):
+        return (       G0 *fd3h_20_to_40(phi)
+                +beta*(G51*fd5h_20_to_40(phi)
+                +beta*(G52*fd7h_20_to_40(phi)
+                +beta*(G53*fd9h_20_to_40(phi)
+                +beta*(G54*fd11h_20_to_40(phi)
+                +beta*(G55*fd13h_20_to_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_20_to_40__6(double phi, double beta):
+        return (       G0 *fd3h_20_to_40(phi)
+                +beta*(G61*fd5h_20_to_40(phi)
+                +beta*(G62*fd7h_20_to_40(phi)
+                +beta*(G63*fd9h_20_to_40(phi)
+                +beta*(G64*fd11h_20_to_40(phi)
+                +beta*(G65*fd13h_20_to_40(phi)
+                +beta*(G66*fd15h_20_to_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_20_to_40__7(double phi, double beta):
+        return (       G0 *fd3h_20_to_40(phi)
+                +beta*(G71*fd5h_20_to_40(phi)
+                +beta*(G72*fd7h_20_to_40(phi)
+                +beta*(G73*fd9h_20_to_40(phi)
+                +beta*(G74*fd11h_20_to_40(phi)
+                +beta*(G75*fd13h_20_to_40(phi)
+                +beta*(G76*fd15h_20_to_40(phi)
+                +beta*(G77*fd17h_20_to_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_20_to_40__8(double phi, double beta):
+        return (       G0 *fd3h_20_to_40(phi)
+                +beta*(G81*fd5h_20_to_40(phi)
+                +beta*(G82*fd7h_20_to_40(phi)
+                +beta*(G83*fd9h_20_to_40(phi)
+                +beta*(G84*fd11h_20_to_40(phi)
+                +beta*(G85*fd13h_20_to_40(phi)
+                +beta*(G86*fd15h_20_to_40(phi)
+                +beta*(G87*fd17h_20_to_40(phi)
+                +beta*(G88*fd19h_20_to_40(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_20_to_40__9(double phi, double beta):
+        return (       G0 *fd3h_20_to_40(phi)
+                +beta*(G91*fd5h_20_to_40(phi)
+                +beta*(G92*fd7h_20_to_40(phi)
+                +beta*(G93*fd9h_20_to_40(phi)
+                +beta*(G94*fd11h_20_to_40(phi)
+                +beta*(G95*fd13h_20_to_40(phi)
+                +beta*(G96*fd15h_20_to_40(phi)
+                +beta*(G97*fd17h_20_to_40(phi)
+                +beta*(G98*fd19h_20_to_40(phi)
+                +beta*(G99*fd21h_20_to_40(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_gt_40__1(double phi, double beta):
+        return (       G0 *fd3h_gt_40(phi)
+                +beta*(G11*fd5h_gt_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_gt_40__2(double phi, double beta):
+        return (       G0 *fd3h_gt_40(phi)
+                +beta*(G21*fd5h_gt_40(phi)
+                +beta*(G22*fd7h_gt_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_gt_40__3(double phi, double beta):
+        return (       G0 *fd3h_gt_40(phi)
+                +beta*(G31*fd5h_gt_40(phi)
+                +beta*(G32*fd7h_gt_40(phi)
+                +beta*(G33*fd9h_gt_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_gt_40__4(double phi, double beta):
+        return (       G0 *fd3h_gt_40(phi)
+                +beta*(G41*fd5h_gt_40(phi)
+                +beta*(G42*fd7h_gt_40(phi)
+                +beta*(G43*fd9h_gt_40(phi)
+                +beta*(G44*fd11h_gt_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_gt_40__5(double phi, double beta):
+        return (       G0 *fd3h_gt_40(phi)
+                +beta*(G51*fd5h_gt_40(phi)
+                +beta*(G52*fd7h_gt_40(phi)
+                +beta*(G53*fd9h_gt_40(phi)
+                +beta*(G54*fd11h_gt_40(phi)
+                +beta*(G55*fd13h_gt_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_gt_40__6(double phi, double beta):
+        return (       G0 *fd3h_gt_40(phi)
+                +beta*(G61*fd5h_gt_40(phi)
+                +beta*(G62*fd7h_gt_40(phi)
+                +beta*(G63*fd9h_gt_40(phi)
+                +beta*(G64*fd11h_gt_40(phi)
+                +beta*(G65*fd13h_gt_40(phi)
+                +beta*(G66*fd15h_gt_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_gt_40__7(double phi, double beta):
+        return (       G0 *fd3h_gt_40(phi)
+                +beta*(G71*fd5h_gt_40(phi)
+                +beta*(G72*fd7h_gt_40(phi)
+                +beta*(G73*fd9h_gt_40(phi)
+                +beta*(G74*fd11h_gt_40(phi)
+                +beta*(G75*fd13h_gt_40(phi)
+                +beta*(G76*fd15h_gt_40(phi)
+                +beta*(G77*fd17h_gt_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_gt_40__8(double phi, double beta):
+        return (       G0 *fd3h_gt_40(phi)
+                +beta*(G81*fd5h_gt_40(phi)
+                +beta*(G82*fd7h_gt_40(phi)
+                +beta*(G83*fd9h_gt_40(phi)
+                +beta*(G84*fd11h_gt_40(phi)
+                +beta*(G85*fd13h_gt_40(phi)
+                +beta*(G86*fd15h_gt_40(phi)
+                +beta*(G87*fd17h_gt_40(phi)
+                +beta*(G88*fd19h_gt_40(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd3h_gt_40__9(double phi, double beta):
+        return (       G0 *fd3h_gt_40(phi)
+                +beta*(G91*fd5h_gt_40(phi)
+                +beta*(G92*fd7h_gt_40(phi)
+                +beta*(G93*fd9h_gt_40(phi)
+                +beta*(G94*fd11h_gt_40(phi)
+                +beta*(G95*fd13h_gt_40(phi)
+                +beta*(G96*fd15h_gt_40(phi)
+                +beta*(G97*fd17h_gt_40(phi)
+                +beta*(G98*fd19h_gt_40(phi)
+                +beta*(G99*fd21h_gt_40(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_lt_m2__1(double phi, double beta):
+        return (       G0 *fd5h_lt_m2(phi)
+                +beta*(G11*fd7h_lt_m2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_lt_m2__2(double phi, double beta):
+        return (       G0 *fd5h_lt_m2(phi)
+                +beta*(G21*fd7h_lt_m2(phi)
+                +beta*(G22*fd9h_lt_m2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_lt_m2__3(double phi, double beta):
+        return (       G0 *fd5h_lt_m2(phi)
+                +beta*(G31*fd7h_lt_m2(phi)
+                +beta*(G32*fd9h_lt_m2(phi)
+                +beta*(G33*fd11h_lt_m2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_lt_m2__4(double phi, double beta):
+        return (       G0 *fd5h_lt_m2(phi)
+                +beta*(G41*fd7h_lt_m2(phi)
+                +beta*(G42*fd9h_lt_m2(phi)
+                +beta*(G43*fd11h_lt_m2(phi)
+                +beta*(G44*fd13h_lt_m2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_lt_m2__5(double phi, double beta):
+        return (       G0 *fd5h_lt_m2(phi)
+                +beta*(G51*fd7h_lt_m2(phi)
+                +beta*(G52*fd9h_lt_m2(phi)
+                +beta*(G53*fd11h_lt_m2(phi)
+                +beta*(G54*fd13h_lt_m2(phi)
+                +beta*(G55*fd15h_lt_m2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_lt_m2__6(double phi, double beta):
+        return (       G0 *fd5h_lt_m2(phi)
+                +beta*(G61*fd7h_lt_m2(phi)
+                +beta*(G62*fd9h_lt_m2(phi)
+                +beta*(G63*fd11h_lt_m2(phi)
+                +beta*(G64*fd13h_lt_m2(phi)
+                +beta*(G65*fd15h_lt_m2(phi)
+                +beta*(G66*fd17h_lt_m2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_lt_m2__7(double phi, double beta):
+        return (       G0 *fd5h_lt_m2(phi)
+                +beta*(G71*fd7h_lt_m2(phi)
+                +beta*(G72*fd9h_lt_m2(phi)
+                +beta*(G73*fd11h_lt_m2(phi)
+                +beta*(G74*fd13h_lt_m2(phi)
+                +beta*(G75*fd15h_lt_m2(phi)
+                +beta*(G76*fd17h_lt_m2(phi)
+                +beta*(G77*fd19h_lt_m2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_lt_m2__8(double phi, double beta):
+        return (       G0 *fd5h_lt_m2(phi)
+                +beta*(G81*fd7h_lt_m2(phi)
+                +beta*(G82*fd9h_lt_m2(phi)
+                +beta*(G83*fd11h_lt_m2(phi)
+                +beta*(G84*fd13h_lt_m2(phi)
+                +beta*(G85*fd15h_lt_m2(phi)
+                +beta*(G86*fd17h_lt_m2(phi)
+                +beta*(G87*fd19h_lt_m2(phi)
+                +beta*(G88*fd21h_lt_m2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_m2_to_0__1(double phi, double beta):
+        return (       G0 *fd5h_m2_to_0(phi)
+                +beta*(G11*fd7h_m2_to_0(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_m2_to_0__2(double phi, double beta):
+        return (       G0 *fd5h_m2_to_0(phi)
+                +beta*(G21*fd7h_m2_to_0(phi)
+                +beta*(G22*fd9h_m2_to_0(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_m2_to_0__3(double phi, double beta):
+        return (       G0 *fd5h_m2_to_0(phi)
+                +beta*(G31*fd7h_m2_to_0(phi)
+                +beta*(G32*fd9h_m2_to_0(phi)
+                +beta*(G33*fd11h_m2_to_0(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_m2_to_0__4(double phi, double beta):
+        return (       G0 *fd5h_m2_to_0(phi)
+                +beta*(G41*fd7h_m2_to_0(phi)
+                +beta*(G42*fd9h_m2_to_0(phi)
+                +beta*(G43*fd11h_m2_to_0(phi)
+                +beta*(G44*fd13h_m2_to_0(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_m2_to_0__5(double phi, double beta):
+        return (       G0 *fd5h_m2_to_0(phi)
+                +beta*(G51*fd7h_m2_to_0(phi)
+                +beta*(G52*fd9h_m2_to_0(phi)
+                +beta*(G53*fd11h_m2_to_0(phi)
+                +beta*(G54*fd13h_m2_to_0(phi)
+                +beta*(G55*fd15h_m2_to_0(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_m2_to_0__6(double phi, double beta):
+        return (       G0 *fd5h_m2_to_0(phi)
+                +beta*(G61*fd7h_m2_to_0(phi)
+                +beta*(G62*fd9h_m2_to_0(phi)
+                +beta*(G63*fd11h_m2_to_0(phi)
+                +beta*(G64*fd13h_m2_to_0(phi)
+                +beta*(G65*fd15h_m2_to_0(phi)
+                +beta*(G66*fd17h_m2_to_0(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_m2_to_0__7(double phi, double beta):
+        return (       G0 *fd5h_m2_to_0(phi)
+                +beta*(G71*fd7h_m2_to_0(phi)
+                +beta*(G72*fd9h_m2_to_0(phi)
+                +beta*(G73*fd11h_m2_to_0(phi)
+                +beta*(G74*fd13h_m2_to_0(phi)
+                +beta*(G75*fd15h_m2_to_0(phi)
+                +beta*(G76*fd17h_m2_to_0(phi)
+                +beta*(G77*fd19h_m2_to_0(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_m2_to_0__8(double phi, double beta):
+        return (       G0 *fd5h_m2_to_0(phi)
+                +beta*(G81*fd7h_m2_to_0(phi)
+                +beta*(G82*fd9h_m2_to_0(phi)
+                +beta*(G83*fd11h_m2_to_0(phi)
+                +beta*(G84*fd13h_m2_to_0(phi)
+                +beta*(G85*fd15h_m2_to_0(phi)
+                +beta*(G86*fd17h_m2_to_0(phi)
+                +beta*(G87*fd19h_m2_to_0(phi)
+                +beta*(G88*fd21h_m2_to_0(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_0_to_2__1(double phi, double beta):
+        return (       G0 *fd5h_0_to_2(phi)
+                +beta*(G11*fd7h_0_to_2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_0_to_2__2(double phi, double beta):
+        return (       G0 *fd5h_0_to_2(phi)
+                +beta*(G21*fd7h_0_to_2(phi)
+                +beta*(G22*fd9h_0_to_2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_0_to_2__3(double phi, double beta):
+        return (       G0 *fd5h_0_to_2(phi)
+                +beta*(G31*fd7h_0_to_2(phi)
+                +beta*(G32*fd9h_0_to_2(phi)
+                +beta*(G33*fd11h_0_to_2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_0_to_2__4(double phi, double beta):
+        return (       G0 *fd5h_0_to_2(phi)
+                +beta*(G41*fd7h_0_to_2(phi)
+                +beta*(G42*fd9h_0_to_2(phi)
+                +beta*(G43*fd11h_0_to_2(phi)
+                +beta*(G44*fd13h_0_to_2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_0_to_2__5(double phi, double beta):
+        return (       G0 *fd5h_0_to_2(phi)
+                +beta*(G51*fd7h_0_to_2(phi)
+                +beta*(G52*fd9h_0_to_2(phi)
+                +beta*(G53*fd11h_0_to_2(phi)
+                +beta*(G54*fd13h_0_to_2(phi)
+                +beta*(G55*fd15h_0_to_2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_0_to_2__6(double phi, double beta):
+        return (       G0 *fd5h_0_to_2(phi)
+                +beta*(G61*fd7h_0_to_2(phi)
+                +beta*(G62*fd9h_0_to_2(phi)
+                +beta*(G63*fd11h_0_to_2(phi)
+                +beta*(G64*fd13h_0_to_2(phi)
+                +beta*(G65*fd15h_0_to_2(phi)
+                +beta*(G66*fd17h_0_to_2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_0_to_2__7(double phi, double beta):
+        return (       G0 *fd5h_0_to_2(phi)
+                +beta*(G71*fd7h_0_to_2(phi)
+                +beta*(G72*fd9h_0_to_2(phi)
+                +beta*(G73*fd11h_0_to_2(phi)
+                +beta*(G74*fd13h_0_to_2(phi)
+                +beta*(G75*fd15h_0_to_2(phi)
+                +beta*(G76*fd17h_0_to_2(phi)
+                +beta*(G77*fd19h_0_to_2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_0_to_2__8(double phi, double beta):
+        return (       G0 *fd5h_0_to_2(phi)
+                +beta*(G81*fd7h_0_to_2(phi)
+                +beta*(G82*fd9h_0_to_2(phi)
+                +beta*(G83*fd11h_0_to_2(phi)
+                +beta*(G84*fd13h_0_to_2(phi)
+                +beta*(G85*fd15h_0_to_2(phi)
+                +beta*(G86*fd17h_0_to_2(phi)
+                +beta*(G87*fd19h_0_to_2(phi)
+                +beta*(G88*fd21h_0_to_2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_2_to_5__1(double phi, double beta):
+        return (       G0 *fd5h_2_to_5(phi)
+                +beta*(G11*fd7h_2_to_5(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_2_to_5__2(double phi, double beta):
+        return (       G0 *fd5h_2_to_5(phi)
+                +beta*(G21*fd7h_2_to_5(phi)
+                +beta*(G22*fd9h_2_to_5(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_2_to_5__3(double phi, double beta):
+        return (       G0 *fd5h_2_to_5(phi)
+                +beta*(G31*fd7h_2_to_5(phi)
+                +beta*(G32*fd9h_2_to_5(phi)
+                +beta*(G33*fd11h_2_to_5(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_2_to_5__4(double phi, double beta):
+        return (       G0 *fd5h_2_to_5(phi)
+                +beta*(G41*fd7h_2_to_5(phi)
+                +beta*(G42*fd9h_2_to_5(phi)
+                +beta*(G43*fd11h_2_to_5(phi)
+                +beta*(G44*fd13h_2_to_5(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_2_to_5__5(double phi, double beta):
+        return (       G0 *fd5h_2_to_5(phi)
+                +beta*(G51*fd7h_2_to_5(phi)
+                +beta*(G52*fd9h_2_to_5(phi)
+                +beta*(G53*fd11h_2_to_5(phi)
+                +beta*(G54*fd13h_2_to_5(phi)
+                +beta*(G55*fd15h_2_to_5(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_2_to_5__6(double phi, double beta):
+        return (       G0 *fd5h_2_to_5(phi)
+                +beta*(G61*fd7h_2_to_5(phi)
+                +beta*(G62*fd9h_2_to_5(phi)
+                +beta*(G63*fd11h_2_to_5(phi)
+                +beta*(G64*fd13h_2_to_5(phi)
+                +beta*(G65*fd15h_2_to_5(phi)
+                +beta*(G66*fd17h_2_to_5(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_2_to_5__7(double phi, double beta):
+        return (       G0 *fd5h_2_to_5(phi)
+                +beta*(G71*fd7h_2_to_5(phi)
+                +beta*(G72*fd9h_2_to_5(phi)
+                +beta*(G73*fd11h_2_to_5(phi)
+                +beta*(G74*fd13h_2_to_5(phi)
+                +beta*(G75*fd15h_2_to_5(phi)
+                +beta*(G76*fd17h_2_to_5(phi)
+                +beta*(G77*fd19h_2_to_5(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_2_to_5__8(double phi, double beta):
+        return (       G0 *fd5h_2_to_5(phi)
+                +beta*(G81*fd7h_2_to_5(phi)
+                +beta*(G82*fd9h_2_to_5(phi)
+                +beta*(G83*fd11h_2_to_5(phi)
+                +beta*(G84*fd13h_2_to_5(phi)
+                +beta*(G85*fd15h_2_to_5(phi)
+                +beta*(G86*fd17h_2_to_5(phi)
+                +beta*(G87*fd19h_2_to_5(phi)
+                +beta*(G88*fd21h_2_to_5(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_5_to_10__1(double phi, double beta):
+        return (       G0 *fd5h_5_to_10(phi)
+                +beta*(G11*fd7h_5_to_10(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_5_to_10__2(double phi, double beta):
+        return (       G0 *fd5h_5_to_10(phi)
+                +beta*(G21*fd7h_5_to_10(phi)
+                +beta*(G22*fd9h_5_to_10(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_5_to_10__3(double phi, double beta):
+        return (       G0 *fd5h_5_to_10(phi)
+                +beta*(G31*fd7h_5_to_10(phi)
+                +beta*(G32*fd9h_5_to_10(phi)
+                +beta*(G33*fd11h_5_to_10(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_5_to_10__4(double phi, double beta):
+        return (       G0 *fd5h_5_to_10(phi)
+                +beta*(G41*fd7h_5_to_10(phi)
+                +beta*(G42*fd9h_5_to_10(phi)
+                +beta*(G43*fd11h_5_to_10(phi)
+                +beta*(G44*fd13h_5_to_10(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_5_to_10__5(double phi, double beta):
+        return (       G0 *fd5h_5_to_10(phi)
+                +beta*(G51*fd7h_5_to_10(phi)
+                +beta*(G52*fd9h_5_to_10(phi)
+                +beta*(G53*fd11h_5_to_10(phi)
+                +beta*(G54*fd13h_5_to_10(phi)
+                +beta*(G55*fd15h_5_to_10(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_5_to_10__6(double phi, double beta):
+        return (       G0 *fd5h_5_to_10(phi)
+                +beta*(G61*fd7h_5_to_10(phi)
+                +beta*(G62*fd9h_5_to_10(phi)
+                +beta*(G63*fd11h_5_to_10(phi)
+                +beta*(G64*fd13h_5_to_10(phi)
+                +beta*(G65*fd15h_5_to_10(phi)
+                +beta*(G66*fd17h_5_to_10(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_5_to_10__7(double phi, double beta):
+        return (       G0 *fd5h_5_to_10(phi)
+                +beta*(G71*fd7h_5_to_10(phi)
+                +beta*(G72*fd9h_5_to_10(phi)
+                +beta*(G73*fd11h_5_to_10(phi)
+                +beta*(G74*fd13h_5_to_10(phi)
+                +beta*(G75*fd15h_5_to_10(phi)
+                +beta*(G76*fd17h_5_to_10(phi)
+                +beta*(G77*fd19h_5_to_10(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_5_to_10__8(double phi, double beta):
+        return (       G0 *fd5h_5_to_10(phi)
+                +beta*(G81*fd7h_5_to_10(phi)
+                +beta*(G82*fd9h_5_to_10(phi)
+                +beta*(G83*fd11h_5_to_10(phi)
+                +beta*(G84*fd13h_5_to_10(phi)
+                +beta*(G85*fd15h_5_to_10(phi)
+                +beta*(G86*fd17h_5_to_10(phi)
+                +beta*(G87*fd19h_5_to_10(phi)
+                +beta*(G88*fd21h_5_to_10(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_10_to_20__1(double phi, double beta):
+        return (       G0 *fd5h_10_to_20(phi)
+                +beta*(G11*fd7h_10_to_20(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_10_to_20__2(double phi, double beta):
+        return (       G0 *fd5h_10_to_20(phi)
+                +beta*(G21*fd7h_10_to_20(phi)
+                +beta*(G22*fd9h_10_to_20(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_10_to_20__3(double phi, double beta):
+        return (       G0 *fd5h_10_to_20(phi)
+                +beta*(G31*fd7h_10_to_20(phi)
+                +beta*(G32*fd9h_10_to_20(phi)
+                +beta*(G33*fd11h_10_to_20(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_10_to_20__4(double phi, double beta):
+        return (       G0 *fd5h_10_to_20(phi)
+                +beta*(G41*fd7h_10_to_20(phi)
+                +beta*(G42*fd9h_10_to_20(phi)
+                +beta*(G43*fd11h_10_to_20(phi)
+                +beta*(G44*fd13h_10_to_20(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_10_to_20__5(double phi, double beta):
+        return (       G0 *fd5h_10_to_20(phi)
+                +beta*(G51*fd7h_10_to_20(phi)
+                +beta*(G52*fd9h_10_to_20(phi)
+                +beta*(G53*fd11h_10_to_20(phi)
+                +beta*(G54*fd13h_10_to_20(phi)
+                +beta*(G55*fd15h_10_to_20(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_10_to_20__6(double phi, double beta):
+        return (       G0 *fd5h_10_to_20(phi)
+                +beta*(G61*fd7h_10_to_20(phi)
+                +beta*(G62*fd9h_10_to_20(phi)
+                +beta*(G63*fd11h_10_to_20(phi)
+                +beta*(G64*fd13h_10_to_20(phi)
+                +beta*(G65*fd15h_10_to_20(phi)
+                +beta*(G66*fd17h_10_to_20(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_10_to_20__7(double phi, double beta):
+        return (       G0 *fd5h_10_to_20(phi)
+                +beta*(G71*fd7h_10_to_20(phi)
+                +beta*(G72*fd9h_10_to_20(phi)
+                +beta*(G73*fd11h_10_to_20(phi)
+                +beta*(G74*fd13h_10_to_20(phi)
+                +beta*(G75*fd15h_10_to_20(phi)
+                +beta*(G76*fd17h_10_to_20(phi)
+                +beta*(G77*fd19h_10_to_20(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_10_to_20__8(double phi, double beta):
+        return (       G0 *fd5h_10_to_20(phi)
+                +beta*(G81*fd7h_10_to_20(phi)
+                +beta*(G82*fd9h_10_to_20(phi)
+                +beta*(G83*fd11h_10_to_20(phi)
+                +beta*(G84*fd13h_10_to_20(phi)
+                +beta*(G85*fd15h_10_to_20(phi)
+                +beta*(G86*fd17h_10_to_20(phi)
+                +beta*(G87*fd19h_10_to_20(phi)
+                +beta*(G88*fd21h_10_to_20(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_20_to_40__1(double phi, double beta):
+        return (       G0 *fd5h_20_to_40(phi)
+                +beta*(G11*fd7h_20_to_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_20_to_40__2(double phi, double beta):
+        return (       G0 *fd5h_20_to_40(phi)
+                +beta*(G21*fd7h_20_to_40(phi)
+                +beta*(G22*fd9h_20_to_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_20_to_40__3(double phi, double beta):
+        return (       G0 *fd5h_20_to_40(phi)
+                +beta*(G31*fd7h_20_to_40(phi)
+                +beta*(G32*fd9h_20_to_40(phi)
+                +beta*(G33*fd11h_20_to_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_20_to_40__4(double phi, double beta):
+        return (       G0 *fd5h_20_to_40(phi)
+                +beta*(G41*fd7h_20_to_40(phi)
+                +beta*(G42*fd9h_20_to_40(phi)
+                +beta*(G43*fd11h_20_to_40(phi)
+                +beta*(G44*fd13h_20_to_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_20_to_40__5(double phi, double beta):
+        return (       G0 *fd5h_20_to_40(phi)
+                +beta*(G51*fd7h_20_to_40(phi)
+                +beta*(G52*fd9h_20_to_40(phi)
+                +beta*(G53*fd11h_20_to_40(phi)
+                +beta*(G54*fd13h_20_to_40(phi)
+                +beta*(G55*fd15h_20_to_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_20_to_40__6(double phi, double beta):
+        return (       G0 *fd5h_20_to_40(phi)
+                +beta*(G61*fd7h_20_to_40(phi)
+                +beta*(G62*fd9h_20_to_40(phi)
+                +beta*(G63*fd11h_20_to_40(phi)
+                +beta*(G64*fd13h_20_to_40(phi)
+                +beta*(G65*fd15h_20_to_40(phi)
+                +beta*(G66*fd17h_20_to_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_20_to_40__7(double phi, double beta):
+        return (       G0 *fd5h_20_to_40(phi)
+                +beta*(G71*fd7h_20_to_40(phi)
+                +beta*(G72*fd9h_20_to_40(phi)
+                +beta*(G73*fd11h_20_to_40(phi)
+                +beta*(G74*fd13h_20_to_40(phi)
+                +beta*(G75*fd15h_20_to_40(phi)
+                +beta*(G76*fd17h_20_to_40(phi)
+                +beta*(G77*fd19h_20_to_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_20_to_40__8(double phi, double beta):
+        return (       G0 *fd5h_20_to_40(phi)
+                +beta*(G81*fd7h_20_to_40(phi)
+                +beta*(G82*fd9h_20_to_40(phi)
+                +beta*(G83*fd11h_20_to_40(phi)
+                +beta*(G84*fd13h_20_to_40(phi)
+                +beta*(G85*fd15h_20_to_40(phi)
+                +beta*(G86*fd17h_20_to_40(phi)
+                +beta*(G87*fd19h_20_to_40(phi)
+                +beta*(G88*fd21h_20_to_40(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_gt_40__1(double phi, double beta):
+        return (       G0 *fd5h_gt_40(phi)
+                +beta*(G11*fd7h_gt_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_gt_40__2(double phi, double beta):
+        return (       G0 *fd5h_gt_40(phi)
+                +beta*(G21*fd7h_gt_40(phi)
+                +beta*(G22*fd9h_gt_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_gt_40__3(double phi, double beta):
+        return (       G0 *fd5h_gt_40(phi)
+                +beta*(G31*fd7h_gt_40(phi)
+                +beta*(G32*fd9h_gt_40(phi)
+                +beta*(G33*fd11h_gt_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_gt_40__4(double phi, double beta):
+        return (       G0 *fd5h_gt_40(phi)
+                +beta*(G41*fd7h_gt_40(phi)
+                +beta*(G42*fd9h_gt_40(phi)
+                +beta*(G43*fd11h_gt_40(phi)
+                +beta*(G44*fd13h_gt_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_gt_40__5(double phi, double beta):
+        return (       G0 *fd5h_gt_40(phi)
+                +beta*(G51*fd7h_gt_40(phi)
+                +beta*(G52*fd9h_gt_40(phi)
+                +beta*(G53*fd11h_gt_40(phi)
+                +beta*(G54*fd13h_gt_40(phi)
+                +beta*(G55*fd15h_gt_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_gt_40__6(double phi, double beta):
+        return (       G0 *fd5h_gt_40(phi)
+                +beta*(G61*fd7h_gt_40(phi)
+                +beta*(G62*fd9h_gt_40(phi)
+                +beta*(G63*fd11h_gt_40(phi)
+                +beta*(G64*fd13h_gt_40(phi)
+                +beta*(G65*fd15h_gt_40(phi)
+                +beta*(G66*fd17h_gt_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_gt_40__7(double phi, double beta):
+        return (       G0 *fd5h_gt_40(phi)
+                +beta*(G71*fd7h_gt_40(phi)
+                +beta*(G72*fd9h_gt_40(phi)
+                +beta*(G73*fd11h_gt_40(phi)
+                +beta*(G74*fd13h_gt_40(phi)
+                +beta*(G75*fd15h_gt_40(phi)
+                +beta*(G76*fd17h_gt_40(phi)
+                +beta*(G77*fd19h_gt_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double gfd5h_gt_40__8(double phi, double beta):
+        return (       G0 *fd5h_gt_40(phi)
+                +beta*(G81*fd7h_gt_40(phi)
+                +beta*(G82*fd9h_gt_40(phi)
+                +beta*(G83*fd11h_gt_40(phi)
+                +beta*(G84*fd13h_gt_40(phi)
+                +beta*(G85*fd15h_gt_40(phi)
+                +beta*(G86*fd17h_gt_40(phi)
+                +beta*(G87*fd19h_gt_40(phi)
+                +beta*(G88*fd21h_gt_40(phi)
+                )))))))))
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vgfdm1h(np.ndarray[double] phi, np.ndarray[double] beta,
+                    np.ndarray[double] out):
+    '''
+    Vectorized form of gfdm1h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == beta.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = gfdm1h(phi[i], beta[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vgfd1h(np.ndarray[double] phi, np.ndarray[double] beta,
+                    np.ndarray[double] out):
+    '''
+    Vectorized form of gfd1h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == beta.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = gfd1h(phi[i], beta[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vgfd3h(np.ndarray[double] phi, np.ndarray[double] beta,
+                    np.ndarray[double] out):
+    '''
+    Vectorized form of gfd3h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == beta.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = gfd3h(phi[i], beta[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vgfd5h(np.ndarray[double] phi, np.ndarray[double] beta,
+                    np.ndarray[double] out):
+    '''
+    Vectorized form of gfd5h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == beta.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = gfd5h(phi[i], beta[i])
+
+DEF G0 = 1.00000006e0
+DEF G11= 2.49877947e-1
+DEF G21= 2.49982920e-1
+DEF G22=-3.05244239e-2
+DEF G31= 2.49992138e-1
+DEF G32=-3.10880917e-2
+DEF G33= 6.72890304e-3
+DEF G41= 2.49994579e-1
+DEF G42=-3.11712873e-2
+DEF G43= 7.40642947e-3
+DEF G44=-1.54064286e-3
+DEF G51= 2.49995577e-1
+DEF G52=-3.11968779e-2
+DEF G53= 7.57597134e-3
+DEF G54=-1.94454734e-3
+DEF G55= 3.14619418e-4
+DEF G61= 2.49996068e-1
+DEF G62=-3.12078333e-2
+DEF G63= 7.64091443e-3
+DEF G64=-2.09635076e-3
+DEF G65= 4.66194891e-4
+DEF G66=-5.41090677e-5
+DEF G71= 2.49996349e-1
+DEF G72=-3.12135713e-2
+DEF G73= 7.67260917e-3
+DEF G74=-2.16873332e-3
+DEF G75= 5.44498136e-4
+DEF G76=-9.39944278e-5
+DEF G77= 7.70105166e-6
+DEF G81= 2.49996532e-1
+DEF G82=-3.12170240e-2
+DEF G83= 7.69068112e-3
+DEF G84=-2.20910836e-3
+DEF G85= 5.89641447e-4
+DEF G86=-1.20495081e-4
+DEF G87= 1.55008892e-5
+DEF G88=-9.06976386e-7
+DEF G91= 2.49996651e-1
+DEF G92=-3.12192069e-2
+DEF G93= 7.70183258e-3
+DEF G94=-2.23376723e-3
+DEF G95= 6.17772167e-4
+DEF G96=-1.38314191e-4
+DEF G97= 2.18212574e-5
+DEF G98=-2.08041752e-6
+DEF G99= 8.87207481e-8
+DEF GA1= 2.49996734e-1
+DEF GA2=-3.12206994e-2
+DEF GA3= 7.70928085e-3
+DEF GA4=-2.25005982e-3
+DEF GA5= 6.36546202e-4
+DEF GA6=-1.50745930e-4
+DEF GA7= 2.67097577e-5
+DEF GA8=-3.20655414e-6
+DEF GA9= 2.28929917e-7
+DEF GAA=-7.27863797e-9
+
+DEF BSm1h_lt_m2__1 = 3.27245030e-03
+DEF BSm1h_lt_m2__2 = 3.13122112e-02
+DEF BSm1h_lt_m2__3 = 8.70667295e-02
+DEF BSm1h_lt_m2__4 = 1.57594092e-01
+DEF BSm1h_lt_m2__5 = 2.32935788e-01
+DEF BSm1h_lt_m2__6 = 3.10023252e-01
+DEF BSm1h_lt_m2__7 = 3.86266897e-01
+DEF BSm1h_lt_m2__8 = 4.62071073e-01
+DEF BSm1h_lt_m2__9 = 5.36578380e-01
+DEF BSm1h_lt_m2__10 = 6.10860889e-01
+DEF BSm1h_m2_to_0__1 = 2.90749854e-03
+DEF BSm1h_m2_to_0__2 = 2.85765411e-02
+DEF BSm1h_m2_to_0__3 = 8.13472460e-02
+DEF BSm1h_m2_to_0__4 = 1.49005588e-01
+DEF BSm1h_m2_to_0__5 = 2.22310205e-01
+DEF BSm1h_m2_to_0__6 = 2.97873673e-01
+DEF BSm1h_m2_to_0__7 = 3.73010127e-01
+DEF BSm1h_m2_to_0__8 = 4.48027021e-01
+DEF BSm1h_m2_to_0__9 = 5.21952741e-01
+DEF BSm1h_m2_to_0__10 = 5.95796340e-01
+DEF BSm1h_0_to_2__1 = 2.17595915e-03
+DEF BSm1h_0_to_2__2 = 2.28319779e-02
+DEF BSm1h_0_to_2__3 = 6.81924469e-02
+DEF BSm1h_0_to_2__4 = 1.29021625e-01
+DEF BSm1h_0_to_2__5 = 1.96779567e-01
+DEF BSm1h_0_to_2__6 = 2.68191307e-01
+DEF BSm1h_0_to_2__7 = 3.40293684e-01
+DEF BSm1h_0_to_2__8 = 4.12905726e-01
+DEF BSm1h_0_to_2__9 = 4.85134110e-01
+DEF BSm1h_0_to_2__10 = 5.57595723e-01
+DEF BSm1h_2_to_5__1 = 1.32757642e-03
+DEF BSm1h_2_to_5__2 = 1.52156259e-02
+DEF BSm1h_2_to_5__3 = 4.85547225e-02
+DEF BSm1h_2_to_5__4 = 9.67383171e-02
+DEF BSm1h_2_to_5__5 = 1.53683774e-01
+DEF BSm1h_2_to_5__6 = 2.16030814e-01
+DEF BSm1h_2_to_5__7 = 2.80958972e-01
+DEF BSm1h_2_to_5__8 = 3.47917638e-01
+DEF BSm1h_2_to_5__9 = 4.15583522e-01
+DEF BSm1h_2_to_5__10 = 4.84263872e-01
+DEF BSm1h_5_to_10__1 = 7.41497702e-04
+DEF BSm1h_5_to_10__2 = 8.97873946e-03
+DEF BSm1h_5_to_10__3 = 3.01698120e-02
+DEF BSm1h_5_to_10__4 = 6.30059833e-02
+DEF BSm1h_5_to_10__5 = 1.04479605e-01
+DEF BSm1h_5_to_10__6 = 1.52585959e-01
+DEF BSm1h_5_to_10__7 = 2.05171416e-01
+DEF BSm1h_5_to_10__8 = 2.61228755e-01
+DEF BSm1h_5_to_10__9 = 3.19608802e-01
+DEF BSm1h_5_to_10__10 = 3.80273757e-01
+DEF BSm1h_10_to_20__1 = 3.82790979e-04
+DEF BSm1h_10_to_20__2 = 4.74102896e-03
+DEF BSm1h_10_to_20__3 = 1.63303003e-02
+DEF BSm1h_10_to_20__4 = 3.50206043e-02
+DEF BSm1h_10_to_20__5 = 5.97527490e-02
+DEF BSm1h_10_to_20__6 = 8.98865075e-02
+DEF BSm1h_10_to_20__7 = 1.24574764e-01
+DEF BSm1h_10_to_20__8 = 1.63357530e-01
+DEF BSm1h_10_to_20__9 = 2.05587305e-01
+DEF BSm1h_10_to_20__10 = 2.51015374e-01
+DEF BSm1h_20_to_40__1 = 1.92990210e-04
+DEF BSm1h_20_to_40__2 = 2.40604694e-03
+DEF BSm1h_20_to_40__3 = 8.35180169e-03
+DEF BSm1h_20_to_40__4 = 1.80677840e-02
+DEF BSm1h_20_to_40__5 = 3.11369502e-02
+DEF BSm1h_20_to_40__6 = 4.73709997e-02
+DEF BSm1h_20_to_40__7 = 6.65078036e-02
+DEF BSm1h_20_to_40__8 = 8.84749453e-02
+DEF BSm1h_20_to_40__9 = 1.13131852e-01
+DEF BSm1h_20_to_40__10 = 1.40476402e-01
+DEF BS1h_lt_m2__1 = 1.81580249e-03
+DEF BS1h_lt_m2__2 = 1.84974526e-02
+DEF BS1h_lt_m2__3 = 5.79996067e-02
+DEF BS1h_lt_m2__4 = 1.09451837e-01
+DEF BS1h_lt_m2__5 = 1.69352632e-01
+DEF BS1h_lt_m2__6 = 2.32511285e-01
+DEF BS1h_lt_m2__7 = 2.97337963e-01
+DEF BS1h_lt_m2__8 = 3.63426126e-01
+DEF BS1h_lt_m2__9 = 4.29704160e-01
+DEF BS1h_lt_m2__10 = 4.96821253e-01
+DEF BS1h_m2_to_0__1 = 1.70692759e-03
+DEF BS1h_m2_to_0__2 = 1.77782966e-02
+DEF BS1h_m2_to_0__3 = 5.59285170e-02
+DEF BS1h_m2_to_0__4 = 1.06809434e-01
+DEF BS1h_m2_to_0__5 = 1.65321137e-01
+DEF BS1h_m2_to_0__6 = 2.28175617e-01
+DEF BS1h_m2_to_0__7 = 2.92249701e-01
+DEF BS1h_m2_to_0__8 = 3.57987652e-01
+DEF BS1h_m2_to_0__9 = 4.23945839e-01
+DEF BS1h_m2_to_0__10 = 4.90757882e-01
+DEF BS1h_0_to_2__1 = 1.42520493e-03
+DEF BS1h_0_to_2__2 = 1.58200472e-02
+DEF BS1h_0_to_2__3 = 5.02274074e-02
+DEF BS1h_0_to_2__4 = 9.87289365e-02
+DEF BS1h_0_to_2__5 = 1.54150814e-01
+DEF BS1h_0_to_2__6 = 2.14779696e-01
+DEF BS1h_0_to_2__7 = 2.77485408e-01
+DEF BS1h_0_to_2__8 = 3.41500780e-01
+DEF BS1h_0_to_2__9 = 4.06565225e-01
+DEF BS1h_0_to_2__10 = 4.72468231e-01
+DEF BS1h_2_to_5__1 = 9.72566760e-04
+DEF BS1h_2_to_5__2 = 1.19258240e-02
+DEF BS1h_2_to_5__3 = 3.93735242e-02
+DEF BS1h_2_to_5__4 = 8.03300577e-02
+DEF BS1h_2_to_5__5 = 1.29787898e-01
+DEF BS1h_2_to_5__6 = 1.84391451e-01
+DEF BS1h_2_to_5__7 = 2.42184477e-01
+DEF BS1h_2_to_5__8 = 3.02816295e-01
+DEF BS1h_2_to_5__9 = 3.64382489e-01
+DEF BS1h_2_to_5__10 = 4.27534947e-01
+DEF BS1h_5_to_10__1 = 5.75366939e-04
+DEF BS1h_5_to_10__2 = 7.53475159e-03
+DEF BS1h_5_to_10__3 = 2.62925896e-02
+DEF BS1h_5_to_10__4 = 5.59552196e-02
+DEF BS1h_5_to_10__5 = 9.38224777e-02
+DEF BS1h_5_to_10__6 = 1.38093989e-01
+DEF BS1h_5_to_10__7 = 1.86695104e-01
+DEF BS1h_5_to_10__8 = 2.38543793e-01
+DEF BS1h_5_to_10__9 = 2.92908044e-01
+DEF BS1h_5_to_10__10 = 3.49913692e-01
+DEF BS1h_10_to_20__1 = 3.03513843e-04
+DEF BS1h_10_to_20__2 = 4.08571842e-03
+DEF BS1h_10_to_20__3 = 1.46896241e-02
+DEF BS1h_10_to_20__4 = 3.22534261e-02
+DEF BS1h_10_to_20__5 = 5.58137566e-02
+DEF BS1h_10_to_20__6 = 8.46751345e-02
+DEF BS1h_10_to_20__7 = 1.17958563e-01
+DEF BS1h_10_to_20__8 = 1.55191148e-01
+DEF BS1h_10_to_20__9 = 1.95764518e-01
+DEF BS1h_10_to_20__10 = 2.39444426e-01
+DEF BS1h_20_to_40__1 = 1.53958460e-04
+DEF BS1h_20_to_40__2 = 2.08942614e-03
+DEF BS1h_20_to_40__3 = 7.58271181e-03
+DEF BS1h_20_to_40__4 = 1.68248452e-02
+DEF BS1h_20_to_40__5 = 2.94655703e-02
+DEF BS1h_20_to_40__6 = 4.53049119e-02
+DEF BS1h_20_to_40__7 = 6.40722448e-02
+DEF BS1h_20_to_40__8 = 8.56616040e-02
+DEF BS1h_20_to_40__9 = 1.09917426e-01
+DEF BS1h_20_to_40__10 = 1.36835958e-01
+DEF BS3h_lt_m2__1 = 1.27759208e-03
+DEF BS3h_lt_m2__2 = 1.40046959e-02
+DEF BS3h_lt_m2__3 = 4.45915062e-02
+DEF BS3h_lt_m2__4 = 8.81501248e-02
+DEF BS3h_lt_m2__5 = 1.37524573e-01
+DEF BS3h_lt_m2__6 = 1.93265795e-01
+DEF BS3h_lt_m2__7 = 2.50022884e-01
+DEF BS3h_lt_m2__8 = 3.09475686e-01
+DEF BS3h_lt_m2__9 = 3.69661199e-01
+DEF BS3h_m2_to_0__1 = 1.23599742e-03
+DEF BS3h_m2_to_0__2 = 1.37552567e-02
+DEF BS3h_m2_to_0__3 = 4.37343474e-02
+DEF BS3h_m2_to_0__4 = 8.70637837e-02
+DEF BS3h_m2_to_0__5 = 1.35940783e-01
+DEF BS3h_m2_to_0__6 = 1.91306890e-01
+DEF BS3h_m2_to_0__7 = 2.48002996e-01
+DEF BS3h_m2_to_0__8 = 3.07009982e-01
+DEF BS3h_m2_to_0__9 = 3.67228171e-01
+DEF BS3h_0_to_2__1 = 1.10314220e-03
+DEF BS3h_0_to_2__2 = 1.28945436e-02
+DEF BS3h_0_to_2__3 = 4.09811659e-02
+DEF BS3h_0_to_2__4 = 8.29942365e-02
+DEF BS3h_0_to_2__5 = 1.30812249e-01
+DEF BS3h_0_to_2__6 = 1.84266534e-01
+DEF BS3h_0_to_2__7 = 2.40811680e-01
+DEF BS3h_0_to_2__8 = 2.98545350e-01
+DEF BS3h_0_to_2__9 = 3.58238048e-01
+DEF BS3h_2_to_5__1 = 8.18928042e-04
+DEF BS3h_2_to_5__2 = 1.04873997e-02
+DEF BS3h_2_to_5__3 = 3.44820353e-02
+DEF BS3h_2_to_5__4 = 7.10982663e-02
+DEF BS3h_2_to_5__5 = 1.15924626e-01
+DEF BS3h_2_to_5__6 = 1.65203526e-01
+DEF BS3h_2_to_5__7 = 2.18014303e-01
+DEF BS3h_2_to_5__8 = 2.74186419e-01
+DEF BS3h_2_to_5__9 = 3.31058783e-01
+DEF BS3h_5_to_10__1 = 5.09211429e-04
+DEF BS3h_5_to_10__2 = 6.97253099e-03
+DEF BS3h_5_to_10__3 = 2.44794308e-02
+DEF BS3h_5_to_10__4 = 5.22170301e-02
+DEF BS3h_5_to_10__5 = 8.77605523e-02
+DEF BS3h_5_to_10__6 = 1.29552755e-01
+DEF BS3h_5_to_10__7 = 1.75371175e-01
+DEF BS3h_5_to_10__8 = 2.24083979e-01
+DEF BS3h_5_to_10__9 = 2.75572474e-01
+DEF BS3h_10_to_20__1 = 2.74070926e-04
+DEF BS3h_10_to_20__2 = 3.86174965e-03
+DEF BS3h_10_to_20__3 = 1.40492860e-02
+DEF BS3h_10_to_20__4 = 3.10646135e-02
+DEF BS3h_10_to_20__5 = 5.39636839e-02
+DEF BS3h_10_to_20__6 = 8.20207685e-02
+DEF BS3h_10_to_20__7 = 1.14361488e-01
+DEF BS3h_10_to_20__8 = 1.50552831e-01
+DEF BS3h_10_to_20__9 = 1.89990288e-01
+DEF BS3h_20_to_40__1 = 1.39841570e-04
+DEF BS3h_20_to_40__2 = 1.98711731e-03
+DEF BS3h_20_to_40__3 = 7.30696801e-03
+DEF BS3h_20_to_40__4 = 1.63507885e-02
+DEF BS3h_20_to_40__5 = 2.87938205e-02
+DEF BS3h_20_to_40__6 = 4.44318460e-02
+DEF BS3h_20_to_40__7 = 6.29899767e-02
+DEF BS3h_20_to_40__8 = 8.43462149e-02
+DEF BS3h_20_to_40__9 = 1.08334671e-01
+DEF BS5h_lt_m2__1 = 9.87313550e-04
+DEF BS5h_lt_m2__2 = 1.14493189e-02
+DEF BS5h_lt_m2__3 = 3.66121278e-02
+DEF BS5h_lt_m2__4 = 7.44147399e-02
+DEF BS5h_lt_m2__5 = 1.17596237e-01
+DEF BS5h_lt_m2__6 = 1.66754338e-01
+DEF BS5h_lt_m2__7 = 2.18507873e-01
+DEF BS5h_lt_m2__8 = 2.72134207e-01
+DEF BS5h_m2_to_0__1 = 9.70102077e-04
+DEF BS5h_m2_to_0__2 = 1.13524131e-02
+DEF BS5h_m2_to_0__3 = 3.62450189e-02
+DEF BS5h_m2_to_0__4 = 7.39240126e-02
+DEF BS5h_m2_to_0__5 = 1.16968051e-01
+DEF BS5h_m2_to_0__6 = 1.65838261e-01
+DEF BS5h_m2_to_0__7 = 2.17645738e-01
+DEF BS5h_m2_to_0__8 = 2.71031811e-01
+DEF BS5h_0_to_2__1 = 9.04365979e-04
+DEF BS5h_0_to_2__2 = 1.09479558e-02
+DEF BS5h_0_to_2__3 = 3.48880245e-02
+DEF BS5h_0_to_2__4 = 7.17901254e-02
+DEF BS5h_0_to_2__5 = 1.14562736e-01
+DEF BS5h_0_to_2__6 = 1.62130076e-01
+DEF BS5h_0_to_2__7 = 2.13945522e-01
+DEF BS5h_0_to_2__8 = 2.66775719e-01
+DEF BS5h_2_to_5__1 = 7.19749493e-04
+DEF BS5h_2_to_5__2 = 9.42723735e-03
+DEF BS5h_2_to_5__3 = 3.09473349e-02
+DEF BS5h_2_to_5__4 = 6.40059572e-02
+DEF BS5h_2_to_5__5 = 1.05256325e-01
+DEF BS5h_2_to_5__6 = 1.50250131e-01
+DEF BS5h_2_to_5__7 = 1.98943263e-01
+DEF BS5h_2_to_5__8 = 2.51440933e-01
+DEF BS5h_5_to_10__1 = 4.69258785e-04
+DEF BS5h_5_to_10__2 = 6.57451510e-03
+DEF BS5h_5_to_10__3 = 2.31982817e-02
+DEF BS5h_5_to_10__4 = 4.93072497e-02
+DEF BS5h_5_to_10__5 = 8.29101137e-02
+DEF BS5h_5_to_10__6 = 1.22686152e-01
+DEF BS5h_5_to_10__7 = 1.66094772e-01
+DEF BS5h_5_to_10__8 = 2.12047616e-01
+DEF BS5h_10_to_20__1 = 2.57636197e-04
+DEF BS5h_10_to_20__2 = 3.71800616e-03
+DEF BS5h_10_to_20__3 = 1.36548942e-02
+DEF BS5h_10_to_20__4 = 3.02694606e-02
+DEF BS5h_10_to_20__5 = 5.26373207e-02
+DEF BS5h_10_to_20__6 = 8.00097811e-02
+DEF BS5h_10_to_20__7 = 1.11544178e-01
+DEF BS5h_10_to_20__8 = 1.46866258e-01
+DEF BS5h_20_to_40__1 = 1.32225312e-04
+DEF BS5h_20_to_40__2 = 1.92468330e-03
+DEF BS5h_20_to_40__3 = 7.15073901e-03
+DEF BS5h_20_to_40__4 = 1.60670704e-02
+DEF BS5h_20_to_40__5 = 2.83748591e-02
+DEF BS5h_20_to_40__6 = 4.38665903e-02
+DEF BS5h_20_to_40__7 = 6.22629377e-02
+DEF BS5h_20_to_40__8 = 8.34298505e-02
+
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h(double phi, double beta):
+    if phi < -2.0:
+        return dgfdm1h_lt_m2(phi, beta)
+    if phi < 0.0:
+        return dgfdm1h_m2_to_0(phi, beta)
+    if phi < 2.0:
+        return dgfdm1h_0_to_2(phi, beta)
+    if phi < 5.0:
+        return dgfdm1h_2_to_5(phi, beta)
+    if phi < 10.0:
+        return dgfdm1h_5_to_10(phi, beta)
+    if phi < 20.0:
+        return dgfdm1h_10_to_20(phi, beta)
+    if phi < 40.0:
+        return dgfdm1h_20_to_40(phi, beta)
+    return dgfdm1h_gt_40(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd1h(double phi, double beta):
+    if phi < -2.0:
+        return dgfd1h_lt_m2(phi, beta)
+    if phi < 0.0:
+        return dgfd1h_m2_to_0(phi, beta)
+    if phi < 2.0:
+        return dgfd1h_0_to_2(phi, beta)
+    if phi < 5.0:
+        return dgfd1h_2_to_5(phi, beta)
+    if phi < 10.0:
+        return dgfd1h_5_to_10(phi, beta)
+    if phi < 20.0:
+        return dgfd1h_10_to_20(phi, beta)
+    if phi < 40.0:
+        return dgfd1h_20_to_40(phi, beta)
+    return dgfd1h_gt_40(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd3h(double phi, double beta):
+    if phi < -2.0:
+        return dgfd3h_lt_m2(phi, beta)
+    if phi < 0.0:
+        return dgfd3h_m2_to_0(phi, beta)
+    if phi < 2.0:
+        return dgfd3h_0_to_2(phi, beta)
+    if phi < 5.0:
+        return dgfd3h_2_to_5(phi, beta)
+    if phi < 10.0:
+        return dgfd3h_5_to_10(phi, beta)
+    if phi < 20.0:
+        return dgfd3h_10_to_20(phi, beta)
+    if phi < 40.0:
+        return dgfd3h_20_to_40(phi, beta)
+    return dgfd3h_gt_40(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd5h(double phi, double beta):
+    if phi < -2.0:
+        return dgfd5h_lt_m2(phi, beta)
+    if phi < 0.0:
+        return dgfd5h_m2_to_0(phi, beta)
+    if phi < 2.0:
+        return dgfd5h_0_to_2(phi, beta)
+    if phi < 5.0:
+        return dgfd5h_2_to_5(phi, beta)
+    if phi < 10.0:
+        return dgfd5h_5_to_10(phi, beta)
+    if phi < 20.0:
+        return dgfd5h_10_to_20(phi, beta)
+    if phi < 40.0:
+        return dgfd5h_20_to_40(phi, beta)
+    return dgfd5h_gt_40(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_lt_m2(double phi, double beta):
+    if(beta <= BSm1h_lt_m2__1):
+        return dgfdm1h_lt_m2__1(phi, beta)
+    if(beta <= BSm1h_lt_m2__2):
+        return dgfdm1h_lt_m2__2(phi, beta)
+    if(beta <= BSm1h_lt_m2__3):
+        return dgfdm1h_lt_m2__3(phi, beta)
+    if(beta <= BSm1h_lt_m2__4):
+        return dgfdm1h_lt_m2__4(phi, beta)
+    if(beta <= BSm1h_lt_m2__5):
+        return dgfdm1h_lt_m2__5(phi, beta)
+    if(beta <= BSm1h_lt_m2__6):
+        return dgfdm1h_lt_m2__6(phi, beta)
+    if(beta <= BSm1h_lt_m2__7):
+        return dgfdm1h_lt_m2__7(phi, beta)
+    if(beta <= BSm1h_lt_m2__8):
+        return dgfdm1h_lt_m2__8(phi, beta)
+    if(beta <= BSm1h_lt_m2__9):
+        return dgfdm1h_lt_m2__9(phi, beta)
+    if(beta <= BSm1h_lt_m2__10):
+        return dgfdm1h_lt_m2__10(phi, beta)
+    warnings.warn('dgfdm1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfdm1h_lt_m2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_m2_to_0(double phi, double beta):
+    if(beta <= BSm1h_m2_to_0__1):
+        return dgfdm1h_m2_to_0__1(phi, beta)
+    if(beta <= BSm1h_m2_to_0__2):
+        return dgfdm1h_m2_to_0__2(phi, beta)
+    if(beta <= BSm1h_m2_to_0__3):
+        return dgfdm1h_m2_to_0__3(phi, beta)
+    if(beta <= BSm1h_m2_to_0__4):
+        return dgfdm1h_m2_to_0__4(phi, beta)
+    if(beta <= BSm1h_m2_to_0__5):
+        return dgfdm1h_m2_to_0__5(phi, beta)
+    if(beta <= BSm1h_m2_to_0__6):
+        return dgfdm1h_m2_to_0__6(phi, beta)
+    if(beta <= BSm1h_m2_to_0__7):
+        return dgfdm1h_m2_to_0__7(phi, beta)
+    if(beta <= BSm1h_m2_to_0__8):
+        return dgfdm1h_m2_to_0__8(phi, beta)
+    if(beta <= BSm1h_m2_to_0__9):
+        return dgfdm1h_m2_to_0__9(phi, beta)
+    if(beta <= BSm1h_m2_to_0__10):
+        return dgfdm1h_m2_to_0__10(phi, beta)
+    warnings.warn('dgfdm1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfdm1h_m2_to_0__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_0_to_2(double phi, double beta):
+    if(beta <= BSm1h_0_to_2__1):
+        return dgfdm1h_0_to_2__1(phi, beta)
+    if(beta <= BSm1h_0_to_2__2):
+        return dgfdm1h_0_to_2__2(phi, beta)
+    if(beta <= BSm1h_0_to_2__3):
+        return dgfdm1h_0_to_2__3(phi, beta)
+    if(beta <= BSm1h_0_to_2__4):
+        return dgfdm1h_0_to_2__4(phi, beta)
+    if(beta <= BSm1h_0_to_2__5):
+        return dgfdm1h_0_to_2__5(phi, beta)
+    if(beta <= BSm1h_0_to_2__6):
+        return dgfdm1h_0_to_2__6(phi, beta)
+    if(beta <= BSm1h_0_to_2__7):
+        return dgfdm1h_0_to_2__7(phi, beta)
+    if(beta <= BSm1h_0_to_2__8):
+        return dgfdm1h_0_to_2__8(phi, beta)
+    if(beta <= BSm1h_0_to_2__9):
+        return dgfdm1h_0_to_2__9(phi, beta)
+    if(beta <= BSm1h_0_to_2__10):
+        return dgfdm1h_0_to_2__10(phi, beta)
+    warnings.warn('dgfdm1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfdm1h_0_to_2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_2_to_5(double phi, double beta):
+    if(beta <= BSm1h_2_to_5__1):
+        return dgfdm1h_2_to_5__1(phi, beta)
+    if(beta <= BSm1h_2_to_5__2):
+        return dgfdm1h_2_to_5__2(phi, beta)
+    if(beta <= BSm1h_2_to_5__3):
+        return dgfdm1h_2_to_5__3(phi, beta)
+    if(beta <= BSm1h_2_to_5__4):
+        return dgfdm1h_2_to_5__4(phi, beta)
+    if(beta <= BSm1h_2_to_5__5):
+        return dgfdm1h_2_to_5__5(phi, beta)
+    if(beta <= BSm1h_2_to_5__6):
+        return dgfdm1h_2_to_5__6(phi, beta)
+    if(beta <= BSm1h_2_to_5__7):
+        return dgfdm1h_2_to_5__7(phi, beta)
+    if(beta <= BSm1h_2_to_5__8):
+        return dgfdm1h_2_to_5__8(phi, beta)
+    if(beta <= BSm1h_2_to_5__9):
+        return dgfdm1h_2_to_5__9(phi, beta)
+    if(beta <= BSm1h_2_to_5__10):
+        return dgfdm1h_2_to_5__10(phi, beta)
+    warnings.warn('dgfdm1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfdm1h_2_to_5__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_5_to_10(double phi, double beta):
+    if(beta <= BSm1h_5_to_10__1):
+        return dgfdm1h_5_to_10__1(phi, beta)
+    if(beta <= BSm1h_5_to_10__2):
+        return dgfdm1h_5_to_10__2(phi, beta)
+    if(beta <= BSm1h_5_to_10__3):
+        return dgfdm1h_5_to_10__3(phi, beta)
+    if(beta <= BSm1h_5_to_10__4):
+        return dgfdm1h_5_to_10__4(phi, beta)
+    if(beta <= BSm1h_5_to_10__5):
+        return dgfdm1h_5_to_10__5(phi, beta)
+    if(beta <= BSm1h_5_to_10__6):
+        return dgfdm1h_5_to_10__6(phi, beta)
+    if(beta <= BSm1h_5_to_10__7):
+        return dgfdm1h_5_to_10__7(phi, beta)
+    if(beta <= BSm1h_5_to_10__8):
+        return dgfdm1h_5_to_10__8(phi, beta)
+    if(beta <= BSm1h_5_to_10__9):
+        return dgfdm1h_5_to_10__9(phi, beta)
+    if(beta <= BSm1h_5_to_10__10):
+        return dgfdm1h_5_to_10__10(phi, beta)
+    warnings.warn('dgfdm1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfdm1h_5_to_10__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_10_to_20(double phi, double beta):
+    if(beta <= BSm1h_10_to_20__1):
+        return dgfdm1h_10_to_20__1(phi, beta)
+    if(beta <= BSm1h_10_to_20__2):
+        return dgfdm1h_10_to_20__2(phi, beta)
+    if(beta <= BSm1h_10_to_20__3):
+        return dgfdm1h_10_to_20__3(phi, beta)
+    if(beta <= BSm1h_10_to_20__4):
+        return dgfdm1h_10_to_20__4(phi, beta)
+    if(beta <= BSm1h_10_to_20__5):
+        return dgfdm1h_10_to_20__5(phi, beta)
+    if(beta <= BSm1h_10_to_20__6):
+        return dgfdm1h_10_to_20__6(phi, beta)
+    if(beta <= BSm1h_10_to_20__7):
+        return dgfdm1h_10_to_20__7(phi, beta)
+    if(beta <= BSm1h_10_to_20__8):
+        return dgfdm1h_10_to_20__8(phi, beta)
+    if(beta <= BSm1h_10_to_20__9):
+        return dgfdm1h_10_to_20__9(phi, beta)
+    if(beta <= BSm1h_10_to_20__10):
+        return dgfdm1h_10_to_20__10(phi, beta)
+    warnings.warn('dgfdm1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfdm1h_10_to_20__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_20_to_40(double phi, double beta):
+    if(beta <= BSm1h_20_to_40__1):
+        return dgfdm1h_20_to_40__1(phi, beta)
+    if(beta <= BSm1h_20_to_40__2):
+        return dgfdm1h_20_to_40__2(phi, beta)
+    if(beta <= BSm1h_20_to_40__3):
+        return dgfdm1h_20_to_40__3(phi, beta)
+    if(beta <= BSm1h_20_to_40__4):
+        return dgfdm1h_20_to_40__4(phi, beta)
+    if(beta <= BSm1h_20_to_40__5):
+        return dgfdm1h_20_to_40__5(phi, beta)
+    if(beta <= BSm1h_20_to_40__6):
+        return dgfdm1h_20_to_40__6(phi, beta)
+    if(beta <= BSm1h_20_to_40__7):
+        return dgfdm1h_20_to_40__7(phi, beta)
+    if(beta <= BSm1h_20_to_40__8):
+        return dgfdm1h_20_to_40__8(phi, beta)
+    if(beta <= BSm1h_20_to_40__9):
+        return dgfdm1h_20_to_40__9(phi, beta)
+    if(beta <= BSm1h_20_to_40__10):
+        return dgfdm1h_20_to_40__10(phi, beta)
+    warnings.warn('dgfdm1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfdm1h_20_to_40__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_gt_40(double phi, double beta):
+    warnings.warn('dgfdm1h: 24 bits of accuracy not guaranteed',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfdm1h_gt_40__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_lt_m2(double phi, double beta):
+    if(beta <= BS1h_lt_m2__1):
+        return dgfd1h_lt_m2__1(phi, beta)
+    if(beta <= BS1h_lt_m2__2):
+        return dgfd1h_lt_m2__2(phi, beta)
+    if(beta <= BS1h_lt_m2__3):
+        return dgfd1h_lt_m2__3(phi, beta)
+    if(beta <= BS1h_lt_m2__4):
+        return dgfd1h_lt_m2__4(phi, beta)
+    if(beta <= BS1h_lt_m2__5):
+        return dgfd1h_lt_m2__5(phi, beta)
+    if(beta <= BS1h_lt_m2__6):
+        return dgfd1h_lt_m2__6(phi, beta)
+    if(beta <= BS1h_lt_m2__7):
+        return dgfd1h_lt_m2__7(phi, beta)
+    if(beta <= BS1h_lt_m2__8):
+        return dgfd1h_lt_m2__8(phi, beta)
+    if(beta <= BS1h_lt_m2__9):
+        return dgfd1h_lt_m2__9(phi, beta)
+    if(beta <= BS1h_lt_m2__10):
+        return dgfd1h_lt_m2__10(phi, beta)
+    warnings.warn('dgfd1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd1h_lt_m2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_m2_to_0(double phi, double beta):
+    if(beta <= BS1h_m2_to_0__1):
+        return dgfd1h_m2_to_0__1(phi, beta)
+    if(beta <= BS1h_m2_to_0__2):
+        return dgfd1h_m2_to_0__2(phi, beta)
+    if(beta <= BS1h_m2_to_0__3):
+        return dgfd1h_m2_to_0__3(phi, beta)
+    if(beta <= BS1h_m2_to_0__4):
+        return dgfd1h_m2_to_0__4(phi, beta)
+    if(beta <= BS1h_m2_to_0__5):
+        return dgfd1h_m2_to_0__5(phi, beta)
+    if(beta <= BS1h_m2_to_0__6):
+        return dgfd1h_m2_to_0__6(phi, beta)
+    if(beta <= BS1h_m2_to_0__7):
+        return dgfd1h_m2_to_0__7(phi, beta)
+    if(beta <= BS1h_m2_to_0__8):
+        return dgfd1h_m2_to_0__8(phi, beta)
+    if(beta <= BS1h_m2_to_0__9):
+        return dgfd1h_m2_to_0__9(phi, beta)
+    if(beta <= BS1h_m2_to_0__10):
+        return dgfd1h_m2_to_0__10(phi, beta)
+    warnings.warn('dgfd1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd1h_m2_to_0__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_0_to_2(double phi, double beta):
+    if(beta <= BS1h_0_to_2__1):
+        return dgfd1h_0_to_2__1(phi, beta)
+    if(beta <= BS1h_0_to_2__2):
+        return dgfd1h_0_to_2__2(phi, beta)
+    if(beta <= BS1h_0_to_2__3):
+        return dgfd1h_0_to_2__3(phi, beta)
+    if(beta <= BS1h_0_to_2__4):
+        return dgfd1h_0_to_2__4(phi, beta)
+    if(beta <= BS1h_0_to_2__5):
+        return dgfd1h_0_to_2__5(phi, beta)
+    if(beta <= BS1h_0_to_2__6):
+        return dgfd1h_0_to_2__6(phi, beta)
+    if(beta <= BS1h_0_to_2__7):
+        return dgfd1h_0_to_2__7(phi, beta)
+    if(beta <= BS1h_0_to_2__8):
+        return dgfd1h_0_to_2__8(phi, beta)
+    if(beta <= BS1h_0_to_2__9):
+        return dgfd1h_0_to_2__9(phi, beta)
+    if(beta <= BS1h_0_to_2__10):
+        return dgfd1h_0_to_2__10(phi, beta)
+    warnings.warn('dgfd1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd1h_0_to_2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_2_to_5(double phi, double beta):
+    if(beta <= BS1h_2_to_5__1):
+        return dgfd1h_2_to_5__1(phi, beta)
+    if(beta <= BS1h_2_to_5__2):
+        return dgfd1h_2_to_5__2(phi, beta)
+    if(beta <= BS1h_2_to_5__3):
+        return dgfd1h_2_to_5__3(phi, beta)
+    if(beta <= BS1h_2_to_5__4):
+        return dgfd1h_2_to_5__4(phi, beta)
+    if(beta <= BS1h_2_to_5__5):
+        return dgfd1h_2_to_5__5(phi, beta)
+    if(beta <= BS1h_2_to_5__6):
+        return dgfd1h_2_to_5__6(phi, beta)
+    if(beta <= BS1h_2_to_5__7):
+        return dgfd1h_2_to_5__7(phi, beta)
+    if(beta <= BS1h_2_to_5__8):
+        return dgfd1h_2_to_5__8(phi, beta)
+    if(beta <= BS1h_2_to_5__9):
+        return dgfd1h_2_to_5__9(phi, beta)
+    if(beta <= BS1h_2_to_5__10):
+        return dgfd1h_2_to_5__10(phi, beta)
+    warnings.warn('dgfd1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd1h_2_to_5__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_5_to_10(double phi, double beta):
+    if(beta <= BS1h_5_to_10__1):
+        return dgfd1h_5_to_10__1(phi, beta)
+    if(beta <= BS1h_5_to_10__2):
+        return dgfd1h_5_to_10__2(phi, beta)
+    if(beta <= BS1h_5_to_10__3):
+        return dgfd1h_5_to_10__3(phi, beta)
+    if(beta <= BS1h_5_to_10__4):
+        return dgfd1h_5_to_10__4(phi, beta)
+    if(beta <= BS1h_5_to_10__5):
+        return dgfd1h_5_to_10__5(phi, beta)
+    if(beta <= BS1h_5_to_10__6):
+        return dgfd1h_5_to_10__6(phi, beta)
+    if(beta <= BS1h_5_to_10__7):
+        return dgfd1h_5_to_10__7(phi, beta)
+    if(beta <= BS1h_5_to_10__8):
+        return dgfd1h_5_to_10__8(phi, beta)
+    if(beta <= BS1h_5_to_10__9):
+        return dgfd1h_5_to_10__9(phi, beta)
+    if(beta <= BS1h_5_to_10__10):
+        return dgfd1h_5_to_10__10(phi, beta)
+    warnings.warn('dgfd1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd1h_5_to_10__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_10_to_20(double phi, double beta):
+    if(beta <= BS1h_10_to_20__1):
+        return dgfd1h_10_to_20__1(phi, beta)
+    if(beta <= BS1h_10_to_20__2):
+        return dgfd1h_10_to_20__2(phi, beta)
+    if(beta <= BS1h_10_to_20__3):
+        return dgfd1h_10_to_20__3(phi, beta)
+    if(beta <= BS1h_10_to_20__4):
+        return dgfd1h_10_to_20__4(phi, beta)
+    if(beta <= BS1h_10_to_20__5):
+        return dgfd1h_10_to_20__5(phi, beta)
+    if(beta <= BS1h_10_to_20__6):
+        return dgfd1h_10_to_20__6(phi, beta)
+    if(beta <= BS1h_10_to_20__7):
+        return dgfd1h_10_to_20__7(phi, beta)
+    if(beta <= BS1h_10_to_20__8):
+        return dgfd1h_10_to_20__8(phi, beta)
+    if(beta <= BS1h_10_to_20__9):
+        return dgfd1h_10_to_20__9(phi, beta)
+    if(beta <= BS1h_10_to_20__10):
+        return dgfd1h_10_to_20__10(phi, beta)
+    warnings.warn('dgfd1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd1h_10_to_20__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_20_to_40(double phi, double beta):
+    if(beta <= BS1h_20_to_40__1):
+        return dgfd1h_20_to_40__1(phi, beta)
+    if(beta <= BS1h_20_to_40__2):
+        return dgfd1h_20_to_40__2(phi, beta)
+    if(beta <= BS1h_20_to_40__3):
+        return dgfd1h_20_to_40__3(phi, beta)
+    if(beta <= BS1h_20_to_40__4):
+        return dgfd1h_20_to_40__4(phi, beta)
+    if(beta <= BS1h_20_to_40__5):
+        return dgfd1h_20_to_40__5(phi, beta)
+    if(beta <= BS1h_20_to_40__6):
+        return dgfd1h_20_to_40__6(phi, beta)
+    if(beta <= BS1h_20_to_40__7):
+        return dgfd1h_20_to_40__7(phi, beta)
+    if(beta <= BS1h_20_to_40__8):
+        return dgfd1h_20_to_40__8(phi, beta)
+    if(beta <= BS1h_20_to_40__9):
+        return dgfd1h_20_to_40__9(phi, beta)
+    if(beta <= BS1h_20_to_40__10):
+        return dgfd1h_20_to_40__10(phi, beta)
+    warnings.warn('dgfd1h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd1h_20_to_40__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_gt_40(double phi, double beta):
+    warnings.warn('dgfd1h: 24 bits of accuracy not guaranteed',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd1h_gt_40__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_lt_m2(double phi, double beta):
+    if(beta <= BS3h_lt_m2__1):
+        return dgfd3h_lt_m2__1(phi, beta)
+    if(beta <= BS3h_lt_m2__2):
+        return dgfd3h_lt_m2__2(phi, beta)
+    if(beta <= BS3h_lt_m2__3):
+        return dgfd3h_lt_m2__3(phi, beta)
+    if(beta <= BS3h_lt_m2__4):
+        return dgfd3h_lt_m2__4(phi, beta)
+    if(beta <= BS3h_lt_m2__5):
+        return dgfd3h_lt_m2__5(phi, beta)
+    if(beta <= BS3h_lt_m2__6):
+        return dgfd3h_lt_m2__6(phi, beta)
+    if(beta <= BS3h_lt_m2__7):
+        return dgfd3h_lt_m2__7(phi, beta)
+    if(beta <= BS3h_lt_m2__8):
+        return dgfd3h_lt_m2__8(phi, beta)
+    if(beta <= BS3h_lt_m2__9):
+        return dgfd3h_lt_m2__9(phi, beta)
+    warnings.warn('dgfd3h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd3h_lt_m2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_m2_to_0(double phi, double beta):
+    if(beta <= BS3h_m2_to_0__1):
+        return dgfd3h_m2_to_0__1(phi, beta)
+    if(beta <= BS3h_m2_to_0__2):
+        return dgfd3h_m2_to_0__2(phi, beta)
+    if(beta <= BS3h_m2_to_0__3):
+        return dgfd3h_m2_to_0__3(phi, beta)
+    if(beta <= BS3h_m2_to_0__4):
+        return dgfd3h_m2_to_0__4(phi, beta)
+    if(beta <= BS3h_m2_to_0__5):
+        return dgfd3h_m2_to_0__5(phi, beta)
+    if(beta <= BS3h_m2_to_0__6):
+        return dgfd3h_m2_to_0__6(phi, beta)
+    if(beta <= BS3h_m2_to_0__7):
+        return dgfd3h_m2_to_0__7(phi, beta)
+    if(beta <= BS3h_m2_to_0__8):
+        return dgfd3h_m2_to_0__8(phi, beta)
+    if(beta <= BS3h_m2_to_0__9):
+        return dgfd3h_m2_to_0__9(phi, beta)
+    warnings.warn('dgfd3h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd3h_m2_to_0__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_0_to_2(double phi, double beta):
+    if(beta <= BS3h_0_to_2__1):
+        return dgfd3h_0_to_2__1(phi, beta)
+    if(beta <= BS3h_0_to_2__2):
+        return dgfd3h_0_to_2__2(phi, beta)
+    if(beta <= BS3h_0_to_2__3):
+        return dgfd3h_0_to_2__3(phi, beta)
+    if(beta <= BS3h_0_to_2__4):
+        return dgfd3h_0_to_2__4(phi, beta)
+    if(beta <= BS3h_0_to_2__5):
+        return dgfd3h_0_to_2__5(phi, beta)
+    if(beta <= BS3h_0_to_2__6):
+        return dgfd3h_0_to_2__6(phi, beta)
+    if(beta <= BS3h_0_to_2__7):
+        return dgfd3h_0_to_2__7(phi, beta)
+    if(beta <= BS3h_0_to_2__8):
+        return dgfd3h_0_to_2__8(phi, beta)
+    if(beta <= BS3h_0_to_2__9):
+        return dgfd3h_0_to_2__9(phi, beta)
+    warnings.warn('dgfd3h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd3h_0_to_2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_2_to_5(double phi, double beta):
+    if(beta <= BS3h_2_to_5__1):
+        return dgfd3h_2_to_5__1(phi, beta)
+    if(beta <= BS3h_2_to_5__2):
+        return dgfd3h_2_to_5__2(phi, beta)
+    if(beta <= BS3h_2_to_5__3):
+        return dgfd3h_2_to_5__3(phi, beta)
+    if(beta <= BS3h_2_to_5__4):
+        return dgfd3h_2_to_5__4(phi, beta)
+    if(beta <= BS3h_2_to_5__5):
+        return dgfd3h_2_to_5__5(phi, beta)
+    if(beta <= BS3h_2_to_5__6):
+        return dgfd3h_2_to_5__6(phi, beta)
+    if(beta <= BS3h_2_to_5__7):
+        return dgfd3h_2_to_5__7(phi, beta)
+    if(beta <= BS3h_2_to_5__8):
+        return dgfd3h_2_to_5__8(phi, beta)
+    if(beta <= BS3h_2_to_5__9):
+        return dgfd3h_2_to_5__9(phi, beta)
+    warnings.warn('dgfd3h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd3h_2_to_5__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_5_to_10(double phi, double beta):
+    if(beta <= BS3h_5_to_10__1):
+        return dgfd3h_5_to_10__1(phi, beta)
+    if(beta <= BS3h_5_to_10__2):
+        return dgfd3h_5_to_10__2(phi, beta)
+    if(beta <= BS3h_5_to_10__3):
+        return dgfd3h_5_to_10__3(phi, beta)
+    if(beta <= BS3h_5_to_10__4):
+        return dgfd3h_5_to_10__4(phi, beta)
+    if(beta <= BS3h_5_to_10__5):
+        return dgfd3h_5_to_10__5(phi, beta)
+    if(beta <= BS3h_5_to_10__6):
+        return dgfd3h_5_to_10__6(phi, beta)
+    if(beta <= BS3h_5_to_10__7):
+        return dgfd3h_5_to_10__7(phi, beta)
+    if(beta <= BS3h_5_to_10__8):
+        return dgfd3h_5_to_10__8(phi, beta)
+    if(beta <= BS3h_5_to_10__9):
+        return dgfd3h_5_to_10__9(phi, beta)
+    warnings.warn('dgfd3h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd3h_5_to_10__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_10_to_20(double phi, double beta):
+    if(beta <= BS3h_10_to_20__1):
+        return dgfd3h_10_to_20__1(phi, beta)
+    if(beta <= BS3h_10_to_20__2):
+        return dgfd3h_10_to_20__2(phi, beta)
+    if(beta <= BS3h_10_to_20__3):
+        return dgfd3h_10_to_20__3(phi, beta)
+    if(beta <= BS3h_10_to_20__4):
+        return dgfd3h_10_to_20__4(phi, beta)
+    if(beta <= BS3h_10_to_20__5):
+        return dgfd3h_10_to_20__5(phi, beta)
+    if(beta <= BS3h_10_to_20__6):
+        return dgfd3h_10_to_20__6(phi, beta)
+    if(beta <= BS3h_10_to_20__7):
+        return dgfd3h_10_to_20__7(phi, beta)
+    if(beta <= BS3h_10_to_20__8):
+        return dgfd3h_10_to_20__8(phi, beta)
+    if(beta <= BS3h_10_to_20__9):
+        return dgfd3h_10_to_20__9(phi, beta)
+    warnings.warn('dgfd3h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd3h_10_to_20__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_20_to_40(double phi, double beta):
+    if(beta <= BS3h_20_to_40__1):
+        return dgfd3h_20_to_40__1(phi, beta)
+    if(beta <= BS3h_20_to_40__2):
+        return dgfd3h_20_to_40__2(phi, beta)
+    if(beta <= BS3h_20_to_40__3):
+        return dgfd3h_20_to_40__3(phi, beta)
+    if(beta <= BS3h_20_to_40__4):
+        return dgfd3h_20_to_40__4(phi, beta)
+    if(beta <= BS3h_20_to_40__5):
+        return dgfd3h_20_to_40__5(phi, beta)
+    if(beta <= BS3h_20_to_40__6):
+        return dgfd3h_20_to_40__6(phi, beta)
+    if(beta <= BS3h_20_to_40__7):
+        return dgfd3h_20_to_40__7(phi, beta)
+    if(beta <= BS3h_20_to_40__8):
+        return dgfd3h_20_to_40__8(phi, beta)
+    if(beta <= BS3h_20_to_40__9):
+        return dgfd3h_20_to_40__9(phi, beta)
+    warnings.warn('dgfd3h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd3h_20_to_40__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_gt_40(double phi, double beta):
+    warnings.warn('dgfd3h: 24 bits of accuracy not guaranteed',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd3h_gt_40__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_lt_m2(double phi, double beta):
+    if(beta <= BS5h_lt_m2__1):
+        return dgfd5h_lt_m2__1(phi, beta)
+    if(beta <= BS5h_lt_m2__2):
+        return dgfd5h_lt_m2__2(phi, beta)
+    if(beta <= BS5h_lt_m2__3):
+        return dgfd5h_lt_m2__3(phi, beta)
+    if(beta <= BS5h_lt_m2__4):
+        return dgfd5h_lt_m2__4(phi, beta)
+    if(beta <= BS5h_lt_m2__5):
+        return dgfd5h_lt_m2__5(phi, beta)
+    if(beta <= BS5h_lt_m2__6):
+        return dgfd5h_lt_m2__6(phi, beta)
+    if(beta <= BS5h_lt_m2__7):
+        return dgfd5h_lt_m2__7(phi, beta)
+    if(beta <= BS5h_lt_m2__8):
+        return dgfd5h_lt_m2__8(phi, beta)
+    warnings.warn('dgfd5h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd5h_lt_m2__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_m2_to_0(double phi, double beta):
+    if(beta <= BS5h_m2_to_0__1):
+        return dgfd5h_m2_to_0__1(phi, beta)
+    if(beta <= BS5h_m2_to_0__2):
+        return dgfd5h_m2_to_0__2(phi, beta)
+    if(beta <= BS5h_m2_to_0__3):
+        return dgfd5h_m2_to_0__3(phi, beta)
+    if(beta <= BS5h_m2_to_0__4):
+        return dgfd5h_m2_to_0__4(phi, beta)
+    if(beta <= BS5h_m2_to_0__5):
+        return dgfd5h_m2_to_0__5(phi, beta)
+    if(beta <= BS5h_m2_to_0__6):
+        return dgfd5h_m2_to_0__6(phi, beta)
+    if(beta <= BS5h_m2_to_0__7):
+        return dgfd5h_m2_to_0__7(phi, beta)
+    if(beta <= BS5h_m2_to_0__8):
+        return dgfd5h_m2_to_0__8(phi, beta)
+    warnings.warn('dgfd5h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd5h_m2_to_0__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_0_to_2(double phi, double beta):
+    if(beta <= BS5h_0_to_2__1):
+        return dgfd5h_0_to_2__1(phi, beta)
+    if(beta <= BS5h_0_to_2__2):
+        return dgfd5h_0_to_2__2(phi, beta)
+    if(beta <= BS5h_0_to_2__3):
+        return dgfd5h_0_to_2__3(phi, beta)
+    if(beta <= BS5h_0_to_2__4):
+        return dgfd5h_0_to_2__4(phi, beta)
+    if(beta <= BS5h_0_to_2__5):
+        return dgfd5h_0_to_2__5(phi, beta)
+    if(beta <= BS5h_0_to_2__6):
+        return dgfd5h_0_to_2__6(phi, beta)
+    if(beta <= BS5h_0_to_2__7):
+        return dgfd5h_0_to_2__7(phi, beta)
+    if(beta <= BS5h_0_to_2__8):
+        return dgfd5h_0_to_2__8(phi, beta)
+    warnings.warn('dgfd5h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd5h_0_to_2__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_2_to_5(double phi, double beta):
+    if(beta <= BS5h_2_to_5__1):
+        return dgfd5h_2_to_5__1(phi, beta)
+    if(beta <= BS5h_2_to_5__2):
+        return dgfd5h_2_to_5__2(phi, beta)
+    if(beta <= BS5h_2_to_5__3):
+        return dgfd5h_2_to_5__3(phi, beta)
+    if(beta <= BS5h_2_to_5__4):
+        return dgfd5h_2_to_5__4(phi, beta)
+    if(beta <= BS5h_2_to_5__5):
+        return dgfd5h_2_to_5__5(phi, beta)
+    if(beta <= BS5h_2_to_5__6):
+        return dgfd5h_2_to_5__6(phi, beta)
+    if(beta <= BS5h_2_to_5__7):
+        return dgfd5h_2_to_5__7(phi, beta)
+    if(beta <= BS5h_2_to_5__8):
+        return dgfd5h_2_to_5__8(phi, beta)
+    warnings.warn('dgfd5h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd5h_2_to_5__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_5_to_10(double phi, double beta):
+    if(beta <= BS5h_5_to_10__1):
+        return dgfd5h_5_to_10__1(phi, beta)
+    if(beta <= BS5h_5_to_10__2):
+        return dgfd5h_5_to_10__2(phi, beta)
+    if(beta <= BS5h_5_to_10__3):
+        return dgfd5h_5_to_10__3(phi, beta)
+    if(beta <= BS5h_5_to_10__4):
+        return dgfd5h_5_to_10__4(phi, beta)
+    if(beta <= BS5h_5_to_10__5):
+        return dgfd5h_5_to_10__5(phi, beta)
+    if(beta <= BS5h_5_to_10__6):
+        return dgfd5h_5_to_10__6(phi, beta)
+    if(beta <= BS5h_5_to_10__7):
+        return dgfd5h_5_to_10__7(phi, beta)
+    if(beta <= BS5h_5_to_10__8):
+        return dgfd5h_5_to_10__8(phi, beta)
+    warnings.warn('dgfd5h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd5h_5_to_10__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_10_to_20(double phi, double beta):
+    if(beta <= BS5h_10_to_20__1):
+        return dgfd5h_10_to_20__1(phi, beta)
+    if(beta <= BS5h_10_to_20__2):
+        return dgfd5h_10_to_20__2(phi, beta)
+    if(beta <= BS5h_10_to_20__3):
+        return dgfd5h_10_to_20__3(phi, beta)
+    if(beta <= BS5h_10_to_20__4):
+        return dgfd5h_10_to_20__4(phi, beta)
+    if(beta <= BS5h_10_to_20__5):
+        return dgfd5h_10_to_20__5(phi, beta)
+    if(beta <= BS5h_10_to_20__6):
+        return dgfd5h_10_to_20__6(phi, beta)
+    if(beta <= BS5h_10_to_20__7):
+        return dgfd5h_10_to_20__7(phi, beta)
+    if(beta <= BS5h_10_to_20__8):
+        return dgfd5h_10_to_20__8(phi, beta)
+    warnings.warn('dgfd5h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd5h_10_to_20__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_20_to_40(double phi, double beta):
+    if(beta <= BS5h_20_to_40__1):
+        return dgfd5h_20_to_40__1(phi, beta)
+    if(beta <= BS5h_20_to_40__2):
+        return dgfd5h_20_to_40__2(phi, beta)
+    if(beta <= BS5h_20_to_40__3):
+        return dgfd5h_20_to_40__3(phi, beta)
+    if(beta <= BS5h_20_to_40__4):
+        return dgfd5h_20_to_40__4(phi, beta)
+    if(beta <= BS5h_20_to_40__5):
+        return dgfd5h_20_to_40__5(phi, beta)
+    if(beta <= BS5h_20_to_40__6):
+        return dgfd5h_20_to_40__6(phi, beta)
+    if(beta <= BS5h_20_to_40__7):
+        return dgfd5h_20_to_40__7(phi, beta)
+    if(beta <= BS5h_20_to_40__8):
+        return dgfd5h_20_to_40__8(phi, beta)
+    warnings.warn('dgfd5h: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd5h_20_to_40__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_gt_40(double phi, double beta):
+    warnings.warn('dgfd5h: 24 bits of accuracy not guaranteed',
+                  RuntimeWarning)
+    # odd-order approximations (overestimation) result in better stability
+    # for solid-state physics simulations
+    return dgfd5h_gt_40__7(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_lt_m2__1(double phi, double beta):
+        return (       G0 *dfdm1h_lt_m2(phi)
+                +beta*(G11*dfd1h_lt_m2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_lt_m2__2(double phi, double beta):
+        return (       G0 *dfdm1h_lt_m2(phi)
+                +beta*(G21*dfd1h_lt_m2(phi)
+                +beta*(G22*dfd3h_lt_m2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_lt_m2__3(double phi, double beta):
+        return (       G0 *dfdm1h_lt_m2(phi)
+                +beta*(G31*dfd1h_lt_m2(phi)
+                +beta*(G32*dfd3h_lt_m2(phi)
+                +beta*(G33*dfd5h_lt_m2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_lt_m2__4(double phi, double beta):
+        return (       G0 *dfdm1h_lt_m2(phi)
+                +beta*(G41*dfd1h_lt_m2(phi)
+                +beta*(G42*dfd3h_lt_m2(phi)
+                +beta*(G43*dfd5h_lt_m2(phi)
+                +beta*(G44*dfd7h_lt_m2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_lt_m2__5(double phi, double beta):
+        return (       G0 *dfdm1h_lt_m2(phi)
+                +beta*(G51*dfd1h_lt_m2(phi)
+                +beta*(G52*dfd3h_lt_m2(phi)
+                +beta*(G53*dfd5h_lt_m2(phi)
+                +beta*(G54*dfd7h_lt_m2(phi)
+                +beta*(G55*dfd9h_lt_m2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_lt_m2__6(double phi, double beta):
+        return (       G0 *dfdm1h_lt_m2(phi)
+                +beta*(G61*dfd1h_lt_m2(phi)
+                +beta*(G62*dfd3h_lt_m2(phi)
+                +beta*(G63*dfd5h_lt_m2(phi)
+                +beta*(G64*dfd7h_lt_m2(phi)
+                +beta*(G65*dfd9h_lt_m2(phi)
+                +beta*(G66*dfd11h_lt_m2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_lt_m2__7(double phi, double beta):
+        return (       G0 *dfdm1h_lt_m2(phi)
+                +beta*(G71*dfd1h_lt_m2(phi)
+                +beta*(G72*dfd3h_lt_m2(phi)
+                +beta*(G73*dfd5h_lt_m2(phi)
+                +beta*(G74*dfd7h_lt_m2(phi)
+                +beta*(G75*dfd9h_lt_m2(phi)
+                +beta*(G76*dfd11h_lt_m2(phi)
+                +beta*(G77*dfd13h_lt_m2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_lt_m2__8(double phi, double beta):
+        return (       G0 *dfdm1h_lt_m2(phi)
+                +beta*(G81*dfd1h_lt_m2(phi)
+                +beta*(G82*dfd3h_lt_m2(phi)
+                +beta*(G83*dfd5h_lt_m2(phi)
+                +beta*(G84*dfd7h_lt_m2(phi)
+                +beta*(G85*dfd9h_lt_m2(phi)
+                +beta*(G86*dfd11h_lt_m2(phi)
+                +beta*(G87*dfd13h_lt_m2(phi)
+                +beta*(G88*dfd15h_lt_m2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_lt_m2__9(double phi, double beta):
+        return (       G0 *dfdm1h_lt_m2(phi)
+                +beta*(G91*dfd1h_lt_m2(phi)
+                +beta*(G92*dfd3h_lt_m2(phi)
+                +beta*(G93*dfd5h_lt_m2(phi)
+                +beta*(G94*dfd7h_lt_m2(phi)
+                +beta*(G95*dfd9h_lt_m2(phi)
+                +beta*(G96*dfd11h_lt_m2(phi)
+                +beta*(G97*dfd13h_lt_m2(phi)
+                +beta*(G98*dfd15h_lt_m2(phi)
+                +beta*(G99*dfd17h_lt_m2(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_lt_m2__10(double phi, double beta):
+        return (       G0 *dfdm1h_lt_m2(phi)
+                +beta*(GA1*dfd1h_lt_m2(phi)
+                +beta*(GA2*dfd3h_lt_m2(phi)
+                +beta*(GA3*dfd5h_lt_m2(phi)
+                +beta*(GA4*dfd7h_lt_m2(phi)
+                +beta*(GA5*dfd9h_lt_m2(phi)
+                +beta*(GA6*dfd11h_lt_m2(phi)
+                +beta*(GA7*dfd13h_lt_m2(phi)
+                +beta*(GA8*dfd15h_lt_m2(phi)
+                +beta*(GA9*dfd17h_lt_m2(phi)
+                +beta*(GAA*dfd19h_lt_m2(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_m2_to_0__1(double phi, double beta):
+        return (       G0 *dfdm1h_m2_to_0(phi)
+                +beta*(G11*dfd1h_m2_to_0(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_m2_to_0__2(double phi, double beta):
+        return (       G0 *dfdm1h_m2_to_0(phi)
+                +beta*(G21*dfd1h_m2_to_0(phi)
+                +beta*(G22*dfd3h_m2_to_0(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_m2_to_0__3(double phi, double beta):
+        return (       G0 *dfdm1h_m2_to_0(phi)
+                +beta*(G31*dfd1h_m2_to_0(phi)
+                +beta*(G32*dfd3h_m2_to_0(phi)
+                +beta*(G33*dfd5h_m2_to_0(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_m2_to_0__4(double phi, double beta):
+        return (       G0 *dfdm1h_m2_to_0(phi)
+                +beta*(G41*dfd1h_m2_to_0(phi)
+                +beta*(G42*dfd3h_m2_to_0(phi)
+                +beta*(G43*dfd5h_m2_to_0(phi)
+                +beta*(G44*dfd7h_m2_to_0(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_m2_to_0__5(double phi, double beta):
+        return (       G0 *dfdm1h_m2_to_0(phi)
+                +beta*(G51*dfd1h_m2_to_0(phi)
+                +beta*(G52*dfd3h_m2_to_0(phi)
+                +beta*(G53*dfd5h_m2_to_0(phi)
+                +beta*(G54*dfd7h_m2_to_0(phi)
+                +beta*(G55*dfd9h_m2_to_0(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_m2_to_0__6(double phi, double beta):
+        return (       G0 *dfdm1h_m2_to_0(phi)
+                +beta*(G61*dfd1h_m2_to_0(phi)
+                +beta*(G62*dfd3h_m2_to_0(phi)
+                +beta*(G63*dfd5h_m2_to_0(phi)
+                +beta*(G64*dfd7h_m2_to_0(phi)
+                +beta*(G65*dfd9h_m2_to_0(phi)
+                +beta*(G66*dfd11h_m2_to_0(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_m2_to_0__7(double phi, double beta):
+        return (       G0 *dfdm1h_m2_to_0(phi)
+                +beta*(G71*dfd1h_m2_to_0(phi)
+                +beta*(G72*dfd3h_m2_to_0(phi)
+                +beta*(G73*dfd5h_m2_to_0(phi)
+                +beta*(G74*dfd7h_m2_to_0(phi)
+                +beta*(G75*dfd9h_m2_to_0(phi)
+                +beta*(G76*dfd11h_m2_to_0(phi)
+                +beta*(G77*dfd13h_m2_to_0(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_m2_to_0__8(double phi, double beta):
+        return (       G0 *dfdm1h_m2_to_0(phi)
+                +beta*(G81*dfd1h_m2_to_0(phi)
+                +beta*(G82*dfd3h_m2_to_0(phi)
+                +beta*(G83*dfd5h_m2_to_0(phi)
+                +beta*(G84*dfd7h_m2_to_0(phi)
+                +beta*(G85*dfd9h_m2_to_0(phi)
+                +beta*(G86*dfd11h_m2_to_0(phi)
+                +beta*(G87*dfd13h_m2_to_0(phi)
+                +beta*(G88*dfd15h_m2_to_0(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_m2_to_0__9(double phi, double beta):
+        return (       G0 *dfdm1h_m2_to_0(phi)
+                +beta*(G91*dfd1h_m2_to_0(phi)
+                +beta*(G92*dfd3h_m2_to_0(phi)
+                +beta*(G93*dfd5h_m2_to_0(phi)
+                +beta*(G94*dfd7h_m2_to_0(phi)
+                +beta*(G95*dfd9h_m2_to_0(phi)
+                +beta*(G96*dfd11h_m2_to_0(phi)
+                +beta*(G97*dfd13h_m2_to_0(phi)
+                +beta*(G98*dfd15h_m2_to_0(phi)
+                +beta*(G99*dfd17h_m2_to_0(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_m2_to_0__10(double phi, double beta):
+        return (       G0 *dfdm1h_m2_to_0(phi)
+                +beta*(GA1*dfd1h_m2_to_0(phi)
+                +beta*(GA2*dfd3h_m2_to_0(phi)
+                +beta*(GA3*dfd5h_m2_to_0(phi)
+                +beta*(GA4*dfd7h_m2_to_0(phi)
+                +beta*(GA5*dfd9h_m2_to_0(phi)
+                +beta*(GA6*dfd11h_m2_to_0(phi)
+                +beta*(GA7*dfd13h_m2_to_0(phi)
+                +beta*(GA8*dfd15h_m2_to_0(phi)
+                +beta*(GA9*dfd17h_m2_to_0(phi)
+                +beta*(GAA*dfd19h_m2_to_0(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_0_to_2__1(double phi, double beta):
+        return (       G0 *dfdm1h_0_to_2(phi)
+                +beta*(G11*dfd1h_0_to_2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_0_to_2__2(double phi, double beta):
+        return (       G0 *dfdm1h_0_to_2(phi)
+                +beta*(G21*dfd1h_0_to_2(phi)
+                +beta*(G22*dfd3h_0_to_2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_0_to_2__3(double phi, double beta):
+        return (       G0 *dfdm1h_0_to_2(phi)
+                +beta*(G31*dfd1h_0_to_2(phi)
+                +beta*(G32*dfd3h_0_to_2(phi)
+                +beta*(G33*dfd5h_0_to_2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_0_to_2__4(double phi, double beta):
+        return (       G0 *dfdm1h_0_to_2(phi)
+                +beta*(G41*dfd1h_0_to_2(phi)
+                +beta*(G42*dfd3h_0_to_2(phi)
+                +beta*(G43*dfd5h_0_to_2(phi)
+                +beta*(G44*dfd7h_0_to_2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_0_to_2__5(double phi, double beta):
+        return (       G0 *dfdm1h_0_to_2(phi)
+                +beta*(G51*dfd1h_0_to_2(phi)
+                +beta*(G52*dfd3h_0_to_2(phi)
+                +beta*(G53*dfd5h_0_to_2(phi)
+                +beta*(G54*dfd7h_0_to_2(phi)
+                +beta*(G55*dfd9h_0_to_2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_0_to_2__6(double phi, double beta):
+        return (       G0 *dfdm1h_0_to_2(phi)
+                +beta*(G61*dfd1h_0_to_2(phi)
+                +beta*(G62*dfd3h_0_to_2(phi)
+                +beta*(G63*dfd5h_0_to_2(phi)
+                +beta*(G64*dfd7h_0_to_2(phi)
+                +beta*(G65*dfd9h_0_to_2(phi)
+                +beta*(G66*dfd11h_0_to_2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_0_to_2__7(double phi, double beta):
+        return (       G0 *dfdm1h_0_to_2(phi)
+                +beta*(G71*dfd1h_0_to_2(phi)
+                +beta*(G72*dfd3h_0_to_2(phi)
+                +beta*(G73*dfd5h_0_to_2(phi)
+                +beta*(G74*dfd7h_0_to_2(phi)
+                +beta*(G75*dfd9h_0_to_2(phi)
+                +beta*(G76*dfd11h_0_to_2(phi)
+                +beta*(G77*dfd13h_0_to_2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_0_to_2__8(double phi, double beta):
+        return (       G0 *dfdm1h_0_to_2(phi)
+                +beta*(G81*dfd1h_0_to_2(phi)
+                +beta*(G82*dfd3h_0_to_2(phi)
+                +beta*(G83*dfd5h_0_to_2(phi)
+                +beta*(G84*dfd7h_0_to_2(phi)
+                +beta*(G85*dfd9h_0_to_2(phi)
+                +beta*(G86*dfd11h_0_to_2(phi)
+                +beta*(G87*dfd13h_0_to_2(phi)
+                +beta*(G88*dfd15h_0_to_2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_0_to_2__9(double phi, double beta):
+        return (       G0 *dfdm1h_0_to_2(phi)
+                +beta*(G91*dfd1h_0_to_2(phi)
+                +beta*(G92*dfd3h_0_to_2(phi)
+                +beta*(G93*dfd5h_0_to_2(phi)
+                +beta*(G94*dfd7h_0_to_2(phi)
+                +beta*(G95*dfd9h_0_to_2(phi)
+                +beta*(G96*dfd11h_0_to_2(phi)
+                +beta*(G97*dfd13h_0_to_2(phi)
+                +beta*(G98*dfd15h_0_to_2(phi)
+                +beta*(G99*dfd17h_0_to_2(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_0_to_2__10(double phi, double beta):
+        return (       G0 *dfdm1h_0_to_2(phi)
+                +beta*(GA1*dfd1h_0_to_2(phi)
+                +beta*(GA2*dfd3h_0_to_2(phi)
+                +beta*(GA3*dfd5h_0_to_2(phi)
+                +beta*(GA4*dfd7h_0_to_2(phi)
+                +beta*(GA5*dfd9h_0_to_2(phi)
+                +beta*(GA6*dfd11h_0_to_2(phi)
+                +beta*(GA7*dfd13h_0_to_2(phi)
+                +beta*(GA8*dfd15h_0_to_2(phi)
+                +beta*(GA9*dfd17h_0_to_2(phi)
+                +beta*(GAA*dfd19h_0_to_2(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_2_to_5__1(double phi, double beta):
+        return (       G0 *dfdm1h_2_to_5(phi)
+                +beta*(G11*dfd1h_2_to_5(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_2_to_5__2(double phi, double beta):
+        return (       G0 *dfdm1h_2_to_5(phi)
+                +beta*(G21*dfd1h_2_to_5(phi)
+                +beta*(G22*dfd3h_2_to_5(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_2_to_5__3(double phi, double beta):
+        return (       G0 *dfdm1h_2_to_5(phi)
+                +beta*(G31*dfd1h_2_to_5(phi)
+                +beta*(G32*dfd3h_2_to_5(phi)
+                +beta*(G33*dfd5h_2_to_5(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_2_to_5__4(double phi, double beta):
+        return (       G0 *dfdm1h_2_to_5(phi)
+                +beta*(G41*dfd1h_2_to_5(phi)
+                +beta*(G42*dfd3h_2_to_5(phi)
+                +beta*(G43*dfd5h_2_to_5(phi)
+                +beta*(G44*dfd7h_2_to_5(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_2_to_5__5(double phi, double beta):
+        return (       G0 *dfdm1h_2_to_5(phi)
+                +beta*(G51*dfd1h_2_to_5(phi)
+                +beta*(G52*dfd3h_2_to_5(phi)
+                +beta*(G53*dfd5h_2_to_5(phi)
+                +beta*(G54*dfd7h_2_to_5(phi)
+                +beta*(G55*dfd9h_2_to_5(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_2_to_5__6(double phi, double beta):
+        return (       G0 *dfdm1h_2_to_5(phi)
+                +beta*(G61*dfd1h_2_to_5(phi)
+                +beta*(G62*dfd3h_2_to_5(phi)
+                +beta*(G63*dfd5h_2_to_5(phi)
+                +beta*(G64*dfd7h_2_to_5(phi)
+                +beta*(G65*dfd9h_2_to_5(phi)
+                +beta*(G66*dfd11h_2_to_5(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_2_to_5__7(double phi, double beta):
+        return (       G0 *dfdm1h_2_to_5(phi)
+                +beta*(G71*dfd1h_2_to_5(phi)
+                +beta*(G72*dfd3h_2_to_5(phi)
+                +beta*(G73*dfd5h_2_to_5(phi)
+                +beta*(G74*dfd7h_2_to_5(phi)
+                +beta*(G75*dfd9h_2_to_5(phi)
+                +beta*(G76*dfd11h_2_to_5(phi)
+                +beta*(G77*dfd13h_2_to_5(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_2_to_5__8(double phi, double beta):
+        return (       G0 *dfdm1h_2_to_5(phi)
+                +beta*(G81*dfd1h_2_to_5(phi)
+                +beta*(G82*dfd3h_2_to_5(phi)
+                +beta*(G83*dfd5h_2_to_5(phi)
+                +beta*(G84*dfd7h_2_to_5(phi)
+                +beta*(G85*dfd9h_2_to_5(phi)
+                +beta*(G86*dfd11h_2_to_5(phi)
+                +beta*(G87*dfd13h_2_to_5(phi)
+                +beta*(G88*dfd15h_2_to_5(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_2_to_5__9(double phi, double beta):
+        return (       G0 *dfdm1h_2_to_5(phi)
+                +beta*(G91*dfd1h_2_to_5(phi)
+                +beta*(G92*dfd3h_2_to_5(phi)
+                +beta*(G93*dfd5h_2_to_5(phi)
+                +beta*(G94*dfd7h_2_to_5(phi)
+                +beta*(G95*dfd9h_2_to_5(phi)
+                +beta*(G96*dfd11h_2_to_5(phi)
+                +beta*(G97*dfd13h_2_to_5(phi)
+                +beta*(G98*dfd15h_2_to_5(phi)
+                +beta*(G99*dfd17h_2_to_5(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_2_to_5__10(double phi, double beta):
+        return (       G0 *dfdm1h_2_to_5(phi)
+                +beta*(GA1*dfd1h_2_to_5(phi)
+                +beta*(GA2*dfd3h_2_to_5(phi)
+                +beta*(GA3*dfd5h_2_to_5(phi)
+                +beta*(GA4*dfd7h_2_to_5(phi)
+                +beta*(GA5*dfd9h_2_to_5(phi)
+                +beta*(GA6*dfd11h_2_to_5(phi)
+                +beta*(GA7*dfd13h_2_to_5(phi)
+                +beta*(GA8*dfd15h_2_to_5(phi)
+                +beta*(GA9*dfd17h_2_to_5(phi)
+                +beta*(GAA*dfd19h_2_to_5(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_5_to_10__1(double phi, double beta):
+        return (       G0 *dfdm1h_5_to_10(phi)
+                +beta*(G11*dfd1h_5_to_10(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_5_to_10__2(double phi, double beta):
+        return (       G0 *dfdm1h_5_to_10(phi)
+                +beta*(G21*dfd1h_5_to_10(phi)
+                +beta*(G22*dfd3h_5_to_10(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_5_to_10__3(double phi, double beta):
+        return (       G0 *dfdm1h_5_to_10(phi)
+                +beta*(G31*dfd1h_5_to_10(phi)
+                +beta*(G32*dfd3h_5_to_10(phi)
+                +beta*(G33*dfd5h_5_to_10(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_5_to_10__4(double phi, double beta):
+        return (       G0 *dfdm1h_5_to_10(phi)
+                +beta*(G41*dfd1h_5_to_10(phi)
+                +beta*(G42*dfd3h_5_to_10(phi)
+                +beta*(G43*dfd5h_5_to_10(phi)
+                +beta*(G44*dfd7h_5_to_10(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_5_to_10__5(double phi, double beta):
+        return (       G0 *dfdm1h_5_to_10(phi)
+                +beta*(G51*dfd1h_5_to_10(phi)
+                +beta*(G52*dfd3h_5_to_10(phi)
+                +beta*(G53*dfd5h_5_to_10(phi)
+                +beta*(G54*dfd7h_5_to_10(phi)
+                +beta*(G55*dfd9h_5_to_10(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_5_to_10__6(double phi, double beta):
+        return (       G0 *dfdm1h_5_to_10(phi)
+                +beta*(G61*dfd1h_5_to_10(phi)
+                +beta*(G62*dfd3h_5_to_10(phi)
+                +beta*(G63*dfd5h_5_to_10(phi)
+                +beta*(G64*dfd7h_5_to_10(phi)
+                +beta*(G65*dfd9h_5_to_10(phi)
+                +beta*(G66*dfd11h_5_to_10(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_5_to_10__7(double phi, double beta):
+        return (       G0 *dfdm1h_5_to_10(phi)
+                +beta*(G71*dfd1h_5_to_10(phi)
+                +beta*(G72*dfd3h_5_to_10(phi)
+                +beta*(G73*dfd5h_5_to_10(phi)
+                +beta*(G74*dfd7h_5_to_10(phi)
+                +beta*(G75*dfd9h_5_to_10(phi)
+                +beta*(G76*dfd11h_5_to_10(phi)
+                +beta*(G77*dfd13h_5_to_10(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_5_to_10__8(double phi, double beta):
+        return (       G0 *dfdm1h_5_to_10(phi)
+                +beta*(G81*dfd1h_5_to_10(phi)
+                +beta*(G82*dfd3h_5_to_10(phi)
+                +beta*(G83*dfd5h_5_to_10(phi)
+                +beta*(G84*dfd7h_5_to_10(phi)
+                +beta*(G85*dfd9h_5_to_10(phi)
+                +beta*(G86*dfd11h_5_to_10(phi)
+                +beta*(G87*dfd13h_5_to_10(phi)
+                +beta*(G88*dfd15h_5_to_10(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_5_to_10__9(double phi, double beta):
+        return (       G0 *dfdm1h_5_to_10(phi)
+                +beta*(G91*dfd1h_5_to_10(phi)
+                +beta*(G92*dfd3h_5_to_10(phi)
+                +beta*(G93*dfd5h_5_to_10(phi)
+                +beta*(G94*dfd7h_5_to_10(phi)
+                +beta*(G95*dfd9h_5_to_10(phi)
+                +beta*(G96*dfd11h_5_to_10(phi)
+                +beta*(G97*dfd13h_5_to_10(phi)
+                +beta*(G98*dfd15h_5_to_10(phi)
+                +beta*(G99*dfd17h_5_to_10(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_5_to_10__10(double phi, double beta):
+        return (       G0 *dfdm1h_5_to_10(phi)
+                +beta*(GA1*dfd1h_5_to_10(phi)
+                +beta*(GA2*dfd3h_5_to_10(phi)
+                +beta*(GA3*dfd5h_5_to_10(phi)
+                +beta*(GA4*dfd7h_5_to_10(phi)
+                +beta*(GA5*dfd9h_5_to_10(phi)
+                +beta*(GA6*dfd11h_5_to_10(phi)
+                +beta*(GA7*dfd13h_5_to_10(phi)
+                +beta*(GA8*dfd15h_5_to_10(phi)
+                +beta*(GA9*dfd17h_5_to_10(phi)
+                +beta*(GAA*dfd19h_5_to_10(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_10_to_20__1(double phi, double beta):
+        return (       G0 *dfdm1h_10_to_20(phi)
+                +beta*(G11*dfd1h_10_to_20(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_10_to_20__2(double phi, double beta):
+        return (       G0 *dfdm1h_10_to_20(phi)
+                +beta*(G21*dfd1h_10_to_20(phi)
+                +beta*(G22*dfd3h_10_to_20(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_10_to_20__3(double phi, double beta):
+        return (       G0 *dfdm1h_10_to_20(phi)
+                +beta*(G31*dfd1h_10_to_20(phi)
+                +beta*(G32*dfd3h_10_to_20(phi)
+                +beta*(G33*dfd5h_10_to_20(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_10_to_20__4(double phi, double beta):
+        return (       G0 *dfdm1h_10_to_20(phi)
+                +beta*(G41*dfd1h_10_to_20(phi)
+                +beta*(G42*dfd3h_10_to_20(phi)
+                +beta*(G43*dfd5h_10_to_20(phi)
+                +beta*(G44*dfd7h_10_to_20(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_10_to_20__5(double phi, double beta):
+        return (       G0 *dfdm1h_10_to_20(phi)
+                +beta*(G51*dfd1h_10_to_20(phi)
+                +beta*(G52*dfd3h_10_to_20(phi)
+                +beta*(G53*dfd5h_10_to_20(phi)
+                +beta*(G54*dfd7h_10_to_20(phi)
+                +beta*(G55*dfd9h_10_to_20(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_10_to_20__6(double phi, double beta):
+        return (       G0 *dfdm1h_10_to_20(phi)
+                +beta*(G61*dfd1h_10_to_20(phi)
+                +beta*(G62*dfd3h_10_to_20(phi)
+                +beta*(G63*dfd5h_10_to_20(phi)
+                +beta*(G64*dfd7h_10_to_20(phi)
+                +beta*(G65*dfd9h_10_to_20(phi)
+                +beta*(G66*dfd11h_10_to_20(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_10_to_20__7(double phi, double beta):
+        return (       G0 *dfdm1h_10_to_20(phi)
+                +beta*(G71*dfd1h_10_to_20(phi)
+                +beta*(G72*dfd3h_10_to_20(phi)
+                +beta*(G73*dfd5h_10_to_20(phi)
+                +beta*(G74*dfd7h_10_to_20(phi)
+                +beta*(G75*dfd9h_10_to_20(phi)
+                +beta*(G76*dfd11h_10_to_20(phi)
+                +beta*(G77*dfd13h_10_to_20(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_10_to_20__8(double phi, double beta):
+        return (       G0 *dfdm1h_10_to_20(phi)
+                +beta*(G81*dfd1h_10_to_20(phi)
+                +beta*(G82*dfd3h_10_to_20(phi)
+                +beta*(G83*dfd5h_10_to_20(phi)
+                +beta*(G84*dfd7h_10_to_20(phi)
+                +beta*(G85*dfd9h_10_to_20(phi)
+                +beta*(G86*dfd11h_10_to_20(phi)
+                +beta*(G87*dfd13h_10_to_20(phi)
+                +beta*(G88*dfd15h_10_to_20(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_10_to_20__9(double phi, double beta):
+        return (       G0 *dfdm1h_10_to_20(phi)
+                +beta*(G91*dfd1h_10_to_20(phi)
+                +beta*(G92*dfd3h_10_to_20(phi)
+                +beta*(G93*dfd5h_10_to_20(phi)
+                +beta*(G94*dfd7h_10_to_20(phi)
+                +beta*(G95*dfd9h_10_to_20(phi)
+                +beta*(G96*dfd11h_10_to_20(phi)
+                +beta*(G97*dfd13h_10_to_20(phi)
+                +beta*(G98*dfd15h_10_to_20(phi)
+                +beta*(G99*dfd17h_10_to_20(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_10_to_20__10(double phi, double beta):
+        return (       G0 *dfdm1h_10_to_20(phi)
+                +beta*(GA1*dfd1h_10_to_20(phi)
+                +beta*(GA2*dfd3h_10_to_20(phi)
+                +beta*(GA3*dfd5h_10_to_20(phi)
+                +beta*(GA4*dfd7h_10_to_20(phi)
+                +beta*(GA5*dfd9h_10_to_20(phi)
+                +beta*(GA6*dfd11h_10_to_20(phi)
+                +beta*(GA7*dfd13h_10_to_20(phi)
+                +beta*(GA8*dfd15h_10_to_20(phi)
+                +beta*(GA9*dfd17h_10_to_20(phi)
+                +beta*(GAA*dfd19h_10_to_20(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_20_to_40__1(double phi, double beta):
+        return (       G0 *dfdm1h_20_to_40(phi)
+                +beta*(G11*dfd1h_20_to_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_20_to_40__2(double phi, double beta):
+        return (       G0 *dfdm1h_20_to_40(phi)
+                +beta*(G21*dfd1h_20_to_40(phi)
+                +beta*(G22*dfd3h_20_to_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_20_to_40__3(double phi, double beta):
+        return (       G0 *dfdm1h_20_to_40(phi)
+                +beta*(G31*dfd1h_20_to_40(phi)
+                +beta*(G32*dfd3h_20_to_40(phi)
+                +beta*(G33*dfd5h_20_to_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_20_to_40__4(double phi, double beta):
+        return (       G0 *dfdm1h_20_to_40(phi)
+                +beta*(G41*dfd1h_20_to_40(phi)
+                +beta*(G42*dfd3h_20_to_40(phi)
+                +beta*(G43*dfd5h_20_to_40(phi)
+                +beta*(G44*dfd7h_20_to_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_20_to_40__5(double phi, double beta):
+        return (       G0 *dfdm1h_20_to_40(phi)
+                +beta*(G51*dfd1h_20_to_40(phi)
+                +beta*(G52*dfd3h_20_to_40(phi)
+                +beta*(G53*dfd5h_20_to_40(phi)
+                +beta*(G54*dfd7h_20_to_40(phi)
+                +beta*(G55*dfd9h_20_to_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_20_to_40__6(double phi, double beta):
+        return (       G0 *dfdm1h_20_to_40(phi)
+                +beta*(G61*dfd1h_20_to_40(phi)
+                +beta*(G62*dfd3h_20_to_40(phi)
+                +beta*(G63*dfd5h_20_to_40(phi)
+                +beta*(G64*dfd7h_20_to_40(phi)
+                +beta*(G65*dfd9h_20_to_40(phi)
+                +beta*(G66*dfd11h_20_to_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_20_to_40__7(double phi, double beta):
+        return (       G0 *dfdm1h_20_to_40(phi)
+                +beta*(G71*dfd1h_20_to_40(phi)
+                +beta*(G72*dfd3h_20_to_40(phi)
+                +beta*(G73*dfd5h_20_to_40(phi)
+                +beta*(G74*dfd7h_20_to_40(phi)
+                +beta*(G75*dfd9h_20_to_40(phi)
+                +beta*(G76*dfd11h_20_to_40(phi)
+                +beta*(G77*dfd13h_20_to_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_20_to_40__8(double phi, double beta):
+        return (       G0 *dfdm1h_20_to_40(phi)
+                +beta*(G81*dfd1h_20_to_40(phi)
+                +beta*(G82*dfd3h_20_to_40(phi)
+                +beta*(G83*dfd5h_20_to_40(phi)
+                +beta*(G84*dfd7h_20_to_40(phi)
+                +beta*(G85*dfd9h_20_to_40(phi)
+                +beta*(G86*dfd11h_20_to_40(phi)
+                +beta*(G87*dfd13h_20_to_40(phi)
+                +beta*(G88*dfd15h_20_to_40(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_20_to_40__9(double phi, double beta):
+        return (       G0 *dfdm1h_20_to_40(phi)
+                +beta*(G91*dfd1h_20_to_40(phi)
+                +beta*(G92*dfd3h_20_to_40(phi)
+                +beta*(G93*dfd5h_20_to_40(phi)
+                +beta*(G94*dfd7h_20_to_40(phi)
+                +beta*(G95*dfd9h_20_to_40(phi)
+                +beta*(G96*dfd11h_20_to_40(phi)
+                +beta*(G97*dfd13h_20_to_40(phi)
+                +beta*(G98*dfd15h_20_to_40(phi)
+                +beta*(G99*dfd17h_20_to_40(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_20_to_40__10(double phi, double beta):
+        return (       G0 *dfdm1h_20_to_40(phi)
+                +beta*(GA1*dfd1h_20_to_40(phi)
+                +beta*(GA2*dfd3h_20_to_40(phi)
+                +beta*(GA3*dfd5h_20_to_40(phi)
+                +beta*(GA4*dfd7h_20_to_40(phi)
+                +beta*(GA5*dfd9h_20_to_40(phi)
+                +beta*(GA6*dfd11h_20_to_40(phi)
+                +beta*(GA7*dfd13h_20_to_40(phi)
+                +beta*(GA8*dfd15h_20_to_40(phi)
+                +beta*(GA9*dfd17h_20_to_40(phi)
+                +beta*(GAA*dfd19h_20_to_40(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_gt_40__1(double phi, double beta):
+        return (       G0 *dfdm1h_gt_40(phi)
+                +beta*(G11*dfd1h_gt_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_gt_40__2(double phi, double beta):
+        return (       G0 *dfdm1h_gt_40(phi)
+                +beta*(G21*dfd1h_gt_40(phi)
+                +beta*(G22*dfd3h_gt_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_gt_40__3(double phi, double beta):
+        return (       G0 *dfdm1h_gt_40(phi)
+                +beta*(G31*dfd1h_gt_40(phi)
+                +beta*(G32*dfd3h_gt_40(phi)
+                +beta*(G33*dfd5h_gt_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_gt_40__4(double phi, double beta):
+        return (       G0 *dfdm1h_gt_40(phi)
+                +beta*(G41*dfd1h_gt_40(phi)
+                +beta*(G42*dfd3h_gt_40(phi)
+                +beta*(G43*dfd5h_gt_40(phi)
+                +beta*(G44*dfd7h_gt_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_gt_40__5(double phi, double beta):
+        return (       G0 *dfdm1h_gt_40(phi)
+                +beta*(G51*dfd1h_gt_40(phi)
+                +beta*(G52*dfd3h_gt_40(phi)
+                +beta*(G53*dfd5h_gt_40(phi)
+                +beta*(G54*dfd7h_gt_40(phi)
+                +beta*(G55*dfd9h_gt_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_gt_40__6(double phi, double beta):
+        return (       G0 *dfdm1h_gt_40(phi)
+                +beta*(G61*dfd1h_gt_40(phi)
+                +beta*(G62*dfd3h_gt_40(phi)
+                +beta*(G63*dfd5h_gt_40(phi)
+                +beta*(G64*dfd7h_gt_40(phi)
+                +beta*(G65*dfd9h_gt_40(phi)
+                +beta*(G66*dfd11h_gt_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_gt_40__7(double phi, double beta):
+        return (       G0 *dfdm1h_gt_40(phi)
+                +beta*(G71*dfd1h_gt_40(phi)
+                +beta*(G72*dfd3h_gt_40(phi)
+                +beta*(G73*dfd5h_gt_40(phi)
+                +beta*(G74*dfd7h_gt_40(phi)
+                +beta*(G75*dfd9h_gt_40(phi)
+                +beta*(G76*dfd11h_gt_40(phi)
+                +beta*(G77*dfd13h_gt_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_gt_40__8(double phi, double beta):
+        return (       G0 *dfdm1h_gt_40(phi)
+                +beta*(G81*dfd1h_gt_40(phi)
+                +beta*(G82*dfd3h_gt_40(phi)
+                +beta*(G83*dfd5h_gt_40(phi)
+                +beta*(G84*dfd7h_gt_40(phi)
+                +beta*(G85*dfd9h_gt_40(phi)
+                +beta*(G86*dfd11h_gt_40(phi)
+                +beta*(G87*dfd13h_gt_40(phi)
+                +beta*(G88*dfd15h_gt_40(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_gt_40__9(double phi, double beta):
+        return (       G0 *dfdm1h_gt_40(phi)
+                +beta*(G91*dfd1h_gt_40(phi)
+                +beta*(G92*dfd3h_gt_40(phi)
+                +beta*(G93*dfd5h_gt_40(phi)
+                +beta*(G94*dfd7h_gt_40(phi)
+                +beta*(G95*dfd9h_gt_40(phi)
+                +beta*(G96*dfd11h_gt_40(phi)
+                +beta*(G97*dfd13h_gt_40(phi)
+                +beta*(G98*dfd15h_gt_40(phi)
+                +beta*(G99*dfd17h_gt_40(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfdm1h_gt_40__10(double phi, double beta):
+        return (       G0 *dfdm1h_gt_40(phi)
+                +beta*(GA1*dfd1h_gt_40(phi)
+                +beta*(GA2*dfd3h_gt_40(phi)
+                +beta*(GA3*dfd5h_gt_40(phi)
+                +beta*(GA4*dfd7h_gt_40(phi)
+                +beta*(GA5*dfd9h_gt_40(phi)
+                +beta*(GA6*dfd11h_gt_40(phi)
+                +beta*(GA7*dfd13h_gt_40(phi)
+                +beta*(GA8*dfd15h_gt_40(phi)
+                +beta*(GA9*dfd17h_gt_40(phi)
+                +beta*(GAA*dfd19h_gt_40(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_lt_m2__1(double phi, double beta):
+        return (       G0 *dfd1h_lt_m2(phi)
+                +beta*(G11*dfd3h_lt_m2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_lt_m2__2(double phi, double beta):
+        return (       G0 *dfd1h_lt_m2(phi)
+                +beta*(G21*dfd3h_lt_m2(phi)
+                +beta*(G22*dfd5h_lt_m2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_lt_m2__3(double phi, double beta):
+        return (       G0 *dfd1h_lt_m2(phi)
+                +beta*(G31*dfd3h_lt_m2(phi)
+                +beta*(G32*dfd5h_lt_m2(phi)
+                +beta*(G33*dfd7h_lt_m2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_lt_m2__4(double phi, double beta):
+        return (       G0 *dfd1h_lt_m2(phi)
+                +beta*(G41*dfd3h_lt_m2(phi)
+                +beta*(G42*dfd5h_lt_m2(phi)
+                +beta*(G43*dfd7h_lt_m2(phi)
+                +beta*(G44*dfd9h_lt_m2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_lt_m2__5(double phi, double beta):
+        return (       G0 *dfd1h_lt_m2(phi)
+                +beta*(G51*dfd3h_lt_m2(phi)
+                +beta*(G52*dfd5h_lt_m2(phi)
+                +beta*(G53*dfd7h_lt_m2(phi)
+                +beta*(G54*dfd9h_lt_m2(phi)
+                +beta*(G55*dfd11h_lt_m2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_lt_m2__6(double phi, double beta):
+        return (       G0 *dfd1h_lt_m2(phi)
+                +beta*(G61*dfd3h_lt_m2(phi)
+                +beta*(G62*dfd5h_lt_m2(phi)
+                +beta*(G63*dfd7h_lt_m2(phi)
+                +beta*(G64*dfd9h_lt_m2(phi)
+                +beta*(G65*dfd11h_lt_m2(phi)
+                +beta*(G66*dfd13h_lt_m2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_lt_m2__7(double phi, double beta):
+        return (       G0 *dfd1h_lt_m2(phi)
+                +beta*(G71*dfd3h_lt_m2(phi)
+                +beta*(G72*dfd5h_lt_m2(phi)
+                +beta*(G73*dfd7h_lt_m2(phi)
+                +beta*(G74*dfd9h_lt_m2(phi)
+                +beta*(G75*dfd11h_lt_m2(phi)
+                +beta*(G76*dfd13h_lt_m2(phi)
+                +beta*(G77*dfd15h_lt_m2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_lt_m2__8(double phi, double beta):
+        return (       G0 *dfd1h_lt_m2(phi)
+                +beta*(G81*dfd3h_lt_m2(phi)
+                +beta*(G82*dfd5h_lt_m2(phi)
+                +beta*(G83*dfd7h_lt_m2(phi)
+                +beta*(G84*dfd9h_lt_m2(phi)
+                +beta*(G85*dfd11h_lt_m2(phi)
+                +beta*(G86*dfd13h_lt_m2(phi)
+                +beta*(G87*dfd15h_lt_m2(phi)
+                +beta*(G88*dfd17h_lt_m2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_lt_m2__9(double phi, double beta):
+        return (       G0 *dfd1h_lt_m2(phi)
+                +beta*(G91*dfd3h_lt_m2(phi)
+                +beta*(G92*dfd5h_lt_m2(phi)
+                +beta*(G93*dfd7h_lt_m2(phi)
+                +beta*(G94*dfd9h_lt_m2(phi)
+                +beta*(G95*dfd11h_lt_m2(phi)
+                +beta*(G96*dfd13h_lt_m2(phi)
+                +beta*(G97*dfd15h_lt_m2(phi)
+                +beta*(G98*dfd17h_lt_m2(phi)
+                +beta*(G99*dfd19h_lt_m2(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_lt_m2__10(double phi, double beta):
+        return (       G0 *dfd1h_lt_m2(phi)
+                +beta*(GA1*dfd3h_lt_m2(phi)
+                +beta*(GA2*dfd5h_lt_m2(phi)
+                +beta*(GA3*dfd7h_lt_m2(phi)
+                +beta*(GA4*dfd9h_lt_m2(phi)
+                +beta*(GA5*dfd11h_lt_m2(phi)
+                +beta*(GA6*dfd13h_lt_m2(phi)
+                +beta*(GA7*dfd15h_lt_m2(phi)
+                +beta*(GA8*dfd17h_lt_m2(phi)
+                +beta*(GA9*dfd19h_lt_m2(phi)
+                +beta*(GAA*dfd21h_lt_m2(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_m2_to_0__1(double phi, double beta):
+        return (       G0 *dfd1h_m2_to_0(phi)
+                +beta*(G11*dfd3h_m2_to_0(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_m2_to_0__2(double phi, double beta):
+        return (       G0 *dfd1h_m2_to_0(phi)
+                +beta*(G21*dfd3h_m2_to_0(phi)
+                +beta*(G22*dfd5h_m2_to_0(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_m2_to_0__3(double phi, double beta):
+        return (       G0 *dfd1h_m2_to_0(phi)
+                +beta*(G31*dfd3h_m2_to_0(phi)
+                +beta*(G32*dfd5h_m2_to_0(phi)
+                +beta*(G33*dfd7h_m2_to_0(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_m2_to_0__4(double phi, double beta):
+        return (       G0 *dfd1h_m2_to_0(phi)
+                +beta*(G41*dfd3h_m2_to_0(phi)
+                +beta*(G42*dfd5h_m2_to_0(phi)
+                +beta*(G43*dfd7h_m2_to_0(phi)
+                +beta*(G44*dfd9h_m2_to_0(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_m2_to_0__5(double phi, double beta):
+        return (       G0 *dfd1h_m2_to_0(phi)
+                +beta*(G51*dfd3h_m2_to_0(phi)
+                +beta*(G52*dfd5h_m2_to_0(phi)
+                +beta*(G53*dfd7h_m2_to_0(phi)
+                +beta*(G54*dfd9h_m2_to_0(phi)
+                +beta*(G55*dfd11h_m2_to_0(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_m2_to_0__6(double phi, double beta):
+        return (       G0 *dfd1h_m2_to_0(phi)
+                +beta*(G61*dfd3h_m2_to_0(phi)
+                +beta*(G62*dfd5h_m2_to_0(phi)
+                +beta*(G63*dfd7h_m2_to_0(phi)
+                +beta*(G64*dfd9h_m2_to_0(phi)
+                +beta*(G65*dfd11h_m2_to_0(phi)
+                +beta*(G66*dfd13h_m2_to_0(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_m2_to_0__7(double phi, double beta):
+        return (       G0 *dfd1h_m2_to_0(phi)
+                +beta*(G71*dfd3h_m2_to_0(phi)
+                +beta*(G72*dfd5h_m2_to_0(phi)
+                +beta*(G73*dfd7h_m2_to_0(phi)
+                +beta*(G74*dfd9h_m2_to_0(phi)
+                +beta*(G75*dfd11h_m2_to_0(phi)
+                +beta*(G76*dfd13h_m2_to_0(phi)
+                +beta*(G77*dfd15h_m2_to_0(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_m2_to_0__8(double phi, double beta):
+        return (       G0 *dfd1h_m2_to_0(phi)
+                +beta*(G81*dfd3h_m2_to_0(phi)
+                +beta*(G82*dfd5h_m2_to_0(phi)
+                +beta*(G83*dfd7h_m2_to_0(phi)
+                +beta*(G84*dfd9h_m2_to_0(phi)
+                +beta*(G85*dfd11h_m2_to_0(phi)
+                +beta*(G86*dfd13h_m2_to_0(phi)
+                +beta*(G87*dfd15h_m2_to_0(phi)
+                +beta*(G88*dfd17h_m2_to_0(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_m2_to_0__9(double phi, double beta):
+        return (       G0 *dfd1h_m2_to_0(phi)
+                +beta*(G91*dfd3h_m2_to_0(phi)
+                +beta*(G92*dfd5h_m2_to_0(phi)
+                +beta*(G93*dfd7h_m2_to_0(phi)
+                +beta*(G94*dfd9h_m2_to_0(phi)
+                +beta*(G95*dfd11h_m2_to_0(phi)
+                +beta*(G96*dfd13h_m2_to_0(phi)
+                +beta*(G97*dfd15h_m2_to_0(phi)
+                +beta*(G98*dfd17h_m2_to_0(phi)
+                +beta*(G99*dfd19h_m2_to_0(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_m2_to_0__10(double phi, double beta):
+        return (       G0 *dfd1h_m2_to_0(phi)
+                +beta*(GA1*dfd3h_m2_to_0(phi)
+                +beta*(GA2*dfd5h_m2_to_0(phi)
+                +beta*(GA3*dfd7h_m2_to_0(phi)
+                +beta*(GA4*dfd9h_m2_to_0(phi)
+                +beta*(GA5*dfd11h_m2_to_0(phi)
+                +beta*(GA6*dfd13h_m2_to_0(phi)
+                +beta*(GA7*dfd15h_m2_to_0(phi)
+                +beta*(GA8*dfd17h_m2_to_0(phi)
+                +beta*(GA9*dfd19h_m2_to_0(phi)
+                +beta*(GAA*dfd21h_m2_to_0(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_0_to_2__1(double phi, double beta):
+        return (       G0 *dfd1h_0_to_2(phi)
+                +beta*(G11*dfd3h_0_to_2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_0_to_2__2(double phi, double beta):
+        return (       G0 *dfd1h_0_to_2(phi)
+                +beta*(G21*dfd3h_0_to_2(phi)
+                +beta*(G22*dfd5h_0_to_2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_0_to_2__3(double phi, double beta):
+        return (       G0 *dfd1h_0_to_2(phi)
+                +beta*(G31*dfd3h_0_to_2(phi)
+                +beta*(G32*dfd5h_0_to_2(phi)
+                +beta*(G33*dfd7h_0_to_2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_0_to_2__4(double phi, double beta):
+        return (       G0 *dfd1h_0_to_2(phi)
+                +beta*(G41*dfd3h_0_to_2(phi)
+                +beta*(G42*dfd5h_0_to_2(phi)
+                +beta*(G43*dfd7h_0_to_2(phi)
+                +beta*(G44*dfd9h_0_to_2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_0_to_2__5(double phi, double beta):
+        return (       G0 *dfd1h_0_to_2(phi)
+                +beta*(G51*dfd3h_0_to_2(phi)
+                +beta*(G52*dfd5h_0_to_2(phi)
+                +beta*(G53*dfd7h_0_to_2(phi)
+                +beta*(G54*dfd9h_0_to_2(phi)
+                +beta*(G55*dfd11h_0_to_2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_0_to_2__6(double phi, double beta):
+        return (       G0 *dfd1h_0_to_2(phi)
+                +beta*(G61*dfd3h_0_to_2(phi)
+                +beta*(G62*dfd5h_0_to_2(phi)
+                +beta*(G63*dfd7h_0_to_2(phi)
+                +beta*(G64*dfd9h_0_to_2(phi)
+                +beta*(G65*dfd11h_0_to_2(phi)
+                +beta*(G66*dfd13h_0_to_2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_0_to_2__7(double phi, double beta):
+        return (       G0 *dfd1h_0_to_2(phi)
+                +beta*(G71*dfd3h_0_to_2(phi)
+                +beta*(G72*dfd5h_0_to_2(phi)
+                +beta*(G73*dfd7h_0_to_2(phi)
+                +beta*(G74*dfd9h_0_to_2(phi)
+                +beta*(G75*dfd11h_0_to_2(phi)
+                +beta*(G76*dfd13h_0_to_2(phi)
+                +beta*(G77*dfd15h_0_to_2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_0_to_2__8(double phi, double beta):
+        return (       G0 *dfd1h_0_to_2(phi)
+                +beta*(G81*dfd3h_0_to_2(phi)
+                +beta*(G82*dfd5h_0_to_2(phi)
+                +beta*(G83*dfd7h_0_to_2(phi)
+                +beta*(G84*dfd9h_0_to_2(phi)
+                +beta*(G85*dfd11h_0_to_2(phi)
+                +beta*(G86*dfd13h_0_to_2(phi)
+                +beta*(G87*dfd15h_0_to_2(phi)
+                +beta*(G88*dfd17h_0_to_2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_0_to_2__9(double phi, double beta):
+        return (       G0 *dfd1h_0_to_2(phi)
+                +beta*(G91*dfd3h_0_to_2(phi)
+                +beta*(G92*dfd5h_0_to_2(phi)
+                +beta*(G93*dfd7h_0_to_2(phi)
+                +beta*(G94*dfd9h_0_to_2(phi)
+                +beta*(G95*dfd11h_0_to_2(phi)
+                +beta*(G96*dfd13h_0_to_2(phi)
+                +beta*(G97*dfd15h_0_to_2(phi)
+                +beta*(G98*dfd17h_0_to_2(phi)
+                +beta*(G99*dfd19h_0_to_2(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_0_to_2__10(double phi, double beta):
+        return (       G0 *dfd1h_0_to_2(phi)
+                +beta*(GA1*dfd3h_0_to_2(phi)
+                +beta*(GA2*dfd5h_0_to_2(phi)
+                +beta*(GA3*dfd7h_0_to_2(phi)
+                +beta*(GA4*dfd9h_0_to_2(phi)
+                +beta*(GA5*dfd11h_0_to_2(phi)
+                +beta*(GA6*dfd13h_0_to_2(phi)
+                +beta*(GA7*dfd15h_0_to_2(phi)
+                +beta*(GA8*dfd17h_0_to_2(phi)
+                +beta*(GA9*dfd19h_0_to_2(phi)
+                +beta*(GAA*dfd21h_0_to_2(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_2_to_5__1(double phi, double beta):
+        return (       G0 *dfd1h_2_to_5(phi)
+                +beta*(G11*dfd3h_2_to_5(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_2_to_5__2(double phi, double beta):
+        return (       G0 *dfd1h_2_to_5(phi)
+                +beta*(G21*dfd3h_2_to_5(phi)
+                +beta*(G22*dfd5h_2_to_5(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_2_to_5__3(double phi, double beta):
+        return (       G0 *dfd1h_2_to_5(phi)
+                +beta*(G31*dfd3h_2_to_5(phi)
+                +beta*(G32*dfd5h_2_to_5(phi)
+                +beta*(G33*dfd7h_2_to_5(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_2_to_5__4(double phi, double beta):
+        return (       G0 *dfd1h_2_to_5(phi)
+                +beta*(G41*dfd3h_2_to_5(phi)
+                +beta*(G42*dfd5h_2_to_5(phi)
+                +beta*(G43*dfd7h_2_to_5(phi)
+                +beta*(G44*dfd9h_2_to_5(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_2_to_5__5(double phi, double beta):
+        return (       G0 *dfd1h_2_to_5(phi)
+                +beta*(G51*dfd3h_2_to_5(phi)
+                +beta*(G52*dfd5h_2_to_5(phi)
+                +beta*(G53*dfd7h_2_to_5(phi)
+                +beta*(G54*dfd9h_2_to_5(phi)
+                +beta*(G55*dfd11h_2_to_5(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_2_to_5__6(double phi, double beta):
+        return (       G0 *dfd1h_2_to_5(phi)
+                +beta*(G61*dfd3h_2_to_5(phi)
+                +beta*(G62*dfd5h_2_to_5(phi)
+                +beta*(G63*dfd7h_2_to_5(phi)
+                +beta*(G64*dfd9h_2_to_5(phi)
+                +beta*(G65*dfd11h_2_to_5(phi)
+                +beta*(G66*dfd13h_2_to_5(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_2_to_5__7(double phi, double beta):
+        return (       G0 *dfd1h_2_to_5(phi)
+                +beta*(G71*dfd3h_2_to_5(phi)
+                +beta*(G72*dfd5h_2_to_5(phi)
+                +beta*(G73*dfd7h_2_to_5(phi)
+                +beta*(G74*dfd9h_2_to_5(phi)
+                +beta*(G75*dfd11h_2_to_5(phi)
+                +beta*(G76*dfd13h_2_to_5(phi)
+                +beta*(G77*dfd15h_2_to_5(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_2_to_5__8(double phi, double beta):
+        return (       G0 *dfd1h_2_to_5(phi)
+                +beta*(G81*dfd3h_2_to_5(phi)
+                +beta*(G82*dfd5h_2_to_5(phi)
+                +beta*(G83*dfd7h_2_to_5(phi)
+                +beta*(G84*dfd9h_2_to_5(phi)
+                +beta*(G85*dfd11h_2_to_5(phi)
+                +beta*(G86*dfd13h_2_to_5(phi)
+                +beta*(G87*dfd15h_2_to_5(phi)
+                +beta*(G88*dfd17h_2_to_5(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_2_to_5__9(double phi, double beta):
+        return (       G0 *dfd1h_2_to_5(phi)
+                +beta*(G91*dfd3h_2_to_5(phi)
+                +beta*(G92*dfd5h_2_to_5(phi)
+                +beta*(G93*dfd7h_2_to_5(phi)
+                +beta*(G94*dfd9h_2_to_5(phi)
+                +beta*(G95*dfd11h_2_to_5(phi)
+                +beta*(G96*dfd13h_2_to_5(phi)
+                +beta*(G97*dfd15h_2_to_5(phi)
+                +beta*(G98*dfd17h_2_to_5(phi)
+                +beta*(G99*dfd19h_2_to_5(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_2_to_5__10(double phi, double beta):
+        return (       G0 *dfd1h_2_to_5(phi)
+                +beta*(GA1*dfd3h_2_to_5(phi)
+                +beta*(GA2*dfd5h_2_to_5(phi)
+                +beta*(GA3*dfd7h_2_to_5(phi)
+                +beta*(GA4*dfd9h_2_to_5(phi)
+                +beta*(GA5*dfd11h_2_to_5(phi)
+                +beta*(GA6*dfd13h_2_to_5(phi)
+                +beta*(GA7*dfd15h_2_to_5(phi)
+                +beta*(GA8*dfd17h_2_to_5(phi)
+                +beta*(GA9*dfd19h_2_to_5(phi)
+                +beta*(GAA*dfd21h_2_to_5(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_5_to_10__1(double phi, double beta):
+        return (       G0 *dfd1h_5_to_10(phi)
+                +beta*(G11*dfd3h_5_to_10(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_5_to_10__2(double phi, double beta):
+        return (       G0 *dfd1h_5_to_10(phi)
+                +beta*(G21*dfd3h_5_to_10(phi)
+                +beta*(G22*dfd5h_5_to_10(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_5_to_10__3(double phi, double beta):
+        return (       G0 *dfd1h_5_to_10(phi)
+                +beta*(G31*dfd3h_5_to_10(phi)
+                +beta*(G32*dfd5h_5_to_10(phi)
+                +beta*(G33*dfd7h_5_to_10(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_5_to_10__4(double phi, double beta):
+        return (       G0 *dfd1h_5_to_10(phi)
+                +beta*(G41*dfd3h_5_to_10(phi)
+                +beta*(G42*dfd5h_5_to_10(phi)
+                +beta*(G43*dfd7h_5_to_10(phi)
+                +beta*(G44*dfd9h_5_to_10(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_5_to_10__5(double phi, double beta):
+        return (       G0 *dfd1h_5_to_10(phi)
+                +beta*(G51*dfd3h_5_to_10(phi)
+                +beta*(G52*dfd5h_5_to_10(phi)
+                +beta*(G53*dfd7h_5_to_10(phi)
+                +beta*(G54*dfd9h_5_to_10(phi)
+                +beta*(G55*dfd11h_5_to_10(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_5_to_10__6(double phi, double beta):
+        return (       G0 *dfd1h_5_to_10(phi)
+                +beta*(G61*dfd3h_5_to_10(phi)
+                +beta*(G62*dfd5h_5_to_10(phi)
+                +beta*(G63*dfd7h_5_to_10(phi)
+                +beta*(G64*dfd9h_5_to_10(phi)
+                +beta*(G65*dfd11h_5_to_10(phi)
+                +beta*(G66*dfd13h_5_to_10(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_5_to_10__7(double phi, double beta):
+        return (       G0 *dfd1h_5_to_10(phi)
+                +beta*(G71*dfd3h_5_to_10(phi)
+                +beta*(G72*dfd5h_5_to_10(phi)
+                +beta*(G73*dfd7h_5_to_10(phi)
+                +beta*(G74*dfd9h_5_to_10(phi)
+                +beta*(G75*dfd11h_5_to_10(phi)
+                +beta*(G76*dfd13h_5_to_10(phi)
+                +beta*(G77*dfd15h_5_to_10(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_5_to_10__8(double phi, double beta):
+        return (       G0 *dfd1h_5_to_10(phi)
+                +beta*(G81*dfd3h_5_to_10(phi)
+                +beta*(G82*dfd5h_5_to_10(phi)
+                +beta*(G83*dfd7h_5_to_10(phi)
+                +beta*(G84*dfd9h_5_to_10(phi)
+                +beta*(G85*dfd11h_5_to_10(phi)
+                +beta*(G86*dfd13h_5_to_10(phi)
+                +beta*(G87*dfd15h_5_to_10(phi)
+                +beta*(G88*dfd17h_5_to_10(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_5_to_10__9(double phi, double beta):
+        return (       G0 *dfd1h_5_to_10(phi)
+                +beta*(G91*dfd3h_5_to_10(phi)
+                +beta*(G92*dfd5h_5_to_10(phi)
+                +beta*(G93*dfd7h_5_to_10(phi)
+                +beta*(G94*dfd9h_5_to_10(phi)
+                +beta*(G95*dfd11h_5_to_10(phi)
+                +beta*(G96*dfd13h_5_to_10(phi)
+                +beta*(G97*dfd15h_5_to_10(phi)
+                +beta*(G98*dfd17h_5_to_10(phi)
+                +beta*(G99*dfd19h_5_to_10(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_5_to_10__10(double phi, double beta):
+        return (       G0 *dfd1h_5_to_10(phi)
+                +beta*(GA1*dfd3h_5_to_10(phi)
+                +beta*(GA2*dfd5h_5_to_10(phi)
+                +beta*(GA3*dfd7h_5_to_10(phi)
+                +beta*(GA4*dfd9h_5_to_10(phi)
+                +beta*(GA5*dfd11h_5_to_10(phi)
+                +beta*(GA6*dfd13h_5_to_10(phi)
+                +beta*(GA7*dfd15h_5_to_10(phi)
+                +beta*(GA8*dfd17h_5_to_10(phi)
+                +beta*(GA9*dfd19h_5_to_10(phi)
+                +beta*(GAA*dfd21h_5_to_10(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_10_to_20__1(double phi, double beta):
+        return (       G0 *dfd1h_10_to_20(phi)
+                +beta*(G11*dfd3h_10_to_20(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_10_to_20__2(double phi, double beta):
+        return (       G0 *dfd1h_10_to_20(phi)
+                +beta*(G21*dfd3h_10_to_20(phi)
+                +beta*(G22*dfd5h_10_to_20(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_10_to_20__3(double phi, double beta):
+        return (       G0 *dfd1h_10_to_20(phi)
+                +beta*(G31*dfd3h_10_to_20(phi)
+                +beta*(G32*dfd5h_10_to_20(phi)
+                +beta*(G33*dfd7h_10_to_20(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_10_to_20__4(double phi, double beta):
+        return (       G0 *dfd1h_10_to_20(phi)
+                +beta*(G41*dfd3h_10_to_20(phi)
+                +beta*(G42*dfd5h_10_to_20(phi)
+                +beta*(G43*dfd7h_10_to_20(phi)
+                +beta*(G44*dfd9h_10_to_20(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_10_to_20__5(double phi, double beta):
+        return (       G0 *dfd1h_10_to_20(phi)
+                +beta*(G51*dfd3h_10_to_20(phi)
+                +beta*(G52*dfd5h_10_to_20(phi)
+                +beta*(G53*dfd7h_10_to_20(phi)
+                +beta*(G54*dfd9h_10_to_20(phi)
+                +beta*(G55*dfd11h_10_to_20(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_10_to_20__6(double phi, double beta):
+        return (       G0 *dfd1h_10_to_20(phi)
+                +beta*(G61*dfd3h_10_to_20(phi)
+                +beta*(G62*dfd5h_10_to_20(phi)
+                +beta*(G63*dfd7h_10_to_20(phi)
+                +beta*(G64*dfd9h_10_to_20(phi)
+                +beta*(G65*dfd11h_10_to_20(phi)
+                +beta*(G66*dfd13h_10_to_20(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_10_to_20__7(double phi, double beta):
+        return (       G0 *dfd1h_10_to_20(phi)
+                +beta*(G71*dfd3h_10_to_20(phi)
+                +beta*(G72*dfd5h_10_to_20(phi)
+                +beta*(G73*dfd7h_10_to_20(phi)
+                +beta*(G74*dfd9h_10_to_20(phi)
+                +beta*(G75*dfd11h_10_to_20(phi)
+                +beta*(G76*dfd13h_10_to_20(phi)
+                +beta*(G77*dfd15h_10_to_20(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_10_to_20__8(double phi, double beta):
+        return (       G0 *dfd1h_10_to_20(phi)
+                +beta*(G81*dfd3h_10_to_20(phi)
+                +beta*(G82*dfd5h_10_to_20(phi)
+                +beta*(G83*dfd7h_10_to_20(phi)
+                +beta*(G84*dfd9h_10_to_20(phi)
+                +beta*(G85*dfd11h_10_to_20(phi)
+                +beta*(G86*dfd13h_10_to_20(phi)
+                +beta*(G87*dfd15h_10_to_20(phi)
+                +beta*(G88*dfd17h_10_to_20(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_10_to_20__9(double phi, double beta):
+        return (       G0 *dfd1h_10_to_20(phi)
+                +beta*(G91*dfd3h_10_to_20(phi)
+                +beta*(G92*dfd5h_10_to_20(phi)
+                +beta*(G93*dfd7h_10_to_20(phi)
+                +beta*(G94*dfd9h_10_to_20(phi)
+                +beta*(G95*dfd11h_10_to_20(phi)
+                +beta*(G96*dfd13h_10_to_20(phi)
+                +beta*(G97*dfd15h_10_to_20(phi)
+                +beta*(G98*dfd17h_10_to_20(phi)
+                +beta*(G99*dfd19h_10_to_20(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_10_to_20__10(double phi, double beta):
+        return (       G0 *dfd1h_10_to_20(phi)
+                +beta*(GA1*dfd3h_10_to_20(phi)
+                +beta*(GA2*dfd5h_10_to_20(phi)
+                +beta*(GA3*dfd7h_10_to_20(phi)
+                +beta*(GA4*dfd9h_10_to_20(phi)
+                +beta*(GA5*dfd11h_10_to_20(phi)
+                +beta*(GA6*dfd13h_10_to_20(phi)
+                +beta*(GA7*dfd15h_10_to_20(phi)
+                +beta*(GA8*dfd17h_10_to_20(phi)
+                +beta*(GA9*dfd19h_10_to_20(phi)
+                +beta*(GAA*dfd21h_10_to_20(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_20_to_40__1(double phi, double beta):
+        return (       G0 *dfd1h_20_to_40(phi)
+                +beta*(G11*dfd3h_20_to_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_20_to_40__2(double phi, double beta):
+        return (       G0 *dfd1h_20_to_40(phi)
+                +beta*(G21*dfd3h_20_to_40(phi)
+                +beta*(G22*dfd5h_20_to_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_20_to_40__3(double phi, double beta):
+        return (       G0 *dfd1h_20_to_40(phi)
+                +beta*(G31*dfd3h_20_to_40(phi)
+                +beta*(G32*dfd5h_20_to_40(phi)
+                +beta*(G33*dfd7h_20_to_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_20_to_40__4(double phi, double beta):
+        return (       G0 *dfd1h_20_to_40(phi)
+                +beta*(G41*dfd3h_20_to_40(phi)
+                +beta*(G42*dfd5h_20_to_40(phi)
+                +beta*(G43*dfd7h_20_to_40(phi)
+                +beta*(G44*dfd9h_20_to_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_20_to_40__5(double phi, double beta):
+        return (       G0 *dfd1h_20_to_40(phi)
+                +beta*(G51*dfd3h_20_to_40(phi)
+                +beta*(G52*dfd5h_20_to_40(phi)
+                +beta*(G53*dfd7h_20_to_40(phi)
+                +beta*(G54*dfd9h_20_to_40(phi)
+                +beta*(G55*dfd11h_20_to_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_20_to_40__6(double phi, double beta):
+        return (       G0 *dfd1h_20_to_40(phi)
+                +beta*(G61*dfd3h_20_to_40(phi)
+                +beta*(G62*dfd5h_20_to_40(phi)
+                +beta*(G63*dfd7h_20_to_40(phi)
+                +beta*(G64*dfd9h_20_to_40(phi)
+                +beta*(G65*dfd11h_20_to_40(phi)
+                +beta*(G66*dfd13h_20_to_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_20_to_40__7(double phi, double beta):
+        return (       G0 *dfd1h_20_to_40(phi)
+                +beta*(G71*dfd3h_20_to_40(phi)
+                +beta*(G72*dfd5h_20_to_40(phi)
+                +beta*(G73*dfd7h_20_to_40(phi)
+                +beta*(G74*dfd9h_20_to_40(phi)
+                +beta*(G75*dfd11h_20_to_40(phi)
+                +beta*(G76*dfd13h_20_to_40(phi)
+                +beta*(G77*dfd15h_20_to_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_20_to_40__8(double phi, double beta):
+        return (       G0 *dfd1h_20_to_40(phi)
+                +beta*(G81*dfd3h_20_to_40(phi)
+                +beta*(G82*dfd5h_20_to_40(phi)
+                +beta*(G83*dfd7h_20_to_40(phi)
+                +beta*(G84*dfd9h_20_to_40(phi)
+                +beta*(G85*dfd11h_20_to_40(phi)
+                +beta*(G86*dfd13h_20_to_40(phi)
+                +beta*(G87*dfd15h_20_to_40(phi)
+                +beta*(G88*dfd17h_20_to_40(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_20_to_40__9(double phi, double beta):
+        return (       G0 *dfd1h_20_to_40(phi)
+                +beta*(G91*dfd3h_20_to_40(phi)
+                +beta*(G92*dfd5h_20_to_40(phi)
+                +beta*(G93*dfd7h_20_to_40(phi)
+                +beta*(G94*dfd9h_20_to_40(phi)
+                +beta*(G95*dfd11h_20_to_40(phi)
+                +beta*(G96*dfd13h_20_to_40(phi)
+                +beta*(G97*dfd15h_20_to_40(phi)
+                +beta*(G98*dfd17h_20_to_40(phi)
+                +beta*(G99*dfd19h_20_to_40(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_20_to_40__10(double phi, double beta):
+        return (       G0 *dfd1h_20_to_40(phi)
+                +beta*(GA1*dfd3h_20_to_40(phi)
+                +beta*(GA2*dfd5h_20_to_40(phi)
+                +beta*(GA3*dfd7h_20_to_40(phi)
+                +beta*(GA4*dfd9h_20_to_40(phi)
+                +beta*(GA5*dfd11h_20_to_40(phi)
+                +beta*(GA6*dfd13h_20_to_40(phi)
+                +beta*(GA7*dfd15h_20_to_40(phi)
+                +beta*(GA8*dfd17h_20_to_40(phi)
+                +beta*(GA9*dfd19h_20_to_40(phi)
+                +beta*(GAA*dfd21h_20_to_40(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_gt_40__1(double phi, double beta):
+        return (       G0 *dfd1h_gt_40(phi)
+                +beta*(G11*dfd3h_gt_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_gt_40__2(double phi, double beta):
+        return (       G0 *dfd1h_gt_40(phi)
+                +beta*(G21*dfd3h_gt_40(phi)
+                +beta*(G22*dfd5h_gt_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_gt_40__3(double phi, double beta):
+        return (       G0 *dfd1h_gt_40(phi)
+                +beta*(G31*dfd3h_gt_40(phi)
+                +beta*(G32*dfd5h_gt_40(phi)
+                +beta*(G33*dfd7h_gt_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_gt_40__4(double phi, double beta):
+        return (       G0 *dfd1h_gt_40(phi)
+                +beta*(G41*dfd3h_gt_40(phi)
+                +beta*(G42*dfd5h_gt_40(phi)
+                +beta*(G43*dfd7h_gt_40(phi)
+                +beta*(G44*dfd9h_gt_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_gt_40__5(double phi, double beta):
+        return (       G0 *dfd1h_gt_40(phi)
+                +beta*(G51*dfd3h_gt_40(phi)
+                +beta*(G52*dfd5h_gt_40(phi)
+                +beta*(G53*dfd7h_gt_40(phi)
+                +beta*(G54*dfd9h_gt_40(phi)
+                +beta*(G55*dfd11h_gt_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_gt_40__6(double phi, double beta):
+        return (       G0 *dfd1h_gt_40(phi)
+                +beta*(G61*dfd3h_gt_40(phi)
+                +beta*(G62*dfd5h_gt_40(phi)
+                +beta*(G63*dfd7h_gt_40(phi)
+                +beta*(G64*dfd9h_gt_40(phi)
+                +beta*(G65*dfd11h_gt_40(phi)
+                +beta*(G66*dfd13h_gt_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_gt_40__7(double phi, double beta):
+        return (       G0 *dfd1h_gt_40(phi)
+                +beta*(G71*dfd3h_gt_40(phi)
+                +beta*(G72*dfd5h_gt_40(phi)
+                +beta*(G73*dfd7h_gt_40(phi)
+                +beta*(G74*dfd9h_gt_40(phi)
+                +beta*(G75*dfd11h_gt_40(phi)
+                +beta*(G76*dfd13h_gt_40(phi)
+                +beta*(G77*dfd15h_gt_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_gt_40__8(double phi, double beta):
+        return (       G0 *dfd1h_gt_40(phi)
+                +beta*(G81*dfd3h_gt_40(phi)
+                +beta*(G82*dfd5h_gt_40(phi)
+                +beta*(G83*dfd7h_gt_40(phi)
+                +beta*(G84*dfd9h_gt_40(phi)
+                +beta*(G85*dfd11h_gt_40(phi)
+                +beta*(G86*dfd13h_gt_40(phi)
+                +beta*(G87*dfd15h_gt_40(phi)
+                +beta*(G88*dfd17h_gt_40(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_gt_40__9(double phi, double beta):
+        return (       G0 *dfd1h_gt_40(phi)
+                +beta*(G91*dfd3h_gt_40(phi)
+                +beta*(G92*dfd5h_gt_40(phi)
+                +beta*(G93*dfd7h_gt_40(phi)
+                +beta*(G94*dfd9h_gt_40(phi)
+                +beta*(G95*dfd11h_gt_40(phi)
+                +beta*(G96*dfd13h_gt_40(phi)
+                +beta*(G97*dfd15h_gt_40(phi)
+                +beta*(G98*dfd17h_gt_40(phi)
+                +beta*(G99*dfd19h_gt_40(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd1h_gt_40__10(double phi, double beta):
+        return (       G0 *dfd1h_gt_40(phi)
+                +beta*(GA1*dfd3h_gt_40(phi)
+                +beta*(GA2*dfd5h_gt_40(phi)
+                +beta*(GA3*dfd7h_gt_40(phi)
+                +beta*(GA4*dfd9h_gt_40(phi)
+                +beta*(GA5*dfd11h_gt_40(phi)
+                +beta*(GA6*dfd13h_gt_40(phi)
+                +beta*(GA7*dfd15h_gt_40(phi)
+                +beta*(GA8*dfd17h_gt_40(phi)
+                +beta*(GA9*dfd19h_gt_40(phi)
+                +beta*(GAA*dfd21h_gt_40(phi)
+                )))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_lt_m2__1(double phi, double beta):
+        return (       G0 *dfd3h_lt_m2(phi)
+                +beta*(G11*dfd5h_lt_m2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_lt_m2__2(double phi, double beta):
+        return (       G0 *dfd3h_lt_m2(phi)
+                +beta*(G21*dfd5h_lt_m2(phi)
+                +beta*(G22*dfd7h_lt_m2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_lt_m2__3(double phi, double beta):
+        return (       G0 *dfd3h_lt_m2(phi)
+                +beta*(G31*dfd5h_lt_m2(phi)
+                +beta*(G32*dfd7h_lt_m2(phi)
+                +beta*(G33*dfd9h_lt_m2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_lt_m2__4(double phi, double beta):
+        return (       G0 *dfd3h_lt_m2(phi)
+                +beta*(G41*dfd5h_lt_m2(phi)
+                +beta*(G42*dfd7h_lt_m2(phi)
+                +beta*(G43*dfd9h_lt_m2(phi)
+                +beta*(G44*dfd11h_lt_m2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_lt_m2__5(double phi, double beta):
+        return (       G0 *dfd3h_lt_m2(phi)
+                +beta*(G51*dfd5h_lt_m2(phi)
+                +beta*(G52*dfd7h_lt_m2(phi)
+                +beta*(G53*dfd9h_lt_m2(phi)
+                +beta*(G54*dfd11h_lt_m2(phi)
+                +beta*(G55*dfd13h_lt_m2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_lt_m2__6(double phi, double beta):
+        return (       G0 *dfd3h_lt_m2(phi)
+                +beta*(G61*dfd5h_lt_m2(phi)
+                +beta*(G62*dfd7h_lt_m2(phi)
+                +beta*(G63*dfd9h_lt_m2(phi)
+                +beta*(G64*dfd11h_lt_m2(phi)
+                +beta*(G65*dfd13h_lt_m2(phi)
+                +beta*(G66*dfd15h_lt_m2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_lt_m2__7(double phi, double beta):
+        return (       G0 *dfd3h_lt_m2(phi)
+                +beta*(G71*dfd5h_lt_m2(phi)
+                +beta*(G72*dfd7h_lt_m2(phi)
+                +beta*(G73*dfd9h_lt_m2(phi)
+                +beta*(G74*dfd11h_lt_m2(phi)
+                +beta*(G75*dfd13h_lt_m2(phi)
+                +beta*(G76*dfd15h_lt_m2(phi)
+                +beta*(G77*dfd17h_lt_m2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_lt_m2__8(double phi, double beta):
+        return (       G0 *dfd3h_lt_m2(phi)
+                +beta*(G81*dfd5h_lt_m2(phi)
+                +beta*(G82*dfd7h_lt_m2(phi)
+                +beta*(G83*dfd9h_lt_m2(phi)
+                +beta*(G84*dfd11h_lt_m2(phi)
+                +beta*(G85*dfd13h_lt_m2(phi)
+                +beta*(G86*dfd15h_lt_m2(phi)
+                +beta*(G87*dfd17h_lt_m2(phi)
+                +beta*(G88*dfd19h_lt_m2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_lt_m2__9(double phi, double beta):
+        return (       G0 *dfd3h_lt_m2(phi)
+                +beta*(G91*dfd5h_lt_m2(phi)
+                +beta*(G92*dfd7h_lt_m2(phi)
+                +beta*(G93*dfd9h_lt_m2(phi)
+                +beta*(G94*dfd11h_lt_m2(phi)
+                +beta*(G95*dfd13h_lt_m2(phi)
+                +beta*(G96*dfd15h_lt_m2(phi)
+                +beta*(G97*dfd17h_lt_m2(phi)
+                +beta*(G98*dfd19h_lt_m2(phi)
+                +beta*(G99*dfd21h_lt_m2(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_m2_to_0__1(double phi, double beta):
+        return (       G0 *dfd3h_m2_to_0(phi)
+                +beta*(G11*dfd5h_m2_to_0(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_m2_to_0__2(double phi, double beta):
+        return (       G0 *dfd3h_m2_to_0(phi)
+                +beta*(G21*dfd5h_m2_to_0(phi)
+                +beta*(G22*dfd7h_m2_to_0(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_m2_to_0__3(double phi, double beta):
+        return (       G0 *dfd3h_m2_to_0(phi)
+                +beta*(G31*dfd5h_m2_to_0(phi)
+                +beta*(G32*dfd7h_m2_to_0(phi)
+                +beta*(G33*dfd9h_m2_to_0(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_m2_to_0__4(double phi, double beta):
+        return (       G0 *dfd3h_m2_to_0(phi)
+                +beta*(G41*dfd5h_m2_to_0(phi)
+                +beta*(G42*dfd7h_m2_to_0(phi)
+                +beta*(G43*dfd9h_m2_to_0(phi)
+                +beta*(G44*dfd11h_m2_to_0(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_m2_to_0__5(double phi, double beta):
+        return (       G0 *dfd3h_m2_to_0(phi)
+                +beta*(G51*dfd5h_m2_to_0(phi)
+                +beta*(G52*dfd7h_m2_to_0(phi)
+                +beta*(G53*dfd9h_m2_to_0(phi)
+                +beta*(G54*dfd11h_m2_to_0(phi)
+                +beta*(G55*dfd13h_m2_to_0(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_m2_to_0__6(double phi, double beta):
+        return (       G0 *dfd3h_m2_to_0(phi)
+                +beta*(G61*dfd5h_m2_to_0(phi)
+                +beta*(G62*dfd7h_m2_to_0(phi)
+                +beta*(G63*dfd9h_m2_to_0(phi)
+                +beta*(G64*dfd11h_m2_to_0(phi)
+                +beta*(G65*dfd13h_m2_to_0(phi)
+                +beta*(G66*dfd15h_m2_to_0(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_m2_to_0__7(double phi, double beta):
+        return (       G0 *dfd3h_m2_to_0(phi)
+                +beta*(G71*dfd5h_m2_to_0(phi)
+                +beta*(G72*dfd7h_m2_to_0(phi)
+                +beta*(G73*dfd9h_m2_to_0(phi)
+                +beta*(G74*dfd11h_m2_to_0(phi)
+                +beta*(G75*dfd13h_m2_to_0(phi)
+                +beta*(G76*dfd15h_m2_to_0(phi)
+                +beta*(G77*dfd17h_m2_to_0(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_m2_to_0__8(double phi, double beta):
+        return (       G0 *dfd3h_m2_to_0(phi)
+                +beta*(G81*dfd5h_m2_to_0(phi)
+                +beta*(G82*dfd7h_m2_to_0(phi)
+                +beta*(G83*dfd9h_m2_to_0(phi)
+                +beta*(G84*dfd11h_m2_to_0(phi)
+                +beta*(G85*dfd13h_m2_to_0(phi)
+                +beta*(G86*dfd15h_m2_to_0(phi)
+                +beta*(G87*dfd17h_m2_to_0(phi)
+                +beta*(G88*dfd19h_m2_to_0(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_m2_to_0__9(double phi, double beta):
+        return (       G0 *dfd3h_m2_to_0(phi)
+                +beta*(G91*dfd5h_m2_to_0(phi)
+                +beta*(G92*dfd7h_m2_to_0(phi)
+                +beta*(G93*dfd9h_m2_to_0(phi)
+                +beta*(G94*dfd11h_m2_to_0(phi)
+                +beta*(G95*dfd13h_m2_to_0(phi)
+                +beta*(G96*dfd15h_m2_to_0(phi)
+                +beta*(G97*dfd17h_m2_to_0(phi)
+                +beta*(G98*dfd19h_m2_to_0(phi)
+                +beta*(G99*dfd21h_m2_to_0(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_0_to_2__1(double phi, double beta):
+        return (       G0 *dfd3h_0_to_2(phi)
+                +beta*(G11*dfd5h_0_to_2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_0_to_2__2(double phi, double beta):
+        return (       G0 *dfd3h_0_to_2(phi)
+                +beta*(G21*dfd5h_0_to_2(phi)
+                +beta*(G22*dfd7h_0_to_2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_0_to_2__3(double phi, double beta):
+        return (       G0 *dfd3h_0_to_2(phi)
+                +beta*(G31*dfd5h_0_to_2(phi)
+                +beta*(G32*dfd7h_0_to_2(phi)
+                +beta*(G33*dfd9h_0_to_2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_0_to_2__4(double phi, double beta):
+        return (       G0 *dfd3h_0_to_2(phi)
+                +beta*(G41*dfd5h_0_to_2(phi)
+                +beta*(G42*dfd7h_0_to_2(phi)
+                +beta*(G43*dfd9h_0_to_2(phi)
+                +beta*(G44*dfd11h_0_to_2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_0_to_2__5(double phi, double beta):
+        return (       G0 *dfd3h_0_to_2(phi)
+                +beta*(G51*dfd5h_0_to_2(phi)
+                +beta*(G52*dfd7h_0_to_2(phi)
+                +beta*(G53*dfd9h_0_to_2(phi)
+                +beta*(G54*dfd11h_0_to_2(phi)
+                +beta*(G55*dfd13h_0_to_2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_0_to_2__6(double phi, double beta):
+        return (       G0 *dfd3h_0_to_2(phi)
+                +beta*(G61*dfd5h_0_to_2(phi)
+                +beta*(G62*dfd7h_0_to_2(phi)
+                +beta*(G63*dfd9h_0_to_2(phi)
+                +beta*(G64*dfd11h_0_to_2(phi)
+                +beta*(G65*dfd13h_0_to_2(phi)
+                +beta*(G66*dfd15h_0_to_2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_0_to_2__7(double phi, double beta):
+        return (       G0 *dfd3h_0_to_2(phi)
+                +beta*(G71*dfd5h_0_to_2(phi)
+                +beta*(G72*dfd7h_0_to_2(phi)
+                +beta*(G73*dfd9h_0_to_2(phi)
+                +beta*(G74*dfd11h_0_to_2(phi)
+                +beta*(G75*dfd13h_0_to_2(phi)
+                +beta*(G76*dfd15h_0_to_2(phi)
+                +beta*(G77*dfd17h_0_to_2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_0_to_2__8(double phi, double beta):
+        return (       G0 *dfd3h_0_to_2(phi)
+                +beta*(G81*dfd5h_0_to_2(phi)
+                +beta*(G82*dfd7h_0_to_2(phi)
+                +beta*(G83*dfd9h_0_to_2(phi)
+                +beta*(G84*dfd11h_0_to_2(phi)
+                +beta*(G85*dfd13h_0_to_2(phi)
+                +beta*(G86*dfd15h_0_to_2(phi)
+                +beta*(G87*dfd17h_0_to_2(phi)
+                +beta*(G88*dfd19h_0_to_2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_0_to_2__9(double phi, double beta):
+        return (       G0 *dfd3h_0_to_2(phi)
+                +beta*(G91*dfd5h_0_to_2(phi)
+                +beta*(G92*dfd7h_0_to_2(phi)
+                +beta*(G93*dfd9h_0_to_2(phi)
+                +beta*(G94*dfd11h_0_to_2(phi)
+                +beta*(G95*dfd13h_0_to_2(phi)
+                +beta*(G96*dfd15h_0_to_2(phi)
+                +beta*(G97*dfd17h_0_to_2(phi)
+                +beta*(G98*dfd19h_0_to_2(phi)
+                +beta*(G99*dfd21h_0_to_2(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_2_to_5__1(double phi, double beta):
+        return (       G0 *dfd3h_2_to_5(phi)
+                +beta*(G11*dfd5h_2_to_5(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_2_to_5__2(double phi, double beta):
+        return (       G0 *dfd3h_2_to_5(phi)
+                +beta*(G21*dfd5h_2_to_5(phi)
+                +beta*(G22*dfd7h_2_to_5(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_2_to_5__3(double phi, double beta):
+        return (       G0 *dfd3h_2_to_5(phi)
+                +beta*(G31*dfd5h_2_to_5(phi)
+                +beta*(G32*dfd7h_2_to_5(phi)
+                +beta*(G33*dfd9h_2_to_5(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_2_to_5__4(double phi, double beta):
+        return (       G0 *dfd3h_2_to_5(phi)
+                +beta*(G41*dfd5h_2_to_5(phi)
+                +beta*(G42*dfd7h_2_to_5(phi)
+                +beta*(G43*dfd9h_2_to_5(phi)
+                +beta*(G44*dfd11h_2_to_5(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_2_to_5__5(double phi, double beta):
+        return (       G0 *dfd3h_2_to_5(phi)
+                +beta*(G51*dfd5h_2_to_5(phi)
+                +beta*(G52*dfd7h_2_to_5(phi)
+                +beta*(G53*dfd9h_2_to_5(phi)
+                +beta*(G54*dfd11h_2_to_5(phi)
+                +beta*(G55*dfd13h_2_to_5(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_2_to_5__6(double phi, double beta):
+        return (       G0 *dfd3h_2_to_5(phi)
+                +beta*(G61*dfd5h_2_to_5(phi)
+                +beta*(G62*dfd7h_2_to_5(phi)
+                +beta*(G63*dfd9h_2_to_5(phi)
+                +beta*(G64*dfd11h_2_to_5(phi)
+                +beta*(G65*dfd13h_2_to_5(phi)
+                +beta*(G66*dfd15h_2_to_5(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_2_to_5__7(double phi, double beta):
+        return (       G0 *dfd3h_2_to_5(phi)
+                +beta*(G71*dfd5h_2_to_5(phi)
+                +beta*(G72*dfd7h_2_to_5(phi)
+                +beta*(G73*dfd9h_2_to_5(phi)
+                +beta*(G74*dfd11h_2_to_5(phi)
+                +beta*(G75*dfd13h_2_to_5(phi)
+                +beta*(G76*dfd15h_2_to_5(phi)
+                +beta*(G77*dfd17h_2_to_5(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_2_to_5__8(double phi, double beta):
+        return (       G0 *dfd3h_2_to_5(phi)
+                +beta*(G81*dfd5h_2_to_5(phi)
+                +beta*(G82*dfd7h_2_to_5(phi)
+                +beta*(G83*dfd9h_2_to_5(phi)
+                +beta*(G84*dfd11h_2_to_5(phi)
+                +beta*(G85*dfd13h_2_to_5(phi)
+                +beta*(G86*dfd15h_2_to_5(phi)
+                +beta*(G87*dfd17h_2_to_5(phi)
+                +beta*(G88*dfd19h_2_to_5(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_2_to_5__9(double phi, double beta):
+        return (       G0 *dfd3h_2_to_5(phi)
+                +beta*(G91*dfd5h_2_to_5(phi)
+                +beta*(G92*dfd7h_2_to_5(phi)
+                +beta*(G93*dfd9h_2_to_5(phi)
+                +beta*(G94*dfd11h_2_to_5(phi)
+                +beta*(G95*dfd13h_2_to_5(phi)
+                +beta*(G96*dfd15h_2_to_5(phi)
+                +beta*(G97*dfd17h_2_to_5(phi)
+                +beta*(G98*dfd19h_2_to_5(phi)
+                +beta*(G99*dfd21h_2_to_5(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_5_to_10__1(double phi, double beta):
+        return (       G0 *dfd3h_5_to_10(phi)
+                +beta*(G11*dfd5h_5_to_10(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_5_to_10__2(double phi, double beta):
+        return (       G0 *dfd3h_5_to_10(phi)
+                +beta*(G21*dfd5h_5_to_10(phi)
+                +beta*(G22*dfd7h_5_to_10(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_5_to_10__3(double phi, double beta):
+        return (       G0 *dfd3h_5_to_10(phi)
+                +beta*(G31*dfd5h_5_to_10(phi)
+                +beta*(G32*dfd7h_5_to_10(phi)
+                +beta*(G33*dfd9h_5_to_10(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_5_to_10__4(double phi, double beta):
+        return (       G0 *dfd3h_5_to_10(phi)
+                +beta*(G41*dfd5h_5_to_10(phi)
+                +beta*(G42*dfd7h_5_to_10(phi)
+                +beta*(G43*dfd9h_5_to_10(phi)
+                +beta*(G44*dfd11h_5_to_10(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_5_to_10__5(double phi, double beta):
+        return (       G0 *dfd3h_5_to_10(phi)
+                +beta*(G51*dfd5h_5_to_10(phi)
+                +beta*(G52*dfd7h_5_to_10(phi)
+                +beta*(G53*dfd9h_5_to_10(phi)
+                +beta*(G54*dfd11h_5_to_10(phi)
+                +beta*(G55*dfd13h_5_to_10(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_5_to_10__6(double phi, double beta):
+        return (       G0 *dfd3h_5_to_10(phi)
+                +beta*(G61*dfd5h_5_to_10(phi)
+                +beta*(G62*dfd7h_5_to_10(phi)
+                +beta*(G63*dfd9h_5_to_10(phi)
+                +beta*(G64*dfd11h_5_to_10(phi)
+                +beta*(G65*dfd13h_5_to_10(phi)
+                +beta*(G66*dfd15h_5_to_10(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_5_to_10__7(double phi, double beta):
+        return (       G0 *dfd3h_5_to_10(phi)
+                +beta*(G71*dfd5h_5_to_10(phi)
+                +beta*(G72*dfd7h_5_to_10(phi)
+                +beta*(G73*dfd9h_5_to_10(phi)
+                +beta*(G74*dfd11h_5_to_10(phi)
+                +beta*(G75*dfd13h_5_to_10(phi)
+                +beta*(G76*dfd15h_5_to_10(phi)
+                +beta*(G77*dfd17h_5_to_10(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_5_to_10__8(double phi, double beta):
+        return (       G0 *dfd3h_5_to_10(phi)
+                +beta*(G81*dfd5h_5_to_10(phi)
+                +beta*(G82*dfd7h_5_to_10(phi)
+                +beta*(G83*dfd9h_5_to_10(phi)
+                +beta*(G84*dfd11h_5_to_10(phi)
+                +beta*(G85*dfd13h_5_to_10(phi)
+                +beta*(G86*dfd15h_5_to_10(phi)
+                +beta*(G87*dfd17h_5_to_10(phi)
+                +beta*(G88*dfd19h_5_to_10(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_5_to_10__9(double phi, double beta):
+        return (       G0 *dfd3h_5_to_10(phi)
+                +beta*(G91*dfd5h_5_to_10(phi)
+                +beta*(G92*dfd7h_5_to_10(phi)
+                +beta*(G93*dfd9h_5_to_10(phi)
+                +beta*(G94*dfd11h_5_to_10(phi)
+                +beta*(G95*dfd13h_5_to_10(phi)
+                +beta*(G96*dfd15h_5_to_10(phi)
+                +beta*(G97*dfd17h_5_to_10(phi)
+                +beta*(G98*dfd19h_5_to_10(phi)
+                +beta*(G99*dfd21h_5_to_10(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_10_to_20__1(double phi, double beta):
+        return (       G0 *dfd3h_10_to_20(phi)
+                +beta*(G11*dfd5h_10_to_20(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_10_to_20__2(double phi, double beta):
+        return (       G0 *dfd3h_10_to_20(phi)
+                +beta*(G21*dfd5h_10_to_20(phi)
+                +beta*(G22*dfd7h_10_to_20(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_10_to_20__3(double phi, double beta):
+        return (       G0 *dfd3h_10_to_20(phi)
+                +beta*(G31*dfd5h_10_to_20(phi)
+                +beta*(G32*dfd7h_10_to_20(phi)
+                +beta*(G33*dfd9h_10_to_20(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_10_to_20__4(double phi, double beta):
+        return (       G0 *dfd3h_10_to_20(phi)
+                +beta*(G41*dfd5h_10_to_20(phi)
+                +beta*(G42*dfd7h_10_to_20(phi)
+                +beta*(G43*dfd9h_10_to_20(phi)
+                +beta*(G44*dfd11h_10_to_20(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_10_to_20__5(double phi, double beta):
+        return (       G0 *dfd3h_10_to_20(phi)
+                +beta*(G51*dfd5h_10_to_20(phi)
+                +beta*(G52*dfd7h_10_to_20(phi)
+                +beta*(G53*dfd9h_10_to_20(phi)
+                +beta*(G54*dfd11h_10_to_20(phi)
+                +beta*(G55*dfd13h_10_to_20(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_10_to_20__6(double phi, double beta):
+        return (       G0 *dfd3h_10_to_20(phi)
+                +beta*(G61*dfd5h_10_to_20(phi)
+                +beta*(G62*dfd7h_10_to_20(phi)
+                +beta*(G63*dfd9h_10_to_20(phi)
+                +beta*(G64*dfd11h_10_to_20(phi)
+                +beta*(G65*dfd13h_10_to_20(phi)
+                +beta*(G66*dfd15h_10_to_20(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_10_to_20__7(double phi, double beta):
+        return (       G0 *dfd3h_10_to_20(phi)
+                +beta*(G71*dfd5h_10_to_20(phi)
+                +beta*(G72*dfd7h_10_to_20(phi)
+                +beta*(G73*dfd9h_10_to_20(phi)
+                +beta*(G74*dfd11h_10_to_20(phi)
+                +beta*(G75*dfd13h_10_to_20(phi)
+                +beta*(G76*dfd15h_10_to_20(phi)
+                +beta*(G77*dfd17h_10_to_20(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_10_to_20__8(double phi, double beta):
+        return (       G0 *dfd3h_10_to_20(phi)
+                +beta*(G81*dfd5h_10_to_20(phi)
+                +beta*(G82*dfd7h_10_to_20(phi)
+                +beta*(G83*dfd9h_10_to_20(phi)
+                +beta*(G84*dfd11h_10_to_20(phi)
+                +beta*(G85*dfd13h_10_to_20(phi)
+                +beta*(G86*dfd15h_10_to_20(phi)
+                +beta*(G87*dfd17h_10_to_20(phi)
+                +beta*(G88*dfd19h_10_to_20(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_10_to_20__9(double phi, double beta):
+        return (       G0 *dfd3h_10_to_20(phi)
+                +beta*(G91*dfd5h_10_to_20(phi)
+                +beta*(G92*dfd7h_10_to_20(phi)
+                +beta*(G93*dfd9h_10_to_20(phi)
+                +beta*(G94*dfd11h_10_to_20(phi)
+                +beta*(G95*dfd13h_10_to_20(phi)
+                +beta*(G96*dfd15h_10_to_20(phi)
+                +beta*(G97*dfd17h_10_to_20(phi)
+                +beta*(G98*dfd19h_10_to_20(phi)
+                +beta*(G99*dfd21h_10_to_20(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_20_to_40__1(double phi, double beta):
+        return (       G0 *dfd3h_20_to_40(phi)
+                +beta*(G11*dfd5h_20_to_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_20_to_40__2(double phi, double beta):
+        return (       G0 *dfd3h_20_to_40(phi)
+                +beta*(G21*dfd5h_20_to_40(phi)
+                +beta*(G22*dfd7h_20_to_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_20_to_40__3(double phi, double beta):
+        return (       G0 *dfd3h_20_to_40(phi)
+                +beta*(G31*dfd5h_20_to_40(phi)
+                +beta*(G32*dfd7h_20_to_40(phi)
+                +beta*(G33*dfd9h_20_to_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_20_to_40__4(double phi, double beta):
+        return (       G0 *dfd3h_20_to_40(phi)
+                +beta*(G41*dfd5h_20_to_40(phi)
+                +beta*(G42*dfd7h_20_to_40(phi)
+                +beta*(G43*dfd9h_20_to_40(phi)
+                +beta*(G44*dfd11h_20_to_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_20_to_40__5(double phi, double beta):
+        return (       G0 *dfd3h_20_to_40(phi)
+                +beta*(G51*dfd5h_20_to_40(phi)
+                +beta*(G52*dfd7h_20_to_40(phi)
+                +beta*(G53*dfd9h_20_to_40(phi)
+                +beta*(G54*dfd11h_20_to_40(phi)
+                +beta*(G55*dfd13h_20_to_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_20_to_40__6(double phi, double beta):
+        return (       G0 *dfd3h_20_to_40(phi)
+                +beta*(G61*dfd5h_20_to_40(phi)
+                +beta*(G62*dfd7h_20_to_40(phi)
+                +beta*(G63*dfd9h_20_to_40(phi)
+                +beta*(G64*dfd11h_20_to_40(phi)
+                +beta*(G65*dfd13h_20_to_40(phi)
+                +beta*(G66*dfd15h_20_to_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_20_to_40__7(double phi, double beta):
+        return (       G0 *dfd3h_20_to_40(phi)
+                +beta*(G71*dfd5h_20_to_40(phi)
+                +beta*(G72*dfd7h_20_to_40(phi)
+                +beta*(G73*dfd9h_20_to_40(phi)
+                +beta*(G74*dfd11h_20_to_40(phi)
+                +beta*(G75*dfd13h_20_to_40(phi)
+                +beta*(G76*dfd15h_20_to_40(phi)
+                +beta*(G77*dfd17h_20_to_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_20_to_40__8(double phi, double beta):
+        return (       G0 *dfd3h_20_to_40(phi)
+                +beta*(G81*dfd5h_20_to_40(phi)
+                +beta*(G82*dfd7h_20_to_40(phi)
+                +beta*(G83*dfd9h_20_to_40(phi)
+                +beta*(G84*dfd11h_20_to_40(phi)
+                +beta*(G85*dfd13h_20_to_40(phi)
+                +beta*(G86*dfd15h_20_to_40(phi)
+                +beta*(G87*dfd17h_20_to_40(phi)
+                +beta*(G88*dfd19h_20_to_40(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_20_to_40__9(double phi, double beta):
+        return (       G0 *dfd3h_20_to_40(phi)
+                +beta*(G91*dfd5h_20_to_40(phi)
+                +beta*(G92*dfd7h_20_to_40(phi)
+                +beta*(G93*dfd9h_20_to_40(phi)
+                +beta*(G94*dfd11h_20_to_40(phi)
+                +beta*(G95*dfd13h_20_to_40(phi)
+                +beta*(G96*dfd15h_20_to_40(phi)
+                +beta*(G97*dfd17h_20_to_40(phi)
+                +beta*(G98*dfd19h_20_to_40(phi)
+                +beta*(G99*dfd21h_20_to_40(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_gt_40__1(double phi, double beta):
+        return (       G0 *dfd3h_gt_40(phi)
+                +beta*(G11*dfd5h_gt_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_gt_40__2(double phi, double beta):
+        return (       G0 *dfd3h_gt_40(phi)
+                +beta*(G21*dfd5h_gt_40(phi)
+                +beta*(G22*dfd7h_gt_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_gt_40__3(double phi, double beta):
+        return (       G0 *dfd3h_gt_40(phi)
+                +beta*(G31*dfd5h_gt_40(phi)
+                +beta*(G32*dfd7h_gt_40(phi)
+                +beta*(G33*dfd9h_gt_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_gt_40__4(double phi, double beta):
+        return (       G0 *dfd3h_gt_40(phi)
+                +beta*(G41*dfd5h_gt_40(phi)
+                +beta*(G42*dfd7h_gt_40(phi)
+                +beta*(G43*dfd9h_gt_40(phi)
+                +beta*(G44*dfd11h_gt_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_gt_40__5(double phi, double beta):
+        return (       G0 *dfd3h_gt_40(phi)
+                +beta*(G51*dfd5h_gt_40(phi)
+                +beta*(G52*dfd7h_gt_40(phi)
+                +beta*(G53*dfd9h_gt_40(phi)
+                +beta*(G54*dfd11h_gt_40(phi)
+                +beta*(G55*dfd13h_gt_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_gt_40__6(double phi, double beta):
+        return (       G0 *dfd3h_gt_40(phi)
+                +beta*(G61*dfd5h_gt_40(phi)
+                +beta*(G62*dfd7h_gt_40(phi)
+                +beta*(G63*dfd9h_gt_40(phi)
+                +beta*(G64*dfd11h_gt_40(phi)
+                +beta*(G65*dfd13h_gt_40(phi)
+                +beta*(G66*dfd15h_gt_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_gt_40__7(double phi, double beta):
+        return (       G0 *dfd3h_gt_40(phi)
+                +beta*(G71*dfd5h_gt_40(phi)
+                +beta*(G72*dfd7h_gt_40(phi)
+                +beta*(G73*dfd9h_gt_40(phi)
+                +beta*(G74*dfd11h_gt_40(phi)
+                +beta*(G75*dfd13h_gt_40(phi)
+                +beta*(G76*dfd15h_gt_40(phi)
+                +beta*(G77*dfd17h_gt_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_gt_40__8(double phi, double beta):
+        return (       G0 *dfd3h_gt_40(phi)
+                +beta*(G81*dfd5h_gt_40(phi)
+                +beta*(G82*dfd7h_gt_40(phi)
+                +beta*(G83*dfd9h_gt_40(phi)
+                +beta*(G84*dfd11h_gt_40(phi)
+                +beta*(G85*dfd13h_gt_40(phi)
+                +beta*(G86*dfd15h_gt_40(phi)
+                +beta*(G87*dfd17h_gt_40(phi)
+                +beta*(G88*dfd19h_gt_40(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd3h_gt_40__9(double phi, double beta):
+        return (       G0 *dfd3h_gt_40(phi)
+                +beta*(G91*dfd5h_gt_40(phi)
+                +beta*(G92*dfd7h_gt_40(phi)
+                +beta*(G93*dfd9h_gt_40(phi)
+                +beta*(G94*dfd11h_gt_40(phi)
+                +beta*(G95*dfd13h_gt_40(phi)
+                +beta*(G96*dfd15h_gt_40(phi)
+                +beta*(G97*dfd17h_gt_40(phi)
+                +beta*(G98*dfd19h_gt_40(phi)
+                +beta*(G99*dfd21h_gt_40(phi)
+                ))))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_lt_m2__1(double phi, double beta):
+        return (       G0 *dfd5h_lt_m2(phi)
+                +beta*(G11*dfd7h_lt_m2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_lt_m2__2(double phi, double beta):
+        return (       G0 *dfd5h_lt_m2(phi)
+                +beta*(G21*dfd7h_lt_m2(phi)
+                +beta*(G22*dfd9h_lt_m2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_lt_m2__3(double phi, double beta):
+        return (       G0 *dfd5h_lt_m2(phi)
+                +beta*(G31*dfd7h_lt_m2(phi)
+                +beta*(G32*dfd9h_lt_m2(phi)
+                +beta*(G33*dfd11h_lt_m2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_lt_m2__4(double phi, double beta):
+        return (       G0 *dfd5h_lt_m2(phi)
+                +beta*(G41*dfd7h_lt_m2(phi)
+                +beta*(G42*dfd9h_lt_m2(phi)
+                +beta*(G43*dfd11h_lt_m2(phi)
+                +beta*(G44*dfd13h_lt_m2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_lt_m2__5(double phi, double beta):
+        return (       G0 *dfd5h_lt_m2(phi)
+                +beta*(G51*dfd7h_lt_m2(phi)
+                +beta*(G52*dfd9h_lt_m2(phi)
+                +beta*(G53*dfd11h_lt_m2(phi)
+                +beta*(G54*dfd13h_lt_m2(phi)
+                +beta*(G55*dfd15h_lt_m2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_lt_m2__6(double phi, double beta):
+        return (       G0 *dfd5h_lt_m2(phi)
+                +beta*(G61*dfd7h_lt_m2(phi)
+                +beta*(G62*dfd9h_lt_m2(phi)
+                +beta*(G63*dfd11h_lt_m2(phi)
+                +beta*(G64*dfd13h_lt_m2(phi)
+                +beta*(G65*dfd15h_lt_m2(phi)
+                +beta*(G66*dfd17h_lt_m2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_lt_m2__7(double phi, double beta):
+        return (       G0 *dfd5h_lt_m2(phi)
+                +beta*(G71*dfd7h_lt_m2(phi)
+                +beta*(G72*dfd9h_lt_m2(phi)
+                +beta*(G73*dfd11h_lt_m2(phi)
+                +beta*(G74*dfd13h_lt_m2(phi)
+                +beta*(G75*dfd15h_lt_m2(phi)
+                +beta*(G76*dfd17h_lt_m2(phi)
+                +beta*(G77*dfd19h_lt_m2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_lt_m2__8(double phi, double beta):
+        return (       G0 *dfd5h_lt_m2(phi)
+                +beta*(G81*dfd7h_lt_m2(phi)
+                +beta*(G82*dfd9h_lt_m2(phi)
+                +beta*(G83*dfd11h_lt_m2(phi)
+                +beta*(G84*dfd13h_lt_m2(phi)
+                +beta*(G85*dfd15h_lt_m2(phi)
+                +beta*(G86*dfd17h_lt_m2(phi)
+                +beta*(G87*dfd19h_lt_m2(phi)
+                +beta*(G88*dfd21h_lt_m2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_m2_to_0__1(double phi, double beta):
+        return (       G0 *dfd5h_m2_to_0(phi)
+                +beta*(G11*dfd7h_m2_to_0(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_m2_to_0__2(double phi, double beta):
+        return (       G0 *dfd5h_m2_to_0(phi)
+                +beta*(G21*dfd7h_m2_to_0(phi)
+                +beta*(G22*dfd9h_m2_to_0(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_m2_to_0__3(double phi, double beta):
+        return (       G0 *dfd5h_m2_to_0(phi)
+                +beta*(G31*dfd7h_m2_to_0(phi)
+                +beta*(G32*dfd9h_m2_to_0(phi)
+                +beta*(G33*dfd11h_m2_to_0(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_m2_to_0__4(double phi, double beta):
+        return (       G0 *dfd5h_m2_to_0(phi)
+                +beta*(G41*dfd7h_m2_to_0(phi)
+                +beta*(G42*dfd9h_m2_to_0(phi)
+                +beta*(G43*dfd11h_m2_to_0(phi)
+                +beta*(G44*dfd13h_m2_to_0(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_m2_to_0__5(double phi, double beta):
+        return (       G0 *dfd5h_m2_to_0(phi)
+                +beta*(G51*dfd7h_m2_to_0(phi)
+                +beta*(G52*dfd9h_m2_to_0(phi)
+                +beta*(G53*dfd11h_m2_to_0(phi)
+                +beta*(G54*dfd13h_m2_to_0(phi)
+                +beta*(G55*dfd15h_m2_to_0(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_m2_to_0__6(double phi, double beta):
+        return (       G0 *dfd5h_m2_to_0(phi)
+                +beta*(G61*dfd7h_m2_to_0(phi)
+                +beta*(G62*dfd9h_m2_to_0(phi)
+                +beta*(G63*dfd11h_m2_to_0(phi)
+                +beta*(G64*dfd13h_m2_to_0(phi)
+                +beta*(G65*dfd15h_m2_to_0(phi)
+                +beta*(G66*dfd17h_m2_to_0(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_m2_to_0__7(double phi, double beta):
+        return (       G0 *dfd5h_m2_to_0(phi)
+                +beta*(G71*dfd7h_m2_to_0(phi)
+                +beta*(G72*dfd9h_m2_to_0(phi)
+                +beta*(G73*dfd11h_m2_to_0(phi)
+                +beta*(G74*dfd13h_m2_to_0(phi)
+                +beta*(G75*dfd15h_m2_to_0(phi)
+                +beta*(G76*dfd17h_m2_to_0(phi)
+                +beta*(G77*dfd19h_m2_to_0(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_m2_to_0__8(double phi, double beta):
+        return (       G0 *dfd5h_m2_to_0(phi)
+                +beta*(G81*dfd7h_m2_to_0(phi)
+                +beta*(G82*dfd9h_m2_to_0(phi)
+                +beta*(G83*dfd11h_m2_to_0(phi)
+                +beta*(G84*dfd13h_m2_to_0(phi)
+                +beta*(G85*dfd15h_m2_to_0(phi)
+                +beta*(G86*dfd17h_m2_to_0(phi)
+                +beta*(G87*dfd19h_m2_to_0(phi)
+                +beta*(G88*dfd21h_m2_to_0(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_0_to_2__1(double phi, double beta):
+        return (       G0 *dfd5h_0_to_2(phi)
+                +beta*(G11*dfd7h_0_to_2(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_0_to_2__2(double phi, double beta):
+        return (       G0 *dfd5h_0_to_2(phi)
+                +beta*(G21*dfd7h_0_to_2(phi)
+                +beta*(G22*dfd9h_0_to_2(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_0_to_2__3(double phi, double beta):
+        return (       G0 *dfd5h_0_to_2(phi)
+                +beta*(G31*dfd7h_0_to_2(phi)
+                +beta*(G32*dfd9h_0_to_2(phi)
+                +beta*(G33*dfd11h_0_to_2(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_0_to_2__4(double phi, double beta):
+        return (       G0 *dfd5h_0_to_2(phi)
+                +beta*(G41*dfd7h_0_to_2(phi)
+                +beta*(G42*dfd9h_0_to_2(phi)
+                +beta*(G43*dfd11h_0_to_2(phi)
+                +beta*(G44*dfd13h_0_to_2(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_0_to_2__5(double phi, double beta):
+        return (       G0 *dfd5h_0_to_2(phi)
+                +beta*(G51*dfd7h_0_to_2(phi)
+                +beta*(G52*dfd9h_0_to_2(phi)
+                +beta*(G53*dfd11h_0_to_2(phi)
+                +beta*(G54*dfd13h_0_to_2(phi)
+                +beta*(G55*dfd15h_0_to_2(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_0_to_2__6(double phi, double beta):
+        return (       G0 *dfd5h_0_to_2(phi)
+                +beta*(G61*dfd7h_0_to_2(phi)
+                +beta*(G62*dfd9h_0_to_2(phi)
+                +beta*(G63*dfd11h_0_to_2(phi)
+                +beta*(G64*dfd13h_0_to_2(phi)
+                +beta*(G65*dfd15h_0_to_2(phi)
+                +beta*(G66*dfd17h_0_to_2(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_0_to_2__7(double phi, double beta):
+        return (       G0 *dfd5h_0_to_2(phi)
+                +beta*(G71*dfd7h_0_to_2(phi)
+                +beta*(G72*dfd9h_0_to_2(phi)
+                +beta*(G73*dfd11h_0_to_2(phi)
+                +beta*(G74*dfd13h_0_to_2(phi)
+                +beta*(G75*dfd15h_0_to_2(phi)
+                +beta*(G76*dfd17h_0_to_2(phi)
+                +beta*(G77*dfd19h_0_to_2(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_0_to_2__8(double phi, double beta):
+        return (       G0 *dfd5h_0_to_2(phi)
+                +beta*(G81*dfd7h_0_to_2(phi)
+                +beta*(G82*dfd9h_0_to_2(phi)
+                +beta*(G83*dfd11h_0_to_2(phi)
+                +beta*(G84*dfd13h_0_to_2(phi)
+                +beta*(G85*dfd15h_0_to_2(phi)
+                +beta*(G86*dfd17h_0_to_2(phi)
+                +beta*(G87*dfd19h_0_to_2(phi)
+                +beta*(G88*dfd21h_0_to_2(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_2_to_5__1(double phi, double beta):
+        return (       G0 *dfd5h_2_to_5(phi)
+                +beta*(G11*dfd7h_2_to_5(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_2_to_5__2(double phi, double beta):
+        return (       G0 *dfd5h_2_to_5(phi)
+                +beta*(G21*dfd7h_2_to_5(phi)
+                +beta*(G22*dfd9h_2_to_5(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_2_to_5__3(double phi, double beta):
+        return (       G0 *dfd5h_2_to_5(phi)
+                +beta*(G31*dfd7h_2_to_5(phi)
+                +beta*(G32*dfd9h_2_to_5(phi)
+                +beta*(G33*dfd11h_2_to_5(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_2_to_5__4(double phi, double beta):
+        return (       G0 *dfd5h_2_to_5(phi)
+                +beta*(G41*dfd7h_2_to_5(phi)
+                +beta*(G42*dfd9h_2_to_5(phi)
+                +beta*(G43*dfd11h_2_to_5(phi)
+                +beta*(G44*dfd13h_2_to_5(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_2_to_5__5(double phi, double beta):
+        return (       G0 *dfd5h_2_to_5(phi)
+                +beta*(G51*dfd7h_2_to_5(phi)
+                +beta*(G52*dfd9h_2_to_5(phi)
+                +beta*(G53*dfd11h_2_to_5(phi)
+                +beta*(G54*dfd13h_2_to_5(phi)
+                +beta*(G55*dfd15h_2_to_5(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_2_to_5__6(double phi, double beta):
+        return (       G0 *dfd5h_2_to_5(phi)
+                +beta*(G61*dfd7h_2_to_5(phi)
+                +beta*(G62*dfd9h_2_to_5(phi)
+                +beta*(G63*dfd11h_2_to_5(phi)
+                +beta*(G64*dfd13h_2_to_5(phi)
+                +beta*(G65*dfd15h_2_to_5(phi)
+                +beta*(G66*dfd17h_2_to_5(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_2_to_5__7(double phi, double beta):
+        return (       G0 *dfd5h_2_to_5(phi)
+                +beta*(G71*dfd7h_2_to_5(phi)
+                +beta*(G72*dfd9h_2_to_5(phi)
+                +beta*(G73*dfd11h_2_to_5(phi)
+                +beta*(G74*dfd13h_2_to_5(phi)
+                +beta*(G75*dfd15h_2_to_5(phi)
+                +beta*(G76*dfd17h_2_to_5(phi)
+                +beta*(G77*dfd19h_2_to_5(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_2_to_5__8(double phi, double beta):
+        return (       G0 *dfd5h_2_to_5(phi)
+                +beta*(G81*dfd7h_2_to_5(phi)
+                +beta*(G82*dfd9h_2_to_5(phi)
+                +beta*(G83*dfd11h_2_to_5(phi)
+                +beta*(G84*dfd13h_2_to_5(phi)
+                +beta*(G85*dfd15h_2_to_5(phi)
+                +beta*(G86*dfd17h_2_to_5(phi)
+                +beta*(G87*dfd19h_2_to_5(phi)
+                +beta*(G88*dfd21h_2_to_5(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_5_to_10__1(double phi, double beta):
+        return (       G0 *dfd5h_5_to_10(phi)
+                +beta*(G11*dfd7h_5_to_10(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_5_to_10__2(double phi, double beta):
+        return (       G0 *dfd5h_5_to_10(phi)
+                +beta*(G21*dfd7h_5_to_10(phi)
+                +beta*(G22*dfd9h_5_to_10(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_5_to_10__3(double phi, double beta):
+        return (       G0 *dfd5h_5_to_10(phi)
+                +beta*(G31*dfd7h_5_to_10(phi)
+                +beta*(G32*dfd9h_5_to_10(phi)
+                +beta*(G33*dfd11h_5_to_10(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_5_to_10__4(double phi, double beta):
+        return (       G0 *dfd5h_5_to_10(phi)
+                +beta*(G41*dfd7h_5_to_10(phi)
+                +beta*(G42*dfd9h_5_to_10(phi)
+                +beta*(G43*dfd11h_5_to_10(phi)
+                +beta*(G44*dfd13h_5_to_10(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_5_to_10__5(double phi, double beta):
+        return (       G0 *dfd5h_5_to_10(phi)
+                +beta*(G51*dfd7h_5_to_10(phi)
+                +beta*(G52*dfd9h_5_to_10(phi)
+                +beta*(G53*dfd11h_5_to_10(phi)
+                +beta*(G54*dfd13h_5_to_10(phi)
+                +beta*(G55*dfd15h_5_to_10(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_5_to_10__6(double phi, double beta):
+        return (       G0 *dfd5h_5_to_10(phi)
+                +beta*(G61*dfd7h_5_to_10(phi)
+                +beta*(G62*dfd9h_5_to_10(phi)
+                +beta*(G63*dfd11h_5_to_10(phi)
+                +beta*(G64*dfd13h_5_to_10(phi)
+                +beta*(G65*dfd15h_5_to_10(phi)
+                +beta*(G66*dfd17h_5_to_10(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_5_to_10__7(double phi, double beta):
+        return (       G0 *dfd5h_5_to_10(phi)
+                +beta*(G71*dfd7h_5_to_10(phi)
+                +beta*(G72*dfd9h_5_to_10(phi)
+                +beta*(G73*dfd11h_5_to_10(phi)
+                +beta*(G74*dfd13h_5_to_10(phi)
+                +beta*(G75*dfd15h_5_to_10(phi)
+                +beta*(G76*dfd17h_5_to_10(phi)
+                +beta*(G77*dfd19h_5_to_10(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_5_to_10__8(double phi, double beta):
+        return (       G0 *dfd5h_5_to_10(phi)
+                +beta*(G81*dfd7h_5_to_10(phi)
+                +beta*(G82*dfd9h_5_to_10(phi)
+                +beta*(G83*dfd11h_5_to_10(phi)
+                +beta*(G84*dfd13h_5_to_10(phi)
+                +beta*(G85*dfd15h_5_to_10(phi)
+                +beta*(G86*dfd17h_5_to_10(phi)
+                +beta*(G87*dfd19h_5_to_10(phi)
+                +beta*(G88*dfd21h_5_to_10(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_10_to_20__1(double phi, double beta):
+        return (       G0 *dfd5h_10_to_20(phi)
+                +beta*(G11*dfd7h_10_to_20(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_10_to_20__2(double phi, double beta):
+        return (       G0 *dfd5h_10_to_20(phi)
+                +beta*(G21*dfd7h_10_to_20(phi)
+                +beta*(G22*dfd9h_10_to_20(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_10_to_20__3(double phi, double beta):
+        return (       G0 *dfd5h_10_to_20(phi)
+                +beta*(G31*dfd7h_10_to_20(phi)
+                +beta*(G32*dfd9h_10_to_20(phi)
+                +beta*(G33*dfd11h_10_to_20(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_10_to_20__4(double phi, double beta):
+        return (       G0 *dfd5h_10_to_20(phi)
+                +beta*(G41*dfd7h_10_to_20(phi)
+                +beta*(G42*dfd9h_10_to_20(phi)
+                +beta*(G43*dfd11h_10_to_20(phi)
+                +beta*(G44*dfd13h_10_to_20(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_10_to_20__5(double phi, double beta):
+        return (       G0 *dfd5h_10_to_20(phi)
+                +beta*(G51*dfd7h_10_to_20(phi)
+                +beta*(G52*dfd9h_10_to_20(phi)
+                +beta*(G53*dfd11h_10_to_20(phi)
+                +beta*(G54*dfd13h_10_to_20(phi)
+                +beta*(G55*dfd15h_10_to_20(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_10_to_20__6(double phi, double beta):
+        return (       G0 *dfd5h_10_to_20(phi)
+                +beta*(G61*dfd7h_10_to_20(phi)
+                +beta*(G62*dfd9h_10_to_20(phi)
+                +beta*(G63*dfd11h_10_to_20(phi)
+                +beta*(G64*dfd13h_10_to_20(phi)
+                +beta*(G65*dfd15h_10_to_20(phi)
+                +beta*(G66*dfd17h_10_to_20(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_10_to_20__7(double phi, double beta):
+        return (       G0 *dfd5h_10_to_20(phi)
+                +beta*(G71*dfd7h_10_to_20(phi)
+                +beta*(G72*dfd9h_10_to_20(phi)
+                +beta*(G73*dfd11h_10_to_20(phi)
+                +beta*(G74*dfd13h_10_to_20(phi)
+                +beta*(G75*dfd15h_10_to_20(phi)
+                +beta*(G76*dfd17h_10_to_20(phi)
+                +beta*(G77*dfd19h_10_to_20(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_10_to_20__8(double phi, double beta):
+        return (       G0 *dfd5h_10_to_20(phi)
+                +beta*(G81*dfd7h_10_to_20(phi)
+                +beta*(G82*dfd9h_10_to_20(phi)
+                +beta*(G83*dfd11h_10_to_20(phi)
+                +beta*(G84*dfd13h_10_to_20(phi)
+                +beta*(G85*dfd15h_10_to_20(phi)
+                +beta*(G86*dfd17h_10_to_20(phi)
+                +beta*(G87*dfd19h_10_to_20(phi)
+                +beta*(G88*dfd21h_10_to_20(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_20_to_40__1(double phi, double beta):
+        return (       G0 *dfd5h_20_to_40(phi)
+                +beta*(G11*dfd7h_20_to_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_20_to_40__2(double phi, double beta):
+        return (       G0 *dfd5h_20_to_40(phi)
+                +beta*(G21*dfd7h_20_to_40(phi)
+                +beta*(G22*dfd9h_20_to_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_20_to_40__3(double phi, double beta):
+        return (       G0 *dfd5h_20_to_40(phi)
+                +beta*(G31*dfd7h_20_to_40(phi)
+                +beta*(G32*dfd9h_20_to_40(phi)
+                +beta*(G33*dfd11h_20_to_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_20_to_40__4(double phi, double beta):
+        return (       G0 *dfd5h_20_to_40(phi)
+                +beta*(G41*dfd7h_20_to_40(phi)
+                +beta*(G42*dfd9h_20_to_40(phi)
+                +beta*(G43*dfd11h_20_to_40(phi)
+                +beta*(G44*dfd13h_20_to_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_20_to_40__5(double phi, double beta):
+        return (       G0 *dfd5h_20_to_40(phi)
+                +beta*(G51*dfd7h_20_to_40(phi)
+                +beta*(G52*dfd9h_20_to_40(phi)
+                +beta*(G53*dfd11h_20_to_40(phi)
+                +beta*(G54*dfd13h_20_to_40(phi)
+                +beta*(G55*dfd15h_20_to_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_20_to_40__6(double phi, double beta):
+        return (       G0 *dfd5h_20_to_40(phi)
+                +beta*(G61*dfd7h_20_to_40(phi)
+                +beta*(G62*dfd9h_20_to_40(phi)
+                +beta*(G63*dfd11h_20_to_40(phi)
+                +beta*(G64*dfd13h_20_to_40(phi)
+                +beta*(G65*dfd15h_20_to_40(phi)
+                +beta*(G66*dfd17h_20_to_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_20_to_40__7(double phi, double beta):
+        return (       G0 *dfd5h_20_to_40(phi)
+                +beta*(G71*dfd7h_20_to_40(phi)
+                +beta*(G72*dfd9h_20_to_40(phi)
+                +beta*(G73*dfd11h_20_to_40(phi)
+                +beta*(G74*dfd13h_20_to_40(phi)
+                +beta*(G75*dfd15h_20_to_40(phi)
+                +beta*(G76*dfd17h_20_to_40(phi)
+                +beta*(G77*dfd19h_20_to_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_20_to_40__8(double phi, double beta):
+        return (       G0 *dfd5h_20_to_40(phi)
+                +beta*(G81*dfd7h_20_to_40(phi)
+                +beta*(G82*dfd9h_20_to_40(phi)
+                +beta*(G83*dfd11h_20_to_40(phi)
+                +beta*(G84*dfd13h_20_to_40(phi)
+                +beta*(G85*dfd15h_20_to_40(phi)
+                +beta*(G86*dfd17h_20_to_40(phi)
+                +beta*(G87*dfd19h_20_to_40(phi)
+                +beta*(G88*dfd21h_20_to_40(phi)
+                )))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_gt_40__1(double phi, double beta):
+        return (       G0 *dfd5h_gt_40(phi)
+                +beta*(G11*dfd7h_gt_40(phi)
+                ))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_gt_40__2(double phi, double beta):
+        return (       G0 *dfd5h_gt_40(phi)
+                +beta*(G21*dfd7h_gt_40(phi)
+                +beta*(G22*dfd9h_gt_40(phi)
+                )))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_gt_40__3(double phi, double beta):
+        return (       G0 *dfd5h_gt_40(phi)
+                +beta*(G31*dfd7h_gt_40(phi)
+                +beta*(G32*dfd9h_gt_40(phi)
+                +beta*(G33*dfd11h_gt_40(phi)
+                ))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_gt_40__4(double phi, double beta):
+        return (       G0 *dfd5h_gt_40(phi)
+                +beta*(G41*dfd7h_gt_40(phi)
+                +beta*(G42*dfd9h_gt_40(phi)
+                +beta*(G43*dfd11h_gt_40(phi)
+                +beta*(G44*dfd13h_gt_40(phi)
+                )))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_gt_40__5(double phi, double beta):
+        return (       G0 *dfd5h_gt_40(phi)
+                +beta*(G51*dfd7h_gt_40(phi)
+                +beta*(G52*dfd9h_gt_40(phi)
+                +beta*(G53*dfd11h_gt_40(phi)
+                +beta*(G54*dfd13h_gt_40(phi)
+                +beta*(G55*dfd15h_gt_40(phi)
+                ))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_gt_40__6(double phi, double beta):
+        return (       G0 *dfd5h_gt_40(phi)
+                +beta*(G61*dfd7h_gt_40(phi)
+                +beta*(G62*dfd9h_gt_40(phi)
+                +beta*(G63*dfd11h_gt_40(phi)
+                +beta*(G64*dfd13h_gt_40(phi)
+                +beta*(G65*dfd15h_gt_40(phi)
+                +beta*(G66*dfd17h_gt_40(phi)
+                )))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_gt_40__7(double phi, double beta):
+        return (       G0 *dfd5h_gt_40(phi)
+                +beta*(G71*dfd7h_gt_40(phi)
+                +beta*(G72*dfd9h_gt_40(phi)
+                +beta*(G73*dfd11h_gt_40(phi)
+                +beta*(G74*dfd13h_gt_40(phi)
+                +beta*(G75*dfd15h_gt_40(phi)
+                +beta*(G76*dfd17h_gt_40(phi)
+                +beta*(G77*dfd19h_gt_40(phi)
+                ))))))))
+
+@cython.cdivision(True)
+cdef inline double dgfd5h_gt_40__8(double phi, double beta):
+        return (       G0 *dfd5h_gt_40(phi)
+                +beta*(G81*dfd7h_gt_40(phi)
+                +beta*(G82*dfd9h_gt_40(phi)
+                +beta*(G83*dfd11h_gt_40(phi)
+                +beta*(G84*dfd13h_gt_40(phi)
+                +beta*(G85*dfd15h_gt_40(phi)
+                +beta*(G86*dfd17h_gt_40(phi)
+                +beta*(G87*dfd19h_gt_40(phi)
+                +beta*(G88*dfd21h_gt_40(phi)
+                )))))))))
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdgfdm1h(np.ndarray[double] phi, np.ndarray[double] beta,
+                    np.ndarray[double] out):
+    '''
+    Vectorized form of dgfdm1h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == beta.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dgfdm1h(phi[i], beta[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdgfd1h(np.ndarray[double] phi, np.ndarray[double] beta,
+                    np.ndarray[double] out):
+    '''
+    Vectorized form of dgfd1h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == beta.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dgfd1h(phi[i], beta[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdgfd3h(np.ndarray[double] phi, np.ndarray[double] beta,
+                    np.ndarray[double] out):
+    '''
+    Vectorized form of dgfd3h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == beta.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dgfd3h(phi[i], beta[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdgfd5h(np.ndarray[double] phi, np.ndarray[double] beta,
+                    np.ndarray[double] out):
+    '''
+    Vectorized form of dgfd5h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == beta.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dgfd5h(phi[i], beta[i])

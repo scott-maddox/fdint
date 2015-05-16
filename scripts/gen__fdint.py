@@ -19,6 +19,12 @@ bases = [
 
     '_ifd',
     '_vifd',
+
+    '_gfd',
+    '_vgfd',
+
+    '_dgfd',
+    '_vdgfd',
     ]
 
 
@@ -70,6 +76,7 @@ be edited directly.
     f.write('from libc.math cimport exp, log, sqrt\n')
     f.write('cimport numpy as np\n')
     f.write('import numpy\n')
+    f.write('import warnings\n')
     f.write('\n')
 
     for base in bases:

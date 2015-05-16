@@ -21,11 +21,23 @@ scripts = [
     'gen__vifd_pxd.py',
     'gen__vifd_pyx.py',
 
+    'gen__gfd_pxd.py',
+    'gen__gfd_pyx.py',
+    'gen__vgfd_pxd.py',
+    'gen__vgfd_pyx.py',
+
+    'gen__dgfd_pxd.py',
+    'gen__dgfd_pyx.py',
+    'gen__vdgfd_pxd.py',
+    'gen__vdgfd_pyx.py',
+
     'gen__fdint.py',
 
     'gen_fd_pyx.py',
     'gen_dfd_pyx.py',
     'gen_ifd_pyx.py',
+    'gen_gfd_pyx.py',
+    'gen_dgfd_pyx.py',
     ]
 for script in scripts:
     print 'running', script

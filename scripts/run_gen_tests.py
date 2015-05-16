@@ -6,6 +6,7 @@ scripts_dir = os.path.dirname(__file__)
 scripts = [
     'gen_test_fd.py',
     'gen_test_ifd.py',
+    'gen_test_gfd.py',
     ]
 for script in scripts:
     print 'running', script
