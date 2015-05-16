@@ -3661,3 +3661,1412 @@ cpdef void vfd20h(np.ndarray[double] phi, np.ndarray[double] out):
     cdef int i
     for i in range(imax):
         out[i] = fd20h(phi[i])
+
+@cython.cdivision(True)
+cdef inline double dfdm7h(double phi):
+    '''
+    First derivative of fdm7h.
+    '''
+    return -3.5*fdm9h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm5h(double phi):
+    '''
+    First derivative of fdm5h.
+    '''
+    return -2.5*fdm7h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm3h(double phi):
+    '''
+    First derivative of fdm3h.
+    '''
+    return -1.5*fdm5h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm1h(double phi):
+    '''
+    First derivative of fdm1h.
+    '''
+    return -0.5*fdm3h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd1h(double phi):
+    '''
+    First derivative of fd1h.
+    '''
+    return 0.5*fdm1h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd3h(double phi):
+    '''
+    First derivative of fd3h.
+    '''
+    return 1.5*fd1h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd5h(double phi):
+    '''
+    First derivative of fd5h.
+    '''
+    return 2.5*fd3h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd7h(double phi):
+    '''
+    First derivative of fd7h.
+    '''
+    return 3.5*fd5h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd9h(double phi):
+    '''
+    First derivative of fd9h.
+    '''
+    return 4.5*fd7h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd11h(double phi):
+    '''
+    First derivative of fd11h.
+    '''
+    return 5.5*fd9h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd13h(double phi):
+    '''
+    First derivative of fd13h.
+    '''
+    return 6.5*fd11h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd15h(double phi):
+    '''
+    First derivative of fd15h.
+    '''
+    return 7.5*fd13h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd17h(double phi):
+    '''
+    First derivative of fd17h.
+    '''
+    return 8.5*fd15h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd19h(double phi):
+    '''
+    First derivative of fd19h.
+    '''
+    return 9.5*fd17h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd21h(double phi):
+    '''
+    First derivative of fd21h.
+    '''
+    return 10.5*fd19h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd23h(double phi):
+    '''
+    First derivative of fd23h.
+    '''
+    return 11.5*fd21h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd2h(double phi):
+    '''
+    First derivative of fd2h.
+    '''
+    return 1.0*fd0h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd4h(double phi):
+    '''
+    First derivative of fd4h.
+    '''
+    return 2.0*fd2h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd6h(double phi):
+    '''
+    First derivative of fd6h.
+    '''
+    return 3.0*fd4h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd8h(double phi):
+    '''
+    First derivative of fd8h.
+    '''
+    return 4.0*fd6h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd10h(double phi):
+    '''
+    First derivative of fd10h.
+    '''
+    return 5.0*fd8h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd12h(double phi):
+    '''
+    First derivative of fd12h.
+    '''
+    return 6.0*fd10h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd14h(double phi):
+    '''
+    First derivative of fd14h.
+    '''
+    return 7.0*fd12h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd16h(double phi):
+    '''
+    First derivative of fd16h.
+    '''
+    return 8.0*fd14h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd18h(double phi):
+    '''
+    First derivative of fd18h.
+    '''
+    return 9.0*fd16h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd20h(double phi):
+    '''
+    First derivative of fd20h.
+    '''
+    return 10.0*fd18h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd22h(double phi):
+    '''
+    First derivative of fd22h.
+    '''
+    return 11.0*fd20h(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm7h_lt_m2(double phi):
+    '''
+    First derivative of fdm7h_lt_m2.
+    '''
+    return -3.5*fdm9h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm7h_m2_to_0(double phi):
+    '''
+    First derivative of fdm7h_m2_to_0.
+    '''
+    return -3.5*fdm9h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm7h_0_to_2(double phi):
+    '''
+    First derivative of fdm7h_0_to_2.
+    '''
+    return -3.5*fdm9h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm7h_2_to_5(double phi):
+    '''
+    First derivative of fdm7h_2_to_5.
+    '''
+    return -3.5*fdm9h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm7h_5_to_10(double phi):
+    '''
+    First derivative of fdm7h_5_to_10.
+    '''
+    return -3.5*fdm9h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm7h_10_to_20(double phi):
+    '''
+    First derivative of fdm7h_10_to_20.
+    '''
+    return -3.5*fdm9h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm7h_20_to_40(double phi):
+    '''
+    First derivative of fdm7h_20_to_40.
+    '''
+    return -3.5*fdm9h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm7h_gt_40(double phi):
+    '''
+    First derivative of fdm7h_gt_40.
+    '''
+    return -3.5*fdm9h_gt_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm5h_lt_m2(double phi):
+    '''
+    First derivative of fdm5h_lt_m2.
+    '''
+    return -2.5*fdm7h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm5h_m2_to_0(double phi):
+    '''
+    First derivative of fdm5h_m2_to_0.
+    '''
+    return -2.5*fdm7h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm5h_0_to_2(double phi):
+    '''
+    First derivative of fdm5h_0_to_2.
+    '''
+    return -2.5*fdm7h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm5h_2_to_5(double phi):
+    '''
+    First derivative of fdm5h_2_to_5.
+    '''
+    return -2.5*fdm7h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm5h_5_to_10(double phi):
+    '''
+    First derivative of fdm5h_5_to_10.
+    '''
+    return -2.5*fdm7h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm5h_10_to_20(double phi):
+    '''
+    First derivative of fdm5h_10_to_20.
+    '''
+    return -2.5*fdm7h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm5h_20_to_40(double phi):
+    '''
+    First derivative of fdm5h_20_to_40.
+    '''
+    return -2.5*fdm7h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm5h_gt_40(double phi):
+    '''
+    First derivative of fdm5h_gt_40.
+    '''
+    return -2.5*fdm7h_gt_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm3h_lt_m2(double phi):
+    '''
+    First derivative of fdm3h_lt_m2.
+    '''
+    return -1.5*fdm5h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm3h_m2_to_0(double phi):
+    '''
+    First derivative of fdm3h_m2_to_0.
+    '''
+    return -1.5*fdm5h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm3h_0_to_2(double phi):
+    '''
+    First derivative of fdm3h_0_to_2.
+    '''
+    return -1.5*fdm5h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm3h_2_to_5(double phi):
+    '''
+    First derivative of fdm3h_2_to_5.
+    '''
+    return -1.5*fdm5h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm3h_5_to_10(double phi):
+    '''
+    First derivative of fdm3h_5_to_10.
+    '''
+    return -1.5*fdm5h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm3h_10_to_20(double phi):
+    '''
+    First derivative of fdm3h_10_to_20.
+    '''
+    return -1.5*fdm5h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm3h_20_to_40(double phi):
+    '''
+    First derivative of fdm3h_20_to_40.
+    '''
+    return -1.5*fdm5h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm3h_gt_40(double phi):
+    '''
+    First derivative of fdm3h_gt_40.
+    '''
+    return -1.5*fdm5h_gt_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm1h_lt_m2(double phi):
+    '''
+    First derivative of fdm1h_lt_m2.
+    '''
+    return -0.5*fdm3h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm1h_m2_to_0(double phi):
+    '''
+    First derivative of fdm1h_m2_to_0.
+    '''
+    return -0.5*fdm3h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm1h_0_to_2(double phi):
+    '''
+    First derivative of fdm1h_0_to_2.
+    '''
+    return -0.5*fdm3h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm1h_2_to_5(double phi):
+    '''
+    First derivative of fdm1h_2_to_5.
+    '''
+    return -0.5*fdm3h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm1h_5_to_10(double phi):
+    '''
+    First derivative of fdm1h_5_to_10.
+    '''
+    return -0.5*fdm3h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm1h_10_to_20(double phi):
+    '''
+    First derivative of fdm1h_10_to_20.
+    '''
+    return -0.5*fdm3h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm1h_20_to_40(double phi):
+    '''
+    First derivative of fdm1h_20_to_40.
+    '''
+    return -0.5*fdm3h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfdm1h_gt_40(double phi):
+    '''
+    First derivative of fdm1h_gt_40.
+    '''
+    return -0.5*fdm3h_gt_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd1h_lt_m2(double phi):
+    '''
+    First derivative of fd1h_lt_m2.
+    '''
+    return 0.5*fdm1h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd1h_m2_to_0(double phi):
+    '''
+    First derivative of fd1h_m2_to_0.
+    '''
+    return 0.5*fdm1h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd1h_0_to_2(double phi):
+    '''
+    First derivative of fd1h_0_to_2.
+    '''
+    return 0.5*fdm1h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd1h_2_to_5(double phi):
+    '''
+    First derivative of fd1h_2_to_5.
+    '''
+    return 0.5*fdm1h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd1h_5_to_10(double phi):
+    '''
+    First derivative of fd1h_5_to_10.
+    '''
+    return 0.5*fdm1h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd1h_10_to_20(double phi):
+    '''
+    First derivative of fd1h_10_to_20.
+    '''
+    return 0.5*fdm1h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd1h_20_to_40(double phi):
+    '''
+    First derivative of fd1h_20_to_40.
+    '''
+    return 0.5*fdm1h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd1h_gt_40(double phi):
+    '''
+    First derivative of fd1h_gt_40.
+    '''
+    return 0.5*fdm1h_gt_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd3h_lt_m2(double phi):
+    '''
+    First derivative of fd3h_lt_m2.
+    '''
+    return 1.5*fd1h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd3h_m2_to_0(double phi):
+    '''
+    First derivative of fd3h_m2_to_0.
+    '''
+    return 1.5*fd1h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd3h_0_to_2(double phi):
+    '''
+    First derivative of fd3h_0_to_2.
+    '''
+    return 1.5*fd1h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd3h_2_to_5(double phi):
+    '''
+    First derivative of fd3h_2_to_5.
+    '''
+    return 1.5*fd1h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd3h_5_to_10(double phi):
+    '''
+    First derivative of fd3h_5_to_10.
+    '''
+    return 1.5*fd1h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd3h_10_to_20(double phi):
+    '''
+    First derivative of fd3h_10_to_20.
+    '''
+    return 1.5*fd1h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd3h_20_to_40(double phi):
+    '''
+    First derivative of fd3h_20_to_40.
+    '''
+    return 1.5*fd1h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd3h_gt_40(double phi):
+    '''
+    First derivative of fd3h_gt_40.
+    '''
+    return 1.5*fd1h_gt_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd5h_lt_m2(double phi):
+    '''
+    First derivative of fd5h_lt_m2.
+    '''
+    return 2.5*fd3h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd5h_m2_to_0(double phi):
+    '''
+    First derivative of fd5h_m2_to_0.
+    '''
+    return 2.5*fd3h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd5h_0_to_2(double phi):
+    '''
+    First derivative of fd5h_0_to_2.
+    '''
+    return 2.5*fd3h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd5h_2_to_5(double phi):
+    '''
+    First derivative of fd5h_2_to_5.
+    '''
+    return 2.5*fd3h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd5h_5_to_10(double phi):
+    '''
+    First derivative of fd5h_5_to_10.
+    '''
+    return 2.5*fd3h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd5h_10_to_20(double phi):
+    '''
+    First derivative of fd5h_10_to_20.
+    '''
+    return 2.5*fd3h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd5h_20_to_40(double phi):
+    '''
+    First derivative of fd5h_20_to_40.
+    '''
+    return 2.5*fd3h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd5h_gt_40(double phi):
+    '''
+    First derivative of fd5h_gt_40.
+    '''
+    return 2.5*fd3h_gt_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd7h_lt_m2(double phi):
+    '''
+    First derivative of fd7h_lt_m2.
+    '''
+    return 3.5*fd5h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd7h_m2_to_0(double phi):
+    '''
+    First derivative of fd7h_m2_to_0.
+    '''
+    return 3.5*fd5h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd7h_0_to_2(double phi):
+    '''
+    First derivative of fd7h_0_to_2.
+    '''
+    return 3.5*fd5h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd7h_2_to_5(double phi):
+    '''
+    First derivative of fd7h_2_to_5.
+    '''
+    return 3.5*fd5h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd7h_5_to_10(double phi):
+    '''
+    First derivative of fd7h_5_to_10.
+    '''
+    return 3.5*fd5h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd7h_10_to_20(double phi):
+    '''
+    First derivative of fd7h_10_to_20.
+    '''
+    return 3.5*fd5h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd7h_20_to_40(double phi):
+    '''
+    First derivative of fd7h_20_to_40.
+    '''
+    return 3.5*fd5h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd7h_gt_40(double phi):
+    '''
+    First derivative of fd7h_gt_40.
+    '''
+    return 3.5*fd5h_gt_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd9h_lt_m2(double phi):
+    '''
+    First derivative of fd9h_lt_m2.
+    '''
+    return 4.5*fd7h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd9h_m2_to_0(double phi):
+    '''
+    First derivative of fd9h_m2_to_0.
+    '''
+    return 4.5*fd7h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd9h_0_to_2(double phi):
+    '''
+    First derivative of fd9h_0_to_2.
+    '''
+    return 4.5*fd7h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd9h_2_to_5(double phi):
+    '''
+    First derivative of fd9h_2_to_5.
+    '''
+    return 4.5*fd7h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd9h_5_to_10(double phi):
+    '''
+    First derivative of fd9h_5_to_10.
+    '''
+    return 4.5*fd7h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd9h_10_to_20(double phi):
+    '''
+    First derivative of fd9h_10_to_20.
+    '''
+    return 4.5*fd7h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd9h_20_to_40(double phi):
+    '''
+    First derivative of fd9h_20_to_40.
+    '''
+    return 4.5*fd7h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd9h_gt_40(double phi):
+    '''
+    First derivative of fd9h_gt_40.
+    '''
+    return 4.5*fd7h_gt_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd11h_lt_m2(double phi):
+    '''
+    First derivative of fd11h_lt_m2.
+    '''
+    return 5.5*fd9h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd11h_m2_to_0(double phi):
+    '''
+    First derivative of fd11h_m2_to_0.
+    '''
+    return 5.5*fd9h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd11h_0_to_2(double phi):
+    '''
+    First derivative of fd11h_0_to_2.
+    '''
+    return 5.5*fd9h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd11h_2_to_5(double phi):
+    '''
+    First derivative of fd11h_2_to_5.
+    '''
+    return 5.5*fd9h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd11h_5_to_10(double phi):
+    '''
+    First derivative of fd11h_5_to_10.
+    '''
+    return 5.5*fd9h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd11h_10_to_20(double phi):
+    '''
+    First derivative of fd11h_10_to_20.
+    '''
+    return 5.5*fd9h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd11h_20_to_40(double phi):
+    '''
+    First derivative of fd11h_20_to_40.
+    '''
+    return 5.5*fd9h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd11h_gt_40(double phi):
+    '''
+    First derivative of fd11h_gt_40.
+    '''
+    return 5.5*fd9h_gt_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd13h_lt_m2(double phi):
+    '''
+    First derivative of fd13h_lt_m2.
+    '''
+    return 6.5*fd11h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd13h_m2_to_0(double phi):
+    '''
+    First derivative of fd13h_m2_to_0.
+    '''
+    return 6.5*fd11h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd13h_0_to_2(double phi):
+    '''
+    First derivative of fd13h_0_to_2.
+    '''
+    return 6.5*fd11h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd13h_2_to_5(double phi):
+    '''
+    First derivative of fd13h_2_to_5.
+    '''
+    return 6.5*fd11h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd13h_5_to_10(double phi):
+    '''
+    First derivative of fd13h_5_to_10.
+    '''
+    return 6.5*fd11h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd13h_10_to_20(double phi):
+    '''
+    First derivative of fd13h_10_to_20.
+    '''
+    return 6.5*fd11h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd13h_20_to_40(double phi):
+    '''
+    First derivative of fd13h_20_to_40.
+    '''
+    return 6.5*fd11h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd13h_gt_40(double phi):
+    '''
+    First derivative of fd13h_gt_40.
+    '''
+    return 6.5*fd11h_gt_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd15h_lt_m2(double phi):
+    '''
+    First derivative of fd15h_lt_m2.
+    '''
+    return 7.5*fd13h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd15h_m2_to_0(double phi):
+    '''
+    First derivative of fd15h_m2_to_0.
+    '''
+    return 7.5*fd13h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd15h_0_to_2(double phi):
+    '''
+    First derivative of fd15h_0_to_2.
+    '''
+    return 7.5*fd13h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd15h_2_to_5(double phi):
+    '''
+    First derivative of fd15h_2_to_5.
+    '''
+    return 7.5*fd13h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd15h_5_to_10(double phi):
+    '''
+    First derivative of fd15h_5_to_10.
+    '''
+    return 7.5*fd13h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd15h_10_to_20(double phi):
+    '''
+    First derivative of fd15h_10_to_20.
+    '''
+    return 7.5*fd13h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd15h_20_to_40(double phi):
+    '''
+    First derivative of fd15h_20_to_40.
+    '''
+    return 7.5*fd13h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd15h_gt_40(double phi):
+    '''
+    First derivative of fd15h_gt_40.
+    '''
+    return 7.5*fd13h_gt_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd17h_lt_m2(double phi):
+    '''
+    First derivative of fd17h_lt_m2.
+    '''
+    return 8.5*fd15h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd17h_m2_to_0(double phi):
+    '''
+    First derivative of fd17h_m2_to_0.
+    '''
+    return 8.5*fd15h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd17h_0_to_2(double phi):
+    '''
+    First derivative of fd17h_0_to_2.
+    '''
+    return 8.5*fd15h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd17h_2_to_5(double phi):
+    '''
+    First derivative of fd17h_2_to_5.
+    '''
+    return 8.5*fd15h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd17h_5_to_10(double phi):
+    '''
+    First derivative of fd17h_5_to_10.
+    '''
+    return 8.5*fd15h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd17h_10_to_20(double phi):
+    '''
+    First derivative of fd17h_10_to_20.
+    '''
+    return 8.5*fd15h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd17h_20_to_40(double phi):
+    '''
+    First derivative of fd17h_20_to_40.
+    '''
+    return 8.5*fd15h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd17h_gt_40(double phi):
+    '''
+    First derivative of fd17h_gt_40.
+    '''
+    return 8.5*fd15h_gt_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd19h_lt_m2(double phi):
+    '''
+    First derivative of fd19h_lt_m2.
+    '''
+    return 9.5*fd17h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd19h_m2_to_0(double phi):
+    '''
+    First derivative of fd19h_m2_to_0.
+    '''
+    return 9.5*fd17h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd19h_0_to_2(double phi):
+    '''
+    First derivative of fd19h_0_to_2.
+    '''
+    return 9.5*fd17h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd19h_2_to_5(double phi):
+    '''
+    First derivative of fd19h_2_to_5.
+    '''
+    return 9.5*fd17h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd19h_5_to_10(double phi):
+    '''
+    First derivative of fd19h_5_to_10.
+    '''
+    return 9.5*fd17h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd19h_10_to_20(double phi):
+    '''
+    First derivative of fd19h_10_to_20.
+    '''
+    return 9.5*fd17h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd19h_20_to_40(double phi):
+    '''
+    First derivative of fd19h_20_to_40.
+    '''
+    return 9.5*fd17h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd19h_gt_40(double phi):
+    '''
+    First derivative of fd19h_gt_40.
+    '''
+    return 9.5*fd17h_gt_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd21h_lt_m2(double phi):
+    '''
+    First derivative of fd21h_lt_m2.
+    '''
+    return 10.5*fd19h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd21h_m2_to_0(double phi):
+    '''
+    First derivative of fd21h_m2_to_0.
+    '''
+    return 10.5*fd19h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd21h_0_to_2(double phi):
+    '''
+    First derivative of fd21h_0_to_2.
+    '''
+    return 10.5*fd19h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd21h_2_to_5(double phi):
+    '''
+    First derivative of fd21h_2_to_5.
+    '''
+    return 10.5*fd19h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd21h_5_to_10(double phi):
+    '''
+    First derivative of fd21h_5_to_10.
+    '''
+    return 10.5*fd19h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd21h_10_to_20(double phi):
+    '''
+    First derivative of fd21h_10_to_20.
+    '''
+    return 10.5*fd19h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd21h_20_to_40(double phi):
+    '''
+    First derivative of fd21h_20_to_40.
+    '''
+    return 10.5*fd19h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd21h_gt_40(double phi):
+    '''
+    First derivative of fd21h_gt_40.
+    '''
+    return 10.5*fd19h_gt_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd23h_lt_m2(double phi):
+    '''
+    First derivative of fd23h_lt_m2.
+    '''
+    return 11.5*fd21h_lt_m2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd23h_m2_to_0(double phi):
+    '''
+    First derivative of fd23h_m2_to_0.
+    '''
+    return 11.5*fd21h_m2_to_0(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd23h_0_to_2(double phi):
+    '''
+    First derivative of fd23h_0_to_2.
+    '''
+    return 11.5*fd21h_0_to_2(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd23h_2_to_5(double phi):
+    '''
+    First derivative of fd23h_2_to_5.
+    '''
+    return 11.5*fd21h_2_to_5(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd23h_5_to_10(double phi):
+    '''
+    First derivative of fd23h_5_to_10.
+    '''
+    return 11.5*fd21h_5_to_10(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd23h_10_to_20(double phi):
+    '''
+    First derivative of fd23h_10_to_20.
+    '''
+    return 11.5*fd21h_10_to_20(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd23h_20_to_40(double phi):
+    '''
+    First derivative of fd23h_20_to_40.
+    '''
+    return 11.5*fd21h_20_to_40(phi)
+
+@cython.cdivision(True)
+cdef inline double dfd23h_gt_40(double phi):
+    '''
+    First derivative of fd23h_gt_40.
+    '''
+    return 11.5*fd21h_gt_40(phi)
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfdm7h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfdm7h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfdm7h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfdm5h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfdm5h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfdm5h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfdm3h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfdm3h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfdm3h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfdm1h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfdm1h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfdm1h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd1h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd1h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd1h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd3h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd3h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd3h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd5h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd5h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd5h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd7h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd7h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd7h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd9h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd9h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd9h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd11h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd11h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd11h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd13h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd13h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd13h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd15h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd15h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd15h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd17h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd17h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd17h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd19h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd19h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd19h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd21h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd21h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd21h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd23h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd23h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd23h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd2h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd2h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd2h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd4h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd4h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd4h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd6h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd6h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd6h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd8h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd8h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd8h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd10h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd10h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd10h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd12h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd12h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd12h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd14h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd14h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd14h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd16h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd16h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd16h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd18h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd18h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd18h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd20h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd20h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd20h(phi[i])
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdfd22h(np.ndarray[double] phi, np.ndarray[double] out):
+    '''
+    Vectorized form of dfd22h.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dfd22h(phi[i])

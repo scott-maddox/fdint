@@ -31,10 +31,19 @@ from .version import __version__
 from . import _fdint
 
 from .fd import *
+from .dfd import *
 
 def fdk(k, phi):
     k2 = str(int(k*2.01)).replace('-', 'm')
     funcname = 'fd'+k2+'h'
+    if funcname not in globals():
+        raise NotImplementedError()
+    func = globals()[funcname]
+    return func(phi)
+
+def dfdk(k, phi):
+    k2 = str(int(k*2.01)).replace('-', 'm')
+    funcname = 'dfd'+k2+'h'
     if funcname not in globals():
         raise NotImplementedError()
     func = globals()[funcname]

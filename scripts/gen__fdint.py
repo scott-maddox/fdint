@@ -13,6 +13,9 @@ bases = [
     '_fd',
     '_fd_whole',
     '_vfd',
+
+    '_dfd',
+    '_vdfd',
     ]
 
 
