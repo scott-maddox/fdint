@@ -1045,3 +1045,9 @@ cpdef void vdgfd3h(np.ndarray[double] phi, np.ndarray[double] beta,
                     np.ndarray[double] out)
 cpdef void vdgfd5h(np.ndarray[double] phi, np.ndarray[double] beta,
                     np.ndarray[double] out)
+cdef double nonparabolic(double phi, double alpha)
+cpdef void vnonparabolic(np.ndarray[double] phi, np.ndarray[double] alpha,
+                         np.ndarray[double] out)
+cdef double dnonparabolic(double phi, double alpha)
+cpdef void vdnonparabolic(np.ndarray[double] phi, np.ndarray[double] alpha,
+                          np.ndarray[double] out)

@@ -25,6 +25,12 @@ bases = [
 
     '_dgfd',
     '_vdgfd',
+
+    '_nonparabolic',
+    '_vnonparabolic',
+
+    '_dnonparabolic',
+    '_vdnonparabolic',
     ]
 
 

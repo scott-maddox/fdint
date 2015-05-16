@@ -13648,3 +13648,4159 @@ cpdef void vdgfd5h(np.ndarray[double] phi, np.ndarray[double] beta,
     cdef int i
     for i in range(imax):
         out[i] = dgfd5h(phi[i], beta[i])
+
+@cython.cdivision(True)
+cdef inline double nonparabolic(double phi, double alpha):
+    if phi < -2.0:
+        return nonparabolic_lt_m2(phi, 2.0*alpha)
+    if phi < 0.0:
+        return nonparabolic_m2_to_0(phi, 2.0*alpha)
+    if phi < 2.0:
+        return nonparabolic_0_to_2(phi, 2.0*alpha)
+    if phi < 5.0:
+        return nonparabolic_2_to_5(phi, 2.0*alpha)
+    if phi < 10.0:
+        return nonparabolic_5_to_10(phi, 2.0*alpha)
+    if phi < 20.0:
+        return nonparabolic_10_to_20(phi, 2.0*alpha)
+    if phi < 40.0:
+        return nonparabolic_20_to_40(phi, 2.0*alpha)
+    return nonparabolic_gt_40(phi, 2.0*alpha)
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_lt_m2(double phi, double beta):
+    if(beta <= BS1h_lt_m2__1 and beta <= BS3h_lt_m2__1):
+        return nonparabolic_lt_m2__1(phi, beta)
+    if(beta <= BS1h_lt_m2__2 and beta <= BS3h_lt_m2__2):
+        return nonparabolic_lt_m2__2(phi, beta)
+    if(beta <= BS1h_lt_m2__3 and beta <= BS3h_lt_m2__3):
+        return nonparabolic_lt_m2__3(phi, beta)
+    if(beta <= BS1h_lt_m2__4 and beta <= BS3h_lt_m2__4):
+        return nonparabolic_lt_m2__4(phi, beta)
+    if(beta <= BS1h_lt_m2__5 and beta <= BS3h_lt_m2__5):
+        return nonparabolic_lt_m2__5(phi, beta)
+    if(beta <= BS1h_lt_m2__6 and beta <= BS3h_lt_m2__6):
+        return nonparabolic_lt_m2__6(phi, beta)
+    if(beta <= BS1h_lt_m2__7 and beta <= BS3h_lt_m2__7):
+        return nonparabolic_lt_m2__7(phi, beta)
+    if(beta <= BS1h_lt_m2__8 and beta <= BS3h_lt_m2__8):
+        return nonparabolic_lt_m2__8(phi, beta)
+    if(beta <= BS1h_lt_m2__9 and beta <= BS3h_lt_m2__9):
+        return nonparabolic_lt_m2__9(phi, beta)
+    warnings.warn('nonparabolic: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    return nonparabolic_lt_m2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_m2_to_0(double phi, double beta):
+    if(beta <= BS1h_m2_to_0__1 and beta <= BS3h_m2_to_0__1):
+        return nonparabolic_m2_to_0__1(phi, beta)
+    if(beta <= BS1h_m2_to_0__2 and beta <= BS3h_m2_to_0__2):
+        return nonparabolic_m2_to_0__2(phi, beta)
+    if(beta <= BS1h_m2_to_0__3 and beta <= BS3h_m2_to_0__3):
+        return nonparabolic_m2_to_0__3(phi, beta)
+    if(beta <= BS1h_m2_to_0__4 and beta <= BS3h_m2_to_0__4):
+        return nonparabolic_m2_to_0__4(phi, beta)
+    if(beta <= BS1h_m2_to_0__5 and beta <= BS3h_m2_to_0__5):
+        return nonparabolic_m2_to_0__5(phi, beta)
+    if(beta <= BS1h_m2_to_0__6 and beta <= BS3h_m2_to_0__6):
+        return nonparabolic_m2_to_0__6(phi, beta)
+    if(beta <= BS1h_m2_to_0__7 and beta <= BS3h_m2_to_0__7):
+        return nonparabolic_m2_to_0__7(phi, beta)
+    if(beta <= BS1h_m2_to_0__8 and beta <= BS3h_m2_to_0__8):
+        return nonparabolic_m2_to_0__8(phi, beta)
+    if(beta <= BS1h_m2_to_0__9 and beta <= BS3h_m2_to_0__9):
+        return nonparabolic_m2_to_0__9(phi, beta)
+    warnings.warn('nonparabolic: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    return nonparabolic_m2_to_0__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_0_to_2(double phi, double beta):
+    if(beta <= BS1h_0_to_2__1 and beta <= BS3h_0_to_2__1):
+        return nonparabolic_0_to_2__1(phi, beta)
+    if(beta <= BS1h_0_to_2__2 and beta <= BS3h_0_to_2__2):
+        return nonparabolic_0_to_2__2(phi, beta)
+    if(beta <= BS1h_0_to_2__3 and beta <= BS3h_0_to_2__3):
+        return nonparabolic_0_to_2__3(phi, beta)
+    if(beta <= BS1h_0_to_2__4 and beta <= BS3h_0_to_2__4):
+        return nonparabolic_0_to_2__4(phi, beta)
+    if(beta <= BS1h_0_to_2__5 and beta <= BS3h_0_to_2__5):
+        return nonparabolic_0_to_2__5(phi, beta)
+    if(beta <= BS1h_0_to_2__6 and beta <= BS3h_0_to_2__6):
+        return nonparabolic_0_to_2__6(phi, beta)
+    if(beta <= BS1h_0_to_2__7 and beta <= BS3h_0_to_2__7):
+        return nonparabolic_0_to_2__7(phi, beta)
+    if(beta <= BS1h_0_to_2__8 and beta <= BS3h_0_to_2__8):
+        return nonparabolic_0_to_2__8(phi, beta)
+    if(beta <= BS1h_0_to_2__9 and beta <= BS3h_0_to_2__9):
+        return nonparabolic_0_to_2__9(phi, beta)
+    warnings.warn('nonparabolic: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    return nonparabolic_0_to_2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_2_to_5(double phi, double beta):
+    if(beta <= BS1h_2_to_5__1 and beta <= BS3h_2_to_5__1):
+        return nonparabolic_2_to_5__1(phi, beta)
+    if(beta <= BS1h_2_to_5__2 and beta <= BS3h_2_to_5__2):
+        return nonparabolic_2_to_5__2(phi, beta)
+    if(beta <= BS1h_2_to_5__3 and beta <= BS3h_2_to_5__3):
+        return nonparabolic_2_to_5__3(phi, beta)
+    if(beta <= BS1h_2_to_5__4 and beta <= BS3h_2_to_5__4):
+        return nonparabolic_2_to_5__4(phi, beta)
+    if(beta <= BS1h_2_to_5__5 and beta <= BS3h_2_to_5__5):
+        return nonparabolic_2_to_5__5(phi, beta)
+    if(beta <= BS1h_2_to_5__6 and beta <= BS3h_2_to_5__6):
+        return nonparabolic_2_to_5__6(phi, beta)
+    if(beta <= BS1h_2_to_5__7 and beta <= BS3h_2_to_5__7):
+        return nonparabolic_2_to_5__7(phi, beta)
+    if(beta <= BS1h_2_to_5__8 and beta <= BS3h_2_to_5__8):
+        return nonparabolic_2_to_5__8(phi, beta)
+    if(beta <= BS1h_2_to_5__9 and beta <= BS3h_2_to_5__9):
+        return nonparabolic_2_to_5__9(phi, beta)
+    warnings.warn('nonparabolic: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    return nonparabolic_2_to_5__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_5_to_10(double phi, double beta):
+    if(beta <= BS1h_5_to_10__1 and beta <= BS3h_5_to_10__1):
+        return nonparabolic_5_to_10__1(phi, beta)
+    if(beta <= BS1h_5_to_10__2 and beta <= BS3h_5_to_10__2):
+        return nonparabolic_5_to_10__2(phi, beta)
+    if(beta <= BS1h_5_to_10__3 and beta <= BS3h_5_to_10__3):
+        return nonparabolic_5_to_10__3(phi, beta)
+    if(beta <= BS1h_5_to_10__4 and beta <= BS3h_5_to_10__4):
+        return nonparabolic_5_to_10__4(phi, beta)
+    if(beta <= BS1h_5_to_10__5 and beta <= BS3h_5_to_10__5):
+        return nonparabolic_5_to_10__5(phi, beta)
+    if(beta <= BS1h_5_to_10__6 and beta <= BS3h_5_to_10__6):
+        return nonparabolic_5_to_10__6(phi, beta)
+    if(beta <= BS1h_5_to_10__7 and beta <= BS3h_5_to_10__7):
+        return nonparabolic_5_to_10__7(phi, beta)
+    if(beta <= BS1h_5_to_10__8 and beta <= BS3h_5_to_10__8):
+        return nonparabolic_5_to_10__8(phi, beta)
+    if(beta <= BS1h_5_to_10__9 and beta <= BS3h_5_to_10__9):
+        return nonparabolic_5_to_10__9(phi, beta)
+    warnings.warn('nonparabolic: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    return nonparabolic_5_to_10__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_10_to_20(double phi, double beta):
+    if(beta <= BS1h_10_to_20__1 and beta <= BS3h_10_to_20__1):
+        return nonparabolic_10_to_20__1(phi, beta)
+    if(beta <= BS1h_10_to_20__2 and beta <= BS3h_10_to_20__2):
+        return nonparabolic_10_to_20__2(phi, beta)
+    if(beta <= BS1h_10_to_20__3 and beta <= BS3h_10_to_20__3):
+        return nonparabolic_10_to_20__3(phi, beta)
+    if(beta <= BS1h_10_to_20__4 and beta <= BS3h_10_to_20__4):
+        return nonparabolic_10_to_20__4(phi, beta)
+    if(beta <= BS1h_10_to_20__5 and beta <= BS3h_10_to_20__5):
+        return nonparabolic_10_to_20__5(phi, beta)
+    if(beta <= BS1h_10_to_20__6 and beta <= BS3h_10_to_20__6):
+        return nonparabolic_10_to_20__6(phi, beta)
+    if(beta <= BS1h_10_to_20__7 and beta <= BS3h_10_to_20__7):
+        return nonparabolic_10_to_20__7(phi, beta)
+    if(beta <= BS1h_10_to_20__8 and beta <= BS3h_10_to_20__8):
+        return nonparabolic_10_to_20__8(phi, beta)
+    if(beta <= BS1h_10_to_20__9 and beta <= BS3h_10_to_20__9):
+        return nonparabolic_10_to_20__9(phi, beta)
+    warnings.warn('nonparabolic: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    return nonparabolic_10_to_20__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_20_to_40(double phi, double beta):
+    if(beta <= BS1h_20_to_40__1 and beta <= BS3h_20_to_40__1):
+        return nonparabolic_20_to_40__1(phi, beta)
+    if(beta <= BS1h_20_to_40__2 and beta <= BS3h_20_to_40__2):
+        return nonparabolic_20_to_40__2(phi, beta)
+    if(beta <= BS1h_20_to_40__3 and beta <= BS3h_20_to_40__3):
+        return nonparabolic_20_to_40__3(phi, beta)
+    if(beta <= BS1h_20_to_40__4 and beta <= BS3h_20_to_40__4):
+        return nonparabolic_20_to_40__4(phi, beta)
+    if(beta <= BS1h_20_to_40__5 and beta <= BS3h_20_to_40__5):
+        return nonparabolic_20_to_40__5(phi, beta)
+    if(beta <= BS1h_20_to_40__6 and beta <= BS3h_20_to_40__6):
+        return nonparabolic_20_to_40__6(phi, beta)
+    if(beta <= BS1h_20_to_40__7 and beta <= BS3h_20_to_40__7):
+        return nonparabolic_20_to_40__7(phi, beta)
+    if(beta <= BS1h_20_to_40__8 and beta <= BS3h_20_to_40__8):
+        return nonparabolic_20_to_40__8(phi, beta)
+    if(beta <= BS1h_20_to_40__9 and beta <= BS3h_20_to_40__9):
+        return nonparabolic_20_to_40__9(phi, beta)
+    warnings.warn('nonparabolic: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    return nonparabolic_20_to_40__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_gt_40(double phi, double beta):
+    warnings.warn('nonparabolic: 24 bits of accuracy not guaranteed',
+                  RuntimeWarning)
+    return nonparabolic_gt_40__9(phi, beta)
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_lt_m2__1(double phi, double beta):
+    cdef double f1h=fd1h_lt_m2(phi)
+    cdef double f3h=fd3h_lt_m2(phi)
+    cdef double f5h=fd5h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_lt_m2__2(double phi, double beta):
+    cdef double f1h=fd1h_lt_m2(phi)
+    cdef double f3h=fd3h_lt_m2(phi)
+    cdef double f5h=fd5h_lt_m2(phi)
+    cdef double f7h=fd7h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_lt_m2__3(double phi, double beta):
+    cdef double f1h=fd1h_lt_m2(phi)
+    cdef double f3h=fd3h_lt_m2(phi)
+    cdef double f5h=fd5h_lt_m2(phi)
+    cdef double f7h=fd7h_lt_m2(phi)
+    cdef double f9h=fd9h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_lt_m2__4(double phi, double beta):
+    cdef double f1h=fd1h_lt_m2(phi)
+    cdef double f3h=fd3h_lt_m2(phi)
+    cdef double f5h=fd5h_lt_m2(phi)
+    cdef double f7h=fd7h_lt_m2(phi)
+    cdef double f9h=fd9h_lt_m2(phi)
+    cdef double f11h=fd11h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_lt_m2__5(double phi, double beta):
+    cdef double f1h=fd1h_lt_m2(phi)
+    cdef double f3h=fd3h_lt_m2(phi)
+    cdef double f5h=fd5h_lt_m2(phi)
+    cdef double f7h=fd7h_lt_m2(phi)
+    cdef double f9h=fd9h_lt_m2(phi)
+    cdef double f11h=fd11h_lt_m2(phi)
+    cdef double f13h=fd13h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_lt_m2__6(double phi, double beta):
+    cdef double f1h=fd1h_lt_m2(phi)
+    cdef double f3h=fd3h_lt_m2(phi)
+    cdef double f5h=fd5h_lt_m2(phi)
+    cdef double f7h=fd7h_lt_m2(phi)
+    cdef double f9h=fd9h_lt_m2(phi)
+    cdef double f11h=fd11h_lt_m2(phi)
+    cdef double f13h=fd13h_lt_m2(phi)
+    cdef double f15h=fd15h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_lt_m2__7(double phi, double beta):
+    cdef double f1h=fd1h_lt_m2(phi)
+    cdef double f3h=fd3h_lt_m2(phi)
+    cdef double f5h=fd5h_lt_m2(phi)
+    cdef double f7h=fd7h_lt_m2(phi)
+    cdef double f9h=fd9h_lt_m2(phi)
+    cdef double f11h=fd11h_lt_m2(phi)
+    cdef double f13h=fd13h_lt_m2(phi)
+    cdef double f15h=fd15h_lt_m2(phi)
+    cdef double f17h=fd17h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_lt_m2__8(double phi, double beta):
+    cdef double f1h=fd1h_lt_m2(phi)
+    cdef double f3h=fd3h_lt_m2(phi)
+    cdef double f5h=fd5h_lt_m2(phi)
+    cdef double f7h=fd7h_lt_m2(phi)
+    cdef double f9h=fd9h_lt_m2(phi)
+    cdef double f11h=fd11h_lt_m2(phi)
+    cdef double f13h=fd13h_lt_m2(phi)
+    cdef double f15h=fd15h_lt_m2(phi)
+    cdef double f17h=fd17h_lt_m2(phi)
+    cdef double f19h=fd19h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_lt_m2__9(double phi, double beta):
+    cdef double f1h=fd1h_lt_m2(phi)
+    cdef double f3h=fd3h_lt_m2(phi)
+    cdef double f5h=fd5h_lt_m2(phi)
+    cdef double f7h=fd7h_lt_m2(phi)
+    cdef double f9h=fd9h_lt_m2(phi)
+    cdef double f11h=fd11h_lt_m2(phi)
+    cdef double f13h=fd13h_lt_m2(phi)
+    cdef double f15h=fd15h_lt_m2(phi)
+    cdef double f17h=fd17h_lt_m2(phi)
+    cdef double f19h=fd19h_lt_m2(phi)
+    cdef double f21h=fd21h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_m2_to_0__1(double phi, double beta):
+    cdef double f1h=fd1h_m2_to_0(phi)
+    cdef double f3h=fd3h_m2_to_0(phi)
+    cdef double f5h=fd5h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_m2_to_0__2(double phi, double beta):
+    cdef double f1h=fd1h_m2_to_0(phi)
+    cdef double f3h=fd3h_m2_to_0(phi)
+    cdef double f5h=fd5h_m2_to_0(phi)
+    cdef double f7h=fd7h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_m2_to_0__3(double phi, double beta):
+    cdef double f1h=fd1h_m2_to_0(phi)
+    cdef double f3h=fd3h_m2_to_0(phi)
+    cdef double f5h=fd5h_m2_to_0(phi)
+    cdef double f7h=fd7h_m2_to_0(phi)
+    cdef double f9h=fd9h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_m2_to_0__4(double phi, double beta):
+    cdef double f1h=fd1h_m2_to_0(phi)
+    cdef double f3h=fd3h_m2_to_0(phi)
+    cdef double f5h=fd5h_m2_to_0(phi)
+    cdef double f7h=fd7h_m2_to_0(phi)
+    cdef double f9h=fd9h_m2_to_0(phi)
+    cdef double f11h=fd11h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_m2_to_0__5(double phi, double beta):
+    cdef double f1h=fd1h_m2_to_0(phi)
+    cdef double f3h=fd3h_m2_to_0(phi)
+    cdef double f5h=fd5h_m2_to_0(phi)
+    cdef double f7h=fd7h_m2_to_0(phi)
+    cdef double f9h=fd9h_m2_to_0(phi)
+    cdef double f11h=fd11h_m2_to_0(phi)
+    cdef double f13h=fd13h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_m2_to_0__6(double phi, double beta):
+    cdef double f1h=fd1h_m2_to_0(phi)
+    cdef double f3h=fd3h_m2_to_0(phi)
+    cdef double f5h=fd5h_m2_to_0(phi)
+    cdef double f7h=fd7h_m2_to_0(phi)
+    cdef double f9h=fd9h_m2_to_0(phi)
+    cdef double f11h=fd11h_m2_to_0(phi)
+    cdef double f13h=fd13h_m2_to_0(phi)
+    cdef double f15h=fd15h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_m2_to_0__7(double phi, double beta):
+    cdef double f1h=fd1h_m2_to_0(phi)
+    cdef double f3h=fd3h_m2_to_0(phi)
+    cdef double f5h=fd5h_m2_to_0(phi)
+    cdef double f7h=fd7h_m2_to_0(phi)
+    cdef double f9h=fd9h_m2_to_0(phi)
+    cdef double f11h=fd11h_m2_to_0(phi)
+    cdef double f13h=fd13h_m2_to_0(phi)
+    cdef double f15h=fd15h_m2_to_0(phi)
+    cdef double f17h=fd17h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_m2_to_0__8(double phi, double beta):
+    cdef double f1h=fd1h_m2_to_0(phi)
+    cdef double f3h=fd3h_m2_to_0(phi)
+    cdef double f5h=fd5h_m2_to_0(phi)
+    cdef double f7h=fd7h_m2_to_0(phi)
+    cdef double f9h=fd9h_m2_to_0(phi)
+    cdef double f11h=fd11h_m2_to_0(phi)
+    cdef double f13h=fd13h_m2_to_0(phi)
+    cdef double f15h=fd15h_m2_to_0(phi)
+    cdef double f17h=fd17h_m2_to_0(phi)
+    cdef double f19h=fd19h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_m2_to_0__9(double phi, double beta):
+    cdef double f1h=fd1h_m2_to_0(phi)
+    cdef double f3h=fd3h_m2_to_0(phi)
+    cdef double f5h=fd5h_m2_to_0(phi)
+    cdef double f7h=fd7h_m2_to_0(phi)
+    cdef double f9h=fd9h_m2_to_0(phi)
+    cdef double f11h=fd11h_m2_to_0(phi)
+    cdef double f13h=fd13h_m2_to_0(phi)
+    cdef double f15h=fd15h_m2_to_0(phi)
+    cdef double f17h=fd17h_m2_to_0(phi)
+    cdef double f19h=fd19h_m2_to_0(phi)
+    cdef double f21h=fd21h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_0_to_2__1(double phi, double beta):
+    cdef double f1h=fd1h_0_to_2(phi)
+    cdef double f3h=fd3h_0_to_2(phi)
+    cdef double f5h=fd5h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_0_to_2__2(double phi, double beta):
+    cdef double f1h=fd1h_0_to_2(phi)
+    cdef double f3h=fd3h_0_to_2(phi)
+    cdef double f5h=fd5h_0_to_2(phi)
+    cdef double f7h=fd7h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_0_to_2__3(double phi, double beta):
+    cdef double f1h=fd1h_0_to_2(phi)
+    cdef double f3h=fd3h_0_to_2(phi)
+    cdef double f5h=fd5h_0_to_2(phi)
+    cdef double f7h=fd7h_0_to_2(phi)
+    cdef double f9h=fd9h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_0_to_2__4(double phi, double beta):
+    cdef double f1h=fd1h_0_to_2(phi)
+    cdef double f3h=fd3h_0_to_2(phi)
+    cdef double f5h=fd5h_0_to_2(phi)
+    cdef double f7h=fd7h_0_to_2(phi)
+    cdef double f9h=fd9h_0_to_2(phi)
+    cdef double f11h=fd11h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_0_to_2__5(double phi, double beta):
+    cdef double f1h=fd1h_0_to_2(phi)
+    cdef double f3h=fd3h_0_to_2(phi)
+    cdef double f5h=fd5h_0_to_2(phi)
+    cdef double f7h=fd7h_0_to_2(phi)
+    cdef double f9h=fd9h_0_to_2(phi)
+    cdef double f11h=fd11h_0_to_2(phi)
+    cdef double f13h=fd13h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_0_to_2__6(double phi, double beta):
+    cdef double f1h=fd1h_0_to_2(phi)
+    cdef double f3h=fd3h_0_to_2(phi)
+    cdef double f5h=fd5h_0_to_2(phi)
+    cdef double f7h=fd7h_0_to_2(phi)
+    cdef double f9h=fd9h_0_to_2(phi)
+    cdef double f11h=fd11h_0_to_2(phi)
+    cdef double f13h=fd13h_0_to_2(phi)
+    cdef double f15h=fd15h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_0_to_2__7(double phi, double beta):
+    cdef double f1h=fd1h_0_to_2(phi)
+    cdef double f3h=fd3h_0_to_2(phi)
+    cdef double f5h=fd5h_0_to_2(phi)
+    cdef double f7h=fd7h_0_to_2(phi)
+    cdef double f9h=fd9h_0_to_2(phi)
+    cdef double f11h=fd11h_0_to_2(phi)
+    cdef double f13h=fd13h_0_to_2(phi)
+    cdef double f15h=fd15h_0_to_2(phi)
+    cdef double f17h=fd17h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_0_to_2__8(double phi, double beta):
+    cdef double f1h=fd1h_0_to_2(phi)
+    cdef double f3h=fd3h_0_to_2(phi)
+    cdef double f5h=fd5h_0_to_2(phi)
+    cdef double f7h=fd7h_0_to_2(phi)
+    cdef double f9h=fd9h_0_to_2(phi)
+    cdef double f11h=fd11h_0_to_2(phi)
+    cdef double f13h=fd13h_0_to_2(phi)
+    cdef double f15h=fd15h_0_to_2(phi)
+    cdef double f17h=fd17h_0_to_2(phi)
+    cdef double f19h=fd19h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_0_to_2__9(double phi, double beta):
+    cdef double f1h=fd1h_0_to_2(phi)
+    cdef double f3h=fd3h_0_to_2(phi)
+    cdef double f5h=fd5h_0_to_2(phi)
+    cdef double f7h=fd7h_0_to_2(phi)
+    cdef double f9h=fd9h_0_to_2(phi)
+    cdef double f11h=fd11h_0_to_2(phi)
+    cdef double f13h=fd13h_0_to_2(phi)
+    cdef double f15h=fd15h_0_to_2(phi)
+    cdef double f17h=fd17h_0_to_2(phi)
+    cdef double f19h=fd19h_0_to_2(phi)
+    cdef double f21h=fd21h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_2_to_5__1(double phi, double beta):
+    cdef double f1h=fd1h_2_to_5(phi)
+    cdef double f3h=fd3h_2_to_5(phi)
+    cdef double f5h=fd5h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_2_to_5__2(double phi, double beta):
+    cdef double f1h=fd1h_2_to_5(phi)
+    cdef double f3h=fd3h_2_to_5(phi)
+    cdef double f5h=fd5h_2_to_5(phi)
+    cdef double f7h=fd7h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_2_to_5__3(double phi, double beta):
+    cdef double f1h=fd1h_2_to_5(phi)
+    cdef double f3h=fd3h_2_to_5(phi)
+    cdef double f5h=fd5h_2_to_5(phi)
+    cdef double f7h=fd7h_2_to_5(phi)
+    cdef double f9h=fd9h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_2_to_5__4(double phi, double beta):
+    cdef double f1h=fd1h_2_to_5(phi)
+    cdef double f3h=fd3h_2_to_5(phi)
+    cdef double f5h=fd5h_2_to_5(phi)
+    cdef double f7h=fd7h_2_to_5(phi)
+    cdef double f9h=fd9h_2_to_5(phi)
+    cdef double f11h=fd11h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_2_to_5__5(double phi, double beta):
+    cdef double f1h=fd1h_2_to_5(phi)
+    cdef double f3h=fd3h_2_to_5(phi)
+    cdef double f5h=fd5h_2_to_5(phi)
+    cdef double f7h=fd7h_2_to_5(phi)
+    cdef double f9h=fd9h_2_to_5(phi)
+    cdef double f11h=fd11h_2_to_5(phi)
+    cdef double f13h=fd13h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_2_to_5__6(double phi, double beta):
+    cdef double f1h=fd1h_2_to_5(phi)
+    cdef double f3h=fd3h_2_to_5(phi)
+    cdef double f5h=fd5h_2_to_5(phi)
+    cdef double f7h=fd7h_2_to_5(phi)
+    cdef double f9h=fd9h_2_to_5(phi)
+    cdef double f11h=fd11h_2_to_5(phi)
+    cdef double f13h=fd13h_2_to_5(phi)
+    cdef double f15h=fd15h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_2_to_5__7(double phi, double beta):
+    cdef double f1h=fd1h_2_to_5(phi)
+    cdef double f3h=fd3h_2_to_5(phi)
+    cdef double f5h=fd5h_2_to_5(phi)
+    cdef double f7h=fd7h_2_to_5(phi)
+    cdef double f9h=fd9h_2_to_5(phi)
+    cdef double f11h=fd11h_2_to_5(phi)
+    cdef double f13h=fd13h_2_to_5(phi)
+    cdef double f15h=fd15h_2_to_5(phi)
+    cdef double f17h=fd17h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_2_to_5__8(double phi, double beta):
+    cdef double f1h=fd1h_2_to_5(phi)
+    cdef double f3h=fd3h_2_to_5(phi)
+    cdef double f5h=fd5h_2_to_5(phi)
+    cdef double f7h=fd7h_2_to_5(phi)
+    cdef double f9h=fd9h_2_to_5(phi)
+    cdef double f11h=fd11h_2_to_5(phi)
+    cdef double f13h=fd13h_2_to_5(phi)
+    cdef double f15h=fd15h_2_to_5(phi)
+    cdef double f17h=fd17h_2_to_5(phi)
+    cdef double f19h=fd19h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_2_to_5__9(double phi, double beta):
+    cdef double f1h=fd1h_2_to_5(phi)
+    cdef double f3h=fd3h_2_to_5(phi)
+    cdef double f5h=fd5h_2_to_5(phi)
+    cdef double f7h=fd7h_2_to_5(phi)
+    cdef double f9h=fd9h_2_to_5(phi)
+    cdef double f11h=fd11h_2_to_5(phi)
+    cdef double f13h=fd13h_2_to_5(phi)
+    cdef double f15h=fd15h_2_to_5(phi)
+    cdef double f17h=fd17h_2_to_5(phi)
+    cdef double f19h=fd19h_2_to_5(phi)
+    cdef double f21h=fd21h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_5_to_10__1(double phi, double beta):
+    cdef double f1h=fd1h_5_to_10(phi)
+    cdef double f3h=fd3h_5_to_10(phi)
+    cdef double f5h=fd5h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_5_to_10__2(double phi, double beta):
+    cdef double f1h=fd1h_5_to_10(phi)
+    cdef double f3h=fd3h_5_to_10(phi)
+    cdef double f5h=fd5h_5_to_10(phi)
+    cdef double f7h=fd7h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_5_to_10__3(double phi, double beta):
+    cdef double f1h=fd1h_5_to_10(phi)
+    cdef double f3h=fd3h_5_to_10(phi)
+    cdef double f5h=fd5h_5_to_10(phi)
+    cdef double f7h=fd7h_5_to_10(phi)
+    cdef double f9h=fd9h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_5_to_10__4(double phi, double beta):
+    cdef double f1h=fd1h_5_to_10(phi)
+    cdef double f3h=fd3h_5_to_10(phi)
+    cdef double f5h=fd5h_5_to_10(phi)
+    cdef double f7h=fd7h_5_to_10(phi)
+    cdef double f9h=fd9h_5_to_10(phi)
+    cdef double f11h=fd11h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_5_to_10__5(double phi, double beta):
+    cdef double f1h=fd1h_5_to_10(phi)
+    cdef double f3h=fd3h_5_to_10(phi)
+    cdef double f5h=fd5h_5_to_10(phi)
+    cdef double f7h=fd7h_5_to_10(phi)
+    cdef double f9h=fd9h_5_to_10(phi)
+    cdef double f11h=fd11h_5_to_10(phi)
+    cdef double f13h=fd13h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_5_to_10__6(double phi, double beta):
+    cdef double f1h=fd1h_5_to_10(phi)
+    cdef double f3h=fd3h_5_to_10(phi)
+    cdef double f5h=fd5h_5_to_10(phi)
+    cdef double f7h=fd7h_5_to_10(phi)
+    cdef double f9h=fd9h_5_to_10(phi)
+    cdef double f11h=fd11h_5_to_10(phi)
+    cdef double f13h=fd13h_5_to_10(phi)
+    cdef double f15h=fd15h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_5_to_10__7(double phi, double beta):
+    cdef double f1h=fd1h_5_to_10(phi)
+    cdef double f3h=fd3h_5_to_10(phi)
+    cdef double f5h=fd5h_5_to_10(phi)
+    cdef double f7h=fd7h_5_to_10(phi)
+    cdef double f9h=fd9h_5_to_10(phi)
+    cdef double f11h=fd11h_5_to_10(phi)
+    cdef double f13h=fd13h_5_to_10(phi)
+    cdef double f15h=fd15h_5_to_10(phi)
+    cdef double f17h=fd17h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_5_to_10__8(double phi, double beta):
+    cdef double f1h=fd1h_5_to_10(phi)
+    cdef double f3h=fd3h_5_to_10(phi)
+    cdef double f5h=fd5h_5_to_10(phi)
+    cdef double f7h=fd7h_5_to_10(phi)
+    cdef double f9h=fd9h_5_to_10(phi)
+    cdef double f11h=fd11h_5_to_10(phi)
+    cdef double f13h=fd13h_5_to_10(phi)
+    cdef double f15h=fd15h_5_to_10(phi)
+    cdef double f17h=fd17h_5_to_10(phi)
+    cdef double f19h=fd19h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_5_to_10__9(double phi, double beta):
+    cdef double f1h=fd1h_5_to_10(phi)
+    cdef double f3h=fd3h_5_to_10(phi)
+    cdef double f5h=fd5h_5_to_10(phi)
+    cdef double f7h=fd7h_5_to_10(phi)
+    cdef double f9h=fd9h_5_to_10(phi)
+    cdef double f11h=fd11h_5_to_10(phi)
+    cdef double f13h=fd13h_5_to_10(phi)
+    cdef double f15h=fd15h_5_to_10(phi)
+    cdef double f17h=fd17h_5_to_10(phi)
+    cdef double f19h=fd19h_5_to_10(phi)
+    cdef double f21h=fd21h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_10_to_20__1(double phi, double beta):
+    cdef double f1h=fd1h_10_to_20(phi)
+    cdef double f3h=fd3h_10_to_20(phi)
+    cdef double f5h=fd5h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_10_to_20__2(double phi, double beta):
+    cdef double f1h=fd1h_10_to_20(phi)
+    cdef double f3h=fd3h_10_to_20(phi)
+    cdef double f5h=fd5h_10_to_20(phi)
+    cdef double f7h=fd7h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_10_to_20__3(double phi, double beta):
+    cdef double f1h=fd1h_10_to_20(phi)
+    cdef double f3h=fd3h_10_to_20(phi)
+    cdef double f5h=fd5h_10_to_20(phi)
+    cdef double f7h=fd7h_10_to_20(phi)
+    cdef double f9h=fd9h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_10_to_20__4(double phi, double beta):
+    cdef double f1h=fd1h_10_to_20(phi)
+    cdef double f3h=fd3h_10_to_20(phi)
+    cdef double f5h=fd5h_10_to_20(phi)
+    cdef double f7h=fd7h_10_to_20(phi)
+    cdef double f9h=fd9h_10_to_20(phi)
+    cdef double f11h=fd11h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_10_to_20__5(double phi, double beta):
+    cdef double f1h=fd1h_10_to_20(phi)
+    cdef double f3h=fd3h_10_to_20(phi)
+    cdef double f5h=fd5h_10_to_20(phi)
+    cdef double f7h=fd7h_10_to_20(phi)
+    cdef double f9h=fd9h_10_to_20(phi)
+    cdef double f11h=fd11h_10_to_20(phi)
+    cdef double f13h=fd13h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_10_to_20__6(double phi, double beta):
+    cdef double f1h=fd1h_10_to_20(phi)
+    cdef double f3h=fd3h_10_to_20(phi)
+    cdef double f5h=fd5h_10_to_20(phi)
+    cdef double f7h=fd7h_10_to_20(phi)
+    cdef double f9h=fd9h_10_to_20(phi)
+    cdef double f11h=fd11h_10_to_20(phi)
+    cdef double f13h=fd13h_10_to_20(phi)
+    cdef double f15h=fd15h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_10_to_20__7(double phi, double beta):
+    cdef double f1h=fd1h_10_to_20(phi)
+    cdef double f3h=fd3h_10_to_20(phi)
+    cdef double f5h=fd5h_10_to_20(phi)
+    cdef double f7h=fd7h_10_to_20(phi)
+    cdef double f9h=fd9h_10_to_20(phi)
+    cdef double f11h=fd11h_10_to_20(phi)
+    cdef double f13h=fd13h_10_to_20(phi)
+    cdef double f15h=fd15h_10_to_20(phi)
+    cdef double f17h=fd17h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_10_to_20__8(double phi, double beta):
+    cdef double f1h=fd1h_10_to_20(phi)
+    cdef double f3h=fd3h_10_to_20(phi)
+    cdef double f5h=fd5h_10_to_20(phi)
+    cdef double f7h=fd7h_10_to_20(phi)
+    cdef double f9h=fd9h_10_to_20(phi)
+    cdef double f11h=fd11h_10_to_20(phi)
+    cdef double f13h=fd13h_10_to_20(phi)
+    cdef double f15h=fd15h_10_to_20(phi)
+    cdef double f17h=fd17h_10_to_20(phi)
+    cdef double f19h=fd19h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_10_to_20__9(double phi, double beta):
+    cdef double f1h=fd1h_10_to_20(phi)
+    cdef double f3h=fd3h_10_to_20(phi)
+    cdef double f5h=fd5h_10_to_20(phi)
+    cdef double f7h=fd7h_10_to_20(phi)
+    cdef double f9h=fd9h_10_to_20(phi)
+    cdef double f11h=fd11h_10_to_20(phi)
+    cdef double f13h=fd13h_10_to_20(phi)
+    cdef double f15h=fd15h_10_to_20(phi)
+    cdef double f17h=fd17h_10_to_20(phi)
+    cdef double f19h=fd19h_10_to_20(phi)
+    cdef double f21h=fd21h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_20_to_40__1(double phi, double beta):
+    cdef double f1h=fd1h_20_to_40(phi)
+    cdef double f3h=fd3h_20_to_40(phi)
+    cdef double f5h=fd5h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_20_to_40__2(double phi, double beta):
+    cdef double f1h=fd1h_20_to_40(phi)
+    cdef double f3h=fd3h_20_to_40(phi)
+    cdef double f5h=fd5h_20_to_40(phi)
+    cdef double f7h=fd7h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_20_to_40__3(double phi, double beta):
+    cdef double f1h=fd1h_20_to_40(phi)
+    cdef double f3h=fd3h_20_to_40(phi)
+    cdef double f5h=fd5h_20_to_40(phi)
+    cdef double f7h=fd7h_20_to_40(phi)
+    cdef double f9h=fd9h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_20_to_40__4(double phi, double beta):
+    cdef double f1h=fd1h_20_to_40(phi)
+    cdef double f3h=fd3h_20_to_40(phi)
+    cdef double f5h=fd5h_20_to_40(phi)
+    cdef double f7h=fd7h_20_to_40(phi)
+    cdef double f9h=fd9h_20_to_40(phi)
+    cdef double f11h=fd11h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_20_to_40__5(double phi, double beta):
+    cdef double f1h=fd1h_20_to_40(phi)
+    cdef double f3h=fd3h_20_to_40(phi)
+    cdef double f5h=fd5h_20_to_40(phi)
+    cdef double f7h=fd7h_20_to_40(phi)
+    cdef double f9h=fd9h_20_to_40(phi)
+    cdef double f11h=fd11h_20_to_40(phi)
+    cdef double f13h=fd13h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_20_to_40__6(double phi, double beta):
+    cdef double f1h=fd1h_20_to_40(phi)
+    cdef double f3h=fd3h_20_to_40(phi)
+    cdef double f5h=fd5h_20_to_40(phi)
+    cdef double f7h=fd7h_20_to_40(phi)
+    cdef double f9h=fd9h_20_to_40(phi)
+    cdef double f11h=fd11h_20_to_40(phi)
+    cdef double f13h=fd13h_20_to_40(phi)
+    cdef double f15h=fd15h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_20_to_40__7(double phi, double beta):
+    cdef double f1h=fd1h_20_to_40(phi)
+    cdef double f3h=fd3h_20_to_40(phi)
+    cdef double f5h=fd5h_20_to_40(phi)
+    cdef double f7h=fd7h_20_to_40(phi)
+    cdef double f9h=fd9h_20_to_40(phi)
+    cdef double f11h=fd11h_20_to_40(phi)
+    cdef double f13h=fd13h_20_to_40(phi)
+    cdef double f15h=fd15h_20_to_40(phi)
+    cdef double f17h=fd17h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_20_to_40__8(double phi, double beta):
+    cdef double f1h=fd1h_20_to_40(phi)
+    cdef double f3h=fd3h_20_to_40(phi)
+    cdef double f5h=fd5h_20_to_40(phi)
+    cdef double f7h=fd7h_20_to_40(phi)
+    cdef double f9h=fd9h_20_to_40(phi)
+    cdef double f11h=fd11h_20_to_40(phi)
+    cdef double f13h=fd13h_20_to_40(phi)
+    cdef double f15h=fd15h_20_to_40(phi)
+    cdef double f17h=fd17h_20_to_40(phi)
+    cdef double f19h=fd19h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_20_to_40__9(double phi, double beta):
+    cdef double f1h=fd1h_20_to_40(phi)
+    cdef double f3h=fd3h_20_to_40(phi)
+    cdef double f5h=fd5h_20_to_40(phi)
+    cdef double f7h=fd7h_20_to_40(phi)
+    cdef double f9h=fd9h_20_to_40(phi)
+    cdef double f11h=fd11h_20_to_40(phi)
+    cdef double f13h=fd13h_20_to_40(phi)
+    cdef double f15h=fd15h_20_to_40(phi)
+    cdef double f17h=fd17h_20_to_40(phi)
+    cdef double f19h=fd19h_20_to_40(phi)
+    cdef double f21h=fd21h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_gt_40__1(double phi, double beta):
+    cdef double f1h=fd1h_gt_40(phi)
+    cdef double f3h=fd3h_gt_40(phi)
+    cdef double f5h=fd5h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_gt_40__2(double phi, double beta):
+    cdef double f1h=fd1h_gt_40(phi)
+    cdef double f3h=fd3h_gt_40(phi)
+    cdef double f5h=fd5h_gt_40(phi)
+    cdef double f7h=fd7h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_gt_40__3(double phi, double beta):
+    cdef double f1h=fd1h_gt_40(phi)
+    cdef double f3h=fd3h_gt_40(phi)
+    cdef double f5h=fd5h_gt_40(phi)
+    cdef double f7h=fd7h_gt_40(phi)
+    cdef double f9h=fd9h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_gt_40__4(double phi, double beta):
+    cdef double f1h=fd1h_gt_40(phi)
+    cdef double f3h=fd3h_gt_40(phi)
+    cdef double f5h=fd5h_gt_40(phi)
+    cdef double f7h=fd7h_gt_40(phi)
+    cdef double f9h=fd9h_gt_40(phi)
+    cdef double f11h=fd11h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_gt_40__5(double phi, double beta):
+    cdef double f1h=fd1h_gt_40(phi)
+    cdef double f3h=fd3h_gt_40(phi)
+    cdef double f5h=fd5h_gt_40(phi)
+    cdef double f7h=fd7h_gt_40(phi)
+    cdef double f9h=fd9h_gt_40(phi)
+    cdef double f11h=fd11h_gt_40(phi)
+    cdef double f13h=fd13h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_gt_40__6(double phi, double beta):
+    cdef double f1h=fd1h_gt_40(phi)
+    cdef double f3h=fd3h_gt_40(phi)
+    cdef double f5h=fd5h_gt_40(phi)
+    cdef double f7h=fd7h_gt_40(phi)
+    cdef double f9h=fd9h_gt_40(phi)
+    cdef double f11h=fd11h_gt_40(phi)
+    cdef double f13h=fd13h_gt_40(phi)
+    cdef double f15h=fd15h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_gt_40__7(double phi, double beta):
+    cdef double f1h=fd1h_gt_40(phi)
+    cdef double f3h=fd3h_gt_40(phi)
+    cdef double f5h=fd5h_gt_40(phi)
+    cdef double f7h=fd7h_gt_40(phi)
+    cdef double f9h=fd9h_gt_40(phi)
+    cdef double f11h=fd11h_gt_40(phi)
+    cdef double f13h=fd13h_gt_40(phi)
+    cdef double f15h=fd15h_gt_40(phi)
+    cdef double f17h=fd17h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_gt_40__8(double phi, double beta):
+    cdef double f1h=fd1h_gt_40(phi)
+    cdef double f3h=fd3h_gt_40(phi)
+    cdef double f5h=fd5h_gt_40(phi)
+    cdef double f7h=fd7h_gt_40(phi)
+    cdef double f9h=fd9h_gt_40(phi)
+    cdef double f11h=fd11h_gt_40(phi)
+    cdef double f13h=fd13h_gt_40(phi)
+    cdef double f15h=fd15h_gt_40(phi)
+    cdef double f17h=fd17h_gt_40(phi)
+    cdef double f19h=fd19h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double nonparabolic_gt_40__9(double phi, double beta):
+    cdef double f1h=fd1h_gt_40(phi)
+    cdef double f3h=fd3h_gt_40(phi)
+    cdef double f5h=fd5h_gt_40(phi)
+    cdef double f7h=fd7h_gt_40(phi)
+    cdef double f9h=fd9h_gt_40(phi)
+    cdef double f11h=fd11h_gt_40(phi)
+    cdef double f13h=fd13h_gt_40(phi)
+    cdef double f15h=fd15h_gt_40(phi)
+    cdef double f17h=fd17h_gt_40(phi)
+    cdef double f19h=fd19h_gt_40(phi)
+    cdef double f21h=fd21h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vnonparabolic(np.ndarray[double] phi, np.ndarray[double] alpha,
+                         np.ndarray[double] out):
+    '''
+    Vectorized form of nonparabolic.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == alpha.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = nonparabolic(phi[i], alpha[i])
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic(double phi, double alpha):
+    if phi < -2.0:
+        return dnonparabolic_lt_m2(phi, 2.0*alpha)
+    if phi < 0.0:
+        return dnonparabolic_m2_to_0(phi, 2.0*alpha)
+    if phi < 2.0:
+        return dnonparabolic_0_to_2(phi, 2.0*alpha)
+    if phi < 5.0:
+        return dnonparabolic_2_to_5(phi, 2.0*alpha)
+    if phi < 10.0:
+        return dnonparabolic_5_to_10(phi, 2.0*alpha)
+    if phi < 20.0:
+        return dnonparabolic_10_to_20(phi, 2.0*alpha)
+    if phi < 40.0:
+        return dnonparabolic_20_to_40(phi, 2.0*alpha)
+    return dnonparabolic_gt_40(phi, 2.0*alpha)
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_lt_m2(double phi, double beta):
+    if(beta <= BS1h_lt_m2__1 and beta <= BS3h_lt_m2__1):
+        return dnonparabolic_lt_m2__1(phi, beta)
+    if(beta <= BS1h_lt_m2__2 and beta <= BS3h_lt_m2__2):
+        return dnonparabolic_lt_m2__2(phi, beta)
+    if(beta <= BS1h_lt_m2__3 and beta <= BS3h_lt_m2__3):
+        return dnonparabolic_lt_m2__3(phi, beta)
+    if(beta <= BS1h_lt_m2__4 and beta <= BS3h_lt_m2__4):
+        return dnonparabolic_lt_m2__4(phi, beta)
+    if(beta <= BS1h_lt_m2__5 and beta <= BS3h_lt_m2__5):
+        return dnonparabolic_lt_m2__5(phi, beta)
+    if(beta <= BS1h_lt_m2__6 and beta <= BS3h_lt_m2__6):
+        return dnonparabolic_lt_m2__6(phi, beta)
+    if(beta <= BS1h_lt_m2__7 and beta <= BS3h_lt_m2__7):
+        return dnonparabolic_lt_m2__7(phi, beta)
+    if(beta <= BS1h_lt_m2__8 and beta <= BS3h_lt_m2__8):
+        return dnonparabolic_lt_m2__8(phi, beta)
+    if(beta <= BS1h_lt_m2__9 and beta <= BS3h_lt_m2__9):
+        return dnonparabolic_lt_m2__9(phi, beta)
+    warnings.warn('dnonparabolic: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    return dnonparabolic_lt_m2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_m2_to_0(double phi, double beta):
+    if(beta <= BS1h_m2_to_0__1 and beta <= BS3h_m2_to_0__1):
+        return dnonparabolic_m2_to_0__1(phi, beta)
+    if(beta <= BS1h_m2_to_0__2 and beta <= BS3h_m2_to_0__2):
+        return dnonparabolic_m2_to_0__2(phi, beta)
+    if(beta <= BS1h_m2_to_0__3 and beta <= BS3h_m2_to_0__3):
+        return dnonparabolic_m2_to_0__3(phi, beta)
+    if(beta <= BS1h_m2_to_0__4 and beta <= BS3h_m2_to_0__4):
+        return dnonparabolic_m2_to_0__4(phi, beta)
+    if(beta <= BS1h_m2_to_0__5 and beta <= BS3h_m2_to_0__5):
+        return dnonparabolic_m2_to_0__5(phi, beta)
+    if(beta <= BS1h_m2_to_0__6 and beta <= BS3h_m2_to_0__6):
+        return dnonparabolic_m2_to_0__6(phi, beta)
+    if(beta <= BS1h_m2_to_0__7 and beta <= BS3h_m2_to_0__7):
+        return dnonparabolic_m2_to_0__7(phi, beta)
+    if(beta <= BS1h_m2_to_0__8 and beta <= BS3h_m2_to_0__8):
+        return dnonparabolic_m2_to_0__8(phi, beta)
+    if(beta <= BS1h_m2_to_0__9 and beta <= BS3h_m2_to_0__9):
+        return dnonparabolic_m2_to_0__9(phi, beta)
+    warnings.warn('dnonparabolic: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    return dnonparabolic_m2_to_0__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_0_to_2(double phi, double beta):
+    if(beta <= BS1h_0_to_2__1 and beta <= BS3h_0_to_2__1):
+        return dnonparabolic_0_to_2__1(phi, beta)
+    if(beta <= BS1h_0_to_2__2 and beta <= BS3h_0_to_2__2):
+        return dnonparabolic_0_to_2__2(phi, beta)
+    if(beta <= BS1h_0_to_2__3 and beta <= BS3h_0_to_2__3):
+        return dnonparabolic_0_to_2__3(phi, beta)
+    if(beta <= BS1h_0_to_2__4 and beta <= BS3h_0_to_2__4):
+        return dnonparabolic_0_to_2__4(phi, beta)
+    if(beta <= BS1h_0_to_2__5 and beta <= BS3h_0_to_2__5):
+        return dnonparabolic_0_to_2__5(phi, beta)
+    if(beta <= BS1h_0_to_2__6 and beta <= BS3h_0_to_2__6):
+        return dnonparabolic_0_to_2__6(phi, beta)
+    if(beta <= BS1h_0_to_2__7 and beta <= BS3h_0_to_2__7):
+        return dnonparabolic_0_to_2__7(phi, beta)
+    if(beta <= BS1h_0_to_2__8 and beta <= BS3h_0_to_2__8):
+        return dnonparabolic_0_to_2__8(phi, beta)
+    if(beta <= BS1h_0_to_2__9 and beta <= BS3h_0_to_2__9):
+        return dnonparabolic_0_to_2__9(phi, beta)
+    warnings.warn('dnonparabolic: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    return dnonparabolic_0_to_2__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_2_to_5(double phi, double beta):
+    if(beta <= BS1h_2_to_5__1 and beta <= BS3h_2_to_5__1):
+        return dnonparabolic_2_to_5__1(phi, beta)
+    if(beta <= BS1h_2_to_5__2 and beta <= BS3h_2_to_5__2):
+        return dnonparabolic_2_to_5__2(phi, beta)
+    if(beta <= BS1h_2_to_5__3 and beta <= BS3h_2_to_5__3):
+        return dnonparabolic_2_to_5__3(phi, beta)
+    if(beta <= BS1h_2_to_5__4 and beta <= BS3h_2_to_5__4):
+        return dnonparabolic_2_to_5__4(phi, beta)
+    if(beta <= BS1h_2_to_5__5 and beta <= BS3h_2_to_5__5):
+        return dnonparabolic_2_to_5__5(phi, beta)
+    if(beta <= BS1h_2_to_5__6 and beta <= BS3h_2_to_5__6):
+        return dnonparabolic_2_to_5__6(phi, beta)
+    if(beta <= BS1h_2_to_5__7 and beta <= BS3h_2_to_5__7):
+        return dnonparabolic_2_to_5__7(phi, beta)
+    if(beta <= BS1h_2_to_5__8 and beta <= BS3h_2_to_5__8):
+        return dnonparabolic_2_to_5__8(phi, beta)
+    if(beta <= BS1h_2_to_5__9 and beta <= BS3h_2_to_5__9):
+        return dnonparabolic_2_to_5__9(phi, beta)
+    warnings.warn('dnonparabolic: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    return dnonparabolic_2_to_5__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_5_to_10(double phi, double beta):
+    if(beta <= BS1h_5_to_10__1 and beta <= BS3h_5_to_10__1):
+        return dnonparabolic_5_to_10__1(phi, beta)
+    if(beta <= BS1h_5_to_10__2 and beta <= BS3h_5_to_10__2):
+        return dnonparabolic_5_to_10__2(phi, beta)
+    if(beta <= BS1h_5_to_10__3 and beta <= BS3h_5_to_10__3):
+        return dnonparabolic_5_to_10__3(phi, beta)
+    if(beta <= BS1h_5_to_10__4 and beta <= BS3h_5_to_10__4):
+        return dnonparabolic_5_to_10__4(phi, beta)
+    if(beta <= BS1h_5_to_10__5 and beta <= BS3h_5_to_10__5):
+        return dnonparabolic_5_to_10__5(phi, beta)
+    if(beta <= BS1h_5_to_10__6 and beta <= BS3h_5_to_10__6):
+        return dnonparabolic_5_to_10__6(phi, beta)
+    if(beta <= BS1h_5_to_10__7 and beta <= BS3h_5_to_10__7):
+        return dnonparabolic_5_to_10__7(phi, beta)
+    if(beta <= BS1h_5_to_10__8 and beta <= BS3h_5_to_10__8):
+        return dnonparabolic_5_to_10__8(phi, beta)
+    if(beta <= BS1h_5_to_10__9 and beta <= BS3h_5_to_10__9):
+        return dnonparabolic_5_to_10__9(phi, beta)
+    warnings.warn('dnonparabolic: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    return dnonparabolic_5_to_10__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_10_to_20(double phi, double beta):
+    if(beta <= BS1h_10_to_20__1 and beta <= BS3h_10_to_20__1):
+        return dnonparabolic_10_to_20__1(phi, beta)
+    if(beta <= BS1h_10_to_20__2 and beta <= BS3h_10_to_20__2):
+        return dnonparabolic_10_to_20__2(phi, beta)
+    if(beta <= BS1h_10_to_20__3 and beta <= BS3h_10_to_20__3):
+        return dnonparabolic_10_to_20__3(phi, beta)
+    if(beta <= BS1h_10_to_20__4 and beta <= BS3h_10_to_20__4):
+        return dnonparabolic_10_to_20__4(phi, beta)
+    if(beta <= BS1h_10_to_20__5 and beta <= BS3h_10_to_20__5):
+        return dnonparabolic_10_to_20__5(phi, beta)
+    if(beta <= BS1h_10_to_20__6 and beta <= BS3h_10_to_20__6):
+        return dnonparabolic_10_to_20__6(phi, beta)
+    if(beta <= BS1h_10_to_20__7 and beta <= BS3h_10_to_20__7):
+        return dnonparabolic_10_to_20__7(phi, beta)
+    if(beta <= BS1h_10_to_20__8 and beta <= BS3h_10_to_20__8):
+        return dnonparabolic_10_to_20__8(phi, beta)
+    if(beta <= BS1h_10_to_20__9 and beta <= BS3h_10_to_20__9):
+        return dnonparabolic_10_to_20__9(phi, beta)
+    warnings.warn('dnonparabolic: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    return dnonparabolic_10_to_20__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_20_to_40(double phi, double beta):
+    if(beta <= BS1h_20_to_40__1 and beta <= BS3h_20_to_40__1):
+        return dnonparabolic_20_to_40__1(phi, beta)
+    if(beta <= BS1h_20_to_40__2 and beta <= BS3h_20_to_40__2):
+        return dnonparabolic_20_to_40__2(phi, beta)
+    if(beta <= BS1h_20_to_40__3 and beta <= BS3h_20_to_40__3):
+        return dnonparabolic_20_to_40__3(phi, beta)
+    if(beta <= BS1h_20_to_40__4 and beta <= BS3h_20_to_40__4):
+        return dnonparabolic_20_to_40__4(phi, beta)
+    if(beta <= BS1h_20_to_40__5 and beta <= BS3h_20_to_40__5):
+        return dnonparabolic_20_to_40__5(phi, beta)
+    if(beta <= BS1h_20_to_40__6 and beta <= BS3h_20_to_40__6):
+        return dnonparabolic_20_to_40__6(phi, beta)
+    if(beta <= BS1h_20_to_40__7 and beta <= BS3h_20_to_40__7):
+        return dnonparabolic_20_to_40__7(phi, beta)
+    if(beta <= BS1h_20_to_40__8 and beta <= BS3h_20_to_40__8):
+        return dnonparabolic_20_to_40__8(phi, beta)
+    if(beta <= BS1h_20_to_40__9 and beta <= BS3h_20_to_40__9):
+        return dnonparabolic_20_to_40__9(phi, beta)
+    warnings.warn('dnonparabolic: less than 24 bits of accuracy',
+                  RuntimeWarning)
+    return dnonparabolic_20_to_40__9(phi, beta)
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_gt_40(double phi, double beta):
+    warnings.warn('dnonparabolic: 24 bits of accuracy not guaranteed',
+                  RuntimeWarning)
+    return dnonparabolic_gt_40__9(phi, beta)
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_lt_m2__1(double phi, double beta):
+    cdef double f1h=dfd1h_lt_m2(phi)
+    cdef double f3h=dfd3h_lt_m2(phi)
+    cdef double f5h=dfd5h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_lt_m2__2(double phi, double beta):
+    cdef double f1h=dfd1h_lt_m2(phi)
+    cdef double f3h=dfd3h_lt_m2(phi)
+    cdef double f5h=dfd5h_lt_m2(phi)
+    cdef double f7h=dfd7h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_lt_m2__3(double phi, double beta):
+    cdef double f1h=dfd1h_lt_m2(phi)
+    cdef double f3h=dfd3h_lt_m2(phi)
+    cdef double f5h=dfd5h_lt_m2(phi)
+    cdef double f7h=dfd7h_lt_m2(phi)
+    cdef double f9h=dfd9h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_lt_m2__4(double phi, double beta):
+    cdef double f1h=dfd1h_lt_m2(phi)
+    cdef double f3h=dfd3h_lt_m2(phi)
+    cdef double f5h=dfd5h_lt_m2(phi)
+    cdef double f7h=dfd7h_lt_m2(phi)
+    cdef double f9h=dfd9h_lt_m2(phi)
+    cdef double f11h=dfd11h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_lt_m2__5(double phi, double beta):
+    cdef double f1h=dfd1h_lt_m2(phi)
+    cdef double f3h=dfd3h_lt_m2(phi)
+    cdef double f5h=dfd5h_lt_m2(phi)
+    cdef double f7h=dfd7h_lt_m2(phi)
+    cdef double f9h=dfd9h_lt_m2(phi)
+    cdef double f11h=dfd11h_lt_m2(phi)
+    cdef double f13h=dfd13h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_lt_m2__6(double phi, double beta):
+    cdef double f1h=dfd1h_lt_m2(phi)
+    cdef double f3h=dfd3h_lt_m2(phi)
+    cdef double f5h=dfd5h_lt_m2(phi)
+    cdef double f7h=dfd7h_lt_m2(phi)
+    cdef double f9h=dfd9h_lt_m2(phi)
+    cdef double f11h=dfd11h_lt_m2(phi)
+    cdef double f13h=dfd13h_lt_m2(phi)
+    cdef double f15h=dfd15h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_lt_m2__7(double phi, double beta):
+    cdef double f1h=dfd1h_lt_m2(phi)
+    cdef double f3h=dfd3h_lt_m2(phi)
+    cdef double f5h=dfd5h_lt_m2(phi)
+    cdef double f7h=dfd7h_lt_m2(phi)
+    cdef double f9h=dfd9h_lt_m2(phi)
+    cdef double f11h=dfd11h_lt_m2(phi)
+    cdef double f13h=dfd13h_lt_m2(phi)
+    cdef double f15h=dfd15h_lt_m2(phi)
+    cdef double f17h=dfd17h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_lt_m2__8(double phi, double beta):
+    cdef double f1h=dfd1h_lt_m2(phi)
+    cdef double f3h=dfd3h_lt_m2(phi)
+    cdef double f5h=dfd5h_lt_m2(phi)
+    cdef double f7h=dfd7h_lt_m2(phi)
+    cdef double f9h=dfd9h_lt_m2(phi)
+    cdef double f11h=dfd11h_lt_m2(phi)
+    cdef double f13h=dfd13h_lt_m2(phi)
+    cdef double f15h=dfd15h_lt_m2(phi)
+    cdef double f17h=dfd17h_lt_m2(phi)
+    cdef double f19h=dfd19h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_lt_m2__9(double phi, double beta):
+    cdef double f1h=dfd1h_lt_m2(phi)
+    cdef double f3h=dfd3h_lt_m2(phi)
+    cdef double f5h=dfd5h_lt_m2(phi)
+    cdef double f7h=dfd7h_lt_m2(phi)
+    cdef double f9h=dfd9h_lt_m2(phi)
+    cdef double f11h=dfd11h_lt_m2(phi)
+    cdef double f13h=dfd13h_lt_m2(phi)
+    cdef double f15h=dfd15h_lt_m2(phi)
+    cdef double f17h=dfd17h_lt_m2(phi)
+    cdef double f19h=dfd19h_lt_m2(phi)
+    cdef double f21h=dfd21h_lt_m2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_m2_to_0__1(double phi, double beta):
+    cdef double f1h=dfd1h_m2_to_0(phi)
+    cdef double f3h=dfd3h_m2_to_0(phi)
+    cdef double f5h=dfd5h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_m2_to_0__2(double phi, double beta):
+    cdef double f1h=dfd1h_m2_to_0(phi)
+    cdef double f3h=dfd3h_m2_to_0(phi)
+    cdef double f5h=dfd5h_m2_to_0(phi)
+    cdef double f7h=dfd7h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_m2_to_0__3(double phi, double beta):
+    cdef double f1h=dfd1h_m2_to_0(phi)
+    cdef double f3h=dfd3h_m2_to_0(phi)
+    cdef double f5h=dfd5h_m2_to_0(phi)
+    cdef double f7h=dfd7h_m2_to_0(phi)
+    cdef double f9h=dfd9h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_m2_to_0__4(double phi, double beta):
+    cdef double f1h=dfd1h_m2_to_0(phi)
+    cdef double f3h=dfd3h_m2_to_0(phi)
+    cdef double f5h=dfd5h_m2_to_0(phi)
+    cdef double f7h=dfd7h_m2_to_0(phi)
+    cdef double f9h=dfd9h_m2_to_0(phi)
+    cdef double f11h=dfd11h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_m2_to_0__5(double phi, double beta):
+    cdef double f1h=dfd1h_m2_to_0(phi)
+    cdef double f3h=dfd3h_m2_to_0(phi)
+    cdef double f5h=dfd5h_m2_to_0(phi)
+    cdef double f7h=dfd7h_m2_to_0(phi)
+    cdef double f9h=dfd9h_m2_to_0(phi)
+    cdef double f11h=dfd11h_m2_to_0(phi)
+    cdef double f13h=dfd13h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_m2_to_0__6(double phi, double beta):
+    cdef double f1h=dfd1h_m2_to_0(phi)
+    cdef double f3h=dfd3h_m2_to_0(phi)
+    cdef double f5h=dfd5h_m2_to_0(phi)
+    cdef double f7h=dfd7h_m2_to_0(phi)
+    cdef double f9h=dfd9h_m2_to_0(phi)
+    cdef double f11h=dfd11h_m2_to_0(phi)
+    cdef double f13h=dfd13h_m2_to_0(phi)
+    cdef double f15h=dfd15h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_m2_to_0__7(double phi, double beta):
+    cdef double f1h=dfd1h_m2_to_0(phi)
+    cdef double f3h=dfd3h_m2_to_0(phi)
+    cdef double f5h=dfd5h_m2_to_0(phi)
+    cdef double f7h=dfd7h_m2_to_0(phi)
+    cdef double f9h=dfd9h_m2_to_0(phi)
+    cdef double f11h=dfd11h_m2_to_0(phi)
+    cdef double f13h=dfd13h_m2_to_0(phi)
+    cdef double f15h=dfd15h_m2_to_0(phi)
+    cdef double f17h=dfd17h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_m2_to_0__8(double phi, double beta):
+    cdef double f1h=dfd1h_m2_to_0(phi)
+    cdef double f3h=dfd3h_m2_to_0(phi)
+    cdef double f5h=dfd5h_m2_to_0(phi)
+    cdef double f7h=dfd7h_m2_to_0(phi)
+    cdef double f9h=dfd9h_m2_to_0(phi)
+    cdef double f11h=dfd11h_m2_to_0(phi)
+    cdef double f13h=dfd13h_m2_to_0(phi)
+    cdef double f15h=dfd15h_m2_to_0(phi)
+    cdef double f17h=dfd17h_m2_to_0(phi)
+    cdef double f19h=dfd19h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_m2_to_0__9(double phi, double beta):
+    cdef double f1h=dfd1h_m2_to_0(phi)
+    cdef double f3h=dfd3h_m2_to_0(phi)
+    cdef double f5h=dfd5h_m2_to_0(phi)
+    cdef double f7h=dfd7h_m2_to_0(phi)
+    cdef double f9h=dfd9h_m2_to_0(phi)
+    cdef double f11h=dfd11h_m2_to_0(phi)
+    cdef double f13h=dfd13h_m2_to_0(phi)
+    cdef double f15h=dfd15h_m2_to_0(phi)
+    cdef double f17h=dfd17h_m2_to_0(phi)
+    cdef double f19h=dfd19h_m2_to_0(phi)
+    cdef double f21h=dfd21h_m2_to_0(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_0_to_2__1(double phi, double beta):
+    cdef double f1h=dfd1h_0_to_2(phi)
+    cdef double f3h=dfd3h_0_to_2(phi)
+    cdef double f5h=dfd5h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_0_to_2__2(double phi, double beta):
+    cdef double f1h=dfd1h_0_to_2(phi)
+    cdef double f3h=dfd3h_0_to_2(phi)
+    cdef double f5h=dfd5h_0_to_2(phi)
+    cdef double f7h=dfd7h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_0_to_2__3(double phi, double beta):
+    cdef double f1h=dfd1h_0_to_2(phi)
+    cdef double f3h=dfd3h_0_to_2(phi)
+    cdef double f5h=dfd5h_0_to_2(phi)
+    cdef double f7h=dfd7h_0_to_2(phi)
+    cdef double f9h=dfd9h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_0_to_2__4(double phi, double beta):
+    cdef double f1h=dfd1h_0_to_2(phi)
+    cdef double f3h=dfd3h_0_to_2(phi)
+    cdef double f5h=dfd5h_0_to_2(phi)
+    cdef double f7h=dfd7h_0_to_2(phi)
+    cdef double f9h=dfd9h_0_to_2(phi)
+    cdef double f11h=dfd11h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_0_to_2__5(double phi, double beta):
+    cdef double f1h=dfd1h_0_to_2(phi)
+    cdef double f3h=dfd3h_0_to_2(phi)
+    cdef double f5h=dfd5h_0_to_2(phi)
+    cdef double f7h=dfd7h_0_to_2(phi)
+    cdef double f9h=dfd9h_0_to_2(phi)
+    cdef double f11h=dfd11h_0_to_2(phi)
+    cdef double f13h=dfd13h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_0_to_2__6(double phi, double beta):
+    cdef double f1h=dfd1h_0_to_2(phi)
+    cdef double f3h=dfd3h_0_to_2(phi)
+    cdef double f5h=dfd5h_0_to_2(phi)
+    cdef double f7h=dfd7h_0_to_2(phi)
+    cdef double f9h=dfd9h_0_to_2(phi)
+    cdef double f11h=dfd11h_0_to_2(phi)
+    cdef double f13h=dfd13h_0_to_2(phi)
+    cdef double f15h=dfd15h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_0_to_2__7(double phi, double beta):
+    cdef double f1h=dfd1h_0_to_2(phi)
+    cdef double f3h=dfd3h_0_to_2(phi)
+    cdef double f5h=dfd5h_0_to_2(phi)
+    cdef double f7h=dfd7h_0_to_2(phi)
+    cdef double f9h=dfd9h_0_to_2(phi)
+    cdef double f11h=dfd11h_0_to_2(phi)
+    cdef double f13h=dfd13h_0_to_2(phi)
+    cdef double f15h=dfd15h_0_to_2(phi)
+    cdef double f17h=dfd17h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_0_to_2__8(double phi, double beta):
+    cdef double f1h=dfd1h_0_to_2(phi)
+    cdef double f3h=dfd3h_0_to_2(phi)
+    cdef double f5h=dfd5h_0_to_2(phi)
+    cdef double f7h=dfd7h_0_to_2(phi)
+    cdef double f9h=dfd9h_0_to_2(phi)
+    cdef double f11h=dfd11h_0_to_2(phi)
+    cdef double f13h=dfd13h_0_to_2(phi)
+    cdef double f15h=dfd15h_0_to_2(phi)
+    cdef double f17h=dfd17h_0_to_2(phi)
+    cdef double f19h=dfd19h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_0_to_2__9(double phi, double beta):
+    cdef double f1h=dfd1h_0_to_2(phi)
+    cdef double f3h=dfd3h_0_to_2(phi)
+    cdef double f5h=dfd5h_0_to_2(phi)
+    cdef double f7h=dfd7h_0_to_2(phi)
+    cdef double f9h=dfd9h_0_to_2(phi)
+    cdef double f11h=dfd11h_0_to_2(phi)
+    cdef double f13h=dfd13h_0_to_2(phi)
+    cdef double f15h=dfd15h_0_to_2(phi)
+    cdef double f17h=dfd17h_0_to_2(phi)
+    cdef double f19h=dfd19h_0_to_2(phi)
+    cdef double f21h=dfd21h_0_to_2(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_2_to_5__1(double phi, double beta):
+    cdef double f1h=dfd1h_2_to_5(phi)
+    cdef double f3h=dfd3h_2_to_5(phi)
+    cdef double f5h=dfd5h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_2_to_5__2(double phi, double beta):
+    cdef double f1h=dfd1h_2_to_5(phi)
+    cdef double f3h=dfd3h_2_to_5(phi)
+    cdef double f5h=dfd5h_2_to_5(phi)
+    cdef double f7h=dfd7h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_2_to_5__3(double phi, double beta):
+    cdef double f1h=dfd1h_2_to_5(phi)
+    cdef double f3h=dfd3h_2_to_5(phi)
+    cdef double f5h=dfd5h_2_to_5(phi)
+    cdef double f7h=dfd7h_2_to_5(phi)
+    cdef double f9h=dfd9h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_2_to_5__4(double phi, double beta):
+    cdef double f1h=dfd1h_2_to_5(phi)
+    cdef double f3h=dfd3h_2_to_5(phi)
+    cdef double f5h=dfd5h_2_to_5(phi)
+    cdef double f7h=dfd7h_2_to_5(phi)
+    cdef double f9h=dfd9h_2_to_5(phi)
+    cdef double f11h=dfd11h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_2_to_5__5(double phi, double beta):
+    cdef double f1h=dfd1h_2_to_5(phi)
+    cdef double f3h=dfd3h_2_to_5(phi)
+    cdef double f5h=dfd5h_2_to_5(phi)
+    cdef double f7h=dfd7h_2_to_5(phi)
+    cdef double f9h=dfd9h_2_to_5(phi)
+    cdef double f11h=dfd11h_2_to_5(phi)
+    cdef double f13h=dfd13h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_2_to_5__6(double phi, double beta):
+    cdef double f1h=dfd1h_2_to_5(phi)
+    cdef double f3h=dfd3h_2_to_5(phi)
+    cdef double f5h=dfd5h_2_to_5(phi)
+    cdef double f7h=dfd7h_2_to_5(phi)
+    cdef double f9h=dfd9h_2_to_5(phi)
+    cdef double f11h=dfd11h_2_to_5(phi)
+    cdef double f13h=dfd13h_2_to_5(phi)
+    cdef double f15h=dfd15h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_2_to_5__7(double phi, double beta):
+    cdef double f1h=dfd1h_2_to_5(phi)
+    cdef double f3h=dfd3h_2_to_5(phi)
+    cdef double f5h=dfd5h_2_to_5(phi)
+    cdef double f7h=dfd7h_2_to_5(phi)
+    cdef double f9h=dfd9h_2_to_5(phi)
+    cdef double f11h=dfd11h_2_to_5(phi)
+    cdef double f13h=dfd13h_2_to_5(phi)
+    cdef double f15h=dfd15h_2_to_5(phi)
+    cdef double f17h=dfd17h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_2_to_5__8(double phi, double beta):
+    cdef double f1h=dfd1h_2_to_5(phi)
+    cdef double f3h=dfd3h_2_to_5(phi)
+    cdef double f5h=dfd5h_2_to_5(phi)
+    cdef double f7h=dfd7h_2_to_5(phi)
+    cdef double f9h=dfd9h_2_to_5(phi)
+    cdef double f11h=dfd11h_2_to_5(phi)
+    cdef double f13h=dfd13h_2_to_5(phi)
+    cdef double f15h=dfd15h_2_to_5(phi)
+    cdef double f17h=dfd17h_2_to_5(phi)
+    cdef double f19h=dfd19h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_2_to_5__9(double phi, double beta):
+    cdef double f1h=dfd1h_2_to_5(phi)
+    cdef double f3h=dfd3h_2_to_5(phi)
+    cdef double f5h=dfd5h_2_to_5(phi)
+    cdef double f7h=dfd7h_2_to_5(phi)
+    cdef double f9h=dfd9h_2_to_5(phi)
+    cdef double f11h=dfd11h_2_to_5(phi)
+    cdef double f13h=dfd13h_2_to_5(phi)
+    cdef double f15h=dfd15h_2_to_5(phi)
+    cdef double f17h=dfd17h_2_to_5(phi)
+    cdef double f19h=dfd19h_2_to_5(phi)
+    cdef double f21h=dfd21h_2_to_5(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_5_to_10__1(double phi, double beta):
+    cdef double f1h=dfd1h_5_to_10(phi)
+    cdef double f3h=dfd3h_5_to_10(phi)
+    cdef double f5h=dfd5h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_5_to_10__2(double phi, double beta):
+    cdef double f1h=dfd1h_5_to_10(phi)
+    cdef double f3h=dfd3h_5_to_10(phi)
+    cdef double f5h=dfd5h_5_to_10(phi)
+    cdef double f7h=dfd7h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_5_to_10__3(double phi, double beta):
+    cdef double f1h=dfd1h_5_to_10(phi)
+    cdef double f3h=dfd3h_5_to_10(phi)
+    cdef double f5h=dfd5h_5_to_10(phi)
+    cdef double f7h=dfd7h_5_to_10(phi)
+    cdef double f9h=dfd9h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_5_to_10__4(double phi, double beta):
+    cdef double f1h=dfd1h_5_to_10(phi)
+    cdef double f3h=dfd3h_5_to_10(phi)
+    cdef double f5h=dfd5h_5_to_10(phi)
+    cdef double f7h=dfd7h_5_to_10(phi)
+    cdef double f9h=dfd9h_5_to_10(phi)
+    cdef double f11h=dfd11h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_5_to_10__5(double phi, double beta):
+    cdef double f1h=dfd1h_5_to_10(phi)
+    cdef double f3h=dfd3h_5_to_10(phi)
+    cdef double f5h=dfd5h_5_to_10(phi)
+    cdef double f7h=dfd7h_5_to_10(phi)
+    cdef double f9h=dfd9h_5_to_10(phi)
+    cdef double f11h=dfd11h_5_to_10(phi)
+    cdef double f13h=dfd13h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_5_to_10__6(double phi, double beta):
+    cdef double f1h=dfd1h_5_to_10(phi)
+    cdef double f3h=dfd3h_5_to_10(phi)
+    cdef double f5h=dfd5h_5_to_10(phi)
+    cdef double f7h=dfd7h_5_to_10(phi)
+    cdef double f9h=dfd9h_5_to_10(phi)
+    cdef double f11h=dfd11h_5_to_10(phi)
+    cdef double f13h=dfd13h_5_to_10(phi)
+    cdef double f15h=dfd15h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_5_to_10__7(double phi, double beta):
+    cdef double f1h=dfd1h_5_to_10(phi)
+    cdef double f3h=dfd3h_5_to_10(phi)
+    cdef double f5h=dfd5h_5_to_10(phi)
+    cdef double f7h=dfd7h_5_to_10(phi)
+    cdef double f9h=dfd9h_5_to_10(phi)
+    cdef double f11h=dfd11h_5_to_10(phi)
+    cdef double f13h=dfd13h_5_to_10(phi)
+    cdef double f15h=dfd15h_5_to_10(phi)
+    cdef double f17h=dfd17h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_5_to_10__8(double phi, double beta):
+    cdef double f1h=dfd1h_5_to_10(phi)
+    cdef double f3h=dfd3h_5_to_10(phi)
+    cdef double f5h=dfd5h_5_to_10(phi)
+    cdef double f7h=dfd7h_5_to_10(phi)
+    cdef double f9h=dfd9h_5_to_10(phi)
+    cdef double f11h=dfd11h_5_to_10(phi)
+    cdef double f13h=dfd13h_5_to_10(phi)
+    cdef double f15h=dfd15h_5_to_10(phi)
+    cdef double f17h=dfd17h_5_to_10(phi)
+    cdef double f19h=dfd19h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_5_to_10__9(double phi, double beta):
+    cdef double f1h=dfd1h_5_to_10(phi)
+    cdef double f3h=dfd3h_5_to_10(phi)
+    cdef double f5h=dfd5h_5_to_10(phi)
+    cdef double f7h=dfd7h_5_to_10(phi)
+    cdef double f9h=dfd9h_5_to_10(phi)
+    cdef double f11h=dfd11h_5_to_10(phi)
+    cdef double f13h=dfd13h_5_to_10(phi)
+    cdef double f15h=dfd15h_5_to_10(phi)
+    cdef double f17h=dfd17h_5_to_10(phi)
+    cdef double f19h=dfd19h_5_to_10(phi)
+    cdef double f21h=dfd21h_5_to_10(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_10_to_20__1(double phi, double beta):
+    cdef double f1h=dfd1h_10_to_20(phi)
+    cdef double f3h=dfd3h_10_to_20(phi)
+    cdef double f5h=dfd5h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_10_to_20__2(double phi, double beta):
+    cdef double f1h=dfd1h_10_to_20(phi)
+    cdef double f3h=dfd3h_10_to_20(phi)
+    cdef double f5h=dfd5h_10_to_20(phi)
+    cdef double f7h=dfd7h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_10_to_20__3(double phi, double beta):
+    cdef double f1h=dfd1h_10_to_20(phi)
+    cdef double f3h=dfd3h_10_to_20(phi)
+    cdef double f5h=dfd5h_10_to_20(phi)
+    cdef double f7h=dfd7h_10_to_20(phi)
+    cdef double f9h=dfd9h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_10_to_20__4(double phi, double beta):
+    cdef double f1h=dfd1h_10_to_20(phi)
+    cdef double f3h=dfd3h_10_to_20(phi)
+    cdef double f5h=dfd5h_10_to_20(phi)
+    cdef double f7h=dfd7h_10_to_20(phi)
+    cdef double f9h=dfd9h_10_to_20(phi)
+    cdef double f11h=dfd11h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_10_to_20__5(double phi, double beta):
+    cdef double f1h=dfd1h_10_to_20(phi)
+    cdef double f3h=dfd3h_10_to_20(phi)
+    cdef double f5h=dfd5h_10_to_20(phi)
+    cdef double f7h=dfd7h_10_to_20(phi)
+    cdef double f9h=dfd9h_10_to_20(phi)
+    cdef double f11h=dfd11h_10_to_20(phi)
+    cdef double f13h=dfd13h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_10_to_20__6(double phi, double beta):
+    cdef double f1h=dfd1h_10_to_20(phi)
+    cdef double f3h=dfd3h_10_to_20(phi)
+    cdef double f5h=dfd5h_10_to_20(phi)
+    cdef double f7h=dfd7h_10_to_20(phi)
+    cdef double f9h=dfd9h_10_to_20(phi)
+    cdef double f11h=dfd11h_10_to_20(phi)
+    cdef double f13h=dfd13h_10_to_20(phi)
+    cdef double f15h=dfd15h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_10_to_20__7(double phi, double beta):
+    cdef double f1h=dfd1h_10_to_20(phi)
+    cdef double f3h=dfd3h_10_to_20(phi)
+    cdef double f5h=dfd5h_10_to_20(phi)
+    cdef double f7h=dfd7h_10_to_20(phi)
+    cdef double f9h=dfd9h_10_to_20(phi)
+    cdef double f11h=dfd11h_10_to_20(phi)
+    cdef double f13h=dfd13h_10_to_20(phi)
+    cdef double f15h=dfd15h_10_to_20(phi)
+    cdef double f17h=dfd17h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_10_to_20__8(double phi, double beta):
+    cdef double f1h=dfd1h_10_to_20(phi)
+    cdef double f3h=dfd3h_10_to_20(phi)
+    cdef double f5h=dfd5h_10_to_20(phi)
+    cdef double f7h=dfd7h_10_to_20(phi)
+    cdef double f9h=dfd9h_10_to_20(phi)
+    cdef double f11h=dfd11h_10_to_20(phi)
+    cdef double f13h=dfd13h_10_to_20(phi)
+    cdef double f15h=dfd15h_10_to_20(phi)
+    cdef double f17h=dfd17h_10_to_20(phi)
+    cdef double f19h=dfd19h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_10_to_20__9(double phi, double beta):
+    cdef double f1h=dfd1h_10_to_20(phi)
+    cdef double f3h=dfd3h_10_to_20(phi)
+    cdef double f5h=dfd5h_10_to_20(phi)
+    cdef double f7h=dfd7h_10_to_20(phi)
+    cdef double f9h=dfd9h_10_to_20(phi)
+    cdef double f11h=dfd11h_10_to_20(phi)
+    cdef double f13h=dfd13h_10_to_20(phi)
+    cdef double f15h=dfd15h_10_to_20(phi)
+    cdef double f17h=dfd17h_10_to_20(phi)
+    cdef double f19h=dfd19h_10_to_20(phi)
+    cdef double f21h=dfd21h_10_to_20(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_20_to_40__1(double phi, double beta):
+    cdef double f1h=dfd1h_20_to_40(phi)
+    cdef double f3h=dfd3h_20_to_40(phi)
+    cdef double f5h=dfd5h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_20_to_40__2(double phi, double beta):
+    cdef double f1h=dfd1h_20_to_40(phi)
+    cdef double f3h=dfd3h_20_to_40(phi)
+    cdef double f5h=dfd5h_20_to_40(phi)
+    cdef double f7h=dfd7h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_20_to_40__3(double phi, double beta):
+    cdef double f1h=dfd1h_20_to_40(phi)
+    cdef double f3h=dfd3h_20_to_40(phi)
+    cdef double f5h=dfd5h_20_to_40(phi)
+    cdef double f7h=dfd7h_20_to_40(phi)
+    cdef double f9h=dfd9h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_20_to_40__4(double phi, double beta):
+    cdef double f1h=dfd1h_20_to_40(phi)
+    cdef double f3h=dfd3h_20_to_40(phi)
+    cdef double f5h=dfd5h_20_to_40(phi)
+    cdef double f7h=dfd7h_20_to_40(phi)
+    cdef double f9h=dfd9h_20_to_40(phi)
+    cdef double f11h=dfd11h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_20_to_40__5(double phi, double beta):
+    cdef double f1h=dfd1h_20_to_40(phi)
+    cdef double f3h=dfd3h_20_to_40(phi)
+    cdef double f5h=dfd5h_20_to_40(phi)
+    cdef double f7h=dfd7h_20_to_40(phi)
+    cdef double f9h=dfd9h_20_to_40(phi)
+    cdef double f11h=dfd11h_20_to_40(phi)
+    cdef double f13h=dfd13h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_20_to_40__6(double phi, double beta):
+    cdef double f1h=dfd1h_20_to_40(phi)
+    cdef double f3h=dfd3h_20_to_40(phi)
+    cdef double f5h=dfd5h_20_to_40(phi)
+    cdef double f7h=dfd7h_20_to_40(phi)
+    cdef double f9h=dfd9h_20_to_40(phi)
+    cdef double f11h=dfd11h_20_to_40(phi)
+    cdef double f13h=dfd13h_20_to_40(phi)
+    cdef double f15h=dfd15h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_20_to_40__7(double phi, double beta):
+    cdef double f1h=dfd1h_20_to_40(phi)
+    cdef double f3h=dfd3h_20_to_40(phi)
+    cdef double f5h=dfd5h_20_to_40(phi)
+    cdef double f7h=dfd7h_20_to_40(phi)
+    cdef double f9h=dfd9h_20_to_40(phi)
+    cdef double f11h=dfd11h_20_to_40(phi)
+    cdef double f13h=dfd13h_20_to_40(phi)
+    cdef double f15h=dfd15h_20_to_40(phi)
+    cdef double f17h=dfd17h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_20_to_40__8(double phi, double beta):
+    cdef double f1h=dfd1h_20_to_40(phi)
+    cdef double f3h=dfd3h_20_to_40(phi)
+    cdef double f5h=dfd5h_20_to_40(phi)
+    cdef double f7h=dfd7h_20_to_40(phi)
+    cdef double f9h=dfd9h_20_to_40(phi)
+    cdef double f11h=dfd11h_20_to_40(phi)
+    cdef double f13h=dfd13h_20_to_40(phi)
+    cdef double f15h=dfd15h_20_to_40(phi)
+    cdef double f17h=dfd17h_20_to_40(phi)
+    cdef double f19h=dfd19h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_20_to_40__9(double phi, double beta):
+    cdef double f1h=dfd1h_20_to_40(phi)
+    cdef double f3h=dfd3h_20_to_40(phi)
+    cdef double f5h=dfd5h_20_to_40(phi)
+    cdef double f7h=dfd7h_20_to_40(phi)
+    cdef double f9h=dfd9h_20_to_40(phi)
+    cdef double f11h=dfd11h_20_to_40(phi)
+    cdef double f13h=dfd13h_20_to_40(phi)
+    cdef double f15h=dfd15h_20_to_40(phi)
+    cdef double f17h=dfd17h_20_to_40(phi)
+    cdef double f19h=dfd19h_20_to_40(phi)
+    cdef double f21h=dfd21h_20_to_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_gt_40__1(double phi, double beta):
+    cdef double f1h=dfd1h_gt_40(phi)
+    cdef double f3h=dfd3h_gt_40(phi)
+    cdef double f5h=dfd5h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G11*f3h
+                      ))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G11*f5h
+                      ))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_gt_40__2(double phi, double beta):
+    cdef double f1h=dfd1h_gt_40(phi)
+    cdef double f3h=dfd3h_gt_40(phi)
+    cdef double f5h=dfd5h_gt_40(phi)
+    cdef double f7h=dfd7h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G21*f3h
+                      +beta*(G22*f5h
+                      )))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G21*f5h
+                      +beta*(G22*f7h
+                      )))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_gt_40__3(double phi, double beta):
+    cdef double f1h=dfd1h_gt_40(phi)
+    cdef double f3h=dfd3h_gt_40(phi)
+    cdef double f5h=dfd5h_gt_40(phi)
+    cdef double f7h=dfd7h_gt_40(phi)
+    cdef double f9h=dfd9h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G31*f3h
+                      +beta*(G32*f5h
+                      +beta*(G33*f7h
+                      ))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G31*f5h
+                      +beta*(G32*f7h
+                      +beta*(G33*f9h
+                      ))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_gt_40__4(double phi, double beta):
+    cdef double f1h=dfd1h_gt_40(phi)
+    cdef double f3h=dfd3h_gt_40(phi)
+    cdef double f5h=dfd5h_gt_40(phi)
+    cdef double f7h=dfd7h_gt_40(phi)
+    cdef double f9h=dfd9h_gt_40(phi)
+    cdef double f11h=dfd11h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G41*f3h
+                      +beta*(G42*f5h
+                      +beta*(G43*f7h
+                      +beta*(G44*f9h
+                      )))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G41*f5h
+                      +beta*(G42*f7h
+                      +beta*(G43*f9h
+                      +beta*(G44*f11h
+                      )))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_gt_40__5(double phi, double beta):
+    cdef double f1h=dfd1h_gt_40(phi)
+    cdef double f3h=dfd3h_gt_40(phi)
+    cdef double f5h=dfd5h_gt_40(phi)
+    cdef double f7h=dfd7h_gt_40(phi)
+    cdef double f9h=dfd9h_gt_40(phi)
+    cdef double f11h=dfd11h_gt_40(phi)
+    cdef double f13h=dfd13h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G51*f3h
+                      +beta*(G52*f5h
+                      +beta*(G53*f7h
+                      +beta*(G54*f9h
+                      +beta*(G55*f11h
+                      ))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G51*f5h
+                      +beta*(G52*f7h
+                      +beta*(G53*f9h
+                      +beta*(G54*f11h
+                      +beta*(G55*f13h
+                      ))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_gt_40__6(double phi, double beta):
+    cdef double f1h=dfd1h_gt_40(phi)
+    cdef double f3h=dfd3h_gt_40(phi)
+    cdef double f5h=dfd5h_gt_40(phi)
+    cdef double f7h=dfd7h_gt_40(phi)
+    cdef double f9h=dfd9h_gt_40(phi)
+    cdef double f11h=dfd11h_gt_40(phi)
+    cdef double f13h=dfd13h_gt_40(phi)
+    cdef double f15h=dfd15h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G61*f3h
+                      +beta*(G62*f5h
+                      +beta*(G63*f7h
+                      +beta*(G64*f9h
+                      +beta*(G65*f11h
+                      +beta*(G66*f13h
+                      )))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G61*f5h
+                      +beta*(G62*f7h
+                      +beta*(G63*f9h
+                      +beta*(G64*f11h
+                      +beta*(G65*f13h
+                      +beta*(G66*f15h
+                      )))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_gt_40__7(double phi, double beta):
+    cdef double f1h=dfd1h_gt_40(phi)
+    cdef double f3h=dfd3h_gt_40(phi)
+    cdef double f5h=dfd5h_gt_40(phi)
+    cdef double f7h=dfd7h_gt_40(phi)
+    cdef double f9h=dfd9h_gt_40(phi)
+    cdef double f11h=dfd11h_gt_40(phi)
+    cdef double f13h=dfd13h_gt_40(phi)
+    cdef double f15h=dfd15h_gt_40(phi)
+    cdef double f17h=dfd17h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G71*f3h
+                      +beta*(G72*f5h
+                      +beta*(G73*f7h
+                      +beta*(G74*f9h
+                      +beta*(G75*f11h
+                      +beta*(G76*f13h
+                      +beta*(G77*f15h
+                      ))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G71*f5h
+                      +beta*(G72*f7h
+                      +beta*(G73*f9h
+                      +beta*(G74*f11h
+                      +beta*(G75*f13h
+                      +beta*(G76*f15h
+                      +beta*(G77*f17h
+                      ))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_gt_40__8(double phi, double beta):
+    cdef double f1h=dfd1h_gt_40(phi)
+    cdef double f3h=dfd3h_gt_40(phi)
+    cdef double f5h=dfd5h_gt_40(phi)
+    cdef double f7h=dfd7h_gt_40(phi)
+    cdef double f9h=dfd9h_gt_40(phi)
+    cdef double f11h=dfd11h_gt_40(phi)
+    cdef double f13h=dfd13h_gt_40(phi)
+    cdef double f15h=dfd15h_gt_40(phi)
+    cdef double f17h=dfd17h_gt_40(phi)
+    cdef double f19h=dfd19h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G81*f3h
+                      +beta*(G82*f5h
+                      +beta*(G83*f7h
+                      +beta*(G84*f9h
+                      +beta*(G85*f11h
+                      +beta*(G86*f13h
+                      +beta*(G87*f15h
+                      +beta*(G88*f17h
+                      )))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G81*f5h
+                      +beta*(G82*f7h
+                      +beta*(G83*f9h
+                      +beta*(G84*f11h
+                      +beta*(G85*f13h
+                      +beta*(G86*f15h
+                      +beta*(G87*f17h
+                      +beta*(G88*f19h
+                      )))))))))
+    return gf1h+beta*gf3h
+
+
+@cython.cdivision(True)
+cdef inline double dnonparabolic_gt_40__9(double phi, double beta):
+    cdef double f1h=dfd1h_gt_40(phi)
+    cdef double f3h=dfd3h_gt_40(phi)
+    cdef double f5h=dfd5h_gt_40(phi)
+    cdef double f7h=dfd7h_gt_40(phi)
+    cdef double f9h=dfd9h_gt_40(phi)
+    cdef double f11h=dfd11h_gt_40(phi)
+    cdef double f13h=dfd13h_gt_40(phi)
+    cdef double f15h=dfd15h_gt_40(phi)
+    cdef double f17h=dfd17h_gt_40(phi)
+    cdef double f19h=dfd19h_gt_40(phi)
+    cdef double f21h=dfd21h_gt_40(phi)
+    cdef double gf1h=(       G0 *f1h
+                      +beta*(G91*f3h
+                      +beta*(G92*f5h
+                      +beta*(G93*f7h
+                      +beta*(G94*f9h
+                      +beta*(G95*f11h
+                      +beta*(G96*f13h
+                      +beta*(G97*f15h
+                      +beta*(G98*f17h
+                      +beta*(G99*f19h
+                      ))))))))))
+    cdef double gf3h=(       G0 *f3h
+                      +beta*(G91*f5h
+                      +beta*(G92*f7h
+                      +beta*(G93*f9h
+                      +beta*(G94*f11h
+                      +beta*(G95*f13h
+                      +beta*(G96*f15h
+                      +beta*(G97*f17h
+                      +beta*(G98*f19h
+                      +beta*(G99*f21h
+                      ))))))))))
+    return gf1h+beta*gf3h
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef void vdnonparabolic(np.ndarray[double] phi, np.ndarray[double] alpha,
+                          np.ndarray[double] out):
+    '''
+    Vectorized form of dnonparabolic.
+    '''
+    cdef int imax = phi.shape[0]
+    assert imax == alpha.shape[0]
+    assert imax == out.shape[0]
+    cdef int i
+    for i in range(imax):
+        out[i] = dnonparabolic(phi[i], alpha[i])

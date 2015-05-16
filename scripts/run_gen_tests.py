@@ -7,6 +7,7 @@ scripts = [
     'gen_test_fd.py',
     'gen_test_ifd.py',
     'gen_test_gfd.py',
+    'gen_test_scfd.py',
     ]
 for script in scripts:
     print 'running', script

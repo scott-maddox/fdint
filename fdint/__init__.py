@@ -44,6 +44,7 @@ from .dfd import *
 from .ifd import *
 from .gfd import *
 from .dgfd import *
+from .scfd import *
 
 def fdk(k, phi):
     k2 = str(int(k*2.01)).replace('-', 'm')

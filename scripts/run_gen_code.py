@@ -31,6 +31,16 @@ scripts = [
     'gen__vdgfd_pxd.py',
     'gen__vdgfd_pyx.py',
 
+    'gen__nonparabolic_pxd.py',
+    'gen__nonparabolic_pyx.py',
+    'gen__vnonparabolic_pxd.py',
+    'gen__vnonparabolic_pyx.py',
+
+    'gen__dnonparabolic_pxd.py',
+    'gen__dnonparabolic_pyx.py',
+    'gen__vdnonparabolic_pxd.py',
+    'gen__vdnonparabolic_pyx.py',
+
     'gen__fdint.py',
 
     'gen_fd_pyx.py',
