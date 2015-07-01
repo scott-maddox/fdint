@@ -146,7 +146,7 @@ takes only ~2.4x the runtime of ``numpy.log``::
     10000 loops, best of 3: 178 usec per loop
     
 The generalized Fermi-Dirac integrals are also quite fast. For order
-k=1/2 with zero nonparaoblicity, ``fdint.gfd1h`` takes only ~3.7x the runtime
+k=1/2 with zero nonparabolicity, ``fdint.gfd1h`` takes only ~3.7x the runtime
 of ``numpy.exp`` for zero nonparabolicity::
 
     $ python -m timeit -s "from fdint import gfd1h; import numpy; x=numpy.linspace(-100,10,10000);b=numpy.zeros(10000);b.fill(0.)" "gfd1h(x,b)"
