@@ -25,17 +25,30 @@ version number):
     git commit -am "bump version number to 2.0"
 
 Now is a good time to install and test in a virtualenv, to make sure you
-haven't missed any bugs:
+haven't missed any bugs. First, test installing without Cython:
 
     python setup.py sdist
-    tar -xvzf dist/fdint-2.0.tar.gz
+    cd dist
+    tar -xvzf fdint-2.0.tar.gz
 
     virtualenv venv
     source venv/bin/activate
-    cd fdint-2.0
     pip install numpy
+    cd fdint-2.0
     python setup.py install
-    cd ../..
+    cd ..
+    python -m fdint.tests
+    deactivate
+    rm -rf venv
+
+Next, test installing with Cython:
+
+    virtualenv venv
+    source venv/bin/activate
+    pip install numpy Cython
+    cd fdint-2.0
+    python setup.py install
+    cd ..
     python -m fdint.tests
     cd fdint
     deactivate
