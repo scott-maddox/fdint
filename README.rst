@@ -14,9 +14,6 @@ Prof. Fukushima [1].
 The `source code`_ and `documentation`_ (coming soon) are graciously hosted
 by GitHub.
 
-.. _`source code`: http://github.com/scott-maddox/fdint
-.. _`documentation`: http://scott-maddox.github.io/fdint
-
 Installation
 ============
 
@@ -26,11 +23,6 @@ suggested. You will also need to install `Cython`_ and `Numpy`_ before
 proceeding. If you're not familiar with Python, you might consider
 installing a `Python distribution`_ that comes prepackaged with Cython
 and Numpy.
-
-.. _`Python`: https://www.python.org/download/
-.. _`Cython`: http://docs.cython.org/src/quickstart/install.html
-.. _`Numpy`: http://docs.scipy.org/doc/numpy/user/install.html
-.. _`distribution`: https://www.scipy.org/install.html#scientific-python-distributions
 
 From PyPi
 ---------
@@ -42,7 +34,6 @@ prompt and run the following command::
 
     pip install fdint
 
-.. _`PyPi`: http://pypi.python.org/pypi
 
 From Github
 -----------
@@ -52,7 +43,6 @@ To install the latest release of FDINT from Github, go to the
 source package, extract its contents, and run ``python setup.py install``
 from within the extracted directory.
 
-.. _`FDINT releases page`: http://github.com/scott-maddox/fdint/releases/latest
 
 Testing
 =======
@@ -200,3 +190,13 @@ Documentation
 =============
 
 The `documentation`_ (coming soon) is graciously hosted by GitHub.
+
+.. _`source code`: http://github.com/scott-maddox/fdint
+.. _`documentation`: http://scott-maddox.github.io/fdint
+.. _`PyPi`: http://pypi.python.org/pypi
+.. _`Python`: https://www.python.org/download/
+.. _`Cython`: http://docs.cython.org/src/quickstart/install.html
+.. _`Numpy`: http://docs.scipy.org/doc/numpy/user/install.html
+.. _`matplotlib`: http://matplotlib.org/users/installing.html
+.. _`Python distribution`: https://www.scipy.org/install.html#scientific-python-distributions
+.. _`FDINT releases page`: http://github.com/scott-maddox/fdint/releases/latest
