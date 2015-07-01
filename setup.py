@@ -1,64 +1,91 @@
-import os
+#
+#   Copyright (c) 2015, Scott J Maddox
+#
+#   This file is part of Open Band Parameters Device Simulator (OBPDS).
+#
+#   OBPDS is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU Affero General Public License as published
+#   by the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   OBPDS is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU Affero General Public License for more details.
+#
+#   You should have received a copy of the GNU Affero General Public License
+#   along with OBPDS.  If not, see <http://www.gnu.org/licenses/>.
+#
+#############################################################################
 import sys
+import os.path
+from setuptools import setup, Extension
+import numpy
 
-# BEFORE importing distutils, remove MANIFEST. distutils doesn't properly
-# update it when the contents of directories change.
-if os.path.exists('MANIFEST'): os.remove('MANIFEST')
+try:
+    from Cython.Build import cythonize
+    USE_CYTHON = True
+except:
+    if len(sys.argv) >= 1 and 'sdist' in sys.argv[1:]:
+        raise RuntimeError('Cython is required to build a source distribution.')
+    USE_CYTHON = False
+    def no_cythonize(extensions, **_ignore):
+        for extension in extensions:
+            sources = []
+            for sfile in extension.sources:
+                path, ext = os.path.splitext(sfile)
+                if ext in ('.pyx', '.py'):
+                    if extension.language == 'c++':
+                        ext = '.cpp'
+                    else:
+                        ext = '.c'
+                    sfile = path + ext
+                sources.append(sfile)
+            extension.sources[:] = sources
+        return extensions
+
+ext = '.pyx' if USE_CYTHON else '.c'
+
+extensions = [Extension("fdint/_fdint", ["fdint/_fdint"+ext]),
+              Extension("fdint/fd", ["fdint/fd"+ext]),
+              Extension("fdint/dfd", ["fdint/dfd"+ext]),
+              Extension("fdint/ifd", ["fdint/ifd"+ext]),
+              Extension("fdint/gfd", ["fdint/gfd"+ext]),
+              Extension("fdint/dgfd", ["fdint/dgfd"+ext]),
+              Extension("fdint/scfd", ["fdint/scfd"+ext]),]
 
 
-def configuration(parent_package='', top_path=None):
-    from numpy.distutils.misc_util import Configuration
-    config = Configuration(None, parent_package, top_path)
-    config.set_options(ignore_setup_xxx_py=True,
-                       assume_default_configuration=True,
-                       delegate_options_to_subpackages=True,
-                       quiet=True)
+# read in __version__
+exec(open('fdint/version.py').read())
 
-    config.add_subpackage('fdint')
-    config.get_version('fdint/version.py') # sets config.version
-    return config
-
-
-def setup_package():
-
-    metadata = dict(
-        name = 'fdint',
-        author='Scott J. Maddox',
-        author_email='smaddox@utexas.edu',
-        description = 'A free, open-source python package for computing '
-                      'Fermi-Dirac integrals.',
-        long_description = open('README.rst').read(),
-        url='http://scott-maddox.github.io/fdint',
-        license='AGPLv3',
-        test_suite='nose.collector',
-        setup_requires=['numpy'],
-        install_requires=['numpy'],
+metadata = dict(
+    name='fdint',
+    version=__version__,  # read from version.py
+    description = 'A free, open-source python package for quickly and '
+                  'precisely approximating Fermi-Dirac integrals.',
+    long_description=open('README.rst').read(),
+    url='http://scott-maddox.github.io/fdint',
+    author='Scott J. Maddox',
+    author_email='smaddox@utexas.edu',
+    license='AGPLv3',
+    packages=['fdint',
+              'fdint.tests',
+              'fdint.examples'],
+    package_dir={'fdint': 'fdint'},
+    data_files=['fdint/__init__.pxd',
+                'fdint/_fdint.pxd',
+                'fdint/scfd.pxd',],
+    test_suite='fdint.tests',
+    setup_requires=['numpy'],
+    install_requires=['numpy'],
+#     zip_safe=True,
+#     use_2to3=True,
+    include_dirs=[numpy.get_include()],
     )
 
-    # Run build
-    if len(sys.argv) >= 2 and ('--help' in sys.argv[1:] or
-            sys.argv[1] in ('--help-commands', 'egg_info', '--version',
-                            'clean')):
-        # Use setuptools for these commands (they don't work well or at all
-        # with distutils). For normal builds use distutils.
-        try:
-            from setuptools import setup
-        except ImportError:
-            from distutils.core import setup
-    else:
-        if len(sys.argv) >= 2 and sys.argv[1] == 'bdist_wheel':
-            # bdist_wheel needs setuptools
-            import setuptools
-        try:
-            from numpy.distutils.core import setup
-        except:
-            # hack to force installing numpy
-            os.system('pip install numpy')
-        from numpy.distutils.core import setup
-        metadata['configuration'] = configuration
+if USE_CYTHON:
+    metadata['ext_modules'] = cythonize(extensions)
+else:
+    metadata['ext_modules'] = no_cythonize(extensions)
 
-    setup(**metadata)
-
-
-if __name__ == '__main__':
-    setup_package()
+setup(**metadata)

@@ -7,9 +7,11 @@ ignore/
 # tmp files
 *.swp
 *.bak
+*.tmp
 
 # compiled source
 *.pyc
+*.c
 *.so
 *.o
 
