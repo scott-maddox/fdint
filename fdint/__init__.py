@@ -37,6 +37,24 @@ Precise and fast Fermi-Dirac integrals of integer and half integer order.
 
 from .version import __version__
 
+def get_include():
+    """
+    Return the directory that contains the FDINT \\*.pxd files.
+    Cython extension modules that need to compile against FDINT should use
+    this function to locate the appropriate include directory.
+    Notes
+    -----
+    When using ``distutils``, for example in ``setup.py``.
+    ::
+        import fdint
+        ...
+        Extension('extension_name', ...
+                  include_dirs=[fdint.get_include()])
+        ...
+    """
+    import fdint
+    return os.path.dirname(fdint.__file__)
+
 from . import _fdint
 
 from .fd import *
