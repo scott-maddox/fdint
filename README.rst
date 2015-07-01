@@ -22,16 +22,23 @@ Installation
 
 In order to use FDINT, you must having a working `Python`_ distribution
 installed. Python 3 support has not yet been tested, so Python 2.7 is
-suggested. In order to achieve the highest performance, a Fortran 90 compiler,
-such as gfortran, is required.
+suggested. You will also need to install `Cython`_ and `Numpy`_ before
+proceeding. If you're not familiar with Python, you might consider
+installing a `Python distribution`_ that comes prepackaged with Cython
+and Numpy.
 
 .. _`Python`: https://www.python.org/download/
+.. _`Cython`: http://docs.cython.org/src/quickstart/install.html
+.. _`Numpy`: http://docs.scipy.org/doc/numpy/user/install.html
+.. _`distribution`: https://www.scipy.org/install.html#scientific-python-distributions
 
 From PyPi
 ---------
 
-This is the easiest method. Install from `PyPi`_ by running the following
-command::
+This is the recommended method for installing FDINT. `PyPi`_ is the python
+package index, which contains many python packages that can be easily installed
+with a single command. To install FDINT from `PyPi`_, open up a command
+prompt and run the following command::
 
     pip install fdint
 
@@ -40,23 +47,12 @@ command::
 From Github
 -----------
 
-First, you will need to install the following prerequisite package:
+To install the latest release of FDINT from Github, go to the
+`FDINT releases page`_, download the latest ``.zip`` or ``.tar.gz``
+source package, extract its contents, and run ``python setup.py install``
+from within the extracted directory.
 
-- Numpy_
-
-.. _`Numpy`: http://docs.scipy.org/doc/numpy/user/install.html
-
-Additional functionality is provided by the following optional packages:
-
-- Matplotlib_
-
-.. _`Matplotlib`: http://matplotlib.org/users/installing.html
-
-Once these are installed, download the latest release `.zip` or `.tar.gz`
-source package from the `github page`_, extract its contents, and run
-`python setup.py install` from within the extracted directory.
-
-.. _`github page`: http://github.com/scott-maddox/fdint/releases/latest
+.. _`FDINT releases page`: http://github.com/scott-maddox/fdint/releases/latest
 
 Testing
 =======
@@ -65,10 +61,10 @@ Once installed, you can test the package by running the following command::
 
     python -m fdint.tests
 
-If you have Matplotlib_ installed, you can also plot a sample of the available
-functions by running the following command::
+If you have Matplotlib_ installed, you can also plot a sample of the
+available functions by running the following command::
 
-    python -m fdint
+    python -m fdint.examples.plot
 
 Tutorial
 ========
@@ -92,67 +88,113 @@ functions, ``fdk`` and ``dfdk``::
     7.837976057293096
     >>> fdk(k=0.5,phi=50)
     235.81861512588432
-    >>> dfdk(k=0.5,phi=-10,d=1) # first derivative
+    >>> dfdk(k=0.5,phi=-10) # first derivative
     4.0233348580568672e-05
-    >>> dfdk(k=0.5,phi=5,d=1)
-    2.1916282173557855
-    >>> dfdk(k=0.5,phi=50,d=1)
-    7.0699026455055112
-    >>> dfdk(k=0.5,phi=50,d=2) # second derivative
-    0.07074571454521902
 
-You can also pass in lists or arrays as phi::
+You can also pass in numpy arrays as phi::
 
-    >>> fdk(k=0.5,phi=[-10,0,10])
-    array([  4.02339944e-05,   6.78093895e-01,   2.13444715e+01])
+    >>> import numpy
+    >>> fdk(k=0.5,phi=numpy.linspace(-100,10,3))
+    array([  3.29683149e-44,   2.53684104e-20,   2.13444715e+01])
 
 If you request an order or derivative that is not implemented, a
 NotImplementedError is raised::
 
-    >>> fdk(22,0)
+    >>> fdk(1,0)
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-      File "fdint/fdint.py", line 68, in fdk
-        raise NotImplementedError()
-    NotImplementedError
-    >>> dfdk(k=0.5,phi=50,d=10)
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-      File "fdint/fdint.py", line 99, in dfdk
+      File "fdint/__init__.py", line 50, in fdk
         raise NotImplementedError()
     NotImplementedError
 
-If you prefer to call the low-level functions directly to avoid overhead,
-you can access them from the ``fd`` module::
+For semiconductor calculations, ``parabolic``, ``dparabolic``, ``iparabolic``,
+``nonparabolic``, and ``dnonparabolic`` are provided::
 
-    >>> fd.fd1h(-10) # k=1/2
-    4.023399436689394e-05
-    >>> fd.vfd1h([-10,0,10]) # k=1/2
-    array([  4.02339944e-05,   6.78093895e-01,   2.13444715e+01])
+    >>> parabolic(0)
+    0.7651470246254078
+    >>> dparabolic(0)
+    0.6048986434216304
+    >>> iparabolic(.7)
+    -0.11156326391089397
+    >>> nonparabolic(0,0)
+    0.7651470705342294
+    >>> nonparabolic(0,0.07) # InAs
+    1.006986898726782
+    >>> dnonparabolic(0,0.07) # InAs
+    0.8190058991462952
 
 Benchmarks
 ==========
 
-For single values, calling the function for a specific order is ~7x faster than
-calling ``fdk``::
+Below are a few benchmarking runs. First, ``numpy.exp``::
 
-    $ python -m timeit -s "from fdint import fdk" "fdk(0.5, 10)"
-    1000000 loops, best of 3: 1.1 usec per loop
-    $ python -m timeit -s "from fdint.fd import fd1h" "fd1h(10)"
-    10000000 loops, best of 3: 0.153 usec per loop
+    $ python -m timeit -s "import numpy; from numpy import exp; x=numpy.linspace(-100,10,10000)" "exp(x)"
+    10000 loops, best of 3: 72.6 usec per loop
 
-However, even for a fairly small array of 1000, most of the advantage is lost::
+The same arguments to the Fermi-Dirac integral of order k=1/2, ``fdint.fd1h``,
+takes only ~2.2x the runtime::
 
-    $ python -m timeit -s "from fdint import fdk; import numpy; x=numpy.linspace(-100,100,1000)" "fdk(0.5, x)"
-    100000 loops, best of 3: 13.8 usec per loop
-    $ python -m timeit -s "from fdint.fd import vfd1h; import numpy; x=numpy.linspace(-100,100,1000)" "vfd1h(x)"
-    100000 loops, best of 3: 12.9 usec per loop
+    $ python -m timeit -s "from fdint import fd1h; import numpy; x=numpy.linspace(-100,10,10000)" "fd1h(x)"
+    10000 loops, best of 3: 158 usec per loop
 
-Overall, the performance is excellent. Note that the call time is within a
-factor of 2 of ``numpy.exp``::
+Similarly, the inverse Fermi-Dirac integral of order k=1/2, ``fdint.ifd1h``,
+takes only ~2.4x the runtime of ``numpy.log``::
 
-    $ python -m timeit -s "import numpy; from numpy import exp; x=numpy.linspace(-100,100,1000)" "exp(x)"
-    100000 loops, best of 3: 7.49 usec per loop
+    $ python -m timeit -s "import numpy; from numpy import exp,log; x=numpy.linspace(-100,10,10000);y=exp(x)" "log(y)"
+    10000 loops, best of 3: 69.9 usec per loop
+    $ python -m timeit -s "from fdint import fd1h,ifd1h; import numpy; x=numpy.linspace(-100,10,10000);y=fd1h(x)" "ifd1h(y)"
+    10000 loops, best of 3: 178 usec per loop
+    
+The generalized Fermi-Dirac integrals are also quite fast. For order
+k=1/2 with zero nonparabolicity, ``fdint.gfd1h`` takes only ~3.7x the runtime
+of ``numpy.exp`` for zero nonparabolicity::
+
+    $ python -m timeit -s "from fdint import gfd1h; import numpy; x=numpy.linspace(-100,10,10000);b=numpy.zeros(10000);b.fill(0.)" "gfd1h(x,b)"
+    1000 loops, best of 3: 266 usec per loop
+
+Although if there is significant nonparabolicity, ``fdint.gfd1h`` can take a
+up to ~10x longer than ``numpy.exp``::
+
+    $ python -m timeit -s "from fdint import gfd1h; import numpy; x=numpy.linspace(-100,10,10000);b=numpy.zeros(10000);b.fill(0.1)" "gfd1h(x,b)"
+    1000 loops, best of 3: 467 usec per loop
+
+    $ python -m timeit -s "from fdint import gfd1h; import numpy; x=numpy.linspace(-100,10,10000);b=numpy.zeros(10000);b.fill(0.3)" "gfd1h(x,b)"
+    /usr/local/Cellar/python/2.7.8_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/timeit.py:6: RuntimeWarning: gfd1h: less than 24 bits of accuracy
+    1000 loops, best of 3: 696 usec per loop
+
+The full calculation for a nonparabolic band takes ~5-17x longer than
+``numpy.exp``, depending on the level of nonparabolicity (Note: for
+some reason the timing for this command is unreasonably high when timed
+from the command line. When timed inside of ipython, it works fine)::
+
+    $ ipython
+    In [1]: from fdint import *
+    
+    In [2]: import numpy
+    
+    In [3]: phi = numpy.linspace(-100,10,10000)
+    
+    In [4]: %timeit numpy.exp(phi)
+    10000 loops, best of 3: 72.9 µs per loop
+    
+    In [5]: %timeit parabolic(phi)
+    10000 loops, best of 3: 165 µs per loop
+    
+    In [6]: alpha = numpy.empty(10000); alpha.fill(0.0) # parabolic
+    
+    In [7]: %timeit nonparabolic(phi, alpha)
+    1000 loops, best of 3: 346 µs per loop
+    
+    In [8]: alpha = numpy.empty(10000); alpha.fill(0.07) # InAs
+    
+    In [9]: %timeit nonparabolic(phi, alpha)
+    1000 loops, best of 3: 695 µs per loop
+    
+    In [10]: alpha = numpy.empty(10000); alpha.fill(0.15) # InSb
+    
+    In [11]: %timeit nonparabolic(phi, alpha)
+    /usr/local/bin/ipython:257: RuntimeWarning: nonparabolic: less than 24 bits of accuracy
+    1000 loops, best of 3: 1.26 ms per loop
 
 Documentation
 =============
