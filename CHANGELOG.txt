@@ -1,3 +1,9 @@
+Changes in 2.0.1:
+
+- changed LICENSE to BSD-3-Clause
+- improved README
+- fixed test generation
+
 Changes in 2.0:
 
 - completely rewrote the package in Cython, which results in ~3x speedup over
