@@ -4,33 +4,35 @@ Fermi-Dirac Integrals (FDINT)
 FDINT is a free, open-source python package that provides fast, double
 precision (64-bit floating point) approximations to the Fermi-Dirac
 integrals of integer and half integer order, based on the work by
-Prof. Fukushima [1].
+Prof. Fukushima [1-3]. FDINT is written predominantly in Cython_, which
+is compiled to native code through an intermediate C source, resulting
+in C-like performance.
+
+.. [1] T. Fukushima, "Precise and fast computation of Fermi-Dirac integral of
+   integer and half integer order by piecewise minimax rational approximation,"
+   Applied Mathematics and Computation, vol. 259, pp. 708-729, May 2015.
+   DOI: 10.1016/j.amc.2015.03.009
+
+.. [2] T. Fukushima, "Precise and fast computation of inverse Fermi-Dirac
+   integral of order 1/2 by minimax rational function approximation,"
+   Applied Mathematics and Computation, vol. 259, pp. 698-707, May 2015.
+   DOI: 10.1016/j.amc.2015.03.015
     
-.. [1] T. Fukushima, "Precise and fast computation of Fermi-Dirac integral
-   of integer and half integer order by piecewise minimax rational
-   approximation," Applied Mathematics and Computation, vol. 259,
-   pp. 708-729, May 2015.
+.. [3] T. Fukushima, "Precise and fast computation of generalized Fermi-Dirac
+   integral by parameter polynomial approximation," 2014.
+   DOI: 10.13140/2.1.1094.6566
 
 The `source code`_ and `documentation`_ (coming soon) are graciously hosted
 by GitHub.
 
-.. _`source code`: http://github.com/scott-maddox/fdint
-.. _`documentation`: http://scott-maddox.github.io/fdint
-
 Installation
 ============
 
-In order to use FDINT, you must having a working `Python`_ distribution
+In order to use FDINT, you must have a working `Python`_ distribution
 installed. Python 3 support has not yet been tested, so Python 2.7 is
-suggested. You will also need to install `Cython`_ and `Numpy`_ before
-proceeding. If you're not familiar with Python, you might consider
-installing a `Python distribution`_ that comes prepackaged with Cython
-and Numpy.
-
-.. _`Python`: https://www.python.org/download/
-.. _`Cython`: http://docs.cython.org/src/quickstart/install.html
-.. _`Numpy`: http://docs.scipy.org/doc/numpy/user/install.html
-.. _`distribution`: https://www.scipy.org/install.html#scientific-python-distributions
+suggested. You will also need to install `Numpy`_ before proceeding. If
+you're not familiar with Python, you might consider installing a
+`Python distribution`_ that comes prepackaged with Numpy.
 
 From PyPi
 ---------
@@ -42,7 +44,6 @@ prompt and run the following command::
 
     pip install fdint
 
-.. _`PyPi`: http://pypi.python.org/pypi
 
 From Github
 -----------
@@ -52,7 +53,6 @@ To install the latest release of FDINT from Github, go to the
 source package, extract its contents, and run ``python setup.py install``
 from within the extracted directory.
 
-.. _`FDINT releases page`: http://github.com/scott-maddox/fdint/releases/latest
 
 Testing
 =======
@@ -152,7 +152,7 @@ of ``numpy.exp`` for zero nonparabolicity::
     $ python -m timeit -s "from fdint import gfd1h; import numpy; x=numpy.linspace(-100,10,10000);b=numpy.zeros(10000);b.fill(0.)" "gfd1h(x,b)"
     1000 loops, best of 3: 266 usec per loop
 
-Although if there is significant nonparabolicity, ``fdint.gfd1h`` can take a
+However, if there is significant nonparabolicity, ``fdint.gfd1h`` can take a
 up to ~10x longer than ``numpy.exp``::
 
     $ python -m timeit -s "from fdint import gfd1h; import numpy; x=numpy.linspace(-100,10,10000);b=numpy.zeros(10000);b.fill(0.1)" "gfd1h(x,b)"
@@ -200,3 +200,13 @@ Documentation
 =============
 
 The `documentation`_ (coming soon) is graciously hosted by GitHub.
+
+.. _`source code`: http://github.com/scott-maddox/fdint
+.. _`documentation`: http://scott-maddox.github.io/fdint
+.. _`PyPi`: http://pypi.python.org/pypi
+.. _`Python`: https://www.python.org/download/
+.. _`Cython`: http://docs.cython.org/src/quickstart/install.html
+.. _`Numpy`: http://docs.scipy.org/doc/numpy/user/install.html
+.. _`matplotlib`: http://matplotlib.org/users/installing.html
+.. _`Python distribution`: https://www.scipy.org/install.html#scientific-python-distributions
+.. _`FDINT releases page`: http://github.com/scott-maddox/fdint/releases/latest
