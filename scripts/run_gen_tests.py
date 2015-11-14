@@ -4,8 +4,12 @@
 '''
 Runs all of the test-code-generating scripts in the correct sequence.
 
-This should only be run after running ``run_gen_code.py`` and
-after building with ``python setup.py build_ext --inplace``.
+This should be run after generating the main package code and installing
+(optionally into a virtual environment) in order to update the tests:
+
+    python scripts/run_gen_code.py
+    python setup.py install
+    python scripts/run_gen_tests.py
 '''
 import os
 import sys

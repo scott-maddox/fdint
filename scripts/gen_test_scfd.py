@@ -9,8 +9,6 @@ This should only be run after `python setup.py build_ext --inplace`.
 
 import os
 import sys
-sys.path.insert(0,
-    os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import fdint
 tests_dir = os.path.join(os.path.dirname(__file__), '../fdint/tests/')
 
