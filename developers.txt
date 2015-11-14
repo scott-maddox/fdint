@@ -15,26 +15,26 @@ When you want release a new version, follow these directions. First, create a
 release branch by branching off of the develop branch (substitute in the
 appropriate version number):
 
-    git checkout -b release-2.0 develop
+    git checkout -b release-2.0.1 develop
 
 Next, bump the version number, if it hasn't already been bumped. From the root
 of the git repository run these commands (again, substituting the appropriate
 version number):
 
-    echo "__version__ = '2.0'" > fdint/version.py
-    git commit -am "bump version number to 2.0"
+    echo "__version__ = '2.0.1'" > fdint/version.py
+    git commit -am "bump version to 2.0.1"
 
 Now is a good time to install and test in a virtualenv, to make sure you
 haven't missed any bugs. First, test installing without Cython:
 
     python setup.py sdist
     cd dist
-    tar -xvzf fdint-2.0.tar.gz
+    tar -xvzf fdint-2.0.1.tar.gz
 
     virtualenv venv
     source venv/bin/activate
     pip install numpy
-    cd fdint-2.0
+    cd fdint-2.0.1
     python setup.py install
     cd ..
     python -m fdint.tests
@@ -46,21 +46,20 @@ Next, test installing with Cython:
     virtualenv venv
     source venv/bin/activate
     pip install numpy Cython
-    cd fdint-2.0
+    cd fdint-2.0.1
     python setup.py install
     cd ..
     python -m fdint.tests
-    cd fdint
     deactivate
-    rm -rf fdint-2.0 venv
+    rm -rf fdint-2.0.1 venv
 
 Go ahead and fix any bugs you find in the release branch, and we'll merge them
 back into the develop branch later. Next, merge the changes from the release
 branch into the master branch, and tag the release:
 
     git checkout master
-    git merge --no-ff release-2.0
-    git tag -a v2.0
+    git merge --no-ff release-2.0.1
+    git tag -a v2.0.1
     git push origin master
 
 Then run the following commands from the root of the git repository to upload
@@ -77,5 +76,5 @@ If any changes were made during the release branch, merge the release branch
 into the develop branch, and then delete the release branch:
 
     git checkout develop
-    git merge --no-ff release-2.0
-    git branch -d release-2.0
+    git merge --no-ff release-2.0.1
+    git branch -d release-2.0.1
