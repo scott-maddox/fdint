@@ -67,7 +67,7 @@ metadata = dict(
     url='http://scott-maddox.github.io/fdint',
     author='Scott J. Maddox',
     author_email='smaddox@utexas.edu',
-    license='AGPLv3',
+    license='BSD',
     packages=['fdint',
               'fdint.tests',
               'fdint.examples'],
