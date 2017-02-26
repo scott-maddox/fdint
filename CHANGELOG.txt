@@ -1,3 +1,8 @@
+Changes in 2.0.2:
+
+- fixed building on Windows
+- fixed bad asserts in tests
+
 Changes in 2.0.1:
 
 - changed LICENSE to BSD-3-Clause
