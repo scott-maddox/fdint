@@ -27,10 +27,11 @@ class Test_SCFD(unittest.TestCase):
                       ''.format(rtol, rerr))
 
     def assert_all_rtol(self, a, b, rtol):
-        assert (rtol >= 0).all()
         a = numpy.array(a)
         b = numpy.array(b)
         rtol = numpy.array(rtol)
+        for rtol_ in rtol:
+            assert rtol_ >= 0
         rerr = abs(a-b)/a
         if (rerr > rtol).all():
             self.fail('Outside of relative tolerance of {}: {}'
