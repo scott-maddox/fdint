@@ -46,13 +46,13 @@ except:
 
 ext = '.pyx' if USE_CYTHON else '.c'
 
-extensions = [Extension("fdint/_fdint", ["fdint/_fdint"+ext]),
-              Extension("fdint/fd", ["fdint/fd"+ext]),
-              Extension("fdint/dfd", ["fdint/dfd"+ext]),
-              Extension("fdint/ifd", ["fdint/ifd"+ext]),
-              Extension("fdint/gfd", ["fdint/gfd"+ext]),
-              Extension("fdint/dgfd", ["fdint/dgfd"+ext]),
-              Extension("fdint/scfd", ["fdint/scfd"+ext]),]
+extensions = [Extension("fdint._fdint", ["fdint/_fdint"+ext]),
+              Extension("fdint.fd", ["fdint/fd"+ext]),
+              Extension("fdint.dfd", ["fdint/dfd"+ext]),
+              Extension("fdint.ifd", ["fdint/ifd"+ext]),
+              Extension("fdint.gfd", ["fdint/gfd"+ext]),
+              Extension("fdint.dgfd", ["fdint/dgfd"+ext]),
+              Extension("fdint.scfd", ["fdint/scfd"+ext]),]
 
 
 # read in __version__
