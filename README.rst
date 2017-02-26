@@ -22,15 +22,14 @@ in C-like performance.
    integral by parameter polynomial approximation," 2014.
    DOI: 10.13140/2.1.1094.6566
 
-The `source code`_ and `documentation`_ (coming soon) are graciously hosted
-by GitHub.
+The `source code`_ is hosted by GitHub.
 
 Installation
 ============
 
 In order to use FDINT, you must have a working `Python`_ distribution
-installed. Python 3 support has not yet been tested, so Python 2.7 is
-suggested. You will also need to install `Numpy`_ before proceeding. If
+installed. Either Python 2 or Python 3 should work (if not, please let me know by `opening a github issue`_).
+You will also need to install `Numpy`_ before proceeding. If
 you're not familiar with Python, you might consider installing a
 `Python distribution`_ that comes prepackaged with Numpy.
 
@@ -196,13 +195,7 @@ from the command line. When timed inside of ipython, it works fine)::
     /usr/local/bin/ipython:257: RuntimeWarning: nonparabolic: less than 24 bits of accuracy
     1000 loops, best of 3: 1.26 ms per loop
 
-Documentation
-=============
-
-The `documentation`_ (coming soon) is graciously hosted by GitHub.
-
 .. _`source code`: http://github.com/scott-maddox/fdint
-.. _`documentation`: http://scott-maddox.github.io/fdint
 .. _`PyPi`: http://pypi.python.org/pypi
 .. _`Python`: https://www.python.org/download/
 .. _`Cython`: http://docs.cython.org/src/quickstart/install.html
@@ -210,3 +203,4 @@ The `documentation`_ (coming soon) is graciously hosted by GitHub.
 .. _`matplotlib`: http://matplotlib.org/users/installing.html
 .. _`Python distribution`: https://www.scipy.org/install.html#scientific-python-distributions
 .. _`FDINT releases page`: http://github.com/scott-maddox/fdint/releases/latest
+.. _`opening a github issue`: https://github.com/scott-maddox/fdint/issues
