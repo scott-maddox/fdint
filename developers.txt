@@ -24,6 +24,8 @@ version number):
     echo "__version__ = '2.0.1'" > fdint/version.py
     git commit -am "bump version to 2.0.1"
 
+Also, be sure to update the CHANGLOG.txt file!!!
+
 Now is a good time to install and test in a virtualenv, to make sure you
 haven't missed any bugs. First, test installing without Cython:
 
